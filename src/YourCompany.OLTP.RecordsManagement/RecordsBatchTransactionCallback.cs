@@ -6,26 +6,26 @@ namespace YourCompany.OLTP.RecordsManagement
 {
     public static class RecordsBatchTransactionCallback
     {
-        public interface IExtraInterfacesProvider
+        internal interface IExtraInterfacesProvider
         {
             void CollectTransactionCallbackExtraInterfaces(
                 object sender, IExtraInterfacesCollector extraInterfacesCollector);
         }
 
-        public interface IExtraInterfacesCollector
+        internal interface IExtraInterfacesCollector
         {
             void CollectExtraInterface(Type type, object implementor);
         }
 
-        public static class Sender
+        internal static class Sender
         {
-            public interface ITriggerTransactionCallback
+            internal interface ITriggerTransactionCallback
             {
                 void TriggerTransactionCallback(int recordIndex, EventArgs eventArgs);
             }
         }
 
-        public class ExtraInterfaceProvidersList : List<IExtraInterfacesProvider>,
+        internal class ExtraInterfaceProvidersList : List<IExtraInterfacesProvider>,
             IExtraInterfacesCollector,
             Sender.ITriggerTransactionCallback,
             TransactionCallback.Sender.IWithExtraInterfaces
@@ -35,18 +35,18 @@ namespace YourCompany.OLTP.RecordsManagement
             private bool _extraInterfacesCollecting;
             private CurrentlyTriggeringRecord? _triggeringRecord;
 
-            public CurrentlyTriggeringRecord TriggeringRecord => _triggeringRecord
+            internal CurrentlyTriggeringRecord TriggeringRecord => _triggeringRecord
                 ?? throw new ApplicationException("!_triggeringRecord.HasValue");
 
-            public ExtraInterfaceProvidersList(Sender.ITriggerTransactionCallback sender)
+            internal ExtraInterfaceProvidersList(Sender.ITriggerTransactionCallback sender)
                 => _sender = sender ?? throw new ArgumentNullException(nameof(sender));
 
-            public ExtraInterfaceProvidersList(
+            internal ExtraInterfaceProvidersList(
                 Sender.ITriggerTransactionCallback sender, IEnumerable<IExtraInterfacesProvider> collection)
                 : base(collection)
                 => _sender = sender ?? throw new ArgumentNullException(nameof(sender));
 
-            public ExtraInterfaceProvidersList(Sender.ITriggerTransactionCallback sender, int capacity)
+            internal ExtraInterfaceProvidersList(Sender.ITriggerTransactionCallback sender, int capacity)
                 : base(capacity)
                 => _sender = sender ?? throw new ArgumentNullException(nameof(sender));
 
@@ -82,7 +82,7 @@ namespace YourCompany.OLTP.RecordsManagement
                 }
             }
 
-            public void CollectTransactionCallbackExtraInterfaces()
+            internal void CollectTransactionCallbackExtraInterfaces()
             {
                 if (_extraInterfacesCollecting) throw new ApplicationException("_extraInterfacesCollecting");
                 _extraInterfacesCollecting = true;
@@ -119,12 +119,12 @@ namespace YourCompany.OLTP.RecordsManagement
             }
         }
 
-        public readonly struct CurrentlyTriggeringRecord
+        internal readonly struct CurrentlyTriggeringRecord
         {
-            public int RecordIndex { get; }
-            public EventArgs FirstTriggeredEventArgs { get; }
+            internal int RecordIndex { get; }
+            internal EventArgs FirstTriggeredEventArgs { get; }
 
-            public CurrentlyTriggeringRecord(int recordIndex, EventArgs firstTriggeredEventArgs)
+            internal CurrentlyTriggeringRecord(int recordIndex, EventArgs firstTriggeredEventArgs)
             {
                 if (recordIndex < 0) throw new ArgumentOutOfRangeException(nameof(recordIndex), recordIndex, message: null);
                 RecordIndex = recordIndex;

@@ -11,7 +11,7 @@ namespace YourCompany.OLTP.RecordsManagement
         {
             private Sorting() { }
 
-            public override bool ValidateCompatibilityWith(RecordsBatchTransactionSpecification other)
+            internal override bool ValidateCompatibilityWith(RecordsBatchTransactionSpecification other)
                 => base.ValidateCompatibilityWith(other)
                 && !(other is Sorting);
 
@@ -20,13 +20,13 @@ namespace YourCompany.OLTP.RecordsManagement
                 public IReadOnlyList<Identity> OrderedIdentities { get; }
                 public bool SkipMissing { get; }
 
-                public ByIds(IReadOnlyList<Identity> orderedIdentities, bool skipMissing)
+                internal ByIds(IReadOnlyList<Identity> orderedIdentities, bool skipMissing)
                 {
                     OrderedIdentities = orderedIdentities ?? throw new ArgumentNullException(nameof(orderedIdentities));
                     SkipMissing = skipMissing;
                 }
 
-                public override bool ValidateCompatibilityWith(RecordsBatchTransactionSpecification other)
+                internal override bool ValidateCompatibilityWith(RecordsBatchTransactionSpecification other)
                     => base.ValidateCompatibilityWith(other)
                     && !(other is SpecifiedRecordIncompatible)
                     && (!(other is ReadOnlyIncompatible.SpecifiedRecord specifiedRecord)
@@ -38,10 +38,10 @@ namespace YourCompany.OLTP.RecordsManagement
             {
                 public Identity LastSortedIdentity { get; }
 
-                public AfterId(Identity lastSortedIdentity)
+                internal AfterId(Identity lastSortedIdentity)
                     => LastSortedIdentity = lastSortedIdentity ?? throw new ArgumentNullException(nameof(lastSortedIdentity));
 
-                public override bool ValidateCompatibilityWith(RecordsBatchTransactionSpecification other)
+                internal override bool ValidateCompatibilityWith(RecordsBatchTransactionSpecification other)
                     => base.ValidateCompatibilityWith(other)
                     && !(other is ReadOnlyIncompatible.SpecifiedRecord);
             }

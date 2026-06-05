@@ -2,14 +2,18 @@ using System;
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
+using YourCompany.OLTP.RecordsManagement.Persistence;
+using YourCompany.OLTP.RecordsManagement.UseCases;
 
-namespace YourCompany.OLTP.RecordsManagement.UseCases
+namespace YourCompany.OLTP.RecordsManagement.DI
 {
-    public abstract partial class RecordsBatchTransaction<TRecord, TRecordData>
-        : RecordsBatchTransaction.WithRecords<TRecord>.WithRecordsData<TRecordData>
+    internal abstract partial class RecordsBatchTransaction<TRecord, TRecordData>
+        : RecordsBatchTransactionDataBridge<TRecord, TRecordData>
         where TRecord : class
         where TRecordData : class
     {
+        protected RecordsBatchTransaction(RecordsDataAccess.IStarting recordsDataAccess) : base(recordsDataAccess) { }
+
         protected override RecordsBatchTransactionCallback.ExtraInterfaceProvidersList CollectExtraInterfaceProviders()
         {
             if (ReadOnly && !ReadOnlyIncludeRecords) throw new ApplicationException("ReadOnly && !ReadOnlyIncludeRecords");

@@ -6,7 +6,7 @@ namespace YourCompany.OLTP.RecordsManagement
 {
     public static partial class RecordsBatchTransaction
     {
-        public abstract partial class WithIdentities
+        internal abstract partial class WithIdentities
         {
             protected void AddReadIdentity(int recordIndex, Identity identity)
             {

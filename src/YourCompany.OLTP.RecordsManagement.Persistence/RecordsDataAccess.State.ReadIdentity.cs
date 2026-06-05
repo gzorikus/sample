@@ -9,9 +9,9 @@ namespace YourCompany.OLTP.RecordsManagement.Persistence
 {
     public static partial class RecordsDataAccess
     {
-        public readonly partial struct State
+        internal readonly partial struct State
         {
-            public readonly struct ReadIdentity
+            internal readonly struct ReadIdentity
             {
                 private readonly IReadIdentity<PrimaryKey> _afterSortingByIds;
                 private readonly IReadIdentity<PrimaryKey.AfterAlternateSorting> _afterAlternateSorting;
@@ -83,20 +83,20 @@ namespace YourCompany.OLTP.RecordsManagement.Persistence
                     throw new ApplicationException("_afterSortingByIds == null && _afterAlternateSorting == null && _withoutExtraValues == null");
                 }
 
-                public readonly struct ForReadWithoutModifying
+                internal readonly struct ForReadWithoutModifying
                 {
                     internal ReadIdentity Base { get; }
                     internal IReadOnly ReadOnly { get; }
                     internal IFinish Finish { get; }
 
-                    public ForReadWithoutModifying(IReadOnly<PrimaryKey> readOnly, bool withRecordsData)
+                    internal ForReadWithoutModifying(IReadOnly<PrimaryKey> readOnly, bool withRecordsData)
                     {
                         Base = new ReadIdentity(readOnly?.Next, withRecordsData);
                         ReadOnly = readOnly;
                         Finish = Base._afterSortingByIds?.Next;
                     }
 
-                    public ForReadWithoutModifying(
+                    internal ForReadWithoutModifying(
                         IReadOnlyWithoutIds<PrimaryKey.AfterAlternateSorting> readOnly,
                         bool withRecordsData)
                     {
@@ -106,7 +106,7 @@ namespace YourCompany.OLTP.RecordsManagement.Persistence
                         Finish = Base._afterAlternateSorting?.Next;
                     }
 
-                    public ForReadWithoutModifying(
+                    internal ForReadWithoutModifying(
                         IReadOnlyWithoutIds<PrimaryKey.WithoutExtraValues> readOnly,
                         bool withRecordsData)
                     {
@@ -117,13 +117,13 @@ namespace YourCompany.OLTP.RecordsManagement.Persistence
                     }
                 }
 
-                public readonly struct ForReadBeforeModifying
+                internal readonly struct ForReadBeforeModifying
                 {
                     internal ReadIdentity Base { get; }
                     internal IAllowAtomicUpdateWithUnchangedRecordsDataRead ReadBeforeModifying { get; }
                     internal IModifying Modifying { get; }
 
-                    public ForReadBeforeModifying(IReadBeforeModifying<PrimaryKey> readBeforeModifying)
+                    internal ForReadBeforeModifying(IReadBeforeModifying<PrimaryKey> readBeforeModifying)
                     {
                         var readBeforeModifyingIdentity = readBeforeModifying?.Next;
                         Base = new ReadIdentity(readBeforeModifyingIdentity, readOnlyRecordsIncluded: false);
@@ -131,7 +131,7 @@ namespace YourCompany.OLTP.RecordsManagement.Persistence
                         Modifying = readBeforeModifyingIdentity?.Next;
                     }
 
-                    public ForReadBeforeModifying(
+                    internal ForReadBeforeModifying(
                         IReadBeforeModifying<PrimaryKey.AfterAlternateSorting> readBeforeModifying)
                     {
                         var readBeforeModifyingIdentity = readBeforeModifying?.Next;
@@ -141,7 +141,7 @@ namespace YourCompany.OLTP.RecordsManagement.Persistence
                         Modifying = readBeforeModifyingIdentity?.Next;
                     }
 
-                    public ForReadBeforeModifying(
+                    internal ForReadBeforeModifying(
                         IReadBeforeModifying<PrimaryKey.WithoutExtraValues> readBeforeModifying)
                     {
                         var readBeforeModifyingIdentity = readBeforeModifying?.Next;

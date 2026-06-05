@@ -8,17 +8,18 @@ namespace YourCompany.OLTP.RecordsManagement
 {
     public static partial class RecordsBatchTransaction
     {
-        public abstract partial class WithIdentities : SpecifiedRun, IRecordsBatch
+        internal abstract partial class WithIdentities : SpecifiedRun, IRecordsBatch
         {
             private readonly List<Identity> _identities;
             private bool _identitiesSorting;
 
-            public int PresentRecordsCount => ByIdsSkipMissing
+            internal int PresentRecordsCount => ByIdsSkipMissing
                 ? _identities.Count - ByIdsSkippedMissingRecords
                 : _identities.Count;
 
             Type IRecordsBatch.RecordType => RecordType ?? throw new ApplicationException("RecordType == null");
             protected abstract Type RecordType { get; }
+            int IRecordsBatch.SkippedRecords => SkippedRecords;
             protected override IRecordsBatch RecordsBatchAfterRun => this;
             public IReadOnlyList<Identity> Identities => _identities;
             protected WithIdentities() => _identities = new List<Identity>();

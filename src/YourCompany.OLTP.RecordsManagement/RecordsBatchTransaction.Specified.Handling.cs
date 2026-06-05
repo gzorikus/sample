@@ -4,7 +4,7 @@ namespace YourCompany.OLTP.RecordsManagement
 {
     public static partial class RecordsBatchTransaction
     {
-        public abstract partial class Specified
+        internal abstract partial class Specified
         {
             protected virtual bool Handle(RecordsBatchTransactionSpecification specification)
             {

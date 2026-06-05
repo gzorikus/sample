@@ -11,7 +11,7 @@ namespace YourCompany.OLTP.RecordsManagement.Persistence
 {
     public static partial class RecordsDataAccess
     {
-        public abstract class Proxy : IStarting,
+        internal abstract class Proxy : IStarting,
             IAfterSortingByIdsWithoutReading,
             IAfterSortingByIds,
             IAfterSortingWithoutIds<PrimaryKey.AfterAlternateSorting>,
@@ -76,65 +76,64 @@ namespace YourCompany.OLTP.RecordsManagement.Persistence
 
             IModifying IAfterSortingByIdsWithoutReading.ForModifyingOrCreatingByIdsWithoutReading()
             {
-                SetFinishingChain(CreateModifyingOrCreatingByIdsWithoutReadingFinishingChain());
+                SetFinishingChain(new State.FinishingChain(GetAfterSorting().ForModifyingOrCreatingByIdsWithoutReading()));
                 return FinishingChain.HasValue ? this : null;
             }
 
             IReadOnly<PrimaryKey> IAfterSortingByIdsForReadOnly.ForReadOnlyByIdsWithoutRecordsData()
             {
-                SetFinishingChain(CreateReadOnlyWithoutRecordsDataFinishingChain());
+                SetFinishingChain(new State.FinishingChain(GetAfterSorting().ForReadOnlyWithoutRecordsData()));
                 return FinishingChain.HasValue ? this : null;
             }
 
             IReadOnly<PrimaryKey> IAfterSortingByIdsForReadOnly.ForReadOnlyByIdsWithRecordsData()
             {
-                SetFinishingChain(CreateReadOnlyWithRecordsDataFinishingChain());
+                SetFinishingChain(new State.FinishingChain(GetAfterSorting().ForReadOnlyWithRecordsData()));
                 return FinishingChain.HasValue ? this : null;
             }
 
             IReadBeforeModifying<PrimaryKey> IAfterSortingByIdsForModifying.ForModifyingAfterReadingByIds()
             {
-                SetFinishingChain(CreateModifyingAfterReadingFinishingChain());
+                SetFinishingChain(new State.FinishingChain(GetAfterSorting().ForModifyingAfterReading()));
                 return FinishingChain.HasValue ? this : null;
             }
 
             IReadOnlyWithoutIds<PrimaryKey.WithoutExtraValues>
                 IAfterSortingWithoutIdsForReadOnlyWithoutRecordsData.ForReadOnlyWithoutRecordsData()
             {
-                SetFinishingChain(CreateReadOnlyWithoutRecordsDataFinishingChain());
+                SetFinishingChain(new State.FinishingChain(GetAfterSorting().ForReadOnlyWithoutRecordsData()));
                 return FinishingChain.HasValue ? this : null;
             }
 
             IReadOnlyWithoutIds<PrimaryKey.AfterAlternateSorting>
                 IAfterSortingWithoutIdsForReadOnly<PrimaryKey.AfterAlternateSorting>.ForReadOnlyWithRecordsData()
             {
-                SetFinishingChain(CreateReadOnlyWithRecordsDataFinishingChain());
+                SetFinishingChain(new State.FinishingChain(GetAfterSorting().ForReadOnlyWithRecordsData()));
                 return FinishingChain.HasValue ? this : null;
             }
 
             IReadOnlyWithoutIds<PrimaryKey.WithoutExtraValues>
                 IAfterSortingWithoutIdsForReadOnly<PrimaryKey.WithoutExtraValues>.ForReadOnlyWithRecordsData()
             {
-                SetFinishingChain(CreateReadOnlyWithRecordsDataFinishingChain());
+                SetFinishingChain(new State.FinishingChain(GetAfterSorting().ForReadOnlyWithRecordsData()));
                 return FinishingChain.HasValue ? this : null;
             }
 
             IReadBeforeModifying<PrimaryKey.AfterAlternateSorting>
                 IAfterSortingWithoutIdsForModifying<PrimaryKey.AfterAlternateSorting>.ForModifyingAfterReading()
             {
-                SetFinishingChain(CreateModifyingAfterReadingFinishingChain());
+                SetFinishingChain(new State.FinishingChain(GetAfterSorting().ForModifyingAfterReading()));
                 return FinishingChain.HasValue ? this : null;
             }
 
             IReadBeforeModifying<PrimaryKey.WithoutExtraValues>
                 IAfterSortingWithoutIdsForModifying<PrimaryKey.WithoutExtraValues>.ForModifyingAfterReading()
             {
-                SetFinishingChain(CreateModifyingAfterReadingFinishingChain());
+                SetFinishingChain(new State.FinishingChain(GetAfterSorting().ForModifyingAfterReading()));
                 return FinishingChain.HasValue ? this : null;
             }
 
-            bool IFilterBeforeRead.FilterAfterSorting(object specification) => FilterAfterSorting(specification);
-            protected bool FilterAfterSorting(object specification)
+            bool IFilterBeforeRead.FilterAfterSorting(object specification)
             {
                 var filterBeforeRead = AfterSorting.HasValue
                     ? GetAfterSorting().FilterBeforeRead
@@ -146,9 +145,6 @@ namespace YourCompany.OLTP.RecordsManagement.Persistence
 
             Task<int> IReadOnly.ReadWithoutModifying(
                 int batchSize, int recordsCountToSkip, CancellationToken cancellationToken)
-                => ReadWithoutModifying(batchSize, recordsCountToSkip, cancellationToken);
-
-            protected Task<int> ReadWithoutModifying(int batchSize, int recordsCountToSkip, CancellationToken cancellationToken)
                 => FinishReading(GetFinishingChain().ReadWithoutModifying(batchSize, recordsCountToSkip, cancellationToken));
 
             bool IAllowAtomicUpdateWithUnchangedRecordsDataRead.ChangeEachRecordToMatch(object specification)
@@ -156,9 +152,6 @@ namespace YourCompany.OLTP.RecordsManagement.Persistence
 
             Task<int> IReadBeforeModifying.ReadAndLockForChangesPersisting(
                 int batchSize, int recordsCountToSkip, CancellationToken cancellationToken)
-                => ReadAndLockForChangesPersisting(batchSize, recordsCountToSkip, cancellationToken);
-
-            protected Task<int> ReadAndLockForChangesPersisting(int batchSize, int recordsCountToSkip, CancellationToken cancellationToken)
                 => FinishReading(GetFinishingChain().ReadAndLockForChangesPersisting(batchSize, recordsCountToSkip, cancellationToken));
 
             PrimaryKey IReadIdentity<PrimaryKey>.GetReadRecordIdentity(
@@ -174,25 +167,18 @@ namespace YourCompany.OLTP.RecordsManagement.Persistence
                 => (PrimaryKey.WithoutExtraValues)GetFinishingChain().GetReadRecordIdentity(recordIndex, originalIdentityWhenByIds);
 
             object IModifying.CreateRecordDataForSettingChangedProperties(int recordIndex, PrimaryKey primaryKey)
-                => CreateRecordDataForSettingChangedProperties(recordIndex, primaryKey);
-
-            protected object CreateRecordDataForSettingChangedProperties(int recordIndex, PrimaryKey primaryKey)
                 => GetFinishingChain().CreateRecordDataForSettingChangedProperties(recordIndex, primaryKey);
 
             bool IModifying.ChangeSpecifiedRecordToMatch(int recordIndex, PrimaryKey primaryKey, object specification)
                 => GetFinishingChain().ChangeSpecifiedRecordToMatch(recordIndex, primaryKey, specification);
 
             Task IModifying.PersistChanges(CancellationToken cancellationToken)
-                => PersistChanges(cancellationToken);
-
-            protected Task PersistChanges(CancellationToken cancellationToken)
                 => FinishModifying(GetFinishingChain().PersistChanges(cancellationToken));
 
             object IModifying.GetLockedRecordDataWithoutChanges(int recordIndex, PrimaryKey primaryKey)
                 => GetFinishingChain().GetLockedRecordDataWithoutChanges(recordIndex, primaryKey);
 
-            Task IFinish.Finish(CancellationToken cancellationToken) => Finish(cancellationToken);
-            protected Task Finish(CancellationToken cancellationToken) => GetFinishingChain().Finish(cancellationToken);
+            Task IFinish.Finish(CancellationToken cancellationToken) => GetFinishingChain().Finish(cancellationToken);
 
             object IFinish.GetRecordDataAfterAccess(int recordIndex, PrimaryKey primaryKey)
                 => GetFinishingChain().GetRecordDataAfterAccess(recordIndex, primaryKey);
@@ -206,18 +192,6 @@ namespace YourCompany.OLTP.RecordsManagement.Persistence
                 if (FinishingChain.HasValue) throw new ApplicationException("FinishingChain.HasValue");
                 if (!StructHelper.IsZeroed(afterSorting)) AfterSorting = afterSorting;
             }
-
-            protected State.FinishingChain CreateModifyingOrCreatingByIdsWithoutReadingFinishingChain()
-                => new State.FinishingChain(GetAfterSorting().ForModifyingOrCreatingByIdsWithoutReading());
-
-            protected State.FinishingChain CreateReadOnlyWithoutRecordsDataFinishingChain()
-                => new State.FinishingChain(GetAfterSorting().ForReadOnlyWithoutRecordsData());
-
-            protected State.FinishingChain CreateReadOnlyWithRecordsDataFinishingChain()
-                => new State.FinishingChain(GetAfterSorting().ForReadOnlyWithRecordsData());
-
-            protected State.FinishingChain CreateModifyingAfterReadingFinishingChain()
-                => new State.FinishingChain(GetAfterSorting().ForModifyingAfterReading());
 
             protected State.AfterSorting GetAfterSorting()
             {

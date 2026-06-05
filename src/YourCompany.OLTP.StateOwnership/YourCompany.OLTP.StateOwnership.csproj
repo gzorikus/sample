@@ -4,4 +4,9 @@
     <TargetFramework>netstandard2.0</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <InternalsVisibleTo Include="YourCompany.OLTP.RecordsManagement" />
+    <InternalsVisibleTo Include="YourCompany.OLTP.RecordsManagement.DI" />
+  </ItemGroup>
+
 </Project>

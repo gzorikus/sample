@@ -6,9 +6,9 @@ namespace YourCompany.OLTP.RecordsManagement
 {
     public static partial class RecordsBatchTransaction
     {
-        public abstract partial class WithRecords<TRecord>
+        internal abstract partial class WithRecords<TRecord>
         {
-            public abstract partial class WithRecordsData<TRecordData> : RecordState<TRecordData>.IConfiguredRecordsBatch
+            internal abstract partial class WithRecordsData<TRecordData> : RecordState<TRecordData>.IConfiguredRecordsBatch
             {
                 public IReadOnlyList<ISpecification<TRecordData>> EachRecordSpecificationsToMatchWithoutDataChanges
                     => _eachRecordSpecificationsWithoutDataChanges;

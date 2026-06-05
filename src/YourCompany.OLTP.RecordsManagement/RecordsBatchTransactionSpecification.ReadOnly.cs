@@ -4,15 +4,15 @@ namespace YourCompany.OLTP.RecordsManagement
     {
         public abstract class ReadOnly : RecordsBatchTransactionSpecification
         {
-            private ReadOnly() { }
+            internal ReadOnly() { }
 
-            public override bool ValidateCompatibilityWith(RecordsBatchTransactionSpecification other)
+            internal override bool ValidateCompatibilityWith(RecordsBatchTransactionSpecification other)
                 => base.ValidateCompatibilityWith(other)
                 && !(other is ReadOnlyIncompatible);
 
             public sealed class IncludeRecords : ReadOnly
             {
-                public static IncludeRecords Instance { get; } = new IncludeRecords();
+                internal static IncludeRecords Instance { get; } = new IncludeRecords();
                 private IncludeRecords() { }
             }
         }

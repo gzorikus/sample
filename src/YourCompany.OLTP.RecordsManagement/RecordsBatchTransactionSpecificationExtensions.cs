@@ -24,7 +24,7 @@ namespace YourCompany.OLTP.RecordsManagement
             return specification.Unwrap();
         }
 
-        public static void EnsureMatches<TRecordData>(
+        internal static void EnsureMatches<TRecordData>(
             this IReadOnlyList<ISpecification<TRecordData>> specifications, Identity identity, TRecordData recordData)
             where TRecordData : class
         {
@@ -33,7 +33,7 @@ namespace YourCompany.OLTP.RecordsManagement
                     throw GetExceptionForSpecifiedRecordsMismatch(specifications[i], identity);
         }
 
-        public static Exception GetExceptionForSpecifiedRecordsMismatch<TRecordData>(
+        internal static Exception GetExceptionForSpecifiedRecordsMismatch<TRecordData>(
             this ISpecification<TRecordData> specification, Identity identity)
             where TRecordData : class
         {

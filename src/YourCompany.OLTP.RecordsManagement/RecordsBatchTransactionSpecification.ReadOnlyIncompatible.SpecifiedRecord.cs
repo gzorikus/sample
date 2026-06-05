@@ -11,9 +11,9 @@ namespace YourCompany.OLTP.RecordsManagement
             public abstract class SpecifiedRecord : ReadOnlyIncompatible
             {
                 public Identity Identity { get; }
-                private SpecifiedRecord(Identity identity) => Identity = identity ?? throw new ArgumentNullException(nameof(identity));
+                internal SpecifiedRecord(Identity identity) => Identity = identity ?? throw new ArgumentNullException(nameof(identity));
 
-                public override bool ValidateCompatibilityWith(RecordsBatchTransactionSpecification other)
+                internal override bool ValidateCompatibilityWith(RecordsBatchTransactionSpecification other)
                     => base.ValidateCompatibilityWith(other)
                     && !(other is SpecifiedRecordIncompatible)
                     && !(other is Sorting.AfterId)
@@ -24,10 +24,10 @@ namespace YourCompany.OLTP.RecordsManagement
                 {
                     public EventArgs UseCaseParametersToTrigger { get; }
 
-                    public UseCaseParameters(Identity identity, EventArgs useCaseParametersToTrigger) : base(identity)
+                    internal UseCaseParameters(Identity identity, EventArgs useCaseParametersToTrigger) : base(identity)
                         => UseCaseParametersToTrigger = useCaseParametersToTrigger ?? throw new ArgumentNullException(nameof(useCaseParametersToTrigger));
 
-                    public override bool ValidateCompatibilityWith(RecordsBatchTransactionSpecification other)
+                    internal override bool ValidateCompatibilityWith(RecordsBatchTransactionSpecification other)
                         => base.ValidateCompatibilityWith(other)
                         && !(other is ReadOnlyIncompatible.UseCaseParameters)
                         && (!(other is UseCaseParameters useCaseParameters)
@@ -58,7 +58,7 @@ namespace YourCompany.OLTP.RecordsManagement
                     public virtual Exception GetExceptionForSpecifiedRecordsMismatch(Identity identity)
                         => new RecordDataMismatchException<TRecordData>(identity, SpecificationToMatch);
 
-                    public override bool ValidateCompatibilityWith(RecordsBatchTransactionSpecification other)
+                    internal override bool ValidateCompatibilityWith(RecordsBatchTransactionSpecification other)
                         => base.ValidateCompatibilityWith(other)
                         && (!(other is ISpecificationWrapper<TRecordData> wrapper)
                             || (!wrapper.SpecificationToMatch.Equals(SpecificationToMatch)

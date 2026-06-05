@@ -5,7 +5,7 @@ namespace YourCompany.OLTP.RecordsManagement
 {
     public static partial class RecordsBatchTransaction
     {
-        public abstract partial class Specified
+        internal abstract partial class Specified
         {
             private int? _reducedBatchSize;
             private int? _recordsCountToSkip;

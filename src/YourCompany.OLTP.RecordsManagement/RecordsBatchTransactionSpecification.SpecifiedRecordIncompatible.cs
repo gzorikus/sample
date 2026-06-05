@@ -6,9 +6,9 @@ namespace YourCompany.OLTP.RecordsManagement
     {
         public abstract class SpecifiedRecordIncompatible : RecordsBatchTransactionSpecification
         {
-            private SpecifiedRecordIncompatible() { }
+            internal SpecifiedRecordIncompatible() { }
 
-            public override bool ValidateCompatibilityWith(RecordsBatchTransactionSpecification other)
+            internal override bool ValidateCompatibilityWith(RecordsBatchTransactionSpecification other)
                 => base.ValidateCompatibilityWith(other)
                 && !(other is ReadOnlyIncompatible.SpecifiedRecord)
                 && !(other is Sorting.ByIds);
@@ -26,24 +26,24 @@ namespace YourCompany.OLTP.RecordsManagement
                     RecordsCountToSkip = recordsCountToSkip;
                 }
 
-                public override bool ValidateCompatibilityWith(RecordsBatchTransactionSpecification other)
+                internal override bool ValidateCompatibilityWith(RecordsBatchTransactionSpecification other)
                     => base.ValidateCompatibilityWith(other)
                     && !(other is Paginate);
 
                 public sealed class Full : Paginate
                 {
-                    public Full(int reducedBatchSize, int recordsCountToSkip) : base(reducedBatchSize, recordsCountToSkip) { }
+                    internal Full(int reducedBatchSize, int recordsCountToSkip) : base(reducedBatchSize, recordsCountToSkip) { }
                 }
 
                 public sealed class ReduceBatchSize : Paginate
                 {
-                    public static ReduceBatchSize Single { get; } = new ReduceBatchSize(1);
-                    public ReduceBatchSize(int batchSize) : base(batchSize, recordsCountToSkip: 0) { }
+                    internal static ReduceBatchSize Single { get; } = new ReduceBatchSize(1);
+                    internal ReduceBatchSize(int batchSize) : base(batchSize, recordsCountToSkip: 0) { }
                 }
 
                 public sealed class SkipRecords : Paginate
                 {
-                    public SkipRecords(int recordsCountToSkip) : base(reducedBatchSize: null, recordsCountToSkip) { }
+                    internal SkipRecords(int recordsCountToSkip) : base(reducedBatchSize: null, recordsCountToSkip) { }
                 }
             }
         }

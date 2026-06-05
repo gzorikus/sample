@@ -204,7 +204,7 @@ All the entry point branches' heads are highlighted in the graph as ⏹️.
 ---
 config:
   gitGraph:
-    mainBranchName: "MERGED"
+    mainBranchName: "5|🧱: OLTP switch to chassis"
     parallelCommits: true
     rotateCommitLabel: false
     showCommitLabel: false
@@ -288,7 +288,7 @@ gitGraph
 %% commit type:REVERSE %% OSTC<3
 %% branch "5|🧱: OLTP switch to chassis" %% OSTC
 %% commit type:REVERSE %% OSTC>1
-%% commit type:HIGHLIGHT tag:"5|🧱|oltp-di-combine-use-case-and-persistence-interfaces-switch-to-chassis|YourCompany.OLTP.RecordsManagement|YourCompany.OLTP.RecordsManagement.DI|YourCompany.OLTP.RecordsManagement.Persistence|YourCompany.OLTP.RecordsManagement.UseCases|YourCompany.OLTP.StateOwnership" %% OSTC
+commit type:HIGHLIGHT tag:"5|🧱|oltp-di-combine-use-case-and-persistence-interfaces-switch-to-chassis|YourCompany.OLTP.RecordsManagement|YourCompany.OLTP.RecordsManagement.DI|YourCompany.OLTP.RecordsManagement.Persistence|YourCompany.OLTP.RecordsManagement.UseCases|YourCompany.OLTP.StateOwnership" %% OSTC
 
 %% Startup Iteration 4
 
@@ -385,8 +385,8 @@ gitGraph
 %% commit type:NORMAL tag:"4|💾|YourCompany.Configuration.EFCore" %% ESKR
 %% merge "7|💾: EFCore multi-entity sorting" type:NORMAL tag:"4|💾|YourCompany.Configuration.EFCore" %% ESKR
 
-%% checkout "5|🧱: OLTP switch to chassis" %% OLMBU
-%% branch "4|🧱: OLTP LINQ may be useful" %% OLMBU
+checkout "5|🧱: OLTP switch to chassis" %% OLMBU
+branch "4|🧱: OLTP LINQ may be useful" %% OLMBU
 commit type:HIGHLIGHT tag:"4|🧱|oltp-segregate-persistence-repository-is-for-use-cases|YourCompany.OLTP.RecordsManagement.Persistence.Linq" %% OLMBU
 %% merge "5|💾: OLTP EFCore readonly" type:HIGHLIGHT tag:"4|🧱|oltp-segregate-persistence-repository-is-for-use-cases|YourCompany.OLTP.RecordsManagement.Persistence.Linq" %% OLMBU
 
@@ -405,8 +405,8 @@ commit type:NORMAL tag:"4|🧱|YourCompany.OLTP.RecordsManagement.Persistence" %
 %% commit type:HIGHLIGHT tag:"4|🏠|oltp-segregate-use-cases-with-transactional-composition|YourCompany.OLTP.RecordsManagement.UseCases.TransactionalComposition" %% OUCBRT
 
 %% checkout "4|🏠: OLTP use cases by record type" %% EOUC
-%% checkout "5|🧱: OLTP switch to chassis" %% EOUC
-%% branch "4|🏠: enumerate OLTP use cases" %% EOUC
+checkout "5|🧱: OLTP switch to chassis" %% EOUC
+branch "4|🏠: enumerate OLTP use cases" %% EOUC
 commit type:HIGHLIGHT tag:"4|🏠|oltp-segregate-use-cases-repository-is-for-persistence|YourCompany.OLTP.RecordsManagement.UseCases" %% EOUC
 %% merge "4|🏠: OLTP use cases by record type" type:HIGHLIGHT tag:"4|🏠|oltp-segregate-use-cases-repository-is-for-persistence|YourCompany.OLTP.RecordsManagement.UseCases" %% EOUC
 
@@ -454,7 +454,7 @@ commit type:HIGHLIGHT tag:"4|🏠|oltp-segregate-use-cases-repository-is-for-per
 %% commit type:REVERSE %% OIAUK 3>1
 
 checkout "4|🏠: enumerate OLTP use cases" %% OTS
-checkout "4|🧱: OLTP identities are unique keys" %% OTS
+%% checkout "4|🧱: OLTP identities are unique keys" %% OTS
 branch "3|🧱: OLTP transaction structure" %% OTS
 %% merge "4|🧱: OLTP identities are unique keys" %% OTS
 %% commit type:REVERSE %% OTS>1
@@ -464,8 +464,8 @@ branch "3|🧱: OLTP transaction structure" %% OTS
 %% commit type:REVERSE %% OTS>5
 %% commit type:REVERSE %% OTS>6
 %% commit type:REVERSE %% OTS>7
-commit type:HIGHLIGHT tag:"3|🧱|oltp-typical-transaction-structure-repository-is-up-to-you|YourCompany.OLTP.RecordsManagement" %% OTS
-%% merge "4|🧱: OLTP identities are unique keys" type:HIGHLIGHT tag:"3|🧱|oltp-typical-transaction-structure-repository-is-up-to-you|YourCompany.OLTP.RecordsManagement" %% OTS
+%% commit type:HIGHLIGHT tag:"3|🧱|oltp-typical-transaction-structure-repository-is-up-to-you|YourCompany.OLTP.RecordsManagement" %% OTS
+merge "4|🧱: OLTP identities are unique keys" type:HIGHLIGHT tag:"3|🧱|oltp-typical-transaction-structure-repository-is-up-to-you|YourCompany.OLTP.RecordsManagement" %% OTS
 
 %% checkout "4|🏠: OLTP use cases by record type" %% ORTCM
 %% branch "3|🏠: OLTP RecordTypesCompositionMap" %% ORTCM
@@ -509,7 +509,7 @@ commit type:HIGHLIGHT tag:"3|🧱|oltp-typical-transaction-structure-repository-
 
 checkout "4|🏠: enumerate OLTP use cases" %% GOUC
 branch "3|🏠: generic OLTP use cases" %% GOUC
-%% commit type:REVERSE %% GOUC>1
+commit type:REVERSE %% GOUC>1
 commit type:NORMAL tag:"3|🏠|YourCompany.OLTP.RecordsManagement.UseCases" %% GOUC
 %% merge "3|🏠: OLTP UseCaseTypesMap" type:NORMAL tag:"3|🏠|YourCompany.OLTP.RecordsManagement.UseCases" %% GOUC
 
@@ -751,7 +751,7 @@ commit type:REVERSE %% OTS 2>1
 %% commit type:REVERSE %% OTS 2>12
 
 checkout "3|🏠: generic OLTP use cases" %% OTILS
-checkout "3|🧱: OLTP transaction structure" %% OTILS
+%% checkout "3|🧱: OLTP transaction structure" %% OTILS
 branch "2|🏠: OLTP transaction is limited size" %% OTILS
 %% commit type:HIGHLIGHT tag:"2|🏠|oltp-ways-to-access-size-limited-record-batch|YourCompany.OLTP.RecordsManagement" %% OTILS
 merge "3|🧱: OLTP transaction structure" type:HIGHLIGHT tag:"2|🏠|oltp-ways-to-access-size-limited-record-batch|YourCompany.OLTP.RecordsManagement" %% OTILS
@@ -945,15 +945,24 @@ Cons: why it might be not enough for you
 
 <!-- ### Branch: oltp-segregate-use-cases-with-transactional-composition END -->
 
-<!-- ### Branch: oltp-di-combine-use-case-and-persistence-interfaces-switch-to-chassis
+### Branch: oltp-di-combine-use-case-and-persistence-interfaces-switch-to-chassis
 
-> Files: ### | Lines: #####  
-Pros: why do you choose this entry point  
-Cons: why it might be not enough for you
+> Files: 61 | Lines: 5872  
+Pros: reduced public surface and boilerplate, no all-in-one inheriting, jobs segregated, maintain your chassis separately  
+Cons: still requires repository per entity, lacks DI, events, transactional composition (domain modularity), persistence
 
 | Log | Examples | Modules |
 |-|-|-|
-| [replace_with_each_included_commit_subject](#commit-with-lower-case-subject) | <kbd> [at‑least‑one‑example‑solution‑name](examples/at-least-one-example-solution-per-commit/README.md#commit-with-lower-case-subject) </kbd><br><kbd> [extra‑example‑solution‑name](examples/extra-example-solution-name/README.md#commit-with-lower-case-subject) </kbd> | <kbd>YourCompany.Framework.Assembly.Name1 (+diff lines)</kbd><br><kbd>YourCompany.Framework.Assembly.Name2 (-diff lines)</kbd><br><kbd>YourCompany.Framework.Assembly.NameN (0 lines)</kbd> |
+| [1\|⁠🏠: the heart of OLTP is transaction](#commit-1-the-heart-of-oltp-is-transaction) | <kbd> [TODO](examples/at-least-one-example-solution-per-commit/README.md#commit-1-the-heart-of-oltp-is-transaction) </kbd> | <kbd>YourCompany.OLTP.StateOwnership (+371 lines)</kbd> |
+| [2\|⁠🏠: OLTP transaction is limited size](#commit-2-oltp-transaction-is-limited-size) | <kbd> [TODO](examples/at-least-one-example-solution-per-commit/README.md#commit-2-oltp-transaction-is-limited-size) </kbd> | <kbd>YourCompany.OLTP.RecordsManagement (+1500 lines)</kbd> |
+| [2\|⁠🧱: StructHelper](#commit-2-structhelper) | <kbd> [TODO](examples/at-least-one-example-solution-per-commit/README.md#commit-2-structhelper) </kbd> | <kbd>YourCompany.CompilerServices (+18 lines)</kbd> |
+| [2\|⁠🧱: AwaitTasksList](#commit-2-awaittaskslist) | <kbd> [TODO](examples/at-least-one-example-solution-per-commit/README.md#commit-2-awaittaskslist) </kbd> | <kbd>YourCompany.Threading (+49 lines)</kbd> |
+| [3\|⁠🏠: generic OLTP use cases](#commit-3-generic-oltp-use-cases) | <kbd> [TODO](examples/at-least-one-example-solution-per-commit/README.md#commit-3-generic-oltp-use-cases) </kbd> | <kbd>YourCompany.OLTP.RecordsManagement.UseCases (+212 lines)</kbd> |
+| [3\|⁠🧱: OLTP transaction structure](#commit-3-oltp-transaction-structure) | <kbd> [TODO](examples/at-least-one-example-solution-per-commit/README.md#commit-3-oltp-transaction-structure) </kbd> | <kbd>YourCompany.OLTP.RecordsManagement (+1918 lines)</kbd> |
+| [4\|⁠🏠: enumerate OLTP use cases](#commit-4-enumerate-oltp-use-cases) | <kbd> [TODO](examples/at-least-one-example-solution-per-commit/README.md#commit-4-enumerate-oltp-use-cases) </kbd> | <kbd>YourCompany.OLTP.RecordsManagement.UseCases (+117 lines)</kbd> |
+| [4\|⁠🧱: OLTP identities are unique keys](#commit-4-oltp-identities-are-unique-keys) | <kbd> [TODO](examples/at-least-one-example-solution-per-commit/README.md#commit-4-oltp-identities-are-unique-keys) </kbd> | <kbd>YourCompany.OLTP.RecordsManagement.Persistence (+1642 lines)</kbd> |
+| [4\|⁠🧱: OLTP LINQ may be useful](#commit-4-oltp-linq-may-be-useful) | <kbd> [TODO](examples/at-least-one-example-solution-per-commit/README.md#commit-4-oltp-linq-may-be-useful) </kbd> | <kbd>YourCompany.OLTP.RecordsManagement.Persistence.Linq (+59 lines)</kbd> |
+| [5\|⁠🧱: OLTP switch to chassis](#commit-5-oltp-switch-to-chassis) | <kbd> [TODO](examples/at-least-one-example-solution-per-commit/README.md#commit-5-oltp-switch-to-chassis) </kbd> | <kbd>YourCompany.OLTP.RecordsManagement (+1 lines)</kbd><br><kbd>YourCompany.OLTP.RecordsManagement.DI (+122 lines)</kbd><br><kbd>YourCompany.OLTP.RecordsManagement.Persistence (-26 lines)</kbd><br><kbd>YourCompany.OLTP.RecordsManagement.UseCases (-117 lines)</kbd><br><kbd>YourCompany.OLTP.StateOwnership (+6 lines)</kbd> |
 
 <!-- ### Branch: oltp-di-combine-use-case-and-persistence-interfaces-switch-to-chassis END -->
 
@@ -1564,9 +1573,9 @@ Commit body is multiline and compliant to markdown formatting 💥
 <table><tbody><tr><td>
 
 2 files changed, 117 insertions(+)<br>
-<sub><sub>src/YourCompany.OLTP.RecordsManagement.UseCases/</sub></sub><br>
-<kbd> +++++++ 64  |⁠ [RecordsBatchTransaction.UseCasesParallelRun.cs                                                                 ](src/YourCompany.OLTP.RecordsManagement.UseCases/RecordsBatchTransaction.UseCasesParallelRun.cs)</kbd><br>
-<kbd>   +++++ 53  |⁠ [RecordsBatchTransaction.cs                                                                                     ](src/YourCompany.OLTP.RecordsManagement.UseCases/RecordsBatchTransaction.cs)</kbd><br>
+<sub><sub><del>src/YourCompany.OLTP.RecordsManagement.UseCases/</del></sub></sub><br>
+<kbd> +++++++ 64  |⁠ RecordsBatchTransaction.UseCasesParallelRun.cs                                                                 </kbd><br>
+<kbd>   +++++ 53  |⁠ RecordsBatchTransaction.cs                                                                                     </kbd><br>
 
 We've segregated use case related concerns into several interfaces.
 
@@ -1793,15 +1802,71 @@ Commit body is multiline and compliant to markdown formatting 💥
 
 <!-- ### Commit: 4|💾: cache EFProperty from ValueTuple END -->
 
-<!-- ### Commit: 5|🧱: OLTP switch to chassis
+### Commit: 5|🧱: OLTP switch to chassis
 
 <table><tbody><tr><td>
 
-X files changed, Y insertions(+), Z deletions(-)<br>
-<sub><sub>src/YourCompany.Module/</sub></sub><br>
-<kbd> +++++++ NNN |⁠ [File.cs                                                                                                        ](src/YourCompany.Configuration/EnvironmentConventions.cs)</kbd><br>
+35 files changed, 298 insertions(+), 312 deletions(-)<br>
+<sub><sub>src/YourCompany.OLTP.RecordsManagement/</sub></sub><br>
+<kbd>     +‑‑ 30  |⁠ [RecordsBatchTransaction.SpecifiedRun.State.cs                                                                  ](src/YourCompany.OLTP.RecordsManagement/RecordsBatchTransaction.SpecifiedRun.State.cs)</kbd><br>
+<kbd>     +‑‑ 28  |⁠ [RecordsBatchTransactionCallback.cs                                                                             ](src/YourCompany.OLTP.RecordsManagement/RecordsBatchTransactionCallback.cs)</kbd><br>
+<kbd>     +‑‑ 22  |⁠ [RecordsBatchTransaction.WithRecords.WithRecordsData.BuiltRecord.cs                                             ](src/YourCompany.OLTP.RecordsManagement/RecordsBatchTransaction.WithRecords.WithRecordsData.BuiltRecord.cs)</kbd><br>
+<kbd>      +‑ 16  |⁠ [RecordState.cs                                                                                                 ](src/YourCompany.OLTP.RecordsManagement/RecordState.cs)</kbd><br>
+<kbd>      +‑ 14  |⁠ [RecordsBatchTransactionSpecification.ReadOnlyIncompatible.cs                                                   ](src/YourCompany.OLTP.RecordsManagement/RecordsBatchTransactionSpecification.ReadOnlyIncompatible.cs)</kbd><br>
+<kbd>      +‑ 14  |⁠ [RecordsBatchTransactionSpecification.SpecifiedRecordIncompatible.cs                                            ](src/YourCompany.OLTP.RecordsManagement/RecordsBatchTransactionSpecification.SpecifiedRecordIncompatible.cs)</kbd><br>
+<kbd>      +‑ 12  |⁠ [RecordsBatchTransaction.Specified.cs                                                                           ](src/YourCompany.OLTP.RecordsManagement/RecordsBatchTransaction.Specified.cs)</kbd><br>
+<kbd>      +‑ 10  |⁠ [RecordsBatchTransactionSpecification.ReadOnlyIncompatible.SpecifiedRecord.cs                                   ](src/YourCompany.OLTP.RecordsManagement/RecordsBatchTransactionSpecification.ReadOnlyIncompatible.SpecifiedRecord.cs)</kbd><br>
+<kbd>      +‑ 10  |⁠ [RecordsBatchTransactionSpecification.Sorting.cs                                                                ](src/YourCompany.OLTP.RecordsManagement/RecordsBatchTransactionSpecification.Sorting.cs)</kbd><br>
+<kbd>      +‑ 10  |⁠ [RecordsBatchTransaction.SpecifiedRun.RunOnceStep.cs                                                            ](src/YourCompany.OLTP.RecordsManagement/RecordsBatchTransaction.SpecifiedRun.RunOnceStep.cs)</kbd><br>
+<kbd>      +‑ 8   |⁠ [RecordsBatchTransactionSpecification.cs                                                                        ](src/YourCompany.OLTP.RecordsManagement/RecordsBatchTransactionSpecification.cs)</kbd><br>
+<kbd>      +‑ 6   |⁠ [RecordsBatchTransaction.WithRecords.WithRecordsData.cs                                                         ](src/YourCompany.OLTP.RecordsManagement/RecordsBatchTransaction.WithRecords.WithRecordsData.cs)</kbd><br>
+<kbd>      +‑ 6   |⁠ [RecordsBatchTransactionSpecification.ReadOnly.cs                                                               ](src/YourCompany.OLTP.RecordsManagement/RecordsBatchTransactionSpecification.ReadOnly.cs)</kbd><br>
+<kbd>      +‑ 6   |⁠ [RecordsBatchTransaction.WithRecords.WithRecordsData.TriggerTransactionCallback.cs                              ](src/YourCompany.OLTP.RecordsManagement/RecordsBatchTransaction.WithRecords.WithRecordsData.TriggerTransactionCallback.cs)</kbd><br>
+<kbd>      +‑ 5   |⁠ [RecordsBatchTransaction.WithIdentities.cs                                                                      ](src/YourCompany.OLTP.RecordsManagement/RecordsBatchTransaction.WithIdentities.cs)</kbd><br>
+<kbd>      +‑ 4   |⁠ [RecordsBatchTransaction.WithRecords.WithRecordsData.RecordState.cs                                             ](src/YourCompany.OLTP.RecordsManagement/RecordsBatchTransaction.WithRecords.WithRecordsData.RecordState.cs)</kbd><br>
+<kbd>      +‑ 4   |⁠ [RecordsBatchTransaction.SpecifiedRun.cs                                                                        ](src/YourCompany.OLTP.RecordsManagement/RecordsBatchTransaction.SpecifiedRun.cs)</kbd><br>
+<kbd>      +‑ 4   |⁠ [RecordsBatchTransactionSpecificationExtensions.cs                                                              ](src/YourCompany.OLTP.RecordsManagement/RecordsBatchTransactionSpecificationExtensions.cs)</kbd><br>
+<kbd>      +‑ 2   |⁠ [RecordsBatchTransaction.Specified.Handling.cs                                                                  ](src/YourCompany.OLTP.RecordsManagement/RecordsBatchTransaction.Specified.Handling.cs)</kbd><br>
+<kbd>      +‑ 2   |⁠ [RecordsBatchTransaction.SpecifiedRun.TypicalSequence.cs                                                        ](src/YourCompany.OLTP.RecordsManagement/RecordsBatchTransaction.SpecifiedRun.TypicalSequence.cs)</kbd><br>
+<kbd>      +‑ 2   |⁠ [RecordsBatchTransaction.WithRecords.cs                                                                         ](src/YourCompany.OLTP.RecordsManagement/RecordsBatchTransaction.WithRecords.cs)</kbd><br>
+<kbd>      +‑ 2   |⁠ [RecordsBatchTransaction.Specified.SetOnceProperties.cs                                                         ](src/YourCompany.OLTP.RecordsManagement/RecordsBatchTransaction.Specified.SetOnceProperties.cs)</kbd><br>
+<kbd>      +‑ 2   |⁠ [RecordsBatchTransaction.WithIdentities.Unique.cs                                                               ](src/YourCompany.OLTP.RecordsManagement/RecordsBatchTransaction.WithIdentities.Unique.cs)</kbd><br>
+<kbd>      +‑ 2   |⁠ [RecordsBatchTransaction.WithIdentities.ReplacingSpecified.cs                                                   ](src/YourCompany.OLTP.RecordsManagement/RecordsBatchTransaction.WithIdentities.ReplacingSpecified.cs)</kbd><br>
+<sub><sub>src/YourCompany.OLTP.RecordsManagement.Persistence/</sub></sub><br>
+<kbd>   ++‑‑‑ 50  |⁠ [RecordsDataAccess.Proxy.cs                                                                                     ](src/YourCompany.OLTP.RecordsManagement.Persistence/RecordsDataAccess.Proxy.cs)</kbd><br>
+<kbd>     +‑‑ 32  |⁠ [RecordsDataAccess.State.FinishingChain.cs                                                                      ](src/YourCompany.OLTP.RecordsManagement.Persistence/RecordsDataAccess.State.FinishingChain.cs)</kbd><br>
+<kbd>      +‑ 20  |⁠ [RecordsDataAccess.State.ReadIdentity.cs                                                                        ](src/YourCompany.OLTP.RecordsManagement.Persistence/RecordsDataAccess.State.ReadIdentity.cs)</kbd><br>
+<kbd>      +‑ 14  |⁠ [RecordsDataAccess.State.AfterSorting.cs                                                                        ](src/YourCompany.OLTP.RecordsManagement.Persistence/RecordsDataAccess.State.AfterSorting.cs)</kbd><br>
+<kbd>      +‑ 10  |⁠ [RecordsDataAccess.State.cs                                                                                     ](src/YourCompany.OLTP.RecordsManagement.Persistence/RecordsDataAccess.State.cs)</kbd><br>
+<kbd>      +‑ 2   |⁠ [RecordsBatchTransactionDataBridge.cs                                                                           ](src/YourCompany.OLTP.RecordsManagement.Persistence/RecordsBatchTransactionDataBridge.cs)</kbd><br>
+<sub><sub>src/YourCompany.OLTP.RecordsManagement.DI/</sub></sub><br>
+<kbd> +++++++ 65  |⁠ [RecordsBatchTransaction.UseCasesParallelRun.cs                                                                 ](src/YourCompany.OLTP.RecordsManagement.DI/RecordsBatchTransaction.UseCasesParallelRun.cs)</kbd><br>
+<kbd>  ++++++ 57  |⁠ [RecordsBatchTransaction.cs                                                                                     ](src/YourCompany.OLTP.RecordsManagement.DI/RecordsBatchTransaction.cs)</kbd><br>
+<sub><sub><del>src/YourCompany.OLTP.RecordsManagement.UseCases/</del></sub></sub><br>
+<kbd>  ‑‑‑‑‑‑ 64  |⁠ RecordsBatchTransaction.UseCasesParallelRun.cs                                                                 </kbd><br>
+<kbd>   ‑‑‑‑‑ 53  |⁠ RecordsBatchTransaction.cs                                                                                     </kbd><br>
+<sub><sub>src/YourCompany.OLTP.StateOwnership/</sub></sub><br>
+<kbd>     ++‑ 22  |⁠ [TransactionCallback.cs                                                                                         ](src/YourCompany.OLTP.StateOwnership/TransactionCallback.cs)</kbd><br>
 
-Commit body is multiline and compliant to markdown formatting 💥
+Here we internalize a lot of public classes and methods previously  
+open for overriding per project per entity. From now on we're  
+committed to classify any outstanding needs first while making  
+adjustments in your owned enterprise chassis repo (i.e. providing  
+nuget packages, ideally).
+
+This allow us to switch into much more powerful approaches while  
+keeping the project's code as thin as possible, getting the most out  
+of the rule **The less code doing the job, the more value it brings**.  
+To put it simple, we want our projects to utilize the most out of  
+OOP/DDD with as less as possible infrastructure, glue, facading code.  
+In new features we're going to rely more on configurations for  
+potential overrides rather than implement them each time.
+
+Note that `RecordsBatchTransaction` is made abstract temporarily. Next  
+we are going to introduce some reflection to completely avoid  
+its inheritance as well as utilize the semantics we already introduced  
+in the very beginning for our models accessing their state in a  
+delegated manner.
 
 </td></tr></tbody></table>
 

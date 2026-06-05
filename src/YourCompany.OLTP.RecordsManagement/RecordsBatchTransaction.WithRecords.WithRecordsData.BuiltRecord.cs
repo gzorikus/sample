@@ -4,18 +4,18 @@ namespace YourCompany.OLTP.RecordsManagement
 {
     public static partial class RecordsBatchTransaction
     {
-        public abstract partial class WithRecords<TRecord>
+        internal abstract partial class WithRecords<TRecord>
         {
-            public abstract partial class WithRecordsData<TRecordData>
+            internal abstract partial class WithRecordsData<TRecordData>
             {
-                protected readonly struct BuiltRecord
+                internal readonly struct BuiltRecord
                 {
-                    public EventHandler TransactionCallback { get; }
-                    public RecordState<TRecordData> State { get; }
-                    public TRecord Record { get; }
-                    public bool BeforeDataChangingAssertionWasTriggered { get; }
+                    internal EventHandler TransactionCallback { get; }
+                    internal RecordState<TRecordData> State { get; }
+                    internal TRecord Record { get; }
+                    internal bool BeforeDataChangingAssertionWasTriggered { get; }
 
-                    public BuiltRecord(EventHandler transactionCallback, RecordState<TRecordData> state, TRecord record)
+                    internal BuiltRecord(EventHandler transactionCallback, RecordState<TRecordData> state, TRecord record)
                     {
                         TransactionCallback = transactionCallback ?? throw new ArgumentNullException(nameof(transactionCallback));
                         State = state ?? throw new ArgumentNullException(nameof(state));
@@ -33,10 +33,10 @@ namespace YourCompany.OLTP.RecordsManagement
                             || beforeDataChangingAssertionWasTriggered;
                     }
 
-                    public BuiltRecord WithBeforeDataChangingAssertionTriggered()
+                    internal BuiltRecord WithBeforeDataChangingAssertionTriggered()
                         => new BuiltRecord(this, beforeDataChangingAssertionWasTriggered: true);
 
-                    public bool CheckRecordWasBuilt()
+                    internal bool CheckRecordWasBuilt()
                     {
                         bool stateWasClaimed = CheckTransactionCallbackWasExchangedForState();
                         bool recordWasBuilt = Record != null;
@@ -44,7 +44,7 @@ namespace YourCompany.OLTP.RecordsManagement
                         return recordWasBuilt;
                     }
 
-                    public bool CheckTransactionCallbackWasExchangedForState()
+                    internal bool CheckTransactionCallbackWasExchangedForState()
                     {
                         bool transactionCallbackWaExchanged = TransactionCallback != null;
                         bool stateWasClaimed = State != null;

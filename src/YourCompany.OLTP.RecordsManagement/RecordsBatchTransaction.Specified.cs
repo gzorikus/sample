@@ -5,22 +5,22 @@ namespace YourCompany.OLTP.RecordsManagement
 {
     public static partial class RecordsBatchTransaction
     {
-        public abstract partial class Specified : ISpecified
+        internal abstract partial class Specified : ISpecified
         {
             private List<RecordsBatchTransactionSpecification> _transactionSpecifications;
 
             public abstract int MaxRecordsInBatch { get; }
 
-            public int SkippedRecords
+            internal int SkippedRecords
                 => ByIdsSkipMissing
                     ? ByIdsSkippedMissingRecords
                     : _recordsCountToSkip ?? throw new ApplicationException("!_recordsCountToSkip.HasValue");
 
-            public int ByIdsSkippedMissingRecords => !ByIdsSkipMissing
+            internal int ByIdsSkippedMissingRecords => !ByIdsSkipMissing
                 ? throw new ApplicationException("!ByIdsSkipMissing")
                 : _skippedMissingRecords ?? throw new ApplicationException("!_skippedMissingRecords.HasValue");
 
-            public IReadOnlyList<RecordsBatchTransactionSpecification> TransactionSpecifications
+            internal IReadOnlyList<RecordsBatchTransactionSpecification> TransactionSpecifications
                 => _transactionSpecifications ?? Array.Empty<RecordsBatchTransactionSpecification>()
                     as IReadOnlyList<RecordsBatchTransactionSpecification>;
 
@@ -30,7 +30,7 @@ namespace YourCompany.OLTP.RecordsManagement
                 if (!Add(specification)) throw new ApplicationException("!Add(specification)");
             }
 
-            public bool ValidateCompatibility(RecordsBatchTransactionSpecification specification)
+            internal bool ValidateCompatibility(RecordsBatchTransactionSpecification specification)
             {
                 if (specification == null) throw new ArgumentNullException(nameof(specification));
                 EnsureIsConfigurable();
@@ -41,7 +41,7 @@ namespace YourCompany.OLTP.RecordsManagement
                 return true;
             }
 
-            public bool Add(RecordsBatchTransactionSpecification specification)
+            internal bool Add(RecordsBatchTransactionSpecification specification)
             {
                 EnsureIsConfigurable();
                 bool handled = Handle(specification);

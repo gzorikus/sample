@@ -6,7 +6,7 @@ using YourCompany.OLTP.StateOwnership;
 
 namespace YourCompany.OLTP.RecordsManagement.Persistence
 {
-    public abstract class RecordsBatchTransactionDataBridge<TRecord, TRecordData>
+    internal abstract class RecordsBatchTransactionDataBridge<TRecord, TRecordData>
         : RecordsBatchTransaction.WithRecords<TRecord>.WithRecordsData<TRecordData>
         where TRecord : class
         where TRecordData : class

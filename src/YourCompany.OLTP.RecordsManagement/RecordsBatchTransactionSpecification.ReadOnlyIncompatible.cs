@@ -7,9 +7,9 @@ namespace YourCompany.OLTP.RecordsManagement
     {
         public abstract partial class ReadOnlyIncompatible : RecordsBatchTransactionSpecification
         {
-            private ReadOnlyIncompatible() { }
+            internal ReadOnlyIncompatible() { }
 
-            public override bool ValidateCompatibilityWith(RecordsBatchTransactionSpecification other)
+            internal override bool ValidateCompatibilityWith(RecordsBatchTransactionSpecification other)
                 => base.ValidateCompatibilityWith(other)
                 && !(other is ReadOnly)
                 && (!(other is UseCaseParameters eachRecordUseCaseParameters)
@@ -23,7 +23,7 @@ namespace YourCompany.OLTP.RecordsManagement
                     || (this is SpecifiedRecord specifiedRecord
                         && !specifiedRecord.Identity.CompareBy.Reference.Equals(specifiedRecordUseCaseParameters.Identity)));
 
-            public new interface ISpecificationWrapper : RecordsBatchTransactionSpecification.ISpecificationWrapper
+            internal new interface ISpecificationWrapper : RecordsBatchTransactionSpecification.ISpecificationWrapper
             {
                 Identity SpecifiedRecordIdentity { get; }
             }
@@ -35,15 +35,15 @@ namespace YourCompany.OLTP.RecordsManagement
 
             public sealed class UseCaseParameters : ReadOnlyIncompatible
             {
-                public static UseCaseParameters MatchRecordsWithoutUseCaseChanges
+                internal static UseCaseParameters MatchRecordsWithoutUseCaseChanges
                     = new UseCaseParameters(TransactionCallback.ForStateAssertion.TriggeredBeforeDataChanging.Default);
 
                 public EventArgs UseCaseParametersToTrigger { get; }
 
-                public UseCaseParameters(EventArgs useCaseParametersToTrigger)
+                internal UseCaseParameters(EventArgs useCaseParametersToTrigger)
                     => UseCaseParametersToTrigger = useCaseParametersToTrigger ?? throw new ArgumentNullException(nameof(useCaseParametersToTrigger));
 
-                public override bool ValidateCompatibilityWith(RecordsBatchTransactionSpecification other)
+                internal override bool ValidateCompatibilityWith(RecordsBatchTransactionSpecification other)
                     => base.ValidateCompatibilityWith(other)
                     && !(other is UseCaseParameters)
                     && !(other is SpecifiedRecord.UseCaseParameters)
@@ -69,7 +69,7 @@ namespace YourCompany.OLTP.RecordsManagement
                 public virtual Exception GetExceptionForSpecifiedRecordsMismatch(Identity identity)
                     => new RecordDataMismatchException<TRecordData>(identity, SpecificationToMatch);
 
-                public override bool ValidateCompatibilityWith(RecordsBatchTransactionSpecification other)
+                internal override bool ValidateCompatibilityWith(RecordsBatchTransactionSpecification other)
                     => base.ValidateCompatibilityWith(other)
                     && (!(other is ISpecificationWrapper<TRecordData> wrapper)
                         || (!wrapper.SpecificationToMatch.Equals(SpecificationToMatch)

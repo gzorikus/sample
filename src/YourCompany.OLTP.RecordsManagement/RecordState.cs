@@ -4,15 +4,15 @@ using YourCompany.OLTP.StateOwnership;
 
 namespace YourCompany.OLTP.RecordsManagement
 {
-    public sealed class RecordState<TRecordData> : IState<TRecordData>, IStateModifying<TRecordData>
+    internal sealed class RecordState<TRecordData> : IState<TRecordData>, IStateModifying<TRecordData>
         where TRecordData : class
     {
         private static ISpecification<TRecordData>[] EmptySpecifications => Array.Empty<ISpecification<TRecordData>>();
         private List<ISpecification<TRecordData>> _matchingWithoutDataChanges;
         private List<ISpecification<TRecordData>> _matchingAfterDataChanging;
 
-        public IConfiguredRecordsBatch Batch { get; }
-        public int RecordIndex { get; }
+        internal IConfiguredRecordsBatch Batch { get; }
+        internal int RecordIndex { get; }
         public Identity Identity { get; }
         IStateModifying<TRecordData> IState<TRecordData>.Modifying => SettingDataProperties != null ? this : null;
         public TRecordData SettingDataProperties { get; private set; }
@@ -29,7 +29,7 @@ namespace YourCompany.OLTP.RecordsManagement
                 ? _matchingAfterDataChanging ?? Batch.EachRecordSpecificationsToMatchAfterDataChanging ?? EmptySpecifications
                 : null;
 
-        public RecordState(IConfiguredRecordsBatch batch, int recordIndex, Identity identity)
+        internal RecordState(IConfiguredRecordsBatch batch, int recordIndex, Identity identity)
         {
             if (recordIndex < 0) throw new ArgumentOutOfRangeException(nameof(recordIndex), recordIndex, message: null);
             Batch = batch ?? throw new ArgumentNullException(nameof(batch));
@@ -37,7 +37,7 @@ namespace YourCompany.OLTP.RecordsManagement
             Identity = identity ?? throw new ArgumentNullException(nameof(batch));
         }
 
-        public void SetBeforeDataChanging(TRecordData settingDataProperties)
+        internal void SetBeforeDataChanging(TRecordData settingDataProperties)
         {
             if (SettingDataProperties != null || this.CheckIsModifyingTransaction()) throw new ApplicationException("SettingDataProperties != null || this.CheckIsModifyingTransaction()");
             if (LockedRecordData != null || this.CheckRecordDataIsLocked()) throw new ApplicationException("LockedRecordData != null || this.CheckRecordDataIsLocked()");
@@ -90,7 +90,7 @@ namespace YourCompany.OLTP.RecordsManagement
             Batch.ChangeDataToMatch(RecordIndex, specification);
         }
 
-        public void SetRecordDataIsLocked(TRecordData lockedRecordData)
+        internal void SetRecordDataIsLocked(TRecordData lockedRecordData)
         {
             if (SettingDataProperties == null || !this.CheckIsModifyingTransaction()) throw new ApplicationException("SettingDataProperties == null || !this.CheckIsModifyingTransaction()");
             if (LockedRecordData != null || this.CheckRecordDataIsLocked()) throw new ApplicationException("LockedRecordData != null || this.CheckRecordDataIsLocked()");
@@ -100,7 +100,7 @@ namespace YourCompany.OLTP.RecordsManagement
             this.EnsureRecordDataIsLocked();
         }
 
-        public void SetDataAccessIsFinished(TRecordData dataAfterAccess)
+        internal void SetDataAccessIsFinished(TRecordData dataAfterAccess)
         {
             if (SettingDataProperties != null)
             {
@@ -121,7 +121,7 @@ namespace YourCompany.OLTP.RecordsManagement
             this.EnsureDataAccessIsFinished();
         }
 
-        public interface IConfiguredRecordsBatch
+        internal interface IConfiguredRecordsBatch
         {
             IReadOnlyList<ISpecification<TRecordData>> EachRecordSpecificationsToMatchWithoutDataChanges { get; }
             IReadOnlyList<ISpecification<TRecordData>> EachRecordSpecificationsToMatchAfterDataChanging { get; }

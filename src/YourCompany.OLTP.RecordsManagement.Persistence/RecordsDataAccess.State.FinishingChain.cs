@@ -11,9 +11,9 @@ namespace YourCompany.OLTP.RecordsManagement.Persistence
 {
     public static partial class RecordsDataAccess
     {
-        public readonly partial struct State
+        internal readonly partial struct State
         {
-            public readonly struct FinishingChain
+            internal readonly struct FinishingChain
             {
                 private readonly IReadOnly _readOnly;
                 private readonly IAllowAtomicUpdateWithUnchangedRecordsDataRead _readBeforeModifying;
@@ -21,7 +21,7 @@ namespace YourCompany.OLTP.RecordsManagement.Persistence
                 private readonly IModifying _modifying;
                 private readonly IFinish _finish;
 
-                public bool ReadOnlyRecordsIncluded => _readIdentity?.ReadOnlyRecordsIncluded ?? false;
+                internal bool ReadOnlyRecordsIncluded => _readIdentity?.ReadOnlyRecordsIncluded ?? false;
                 internal IFilterBeforeRead FilterBeforeRead => _readIdentity?.FilterBeforeRead;
                 internal int? ReadRecordsCount => _readIdentity?.ReadRecordsCount;
 
@@ -76,16 +76,16 @@ namespace YourCompany.OLTP.RecordsManagement.Persistence
                     _finish = finish ?? throw new ArgumentNullException(nameof(finish));
                 }
 
-                public void EnsureIsBeforeRead() => WhenBeforeRead();
-                public void EnsureIsBeforeFinishing() => WhenBeforeFinishing();
-                public void EnsureIsReadOnly() => WhenReadOnly();
-                public void EnsureIsModifying() => WhenModifying();
-                public void EnsureIsAterRead() => WhenAfterRead();
-                public void EnsureIsModified() => WhenModified();
-                public void EnsureIsFinishing() => WhenFinishing();
-                public void EnsureIsNoReadAllowing() => WhenNoReadAllowing();
+                internal void EnsureIsBeforeRead() => WhenBeforeRead();
+                internal void EnsureIsBeforeFinishing() => WhenBeforeFinishing();
+                internal void EnsureIsReadOnly() => WhenReadOnly();
+                internal void EnsureIsModifying() => WhenModifying();
+                internal void EnsureIsAterRead() => WhenAfterRead();
+                internal void EnsureIsModified() => WhenModified();
+                internal void EnsureIsFinishing() => WhenFinishing();
+                internal void EnsureIsNoReadAllowing() => WhenNoReadAllowing();
 
-                public bool ChangeEachRecordToMatch(object specification)
+                internal bool ChangeEachRecordToMatch(object specification)
                 {
                     if (specification == null) throw new ArgumentNullException(nameof(specification));
                     return WhenModifying()._readBeforeModifying?.ChangeEachRecordToMatch(specification) ?? false;
@@ -103,7 +103,7 @@ namespace YourCompany.OLTP.RecordsManagement.Persistence
 
                 internal FinishingChain FinishReading(int readRecordsCount) => new FinishingChain(this, readRecordsCount);
 
-                public Identity GetReadRecordIdentity(int recordIndex, Identity originalIdentityWhenSpecified)
+                internal Identity GetReadRecordIdentity(int recordIndex, Identity originalIdentityWhenSpecified)
                 {
                     if (recordIndex < 0) throw new ArgumentOutOfRangeException(nameof(recordIndex), recordIndex, message: null);
                     var readIdentity = WhenAfterRead()._readIdentity ?? throw new ApplicationException("!_readIdentity.HasValue");
@@ -114,7 +114,7 @@ namespace YourCompany.OLTP.RecordsManagement.Persistence
                     => WhenModifying().WhenNoReadAllowing()._modifying
                         .CreateRecordDataForSettingChangedProperties(recordIndex, (PrimaryKey)identity);
 
-                public bool ChangeSpecifiedRecordToMatch(
+                internal bool ChangeSpecifiedRecordToMatch(
                     int recordIndex, Identity identity, object specification)
                     => WhenModifying().WhenNoReadAllowing()._modifying
                         .ChangeSpecifiedRecordToMatch(recordIndex, (PrimaryKey)identity, specification);
@@ -127,13 +127,13 @@ namespace YourCompany.OLTP.RecordsManagement.Persistence
 
                 internal FinishingChain FinishModifying(IFinish finish) => new FinishingChain(this, finish);
 
-                public object GetLockedRecordDataWithoutChanges(int recordIndex, Identity identity)
+                internal object GetLockedRecordDataWithoutChanges(int recordIndex, Identity identity)
                     => WhenModified()._modifying.GetLockedRecordDataWithoutChanges(recordIndex, (PrimaryKey)identity);
 
                 internal Task Finish(CancellationToken cancellationToken)
                     => WhenFinishing()._finish.Finish(cancellationToken);
 
-                public object GetRecordDataAfterAccess(int recordIndex, Identity identity)
+                internal object GetRecordDataAfterAccess(int recordIndex, Identity identity)
                     => WhenFinishing()._finish.GetRecordDataAfterAccess(recordIndex, (PrimaryKey)identity);
 
                 internal FinishingChain WhenBeforeRead()

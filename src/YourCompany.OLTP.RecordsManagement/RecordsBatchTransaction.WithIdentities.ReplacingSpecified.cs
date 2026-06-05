@@ -6,7 +6,7 @@ namespace YourCompany.OLTP.RecordsManagement
 {
     public static partial class RecordsBatchTransaction
     {
-        public abstract partial class WithIdentities
+        internal abstract partial class WithIdentities
         {
             private Dictionary<Identity, int> _recordIndeciesByOriginalIdentityReference;
 

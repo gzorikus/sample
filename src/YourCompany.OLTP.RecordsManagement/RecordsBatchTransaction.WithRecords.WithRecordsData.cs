@@ -9,9 +9,9 @@ namespace YourCompany.OLTP.RecordsManagement
 {
     public static partial class RecordsBatchTransaction
     {
-        public abstract partial class WithRecords<TRecord>
+        internal abstract partial class WithRecords<TRecord>
         {
-            public abstract partial class WithRecordsData<TRecordData> : WithRecords<TRecord>,
+            internal abstract partial class WithRecordsData<TRecordData> : WithRecords<TRecord>,
                 IReadOnlyList<TRecord>
                 where TRecordData : class
             {
@@ -24,7 +24,7 @@ namespace YourCompany.OLTP.RecordsManagement
                 IEnumerator<TRecord> IEnumerable<TRecord>.GetEnumerator() => EnumerateRecords();
                 IEnumerator IEnumerable.GetEnumerator() => EnumerateRecords();
 
-                protected IReadOnlyList<BuiltRecord> BuiltRecords => _builtRecords ?? throw new ApplicationException("_builtRecords == null");
+                internal IReadOnlyList<BuiltRecord> BuiltRecords => _builtRecords ?? throw new ApplicationException("_builtRecords == null");
 
                 protected override bool Handle(RecordsBatchTransactionSpecification.ISpecificationWrapper specification)
                 {

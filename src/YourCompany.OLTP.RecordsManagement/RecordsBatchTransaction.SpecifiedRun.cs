@@ -8,9 +8,9 @@ namespace YourCompany.OLTP.RecordsManagement
 {
     public static partial class RecordsBatchTransaction
     {
-        public abstract partial class SpecifiedRun : Specified, ISpecifiedRun
+        internal abstract partial class SpecifiedRun : Specified, ISpecifiedRun
         {
-            public State CurrentRunState { get; private set; }
+            internal State CurrentRunState { get; private set; }
             protected abstract IRecordsBatch RecordsBatchAfterRun { get; }
             protected SpecifiedRun() => CurrentRunState = State.Configuration;
 

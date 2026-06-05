@@ -9,4 +9,8 @@
     <ProjectReference Include="..\YourCompany.OLTP.RecordsManagement\YourCompany.OLTP.RecordsManagement.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <InternalsVisibleTo Include="YourCompany.OLTP.RecordsManagement.DI" />
+  </ItemGroup>
+
 </Project>

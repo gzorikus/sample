@@ -7,7 +7,7 @@ namespace YourCompany.OLTP.RecordsManagement
 {
     public static partial class RecordsBatchTransaction
     {
-        public abstract partial class SpecifiedRun
+        internal abstract partial class SpecifiedRun
         {
             protected virtual Task Authorize(CancellationToken cancellationToken) => Task.CompletedTask;
             protected virtual bool HandleReadOnlyRecordsIncludingBeforeRead() => false;

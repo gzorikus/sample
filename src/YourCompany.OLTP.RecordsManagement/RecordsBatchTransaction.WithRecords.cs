@@ -8,7 +8,7 @@ namespace YourCompany.OLTP.RecordsManagement
 {
     public static partial class RecordsBatchTransaction
     {
-        public abstract partial class WithRecords<TRecord> : WithIdentities,
+        internal abstract partial class WithRecords<TRecord> : WithIdentities,
             ISpecifiedRun<TRecord>,
             IRecordsBatch<TRecord>
             where TRecord : class

@@ -4,14 +4,14 @@ namespace YourCompany.OLTP.RecordsManagement
 {
     public static partial class RecordsBatchTransaction
     {
-        public abstract partial class SpecifiedRun
+        internal abstract partial class SpecifiedRun
         {
-            public readonly struct RunOnceStep
+            internal readonly struct RunOnceStep
             {
-                public State State { get; }
-                public Task AsyncStepTask { get; }
+                internal State State { get; }
+                internal Task AsyncStepTask { get; }
 
-                public RunOnceStep(State state, Task asyncStepTask = null)
+                internal RunOnceStep(State state, Task asyncStepTask = null)
                 {
                     State = state;
                     AsyncStepTask = asyncStepTask;

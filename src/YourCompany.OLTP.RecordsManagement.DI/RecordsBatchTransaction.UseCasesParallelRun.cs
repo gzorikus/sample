@@ -2,17 +2,18 @@ using System;
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
+using YourCompany.OLTP.RecordsManagement.UseCases;
 using YourCompany.OLTP.StateOwnership;
 using YourCompany.Threading;
 
-namespace YourCompany.OLTP.RecordsManagement.UseCases
+namespace YourCompany.OLTP.RecordsManagement.DI
 {
-    public abstract partial class RecordsBatchTransaction<TRecord, TRecordData>
+    internal abstract partial class RecordsBatchTransaction<TRecord, TRecordData>
         : RecordsBatchTransactionUseCases.IAuthorizerSpecificationsCollector<TRecordData>
     {
         private AwaitTasksList _awaitTasksList;
 
-        protected virtual AwaitTasksList AwaitTasksList => _awaitTasksList = _awaitTasksList ?? new AwaitTasksList();
+        protected virtual AwaitTasksList AwaitTasksList => _awaitTasksList ??= new AwaitTasksList();
 
         protected override Task Authorize(CancellationToken cancellationToken)
         {

@@ -5,12 +5,12 @@ namespace YourCompany.OLTP.RecordsManagement
 {
     public abstract partial class RecordsBatchTransactionSpecification
     {
-        private RecordsBatchTransactionSpecification() { }
+        internal RecordsBatchTransactionSpecification() { }
 
-        public virtual bool ValidateCompatibilityWith(RecordsBatchTransactionSpecification other)
+        internal virtual bool ValidateCompatibilityWith(RecordsBatchTransactionSpecification other)
             => !ReferenceEquals(this, other);
 
-        public interface ISpecificationWrapper
+        internal interface ISpecificationWrapper
         {
             Type RecordType { get; }
             Type RecordDataType { get; }
@@ -40,7 +40,7 @@ namespace YourCompany.OLTP.RecordsManagement
             public virtual Exception GetExceptionForSpecifiedRecordsMismatch(Identity identity)
                 => new RecordDataMismatchException<TRecordData>(identity, SpecificationToMatch);
 
-            public override bool ValidateCompatibilityWith(RecordsBatchTransactionSpecification other)
+            internal override bool ValidateCompatibilityWith(RecordsBatchTransactionSpecification other)
                 => base.ValidateCompatibilityWith(other)
                 && (!(other is ISpecificationWrapper<TRecordData> wrapper)
                     || (!wrapper.SpecificationToMatch.Equals(SpecificationToMatch)

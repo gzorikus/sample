@@ -7,15 +7,15 @@ namespace YourCompany.OLTP.RecordsManagement.Persistence
 {
     public static partial class RecordsDataAccess
     {
-        public readonly partial struct State
+        internal readonly partial struct State
         {
             private readonly IStarting _recordsDataAccess;
             private readonly AfterSorting? _afterSorting;
             private readonly FinishingChain? _finishingChain;
 
-            public bool IsAfterSortingBeforeFinishingChainSelected => _afterSorting.HasValue;
-            public bool ForceReadByIdsForIdentityReplacementIfModifying { get; }
-            public FinishingChain? SelectedFinishingChain => _finishingChain;
+            internal bool IsAfterSortingBeforeFinishingChainSelected => _afterSorting.HasValue;
+            internal bool ForceReadByIdsForIdentityReplacementIfModifying { get; }
+            internal FinishingChain? SelectedFinishingChain => _finishingChain;
 
             internal State(IStarting recordsDataAccess) : this()
                 => _recordsDataAccess = recordsDataAccess ?? throw new ArgumentNullException(nameof(recordsDataAccess));
@@ -66,7 +66,7 @@ namespace YourCompany.OLTP.RecordsManagement.Persistence
                 return _finishingChain ?? throw new ApplicationException("!_finishingChain.HasValue");
             }
 
-            public bool WasResetToDefault() => StructHelper.IsZeroed(this);
+            internal bool WasResetToDefault() => StructHelper.IsZeroed(this);
 
             internal State FinishReading(int readRecordsCount) => new State(this, readRecordsCount);
             internal State FinishModifying(IFinish finish) => new State(this, finish);

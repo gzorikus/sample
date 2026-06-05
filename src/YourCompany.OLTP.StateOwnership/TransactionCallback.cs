@@ -4,7 +4,7 @@ namespace YourCompany.OLTP.StateOwnership
 {
     public static class TransactionCallback
     {
-        public static T GetExtraInterface<T>(this object sender) where T : class
+        internal static T GetExtraInterface<T>(this object sender) where T : class
         {
             var senderWithExtraInterfaces = sender as Sender.IWithExtraInterfaces
                 ?? throw new ApplicationException("senderWithExtraInterfaces == null");
@@ -13,7 +13,7 @@ namespace YourCompany.OLTP.StateOwnership
             return extraInterface;
         }
 
-        public static bool TryGetExtraInterface<T>(this Sender.IWithExtraInterfaces sender, out T extraInterface)
+        internal static bool TryGetExtraInterface<T>(this Sender.IWithExtraInterfaces sender, out T extraInterface)
             where T : class
         {
             sender.TryGetExtraInterfaceImplementor(typeof(T), out object extraInterfaceObj);
@@ -21,11 +21,11 @@ namespace YourCompany.OLTP.StateOwnership
             return extraInterface != null;
         }
 
-        public static class Sender
+        internal static class Sender
         {
-            public static object Default { get; } = new object();
+            internal static object Default { get; } = new object();
 
-            public interface IWithExtraInterfaces
+            internal interface IWithExtraInterfaces
             {
                 bool TryGetExtraInterfaceImplementor(Type type, out object implementor);
             }
@@ -37,17 +37,23 @@ namespace YourCompany.OLTP.StateOwnership
 
             public class TriggeredBeforeDataChanging : ForStateAssertion
             {
-                public static TriggeredBeforeDataChanging Default { get; } = new TriggeredBeforeDataChanging();
+                internal static TriggeredBeforeDataChanging Default { get; } = new TriggeredBeforeDataChanging();
+
+                internal TriggeredBeforeDataChanging() { }
             }
 
             public class TriggeredAfterRecordDataLocking : ForStateAssertion
             {
-                public static TriggeredAfterRecordDataLocking Default { get; } = new TriggeredAfterRecordDataLocking();
+                internal static TriggeredAfterRecordDataLocking Default { get; } = new TriggeredAfterRecordDataLocking();
+
+                internal TriggeredAfterRecordDataLocking() { }
             }
 
             public class TriggeredAfterDataAccess : ForStateAssertion
             {
-                public static TriggeredAfterDataAccess Default { get; } = new TriggeredAfterDataAccess();
+                internal static TriggeredAfterDataAccess Default { get; } = new TriggeredAfterDataAccess();
+
+                internal TriggeredAfterDataAccess() { }
             }
         }
     }

@@ -5,9 +5,9 @@ namespace YourCompany.OLTP.RecordsManagement.Persistence
 {
     public static partial class RecordsDataAccess
     {
-        public readonly partial struct State
+        internal readonly partial struct State
         {
-            public readonly struct AfterSorting
+            internal readonly struct AfterSorting
             {
                 private readonly IAfterSortingByIdsWithoutReading _byIdsWithoutReading;
                 private readonly IAfterSortingByIds _byIds;
@@ -18,18 +18,18 @@ namespace YourCompany.OLTP.RecordsManagement.Persistence
                 private readonly IAfterSortingWithoutIds<PrimaryKey.WithoutExtraValues>
                     _withoutIdsWithoutExtraValues;
 
-                public bool ForceReadByIdsForIdentityReplacementIfModifying => _byIds != null;
+                internal bool ForceReadByIdsForIdentityReplacementIfModifying => _byIds != null;
                 internal IFilterBeforeRead FilterBeforeRead { get; }
 
-                public AfterSorting(IAfterSortingByIdsWithoutReading byIdsWithoutReading)
+                internal AfterSorting(IAfterSortingByIdsWithoutReading byIdsWithoutReading)
                     : this() => _byIdsWithoutReading = byIdsWithoutReading;
                     
-                public AfterSorting(IAfterSortingByIds byIds) : this() => _byIds = byIds;
+                internal AfterSorting(IAfterSortingByIds byIds) : this() => _byIds = byIds;
 
-                public AfterSorting(IAfterSortingWithoutIds<PrimaryKey.AfterAlternateSorting> afterSortingWithoutIds)
+                internal AfterSorting(IAfterSortingWithoutIds<PrimaryKey.AfterAlternateSorting> afterSortingWithoutIds)
                     : this() => FilterBeforeRead = _withoutIdsAfterAlternateSorting = afterSortingWithoutIds;
 
-                public AfterSorting(IAfterSortingWithoutIds<PrimaryKey.WithoutExtraValues> afterSortingWithoutIds)
+                internal AfterSorting(IAfterSortingWithoutIds<PrimaryKey.WithoutExtraValues> afterSortingWithoutIds)
                     : this() => FilterBeforeRead = _withoutIdsWithoutExtraValues = afterSortingWithoutIds;
 
                 internal IModifying ForModifyingOrCreatingByIdsWithoutReading()

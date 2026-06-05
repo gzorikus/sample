@@ -5,15 +5,15 @@ namespace YourCompany.OLTP.RecordsManagement
 {
     public static partial class RecordsBatchTransaction
     {
-        public abstract partial class WithRecords<TRecord>
+        internal abstract partial class WithRecords<TRecord>
         {
-            public abstract partial class WithRecordsData<TRecordData>
+            internal abstract partial class WithRecordsData<TRecordData>
                 : RecordsBatchTransactionCallback.Sender.ITriggerTransactionCallback,
                 TransactionCallback.Sender.IWithExtraInterfaces
             {
                 private RecordsBatchTransactionCallback.ExtraInterfaceProvidersList _extraInterfaceProviders;
 
-                public RecordsBatchTransactionCallback.CurrentlyTriggeringRecord TriggeringRecord
+                internal RecordsBatchTransactionCallback.CurrentlyTriggeringRecord TriggeringRecord
                     => _extraInterfaceProviders?.TriggeringRecord
                         ?? throw new ApplicationException("_extraInterfaceProviders == null");
 
