@@ -1538,15 +1538,13 @@ Commit body is multiline and compliant to markdown formatting 💥
 
 <!-- ### Commit: 4|💾: EFCore SortingKey reading END -->
 
-<!-- ### Commit: 4|💾: EFEntityEntryPropertiesCache
+### Commit: 4|💾: EFEntityEntryPropertiesCache
 
 <table><tbody><tr><td>
 
-X files changed, Y insertions(+), Z deletions(-)<br>
-<sub><sub>src/YourCompany.Module/</sub></sub><br>
-<kbd> +++++++ NNN |⁠ [File.cs                                                                                                        ](src/YourCompany.Configuration/EnvironmentConventions.cs)</kbd><br>
-
-Commit body is multiline and compliant to markdown formatting 💥
+1 file changed, 63 insertions(+)<br>
+<sub><sub>src/YourCompany.Configuration.EFCore/ChangeTracking/</sub></sub><br>
+<kbd> +++++++ 63  |⁠ [EFEntityEntryPropertiesCache.cs                                                                                ](src/YourCompany.Configuration.EFCore/ChangeTracking/EFEntityEntryPropertiesCache.cs)</kbd><br>
 
 </td></tr></tbody></table>
 
