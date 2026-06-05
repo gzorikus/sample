@@ -1189,15 +1189,13 @@ Commit body is multiline and compliant to markdown formatting 💥
 
 <!-- ### Commit: 2|🧱: ValueTupleHelper END -->
 
-<!-- ### Commit: 2|🧱: TypeAbstractionsHelper
+### Commit: 2|🧱: TypeAbstractionsHelper
 
 <table><tbody><tr><td>
 
-X files changed, Y insertions(+), Z deletions(-)<br>
-<sub><sub>src/YourCompany.Module/</sub></sub><br>
-<kbd> +++++++ NNN |⁠ [File.cs                                                                                                        ](src/YourCompany.Configuration/EnvironmentConventions.cs)</kbd><br>
-
-Commit body is multiline and compliant to markdown formatting 💥
+1 file changed, 26 insertions(+)<br>
+<sub><sub>src/YourCompany.Reflection/</sub></sub><br>
+<kbd> +++++++ 26  |⁠ [TypeAbstractionsHelper.cs                                                                                      ](src/YourCompany.Reflection/TypeAbstractionsHelper.cs)</kbd><br>
 
 </td></tr></tbody></table>
 
