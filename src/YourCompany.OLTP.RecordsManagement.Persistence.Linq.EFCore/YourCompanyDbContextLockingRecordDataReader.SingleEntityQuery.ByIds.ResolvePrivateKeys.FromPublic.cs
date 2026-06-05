@@ -22,7 +22,7 @@ namespace YourCompany.OLTP.RecordsManagement.Persistence.Linq.EFCore
                 {
                     if (indeciesByPublicKey == null) throw new ArgumentNullException(nameof(indeciesByPublicKey));
                     if (indeciesByPublicKey.Count == 0) throw new ApplicationException("indeciesByPublicKey.Count == 0");
-                    EnsureReadingForReadOnly();
+                    EnsureReadingForReadOnlyOrByModifyingWrapperOnly();
                     if (_primaryKeysWithRecordDataByPrivateKey != null) throw new ApplicationException("_primaryKeysWithRecordDataByPrivateKey != null");
 
                     var alreadyLockedPrimaryKeys = _context.GetPrimaryKeysLocal<TRecordData, TQueryableRecordData>(
@@ -56,7 +56,7 @@ namespace YourCompany.OLTP.RecordsManagement.Persistence.Linq.EFCore
                 {
                     if (indeciesByPublicKey == null) throw new ArgumentNullException(nameof(indeciesByPublicKey));
                     if (indeciesByPublicKey.Count == 0) throw new ApplicationException("indeciesByPublicKey.Count == 0");
-                    EnsureReadingForReadOnly();
+                    EnsureReadingForReadOnlyOrByModifyingWrapperOnly();
                     if (_primaryKeysWithRecordDataByPrivateKey != null) throw new ApplicationException("_primaryKeysWithRecordDataByPrivateKey != null");
 
                     if (!indeciesByPublicKey.Remove(primaryKey.PublicKey, out var primaryKeyIndex))

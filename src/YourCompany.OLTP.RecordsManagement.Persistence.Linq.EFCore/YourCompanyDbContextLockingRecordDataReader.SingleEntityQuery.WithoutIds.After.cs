@@ -106,7 +106,7 @@ namespace YourCompany.OLTP.RecordsManagement.Persistence.Linq.EFCore
                         long[] existingRecordPrivateKeys)
                     {
                         if (readPrimaryKeys == null) throw new ArgumentNullException(nameof(readPrimaryKeys));
-                        EnsureReadingForReadOnly();
+                        EnsureReadingForReadOnlyOrByModifyingWrapperOnly();
                         if (_queryable == null) throw new ApplicationException("_queryable == null");
                         EnsureBeforeResolvingWithoutIds();
 

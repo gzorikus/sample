@@ -18,7 +18,7 @@ namespace YourCompany.OLTP.RecordsManagement.Persistence.Linq.EFCore
                 {
                     if (batchSize != PrimaryKeys.Count) throw new ApplicationException("batchSize != PrimaryKeys.Count");
                     if (recordsCountToSkip != 0) throw new ApplicationException("recordsCountToSkip != 0");
-                    EnsureReadingForReadOnly();
+                    EnsureReadingForReadOnlyOrByModifyingWrapperOnly();
                     if (_primaryKeysWithRecordDataByPrivateKey != null) throw new ApplicationException("_primaryKeysWithRecordDataByPrivateKey != null");
 
                     await ResolvePrivateKeys(cancellationToken);
@@ -40,7 +40,7 @@ namespace YourCompany.OLTP.RecordsManagement.Persistence.Linq.EFCore
 
                 protected virtual async Task ResolvePrivateKeys(CancellationToken cancellationToken)
                 {
-                    EnsureReadingForReadOnly();
+                    EnsureReadingForReadOnlyOrByModifyingWrapperOnly();
                     if (_primaryKeysWithRecordDataByPrivateKey != null) throw new ApplicationException("_primaryKeysWithRecordDataByPrivateKey != null");
 
                     Dictionary<SortingKey, int> resolvePrivateKeysFromNatural = null;

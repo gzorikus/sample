@@ -29,16 +29,22 @@ namespace YourCompany.OLTP.RecordsManagement.Persistence.Linq.EFCore
 
             private SingleEntityQuery(YourCompanyDbContext<TConfiguration> context) : base(context) { }
 
+            protected override YourCompanyDbContextLockingRecordDataReader<TConfiguration>
+                WrapForModifying<TPrimaryKey>(
+                    RecordsDataAccess.IReadBeforeModifying readBeforeModifying, RecordsDataAccess.IFinish finishNext)
+                    => new ReadBeforeModifying<TPrimaryKey>(this, readBeforeModifying, finishNext);
+
             protected override async Task ReadRecordDataByPrivateKeys(
-                IReadOnlyList<long> existingRecordPrivateKeys, CancellationToken cancellationToken)
+                IReadOnlyList<long> existingRecordPrivateKeys, bool lockAndTrack, CancellationToken cancellationToken)
             {
                 if (existingRecordPrivateKeys == null) throw new ArgumentNullException(nameof(existingRecordPrivateKeys));
                 if (existingRecordPrivateKeys.Count < 1) throw new ApplicationException("existingRecordPrivateKeys.Count < 1");
-                EnsureReadingForReadOnly();
+                EnsureReadingForReadOnlyOrByModifyingWrapperOnly();
                 if (WithoutRecordsData) throw new ApplicationException("WithoutRecordsData");
                 if (PrimaryKeys == null) throw new ApplicationException("PrimaryKeys == null");
                 if (_primaryKeysWithRecordDataByPrivateKey != null) throw new ApplicationException("_primaryKeysWithRecordDataByPrivateKey != null");
-                if (!ReadOnly) throw new ApplicationException("!ReadOnly");
+                if (lockAndTrack != !ReadOnly) throw new ApplicationException("lockAndTrack != !ReadOnly");
+                if (lockAndTrack && _context.Database.CurrentTransaction == null) throw new ApplicationException("lockAndTrack && _context.Database.CurrentTransaction == null");
 
                 var previouslyLockedRecords = _context
                     .GetPrimaryKeysWithLocalRecordDataToDictionary<TRecordData, TQueryableRecordData>(existingRecordPrivateKeys);
@@ -52,7 +58,7 @@ namespace YourCompany.OLTP.RecordsManagement.Persistence.Linq.EFCore
                 }
 
                 _primaryKeysWithRecordDataByPrivateKey ??= await _context.GetPrimaryKeysWithRecordDataToDictionary<TRecordData, TQueryableRecordData>(
-                    existingRecordPrivateKeys, cancellationToken) ?? throw new ApplicationException("_primaryKeysWithRecordDataByPrivateKey == null");
+                    existingRecordPrivateKeys, lockAndTrack, cancellationToken) ?? throw new ApplicationException("_primaryKeysWithRecordDataByPrivateKey == null");
 
                 for (int i = 0; i < existingRecordPrivateKeys.Count; i++)
                     if (!_primaryKeysWithRecordDataByPrivateKey.ContainsKey(existingRecordPrivateKeys[i]))
@@ -63,7 +69,7 @@ namespace YourCompany.OLTP.RecordsManagement.Persistence.Linq.EFCore
                 long privateKey, PrimaryKey primaryKey)
             {
                 if (primaryKey == null) throw new ArgumentNullException(nameof(primaryKey));
-                EnsureReadingForReadOnly();
+                EnsureReadingForReadOnlyOrByModifyingWrapperOnly();
                 EnsureAfterReadWithRecordsData();
 
                 if (!_primaryKeysWithRecordDataByPrivateKey.TryGetValue(privateKey, out var record))
@@ -78,7 +84,7 @@ namespace YourCompany.OLTP.RecordsManagement.Persistence.Linq.EFCore
                 RecordDataQueries.PrimaryKeyWithRecordData<TQueryableRecordData> record)
             {
                 if (primaryKey == null) throw new ArgumentNullException(nameof(primaryKey));
-                EnsureReadingForReadOnly();
+                EnsureReadingForReadOnlyOrByModifyingWrapperOnly();
                 EnsureAfterReadWithRecordsData();
 
                 if (primaryKey.CheckPublicKeyIsAssigned())

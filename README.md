@@ -2017,15 +2017,55 @@ use DbContext factories).
 
 <!-- ### Commit: 5|💾: OLTP EFCore readonly END -->
 
-<!-- ### Commit: 6|💾: OLTP EFCore finalized
+### Commit: 6|💾: OLTP EFCore finalized
 
 <table><tbody><tr><td>
 
-X files changed, Y insertions(+), Z deletions(-)<br>
-<sub><sub>src/YourCompany.Module/</sub></sub><br>
-<kbd> +++++++ NNN |⁠ [File.cs                                                                                                        ](src/YourCompany.Configuration/EnvironmentConventions.cs)</kbd><br>
+19 files changed, 1146 insertions(+), 38 deletions(-)<br>
+<sub><sub>src/YourCompany.OLTP.RecordsManagement.Persistence.Linq.EFCore/</sub></sub><br>
+<kbd>  ++++++ 174 |⁠ [YourCompanyDbContextLockingRecordDataReader.SingleEntityQuery.ReadBeforeModifying.Finishing.cs                 ](src/YourCompany.OLTP.RecordsManagement.Persistence.Linq.EFCore/YourCompanyDbContextLockingRecordDataReader.SingleEntityQuery.ReadBeforeModifying.Finishing.cs)</kbd><br>
+<kbd>  ++++++ 162 |⁠ [YourCompanyDbContextLockingRecordDataReader.SingleEntityQuery.ReadBeforeModifying.cs                           ](src/YourCompany.OLTP.RecordsManagement.Persistence.Linq.EFCore/YourCompanyDbContextLockingRecordDataReader.SingleEntityQuery.ReadBeforeModifying.cs)</kbd><br>
+<kbd>   +++++ 157 |⁠ [YourCompanyDbContextLockingRecordDataReader.SingleEntityQuery.ReadBeforeModifying.Modifying.cs                 ](src/YourCompany.OLTP.RecordsManagement.Persistence.Linq.EFCore/YourCompanyDbContextLockingRecordDataReader.SingleEntityQuery.ReadBeforeModifying.Modifying.cs)</kbd><br>
+<kbd>   ++++‑ 135 |⁠ [YourCompanyDbContextRecordsDataAccessAdapter.cs                                                                ](src/YourCompany.OLTP.RecordsManagement.Persistence.Linq.EFCore/YourCompanyDbContextRecordsDataAccessAdapter.cs)</kbd><br>
+<kbd>    ++++ 104 |⁠ [YourCompanyDbContext.PessimisticLocking.cs                                                                     ](src/YourCompany.OLTP.RecordsManagement.Persistence.Linq.EFCore/YourCompanyDbContext.PessimisticLocking.cs)</kbd><br>
+<kbd>    +++‑ 97  |⁠ [YourCompanyDbContext.DelegatedPrimaryKeys.cs                                                                   ](src/YourCompany.OLTP.RecordsManagement.Persistence.Linq.EFCore/YourCompanyDbContext.DelegatedPrimaryKeys.cs)</kbd><br>
+<kbd>     ++‑ 77  |⁠ [YourCompanyDbContextLockingRecordDataReader.cs                                                                 ](src/YourCompany.OLTP.RecordsManagement.Persistence.Linq.EFCore/YourCompanyDbContextLockingRecordDataReader.cs)</kbd><br>
+<kbd>      +‑ 18  |⁠ [YourCompanyDbContextLockingRecordDataReader.SingleEntityQuery.cs                                               ](src/YourCompany.OLTP.RecordsManagement.Persistence.Linq.EFCore/YourCompanyDbContextLockingRecordDataReader.SingleEntityQuery.cs)</kbd><br>
+<kbd>       + 10  |⁠ [YourCompanyDbContextConfiguration.cs                                                                           ](src/YourCompany.OLTP.RecordsManagement.Persistence.Linq.EFCore/YourCompanyDbContextConfiguration.cs)</kbd><br>
+<kbd>       + 6   |⁠ [YourCompanyDbContextLockingRecordDataReader.SingleEntityQuery.ByIds.cs                                         ](src/YourCompany.OLTP.RecordsManagement.Persistence.Linq.EFCore/YourCompanyDbContextLockingRecordDataReader.SingleEntityQuery.ByIds.cs)</kbd><br>
+<kbd>      +‑ 4   |⁠ [YourCompanyDbContextLockingRecordDataReader.SingleEntityQuery.ByIds.ResolvePrivateKeys.FromNatural.cs          ](src/YourCompany.OLTP.RecordsManagement.Persistence.Linq.EFCore/YourCompanyDbContextLockingRecordDataReader.SingleEntityQuery.ByIds.ResolvePrivateKeys.FromNatural.cs)</kbd><br>
+<kbd>      +‑ 4   |⁠ [YourCompanyDbContextLockingRecordDataReader.SingleEntityQuery.ByIds.ResolvePrivateKeys.cs                      ](src/YourCompany.OLTP.RecordsManagement.Persistence.Linq.EFCore/YourCompanyDbContextLockingRecordDataReader.SingleEntityQuery.ByIds.ResolvePrivateKeys.cs)</kbd><br>
+<kbd>      +‑ 4   |⁠ [YourCompanyDbContextLockingRecordDataReader.SingleEntityQuery.ByIds.ResolvePrivateKeys.FromPublic.cs           ](src/YourCompany.OLTP.RecordsManagement.Persistence.Linq.EFCore/YourCompanyDbContextLockingRecordDataReader.SingleEntityQuery.ByIds.ResolvePrivateKeys.FromPublic.cs)</kbd><br>
+<kbd>      +‑ 2   |⁠ [YourCompanyDbContextLockingRecordDataReader.SingleEntityQuery.WithoutIds.After.cs                              ](src/YourCompany.OLTP.RecordsManagement.Persistence.Linq.EFCore/YourCompanyDbContextLockingRecordDataReader.SingleEntityQuery.WithoutIds.After.cs)</kbd><br>
+<kbd>      +‑ 2   |⁠ [YourCompanyDbContextLockingRecordDataReader.SingleEntityQuery.WithoutIds.NoSorting.cs                          ](src/YourCompany.OLTP.RecordsManagement.Persistence.Linq.EFCore/YourCompanyDbContextLockingRecordDataReader.SingleEntityQuery.WithoutIds.NoSorting.cs)</kbd><br>
+<kbd>      +‑ 2   |⁠ [YourCompanyDbContextLockingRecordDataReader.SingleEntityQuery.WithoutIds.cs                                    ](src/YourCompany.OLTP.RecordsManagement.Persistence.Linq.EFCore/YourCompanyDbContextLockingRecordDataReader.SingleEntityQuery.WithoutIds.cs)</kbd><br>
+<kbd>       + 1   |⁠ [YourCompanyDbContext.QueryableRecordDataTypes.cs                                                               ](src/YourCompany.OLTP.RecordsManagement.Persistence.Linq.EFCore/YourCompanyDbContext.QueryableRecordDataTypes.cs)</kbd><br>
+<sub><sub>src/YourCompany.OLTP.RecordsManagement.Persistence.Linq.EFCore/CollationAwareSorting/</sub></sub><br>
+<kbd> +++++++ 191 |⁠ [EntityEntryModifyingVisitor.cs                                                                                 ](src/YourCompany.OLTP.RecordsManagement.Persistence.Linq.EFCore/CollationAwareSorting/EntityEntryModifyingVisitor.cs)</kbd><br>
+<kbd>      ++ 34  |⁠ [EntityEntryModifyingPair.cs                                                                                    ](src/YourCompany.OLTP.RecordsManagement.Persistence.Linq.EFCore/CollationAwareSorting/EntityEntryModifyingPair.cs)</kbd><br>
 
-Commit body is multiline and compliant to markdown formatting 💥
+This is a modifying finalization for the previously implemented record  
+data access adapter, adding an extra inheritor to the semi-closed  
+hierarchy of `YourCompanyDbContextLockingRecordDataReader` whose  
+responsibility is now slightly extended.
+
+Worth mentioning that by extending its responsibility we're actually  
+following the EFCore's ideology of **two DbCommand per one logical  
+transaction** (i.e. read first and then change and save). This  
+ideology may cost a lot in practice of high loaded apps and EFCore is  
+often avoided for that reason. Why we still implement this? 🤔 To show  
+**what layer it really belongs to** in the system as well as still  
+benefit the change tracking capabilities to utilize it as smart ORM  
+rather map changes to the "UPDATE setters" ourselves (btw, `linq2db`  
+is a perfect candidate for the latter).
+
+Furthermore, to not keep silent about this, we're switching to the  
+pessimistic locking right away 😲 and by doing this we denote one of  
+the major OLTP rules - **the transaction have to be fast and small**.  
+We're not going to allow "to read first and then make sizeless logic"  
+on the contrary we're deliberately bound by a **single repository call  
+UoW** that at its worst allows to put extra transactional logic  
+within its use case strategies, i.e. time and context bound.
 
 </td></tr></tbody></table>
 

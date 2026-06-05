@@ -19,7 +19,7 @@ namespace YourCompany.OLTP.RecordsManagement.Persistence.Linq.EFCore
                 {
                     if (indeciesByNaturalKey == null) throw new ArgumentNullException(nameof(indeciesByNaturalKey));
                     if (indeciesByNaturalKey.Count == 0) throw new ApplicationException("indeciesByNaturalKey.Count == 0");
-                    EnsureReadingForReadOnly();
+                    EnsureReadingForReadOnlyOrByModifyingWrapperOnly();
                     if (_primaryKeysWithRecordDataByPrivateKey != null) throw new ApplicationException("_primaryKeysWithRecordDataByPrivateKey != null");
 
                     SortingKeyTopology.ILastProperty singleTopology = null;
@@ -92,7 +92,7 @@ namespace YourCompany.OLTP.RecordsManagement.Persistence.Linq.EFCore
                     if (indeciesByNaturalKey == null) throw new ArgumentNullException(nameof(indeciesByNaturalKey));
                     if (indeciesByNaturalKey.Count == 0) throw new ApplicationException("indeciesByNaturalKey.Count == 0");
                     if (keys == null) throw new ArgumentNullException(nameof(keys));
-                    EnsureReadingForReadOnly();
+                    EnsureReadingForReadOnlyOrByModifyingWrapperOnly();
                     if (_primaryKeysWithRecordDataByPrivateKey != null) throw new ApplicationException("_primaryKeysWithRecordDataByPrivateKey != null");
 
                     string singleReplacingQueriedSetName = null;

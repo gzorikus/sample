@@ -37,6 +37,12 @@ namespace YourCompany.OLTP.RecordsManagement.Persistence.Linq.EFCore
                 public override RecordsDataAccess.IReadOnly<PrimaryKey>
                     ForReadOnlyByIdsWithRecordsData() => (this, ReadOnly = true, WithoutRecordsData = false).Item1;
 
+                public override RecordsDataAccess.IReadBeforeModifying<PrimaryKey>
+                    ForModifyingAfterReadingByIds()
+                        => ((RecordsDataAccess.IReadBeforeModifying<PrimaryKey>)null,
+                            ReadOnly = false,
+                            WithoutRecordsData = false).Item1;
+
                 protected abstract void SkipMissingRecord(int recordIndex);
 
                 protected override bool CheckToSkipPrimaryKeyAfterResolvingWithExistingRecordsData(

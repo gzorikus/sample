@@ -1,7 +1,10 @@
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Threading;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Storage;
 using YourCompany.OLTP.StateOwnership;
 
 using PrimaryKey = YourCompany.OLTP.RecordsManagement.Persistence
@@ -12,11 +15,14 @@ namespace YourCompany.OLTP.RecordsManagement.Persistence.Linq.EFCore
     public class YourCompanyDbContextRecordsDataAccessAdapter<TConfiguration> : RecordsDataAccess.IStarting,
         RecordsDataAccess.IAfterSortingByIds,
         RecordsDataAccess.IAfterSortingWithoutIds<PrimaryKey.AfterAlternateSorting>,
-        RecordsDataAccess.IAfterSortingWithoutIds<PrimaryKey.WithoutExtraValues>
+        RecordsDataAccess.IAfterSortingWithoutIds<PrimaryKey.WithoutExtraValues>,
+        RecordsDataAccess.IReadBeforeModifying,
+        RecordsDataAccess.IFinish
         where TConfiguration : YourCompanyDbContextConfiguration, new()
     {
         private bool _disposed;
         private YourCompanyDbContextLockingRecordDataReader<TConfiguration> _reader;
+        private IDbContextTransaction _contextCreatorTransaction;
 
         protected Type RecordDataType { get; }
         protected YourCompanyDbContext<TConfiguration> Context { get; }
@@ -112,15 +118,64 @@ namespace YourCompany.OLTP.RecordsManagement.Persistence.Linq.EFCore
                 .ForReadOnlyWithRecordsData() => _reader?.ForReadOnlyWithoutIdsWithRecordsDataWithoutExtraValues();
 
         RecordsDataAccess.IReadBeforeModifying<PrimaryKey>
-            RecordsDataAccess.IAfterSortingByIdsForModifying.ForModifyingAfterReadingByIds() => null;
+            RecordsDataAccess.IAfterSortingByIdsForModifying.ForModifyingAfterReadingByIds()
+        {
+            if (_reader == null) throw new ApplicationException("_reader == null");
+            _reader.ForModifyingAfterReadingByIds();
+            var (reader, readBeforeModifying) = _reader.BeforeModifying<PrimaryKey>(this, this);
+            _reader = reader;
+            return readBeforeModifying;
+        }
 
         RecordsDataAccess.IReadBeforeModifying<PrimaryKey.AfterAlternateSorting>
             RecordsDataAccess.IAfterSortingWithoutIdsForModifying<PrimaryKey.AfterAlternateSorting>
-                .ForModifyingAfterReading() => null;
+                .ForModifyingAfterReading()
+        {
+            if (_reader == null) throw new ApplicationException("_reader == null");
+            var (reader, readBeforeModifying) = _reader.BeforeModifying<PrimaryKey.AfterAlternateSorting>(this, this);
+            _reader = reader;
+            return readBeforeModifying;
+        }
 
         RecordsDataAccess.IReadBeforeModifying<PrimaryKey.WithoutExtraValues>
             RecordsDataAccess.IAfterSortingWithoutIdsForModifying<PrimaryKey.WithoutExtraValues>
-                .ForModifyingAfterReading() => null;
+                .ForModifyingAfterReading()
+        {
+            if (_reader == null) throw new ApplicationException("_reader == null");
+            var (reader, readBeforeModifying) = _reader.BeforeModifying<PrimaryKey.WithoutExtraValues>(this, this);
+            _reader = reader;
+            return readBeforeModifying;
+        }
+
+        public async Task<int> ReadAndLockForChangesPersisting(
+            int batchSize, int recordsCountToSkip, CancellationToken cancellationToken)
+        {
+            EnsureNotDisposed();
+            if (_reader == null) throw new ApplicationException("_reader == null");
+            if (_contextCreatorTransaction != null) throw new ApplicationException("_contextCreatorTransaction != null");
+            await _reader.LockContext();
+            if (ContextCreator) await BeginTransactionByContextCreator(cancellationToken);
+            await _reader.ReadAndLockForChangesPersisting(batchSize, recordsCountToSkip, cancellationToken);
+            _reader.ReleaseContextLock();
+            return _reader.PrimaryKeys?.Count ?? throw new ApplicationException("_reader.PrimaryKeys == null");
+        }
+
+        public async Task Finish(CancellationToken cancellationToken)
+        {
+            EnsureNotDisposed();
+            if (_reader == null) throw new ApplicationException("_reader == null");
+            await _reader.LockContext();
+            await _reader.Finish(cancellationToken);
+            if (ContextCreator) await CommitTransactionByContextCreator(cancellationToken);
+            _reader.ReleaseContextLock();
+        }
+
+        public object GetRecordDataAfterAccess(int recordIndex, PrimaryKey primaryKey)
+        {
+            EnsureNotDisposed();
+            if (_reader == null) throw new ApplicationException("_reader == null");
+            return _reader.GetRecordDataAfterAccess(recordIndex, primaryKey);
+        }
 
         public async virtual Task Dispose(CancellationToken cancellationToken, Exception runException = null)
         {
@@ -130,8 +185,17 @@ namespace YourCompany.OLTP.RecordsManagement.Persistence.Linq.EFCore
             var reader = _reader;
             _reader = null;
 
+            var contextCreatorTransaction = _contextCreatorTransaction;
+            _contextCreatorTransaction = null;
+
             if (wasDisposed && reader != null)
                 throw new ApplicationException("wasDisposed && reader != null", runException);
+            if (wasDisposed && contextCreatorTransaction != null)
+                throw new ApplicationException("wasDisposed && contextCreatorTransaction != null", runException);
+            if (contextCreatorTransaction != null && reader == null)
+                throw new ApplicationException("contextCreatorTransaction != null && reader == null", runException);
+            if (contextCreatorTransaction != null && !ContextCreator)
+                throw new ApplicationException("!ContextCreator && contextCreatorTransaction != null", runException);
 
             if (wasDisposed) return;
 
@@ -148,15 +212,31 @@ namespace YourCompany.OLTP.RecordsManagement.Persistence.Linq.EFCore
             {
                 try
                 {
-                    await Context.DisposeAsync();
+                    try
+                    {
+                        if (contextCreatorTransaction != null)
+                            await contextCreatorTransaction.RollbackAsync(CancellationToken.None);
+                    }
+                    catch (Exception ex)
+                    {
+                        rollbackException = ex;
+                        throw;
+                    }
                 }
-                catch (Exception) when (rollbackException == null)
+                finally
                 {
-                    throw;
-                }
-                catch (Exception ex) when (rollbackException != null)
-                {
-                    throw new AggregateException(rollbackException, ex);
+                    try
+                    {
+                        await Context.DisposeAsync();
+                    }
+                    catch (Exception) when (rollbackException == null)
+                    {
+                        throw;
+                    }
+                    catch (Exception ex) when (rollbackException != null)
+                    {
+                        throw new AggregateException(rollbackException, ex);
+                    }
                 }
             }
             catch (Exception ex) when (runException == null)
@@ -177,6 +257,39 @@ namespace YourCompany.OLTP.RecordsManagement.Persistence.Linq.EFCore
         protected void EnsureNotDisposed()
         {
             if (_disposed) throw new ObjectDisposedException(nameof(YourCompanyDbContextRecordsDataAccessAdapter<TConfiguration>));
+        }
+
+        protected void EnsureTransactionAfterRead()
+        {
+            if (ContextCreator && _contextCreatorTransaction == null) throw new ApplicationException("ContextCreator && _contextCreatorTransaction == null");
+            if (Context.Database.CurrentTransaction == null) throw new ApplicationException("Context.Database.CurrentTransaction == null");
+            if (_contextCreatorTransaction != null && _contextCreatorTransaction != Context.Database.CurrentTransaction)
+                throw new ApplicationException("_contextCreatorTransaction != null && _contextCreatorTransaction != Context.Database.CurrentTransaction");
+        }
+
+        private async Task BeginTransactionByContextCreator(CancellationToken cancellationToken)
+        {
+            EnsureNotDisposed();
+            if (!ContextCreator) throw new ApplicationException("!ContextCreator");
+            if (!_reader.ContextIsLocked) throw new ApplicationException("!_reader.ContextIsLocked");
+            if (_contextCreatorTransaction != null) throw new ApplicationException("_contextCreatorTransaction != null");
+            if (Context.Database.CurrentTransaction != null) throw new ApplicationException("Context.Database.CurrentTransaction != null");
+            _contextCreatorTransaction = await Context.Database.BeginTransactionAsync(IsolationLevel.ReadCommitted, cancellationToken);
+        }
+
+        private async Task CommitTransactionByContextCreator(CancellationToken cancellationToken)
+        {
+            EnsureNotDisposed();
+            EnsureTransactionAfterRead();
+            if (!ContextCreator) throw new ApplicationException("!ContextCreator");
+            if (!_reader.ContextIsLocked) throw new ApplicationException("!_reader.ContextIsLocked");
+
+            var contextCreatorTransaction = _contextCreatorTransaction;
+            _contextCreatorTransaction = null;
+            if (contextCreatorTransaction == null) throw new ApplicationException("contextCreatorTransaction == null");
+
+            await contextCreatorTransaction.CommitAsync(cancellationToken);
+            await Context.DisposeAsync();
         }
     }
 }

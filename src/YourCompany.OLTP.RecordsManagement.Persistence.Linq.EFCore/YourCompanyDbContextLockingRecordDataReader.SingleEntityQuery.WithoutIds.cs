@@ -50,7 +50,7 @@ namespace YourCompany.OLTP.RecordsManagement.Persistence.Linq.EFCore
                     int batchSize, int recordsCountToSkip, CancellationToken cancellationToken)
                 {
                     if (PrimaryKeys != null) throw new ApplicationException("PrimaryKeys != null");
-                    EnsureReadingForReadOnly();
+                    EnsureReadingForReadOnlyOrByModifyingWrapperOnly();
                     EnsureBeforeResolvingWithoutIds();
                     _queryable ??= Query() ?? throw new ApplicationException("Query() == null");
                     var batched = _queryable.Skip(batchSize).Take(recordsCountToSkip);

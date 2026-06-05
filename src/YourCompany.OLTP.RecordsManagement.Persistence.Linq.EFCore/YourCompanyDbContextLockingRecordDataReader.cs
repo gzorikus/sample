@@ -16,6 +16,7 @@ namespace YourCompany.OLTP.RecordsManagement.Persistence.Linq.EFCore
     {
         private readonly YourCompanyDbContext<TConfiguration> _context;
         private TaskCompletionSource _contextLock;
+        private bool _preventFurtherLockingByOriginalReader;
 
         public bool ContextIsLocked => _contextLock != null;
         public bool ReadOnly { get; private set; }
@@ -63,6 +64,7 @@ namespace YourCompany.OLTP.RecordsManagement.Persistence.Linq.EFCore
 
         public virtual RecordsDataAccess.IReadOnly<PrimaryKey> ForReadOnlyByIdsWithoutRecordsData() => null;
         public virtual RecordsDataAccess.IReadOnly<PrimaryKey> ForReadOnlyByIdsWithRecordsData() => null;
+        public virtual RecordsDataAccess.IReadBeforeModifying<PrimaryKey> ForModifyingAfterReadingByIds() => null;
 
         public virtual RecordsDataAccess.IReadOnlyWithoutIds<PrimaryKey.WithoutExtraValues>
             ForReadOnlyWithoutIdsWithoutRecordsData() => null;
@@ -90,7 +92,7 @@ namespace YourCompany.OLTP.RecordsManagement.Persistence.Linq.EFCore
             await LockContext();
             try
             {
-                return await Read(batchSize, recordsCountToSkip, cancellationToken);
+                return await Read(batchSize, recordsCountToSkip, lockAndTrack: false, cancellationToken);
             }
             catch (Exception ex)
             {
@@ -103,9 +105,32 @@ namespace YourCompany.OLTP.RecordsManagement.Persistence.Linq.EFCore
             }
         }
 
-        protected virtual async Task<int> Read(int batchSize, int recordsCountToSkip, CancellationToken cancellationToken)
+        public (
+            YourCompanyDbContextLockingRecordDataReader<TConfiguration>,
+            RecordsDataAccess.IReadBeforeModifying<TPrimaryKey>)
+            BeforeModifying<TPrimaryKey>(
+                RecordsDataAccess.IReadBeforeModifying readBeforeModifying, RecordsDataAccess.IFinish finishNext)
+            where TPrimaryKey : PrimaryKey
         {
-            EnsureReadingForReadOnly();
+            EnsureNoContextLock();
+            EnsureModifying();
+            _preventFurtherLockingByOriginalReader = true;
+            var wrapped = WrapForModifying<TPrimaryKey>(readBeforeModifying, finishNext);
+            wrapped.EnsureModifying();
+            return (wrapped, (RecordsDataAccess.IReadBeforeModifying<TPrimaryKey>)wrapped);
+        }
+
+        public virtual Task<int> ReadAndLockForChangesPersisting(
+            int batchSize, int recordsCountToSkip, CancellationToken cancellationToken)
+        {
+            EnsureUsedByModifyingWrapperOnly();
+            if (_context.Database.CurrentTransaction == null) throw new ApplicationException("_context.Database.CurrentTransaction == null");
+            return Read(batchSize, recordsCountToSkip, lockAndTrack: true, cancellationToken);
+        }
+
+        protected virtual async Task<int> Read(int batchSize, int recordsCountToSkip, bool lockAndTrack, CancellationToken cancellationToken)
+        {
+            EnsureReadingForReadOnlyOrByModifyingWrapperOnly();
 
             var existingRecordPrivateKeys = await ResolvePrimaryKeys(batchSize, recordsCountToSkip, cancellationToken);
             if (existingRecordPrivateKeys?.Count > batchSize) throw new ApplicationException("existingRecordPrivateKeys?.Count > batchSize");
@@ -114,7 +139,7 @@ namespace YourCompany.OLTP.RecordsManagement.Persistence.Linq.EFCore
 
             if (!WithoutRecordsData && existingRecordPrivateKeys != null)
             {
-                await ReadRecordDataByPrivateKeys(existingRecordPrivateKeys, cancellationToken);
+                await ReadRecordDataByPrivateKeys(existingRecordPrivateKeys, lockAndTrack, cancellationToken);
                 EnsurePrimaryKeysAreAssignedWithExistingRecordsData();
             }
 
@@ -123,7 +148,7 @@ namespace YourCompany.OLTP.RecordsManagement.Persistence.Linq.EFCore
 
         protected virtual void EnsurePrimaryKeysAreAssignedWithExistingRecordsData()
         {
-            EnsureReadingForReadOnly();
+            EnsureReadingForReadOnlyOrByModifyingWrapperOnly();
             if (WithoutRecordsData) throw new ApplicationException("WithoutRecordsData");
             if (PrimaryKeys == null) throw new ApplicationException("PrimaryKeys == null");
 
@@ -144,7 +169,7 @@ namespace YourCompany.OLTP.RecordsManagement.Persistence.Linq.EFCore
 
         public virtual object GetRecordDataAfterAccess(int recordIndex, PrimaryKey primaryKey)
         {
-            EnsureNoContextLock();
+            EnsureCanBeUsedForReadOnlyWithoutContextLockOrByModifyingWrapperOnly();
             if (WithoutRecordsData) throw new ApplicationException("WithoutRecordsData");
 
             EnsureMatchingResolvedPrimaryKey(recordIndex, primaryKey);
@@ -158,6 +183,10 @@ namespace YourCompany.OLTP.RecordsManagement.Persistence.Linq.EFCore
 
         protected virtual bool FilterAfterSortingWithoutIdsBeforeRead(object specification) => false;
 
+        protected abstract YourCompanyDbContextLockingRecordDataReader<TConfiguration> WrapForModifying<TPrimaryKey>(
+            RecordsDataAccess.IReadBeforeModifying readBeforeModifying, RecordsDataAccess.IFinish finishNext)
+            where TPrimaryKey : PrimaryKey;
+
         protected abstract Task<IReadOnlyList<long>> ResolvePrimaryKeys(
             int batchSize, int recordsCountToSkip, CancellationToken cancellationToken);
 
@@ -167,7 +196,7 @@ namespace YourCompany.OLTP.RecordsManagement.Persistence.Linq.EFCore
         protected abstract void EnsurePrimaryKeyIsAssignedWithExistingRecordsData(long privateKey, PrimaryKey primaryKey);
 
         protected abstract Task ReadRecordDataByPrivateKeys(
-            IReadOnlyList<long> existingRecordPrivateKeys, CancellationToken cancellationToken);
+            IReadOnlyList<long> existingRecordPrivateKeys, bool lockAndTrack, CancellationToken cancellationToken);
 
         protected abstract object GetExistingRecordDataIfReadByPrivateKey(long primaryKey);
 
@@ -196,17 +225,45 @@ namespace YourCompany.OLTP.RecordsManagement.Persistence.Linq.EFCore
         protected void EnsureContextLocked()
         {
             if (_contextLock == null) throw new ApplicationException("_contextLock == null");
+            if (_preventFurtherLockingByOriginalReader) throw new ApplicationException("_preventFurtherLockingByOriginalReader");
         }
 
         protected void EnsureNoContextLock()
         {
             if (_contextLock != null) throw new ApplicationException("_contextLock != null");
+            if (_preventFurtherLockingByOriginalReader) throw new ApplicationException("_preventFurtherLockingByOriginalReader");
         }
 
-        protected void EnsureReadingForReadOnly()
+        protected void EnsureUsedByModifyingWrapperOnly()
         {
-            EnsureContextLocked();
-            if (!ReadOnly) throw new ApplicationException("!_preventFurtherLockingByOriginalReader && !ReadOnly");
+            if (_contextLock != null) throw new ApplicationException("_contextLock != null");
+            if (!_preventFurtherLockingByOriginalReader) throw new ApplicationException("!_preventFurtherLockingByOriginalReader");
+            EnsureModifying();
+        }
+
+        protected void EnsureReadingForReadOnlyOrByModifyingWrapperOnly()
+        {
+            if (_preventFurtherLockingByOriginalReader)
+            {
+                if (_contextLock != null) throw new ApplicationException("_preventFurtherLockingByOriginalReader && _contextLock != null");
+                EnsureModifying();
+            }
+            else
+            {
+                if (_contextLock == null) throw new ApplicationException("!_preventFurtherLockingByOriginalReader && _contextLock == null");
+                if (!ReadOnly) throw new ApplicationException("!_preventFurtherLockingByOriginalReader && !ReadOnly");
+            }
+        }
+
+        protected void EnsureCanBeUsedForReadOnlyWithoutContextLockOrByModifyingWrapperOnly()
+        {
+            if (_contextLock != null) throw new ApplicationException("_contextLock != null");
+        }
+
+        protected void EnsureModifying()
+        {
+            if (ReadOnly) throw new ApplicationException("ReadOnly");
+            if (WithoutRecordsData) throw new ApplicationException("WithoutRecordsData");
         }
 
         protected void EnsureMatchingResolvedPrimaryKey(int recordIndex, PrimaryKey primaryKey)

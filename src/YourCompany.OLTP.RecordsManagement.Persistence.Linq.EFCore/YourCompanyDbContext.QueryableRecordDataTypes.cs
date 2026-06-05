@@ -39,6 +39,7 @@ namespace YourCompany.OLTP.RecordsManagement.Persistence.Linq.EFCore
             foreach (var kvp in queryableRecordDataTypes)
             {
                 DeclarePrimaryKey(modelBuilder, recordDataType: kvp.Key, queryableRecordDataType: kvp.Value);
+                DeclareLastModifiedAtProperty(modelBuilder, recordDataType: kvp.Key, queryableRecordDataType: kvp.Value);
             }
         }
 
