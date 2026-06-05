@@ -204,7 +204,7 @@ All the entry point branches' heads are highlighted in the graph as ⏹️.
 ---
 config:
   gitGraph:
-    mainBranchName: "5|🧱: OLTP DI inheritance free repo"
+    mainBranchName: "MERGED"
     parallelCommits: true
     rotateCommitLabel: false
     showCommitLabel: false
@@ -402,9 +402,9 @@ commit type:NORMAL tag:"4|🧱|YourCompany.OLTP.RecordsManagement.Persistence" %
 %% commit type:REVERSE %% OUCBRT>3
 %% commit type:REVERSE %% OUCBRT>4
 %% commit type:REVERSE %% OUCBRT>5
-%% commit type:HIGHLIGHT tag:"4|🏠|oltp-segregate-use-cases-with-transactional-composition|YourCompany.OLTP.RecordsManagement.UseCases.TransactionalComposition" %% OUCBRT
+commit type:HIGHLIGHT tag:"4|🏠|oltp-segregate-use-cases-with-transactional-composition|YourCompany.OLTP.RecordsManagement.UseCases.TransactionalComposition" %% OUCBRT
 
-%% checkout "4|🏠: OLTP use cases by record type" %% EOUC
+checkout "4|🏠: OLTP use cases by record type" %% EOUC
 checkout "5|🧱: OLTP switch to chassis" %% EOUC
 branch "4|🏠: enumerate OLTP use cases" %% EOUC
 commit type:HIGHLIGHT tag:"4|🏠|oltp-segregate-use-cases-repository-is-for-persistence|YourCompany.OLTP.RecordsManagement.UseCases" %% EOUC
@@ -467,10 +467,10 @@ branch "3|🧱: OLTP transaction structure" %% OTS
 %% commit type:HIGHLIGHT tag:"3|🧱|oltp-typical-transaction-structure-repository-is-up-to-you|YourCompany.OLTP.RecordsManagement" %% OTS
 merge "4|🧱: OLTP identities are unique keys" type:HIGHLIGHT tag:"3|🧱|oltp-typical-transaction-structure-repository-is-up-to-you|YourCompany.OLTP.RecordsManagement" %% OTS
 
-%% checkout "4|🏠: OLTP use cases by record type" %% ORTCM
-%% branch "3|🏠: OLTP RecordTypesCompositionMap" %% ORTCM
-%% commit type:REVERSE %% ORTCM>1
-%% commit type:REVERSE %% ORTCM>2
+checkout "4|🏠: OLTP use cases by record type" %% ORTCM
+branch "3|🏠: OLTP RecordTypesCompositionMap" %% ORTCM
+commit type:REVERSE %% ORTCM>1
+commit type:REVERSE %% ORTCM>2
 %% commit type:REVERSE %% ORTCM>3
 %% commit type:REVERSE %% ORTCM>4
 %% commit type:REVERSE %% ORTCM>5
@@ -479,7 +479,7 @@ merge "4|🧱: OLTP identities are unique keys" type:HIGHLIGHT tag:"3|🧱|oltp-
 %% commit type:REVERSE %% ORTCM>8
 %% commit type:REVERSE %% ORTCM>9
 %% commit type:REVERSE %% ORTCM>10
-%% commit type:NORMAL tag:"3|🏠|YourCompany.OLTP.StateOwnership.TransactionalComposition.Reflection" %% ORTCM
+commit type:NORMAL tag:"3|🏠|YourCompany.OLTP.StateOwnership.TransactionalComposition.Reflection" %% ORTCM
 
 checkout "5|🧱: OLTP DI ScopedUseCasesProvider" %% OUCTM
 commit type:REVERSE %% OUCTM<1
@@ -529,7 +529,7 @@ merge "3|🏠: OLTP UseCaseTypesMap" type:NORMAL tag:"3|🏠|YourCompany.OLTP.Re
 %% commit type:REVERSE %% OEMH 3>13
 %% commit type:REVERSE %% OEMH 3>14
 
-%% checkout "3|🏠: OLTP RecordTypesCompositionMap" %% ORTM
+checkout "3|🏠: OLTP RecordTypesCompositionMap" %% ORTM
 checkout "5|🧱: OLTP DI ScopedRecordsProvider" %% ORTM
 branch "3|🏠: OLTP RecordTypesMap" %% ORTM
 %% merge "3|🏠: OLTP RecordTypesCompositionMap" %% ORTM
@@ -627,9 +627,9 @@ commit type:NORMAL tag:"3|🏠|YourCompany.OLTP.StateOwnership.Reflection" %% OR
 %% merge "2|💾: EFChangeTrackerTrackGraphStrategy" type:NORMAL tag:"2|💾|YourCompany.Configuration.EFCore|YourCompany.Configuration.EFCore.PostgreSQL|YourCompany.Configuration.EFCore.Sqlite" %% BPE
 %% merge "2|💾: EFCore hosting migration run" type:NORMAL tag:"2|💾|YourCompany.Configuration.EFCore|YourCompany.Configuration.EFCore.PostgreSQL|YourCompany.Configuration.EFCore.Sqlite" %% BPE
 
-%% checkout "3|🏠: OLTP RecordTypesCompositionMap" %% TCM
-%% branch "2|🧱: TypesCompositionMap" %% TCM
-%% commit type:REVERSE %% TCM>1
+checkout "3|🏠: OLTP RecordTypesCompositionMap" %% TCM
+branch "2|🧱: TypesCompositionMap" %% TCM
+commit type:REVERSE %% TCM>1
 %% commit type:REVERSE %% TCM>2
 %% commit type:REVERSE %% TCM>3
 %% commit type:REVERSE %% TCM>4
@@ -637,7 +637,7 @@ commit type:NORMAL tag:"3|🏠|YourCompany.OLTP.StateOwnership.Reflection" %% OR
 %% commit type:REVERSE %% TCM>6
 %% commit type:REVERSE %% TCM>7
 %% commit type:REVERSE %% TCM>8
-%% commit type:NORMAL tag:"2|🧱|YourCompany.Reflection" %% TCM
+commit type:NORMAL tag:"2|🧱|YourCompany.Reflection" %% TCM
 
 checkout "3|🏠: OLTP UseCaseTypesMap" %% TAH
 commit type:REVERSE %% TAH<1
@@ -709,7 +709,7 @@ checkout "3|🏠: generic OLTP use cases" %% ATL
 branch "2|🧱: AwaitTasksList" %% ATL
 commit type:REVERSE %% ATL>1
 commit type:REVERSE %% ATL>2
-%% commit type:REVERSE %% ATL>3
+commit type:REVERSE %% ATL>3
 %% commit type:REVERSE %% ATL>4
 %% commit type:REVERSE %% ATL>5
 commit type:NORMAL tag:"2|🧱|YourCompany.Threading" %% ATL
@@ -767,7 +767,7 @@ merge "3|🧱: OLTP transaction structure" type:HIGHLIGHT tag:"2|🏠|oltp-ways-
 %% commit type:REVERSE %% BCC>4
 %% commit type:HIGHLIGHT tag:"1|🧱|configuration-entry-assembly-rotating-secrets-scaling-plugins|YourCompany.Configuration" %% BCC
 
-%% checkout "3|🏠: OLTP RecordTypesCompositionMap" %% OTC
+checkout "3|🏠: OLTP RecordTypesCompositionMap" %% OTC
 %% commit type:REVERSE %% OTC<1
 %% commit type:REVERSE %% OTC<2
 %% commit type:REVERSE %% OTC<3
@@ -788,11 +788,11 @@ merge "3|🧱: OLTP transaction structure" type:HIGHLIGHT tag:"2|🏠|oltp-ways-
 %% commit type:REVERSE %% OTC<18
 %% commit type:REVERSE %% OTC<19
 %% commit type:REVERSE %% OTC<20
-%% branch "1|🏠: OLTP transactional composition" %% OTC
-%% commit type:REVERSE %% OTC>1
-%% commit type:REVERSE %% OTC>2
-%% commit type:REVERSE %% OTC>3
-%% commit type:REVERSE %% OTC>4
+branch "1|🏠: OLTP transactional composition" %% OTC
+commit type:REVERSE %% OTC>1
+commit type:REVERSE %% OTC>2
+commit type:REVERSE %% OTC>3
+commit type:REVERSE %% OTC>4
 %% commit type:REVERSE %% OTC>5
 %% commit type:REVERSE %% OTC>6
 %% commit type:REVERSE %% OTC>7
@@ -803,7 +803,7 @@ merge "3|🧱: OLTP transaction structure" type:HIGHLIGHT tag:"2|🏠|oltp-ways-
 %% commit type:REVERSE %% OTC>12
 %% commit type:REVERSE %% OTC>13
 %% commit type:REVERSE %% OTC>14
-%% commit type:NORMAL tag:"1|🏠|YourCompany.OLTP.StateOwnership.TransactionalComposition" %% OTC
+commit type:NORMAL tag:"1|🏠|YourCompany.OLTP.StateOwnership.TransactionalComposition" %% OTC
 
 %% checkout "N|🧱: wip switch to chassis" %% OEP
 %% commit type:REVERSE %% OEP<1
@@ -875,7 +875,7 @@ checkout "3|🏠: OLTP RecordTypesMap" %% THOOIT
 branch "1|🏠: the heart of OLTP is transaction" %% THOOIT
 %% merge "2|🏠: OLTP transaction is limited size" %% THOOIT
 %% merge "1|🏠: OLTP events producing" %% THOOIT
-%% merge "1|🏠: OLTP transactional composition" %% THOOIT
+merge "1|🏠: OLTP transactional composition" %% THOOIT
 %% merge "N|🧱: wip switch to chassis" %% THOOIT
 %% commit type:HIGHLIGHT tag:"1|🏠|oltp-basic-object-model-the-rest-is-up-to-you|YourCompany.OLTP.StateOwnership" %% THOOIT
 merge "2|🏠: OLTP transaction is limited size" type:HIGHLIGHT tag:"1|🏠|oltp-basic-object-model-the-rest-is-up-to-you|YourCompany.OLTP.StateOwnership" %% THOOIT
@@ -950,15 +950,26 @@ Cons: still lacking major things like events producing, transactional compositio
 
 <!-- ### Branch: oltp-di-combine-use-case-and-persistence-interfaces-without-inheritance END -->
 
-<!-- ### Branch: oltp-segregate-use-cases-with-transactional-composition
+### Branch: oltp-segregate-use-cases-with-transactional-composition
 
-> Files: ### | Lines: #####  
-Pros: why do you choose this entry point  
-Cons: why it might be not enough for you
+> Files: 82 | Lines: 6556  
+Pros: clean model with aggregates decomposed by subject/feature effectively grouping use case logic and data  
+Cons: a lot of complex boilerplate is produced for manual composition, the map is not as useful as it could be
 
 | Log | Examples | Modules |
 |-|-|-|
-| [replace_with_each_included_commit_subject](#commit-with-lower-case-subject) | <kbd> [at‑least‑one‑example‑solution‑name](examples/at-least-one-example-solution-per-commit/README.md#commit-with-lower-case-subject) </kbd><br><kbd> [extra‑example‑solution‑name](examples/extra-example-solution-name/README.md#commit-with-lower-case-subject) </kbd> | <kbd>YourCompany.Framework.Assembly.Name1 (+diff lines)</kbd><br><kbd>YourCompany.Framework.Assembly.Name2 (-diff lines)</kbd><br><kbd>YourCompany.Framework.Assembly.NameN (0 lines)</kbd> |
+| [1\|⁠🏠: the heart of OLTP is transaction](#commit-1-the-heart-of-oltp-is-transaction) | <kbd> [TODO](examples/at-least-one-example-solution-per-commit/README.md#commit-1-the-heart-of-oltp-is-transaction) </kbd> | <kbd>YourCompany.OLTP.StateOwnership (+371 lines)</kbd> |
+| [1\|⁠🏠: OLTP transactional composition](#commit-1-oltp-transactional-composition) | <kbd> [TODO](examples/at-least-one-example-solution-per-commit/README.md#commit-1-oltp-transactional-composition) </kbd> | <kbd>YourCompany.OLTP.StateOwnership.TransactionalComposition (+20 lines)</kbd> |
+| [2\|⁠🏠: OLTP transaction is limited size](#commit-2-oltp-transaction-is-limited-size) | <kbd> [TODO](examples/at-least-one-example-solution-per-commit/README.md#commit-2-oltp-transaction-is-limited-size) </kbd> | <kbd>YourCompany.OLTP.RecordsManagement (+1500 lines)</kbd> |
+| [2\|⁠🧱: AwaitTasksList](#commit-2-awaittaskslist) | <kbd> [TODO](examples/at-least-one-example-solution-per-commit/README.md#commit-2-awaittaskslist) </kbd> | <kbd>YourCompany.Threading (+49 lines)</kbd> |
+| [2\|⁠🧱: TypeAbstractionsHelper](#commit-2-typeabstractionshelper) | <kbd> [TODO](examples/at-least-one-example-solution-per-commit/README.md#commit-2-typeabstractionshelper) </kbd> | <kbd>YourCompany.Reflection (+26 lines)</kbd> |
+| [2\|⁠🧱: TypesCompositionMap](#commit-2-typescompositionmap) | <kbd> [TODO](examples/at-least-one-example-solution-per-commit/README.md#commit-2-typescompositionmap) </kbd> | <kbd>YourCompany.Reflection (+1050 lines)</kbd> |
+| [3\|⁠🏠: OLTP RecordTypesMap](#commit-3-oltp-recordtypesmap) | <kbd> [TODO](examples/at-least-one-example-solution-per-commit/README.md#commit-3-oltp-recordtypesmap) </kbd> | <kbd>YourCompany.OLTP.StateOwnership.Reflection (+263 lines)</kbd> |
+| [3\|⁠🏠: generic OLTP use cases](#commit-3-generic-oltp-use-cases) | <kbd> [TODO](examples/at-least-one-example-solution-per-commit/README.md#commit-3-generic-oltp-use-cases) </kbd> | <kbd>YourCompany.OLTP.RecordsManagement.UseCases (+212 lines)</kbd> |
+| [3\|⁠🏠: OLTP RecordTypesCompositionMap](#commit-3-oltp-recordtypescompositionmap) | <kbd> [TODO](examples/at-least-one-example-solution-per-commit/README.md#commit-3-oltp-recordtypescompositionmap) </kbd> | <kbd>YourCompany.OLTP.StateOwnership.TransactionalComposition.Reflection (+260 lines)</kbd> |
+| [3\|⁠🧱: OLTP transaction structure](#commit-3-oltp-transaction-structure) | <kbd> [TODO](examples/at-least-one-example-solution-per-commit/README.md#commit-3-oltp-transaction-structure) </kbd> | <kbd>YourCompany.OLTP.RecordsManagement (+1918 lines)</kbd> |
+| [4\|⁠🏠: enumerate OLTP use cases](#commit-4-enumerate-oltp-use-cases) | <kbd> [TODO](examples/at-least-one-example-solution-per-commit/README.md#commit-4-enumerate-oltp-use-cases) </kbd> | <kbd>YourCompany.OLTP.RecordsManagement.UseCases (+117 lines)</kbd> |
+| [4\|⁠🏠: OLTP use cases by record type](#commit-4-oltp-use-cases-by-record-type) | <kbd> [TODO](examples/at-least-one-example-solution-per-commit/README.md#commit-4-oltp-use-cases-by-record-type) </kbd> | <kbd>YourCompany.OLTP.RecordsManagement.UseCases.TransactionalComposition (+770 lines)</kbd> |
 
 <!-- ### Branch: oltp-segregate-use-cases-with-transactional-composition END -->
 
@@ -1190,15 +1201,55 @@ Commit body is multiline and compliant to markdown formatting 💥
 
 <!-- ### Commit: 1|🏠: OLTP events producing END -->
 
-<!-- ### Commit: 1|🏠: OLTP transactional composition
+### Commit: 1|🏠: OLTP transactional composition
 
 <table><tbody><tr><td>
 
-X files changed, Y insertions(+), Z deletions(-)<br>
-<sub><sub>src/YourCompany.Module/</sub></sub><br>
-<kbd> +++++++ NNN |⁠ [File.cs                                                                                                        ](src/YourCompany.Configuration/EnvironmentConventions.cs)</kbd><br>
+1 file changed, 20 insertions(+)<br>
+<sub><sub>src/YourCompany.OLTP.StateOwnership.TransactionalComposition/</sub></sub><br>
+<kbd> +++++++ 20  |⁠ [TransactionalCompositionTransactionCallback.cs                                                                 ](src/YourCompany.OLTP.StateOwnership.TransactionalComposition/TransactionalCompositionTransactionCallback.cs)</kbd><br>
 
-Commit body is multiline and compliant to markdown formatting 💥
+When it comes to building your aggregates for modelling the domain  
+over a long period of time you often encounters them to be cluttered  
+with logic and data serving still the same purpose the model exists  
+but in different points of time and in different data volumes required.
+
+The nowadays approach that comes in mind right away is "microservices"  
+where you just need to split any concerns into separate apps. Sounds  
+like a silver bullet? 😁 Hold on...
+
+Before deciding to sell your soul to the devil, ask yourself:  
+
+- whether the service I extract is going to bring the value solely, and;
+- whether it's worth to lose the ACID guarantees for the sake of hype.
+
+Long story short (again), even if you go down that road, your best  
+bet is to prepare the code first before integrating it with the  
+extracted service, i.e. to let the integration be served still... with  
+a separated local module...
+
+Now let's take it serious as a rule of thumb: "whenever we find a  
+**subdomain** we first put it into a **separate assembly**". Do you  
+see much difference in where the assembly is located, in the local  
+code base or external? You might not yet, so no need to rush.
+
+Give it a chance to stay and retain the ACID guarantees while  
+utilizing the full-fledged modularity of your framework. For that we  
+just need to introduce the way aggregates could communicate each other  
+within the transaction 😲
+
+Since we've already delegated the state access away from our model  
+we have a way to identify which classes belong to the subset of those  
+aggregates. I.e. the ones getting `IStateAccess` in the constructor.  
+> Please note this once again in contrast to the ORM's approach where  
+you pass dozens of ctor parameters to obtaining the required state 🙈
+
+So our ctor is not so busy now, right? Why not to "ask it" to simply  
+accept other aggregates as dependencies, huh? Do you feel how it  
+smells like the sweet origins of OOP? 😁 Do you see how the language's  
+natural semantics are going to be put at the core of making clusters   
+of such aggregates "describing a single entity yet" 🤔 Hopefuly from  
+now on we're on the same page 🤞
 
 </td></tr></tbody></table>
 
@@ -1364,15 +1415,66 @@ Commit body is multiline and compliant to markdown formatting 💥
 
 <!-- ### Commit: 2|🧱: TypeAbstractionsHelper END -->
 
-<!-- ### Commit: 2|🧱: TypesCompositionMap
+### Commit: 2|🧱: TypesCompositionMap
 
 <table><tbody><tr><td>
 
-X files changed, Y insertions(+), Z deletions(-)<br>
-<sub><sub>src/YourCompany.Module/</sub></sub><br>
-<kbd> +++++++ NNN |⁠ [File.cs                                                                                                        ](src/YourCompany.Configuration/EnvironmentConventions.cs)</kbd><br>
+16 files changed, 1050 insertions(+)<br>
+<sub><sub>src/YourCompany.Reflection/Composition/</sub></sub><br>
+<kbd> +++++++ 141 |⁠ [ComposableTypeInfo.ConstructionLimitations.cs                                                                  ](src/YourCompany.Reflection/Composition/ComposableTypeInfo.ConstructionLimitations.cs)</kbd><br>
+<kbd>  ++++++ 139 |⁠ [ComposableTypeInfo.Dependencies.cs                                                                             ](src/YourCompany.Reflection/Composition/ComposableTypeInfo.Dependencies.cs)</kbd><br>
+<kbd>  ++++++ 133 |⁠ [ComposableTypeInfo.cs                                                                                          ](src/YourCompany.Reflection/Composition/ComposableTypeInfo.cs)</kbd><br>
+<kbd>   +++++ 113 |⁠ [CompositionException.Composite.cs                                                                              ](src/YourCompany.Reflection/Composition/CompositionException.Composite.cs)</kbd><br>
+<kbd>   +++++ 104 |⁠ [ComposableTypeInfo.Dependencies.Mixins.Determined.cs                                                           ](src/YourCompany.Reflection/Composition/ComposableTypeInfo.Dependencies.Mixins.Determined.cs)</kbd><br>
+<kbd>    ++++ 82  |⁠ [ComposableTypeInfo.Dependencies.Mixins.CrossCutting.cs                                                         ](src/YourCompany.Reflection/Composition/ComposableTypeInfo.Dependencies.Mixins.CrossCutting.cs)</kbd><br>
+<kbd>    ++++ 72  |⁠ [TypesCompositionMap.cs                                                                                         ](src/YourCompany.Reflection/Composition/TypesCompositionMap.cs)</kbd><br>
+<kbd>      ++ 41  |⁠ [ComposableTypeInfo.Dependencies.ImplementedAbstractions.cs                                                     ](src/YourCompany.Reflection/Composition/ComposableTypeInfo.Dependencies.ImplementedAbstractions.cs)</kbd><br>
+<kbd>      ++ 39  |⁠ [CompositionException.DependenciesLoopDetected.cs                                                               ](src/YourCompany.Reflection/Composition/CompositionException.DependenciesLoopDetected.cs)</kbd><br>
+<kbd>      ++ 36  |⁠ [ComposableTypeInfo.Dependencies.Mixins.cs                                                                      ](src/YourCompany.Reflection/Composition/ComposableTypeInfo.Dependencies.Mixins.cs)</kbd><br>
+<kbd>      ++ 31  |⁠ [CompositionException.AbstractDependencyWithMultipleImplementationsPerApplicableRootMustBeEnumerable.cs         ](src/YourCompany.Reflection/Composition/CompositionException.AbstractDependencyWithMultipleImplementationsPerApplicableRootMustBeEnumerable.cs)</kbd><br>
+<kbd>      ++ 30  |⁠ [CompositionException.CrossCuttingMixinMustOnlyDependOnOtherCrossCutting.cs                                     ](src/YourCompany.Reflection/Composition/CompositionException.CrossCuttingMixinMustOnlyDependOnOtherCrossCutting.cs)</kbd><br>
+<kbd>      ++ 29  |⁠ [CompositionException.ProvidedComposableBaseTypesMustBeAbstract.cs                                              ](src/YourCompany.Reflection/Composition/CompositionException.ProvidedComposableBaseTypesMustBeAbstract.cs)</kbd><br>
+<kbd>      ++ 24  |⁠ [CompositionException.cs                                                                                        ](src/YourCompany.Reflection/Composition/CompositionException.cs)</kbd><br>
+<kbd>      ++ 24  |⁠ [ComposableTypesProvider.cs                                                                                     ](src/YourCompany.Reflection/Composition/ComposableTypesProvider.cs)</kbd><br>
+<kbd>       + 12  |⁠ [CompositionException.MixinMustHaveApplicableRoots.cs                                                           ](src/YourCompany.Reflection/Composition/CompositionException.MixinMustHaveApplicableRoots.cs)</kbd><br>
 
-Commit body is multiline and compliant to markdown formatting 💥
+While not as widespreadly known paradigm as others,  
+**Subject-Oriented-Programming** still managed to leave a positive  
+mark on the industry history, and its echoes are found not only in its  
+overshadowed AOP paradigm but also in several programming languages  
+in the limited form of "mixins" or "traits".
+
+Long story short (though higly recommend introducing yourself to this)  
+and as absurds as it sounds... True modularity sometimes is impossible  
+for one and very simple reason - you can't simply cut of your class  
+into smaller pieces without having to glue them back together elsewhere.
+
+When you come into this problem you have few options, patterns like  
+"bridge", or loosing strong typing benefits by wrapping such pieces  
+into kind of "memento" (dictionary, or alike, e.g. underlying form of  
+mixing in JS) and some other language and runtime abilities like  
+stateful extensions in C# utilizing "weak references", etc...
+
+As practice shows SOP is way more complex than OOP in a way presented,  
+i.e. as a paradigm, and the aforementioned ways of "mixing" too.  
+But what's interesting, and what we actually often miss is how  
+natural it sounds when you try building some descriptive model with it  
+rather trying to far-fetch it into an arbitrary procedural processing.
+
+Later we'll see this paradigm evolving into the practice while being  
+adopted into your framework for more focused goals. For now let's just  
+keep in mind that it's all about composition. And now we're organizing  
+the map serving as a basement for your framework to collect and  
+determine relationships between the pieces.
+
+Implementation hint: at `ComposableTypesProvider` you can see that  
+objects' construction is abstracted away meaning that the exact way  
+of instantiation will be taken over by another module in the framework.
+
+Also worth mentioning the cross cutting mixins that the provider is  
+responsible to denote for. These are the closest to AOP aspects,  
+but are not requiring to declare the "extensions point" explicitly to  
+be applicable for composition.
 
 </td></tr></tbody></table>
 
@@ -1480,15 +1582,17 @@ improve this later).
 
 <!-- ### Commit: 3|🏠: OLTP UseCaseTypesMap END -->
 
-<!-- ### Commit: 3|🏠: OLTP RecordTypesCompositionMap
+### Commit: 3|🏠: OLTP RecordTypesCompositionMap
 
 <table><tbody><tr><td>
 
-X files changed, Y insertions(+), Z deletions(-)<br>
-<sub><sub>src/YourCompany.Module/</sub></sub><br>
-<kbd> +++++++ NNN |⁠ [File.cs                                                                                                        ](src/YourCompany.Configuration/EnvironmentConventions.cs)</kbd><br>
-
-Commit body is multiline and compliant to markdown formatting 💥
+5 files changed, 260 insertions(+)<br>
+<sub><sub>src/YourCompany.OLTP.StateOwnership.TransactionalComposition.Reflection/</sub></sub><br>
+<kbd> +++++++ 81  |⁠ [ComposableRecordTypesProvider.cs                                                                               ](src/YourCompany.OLTP.StateOwnership.TransactionalComposition.Reflection/ComposableRecordTypesProvider.cs)</kbd><br>
+<kbd>   +++++ 62  |⁠ [ComposableRecordTypeInfo.cs                                                                                    ](src/YourCompany.OLTP.StateOwnership.TransactionalComposition.Reflection/ComposableRecordTypeInfo.cs)</kbd><br>
+<kbd>    ++++ 49  |⁠ [RecordTypesCompositionMap.cs                                                                                   ](src/YourCompany.OLTP.StateOwnership.TransactionalComposition.Reflection/RecordTypesCompositionMap.cs)</kbd><br>
+<kbd>     +++ 35  |⁠ [RecordCompositionException.cs                                                                                  ](src/YourCompany.OLTP.StateOwnership.TransactionalComposition.Reflection/RecordCompositionException.cs)</kbd><br>
+<kbd>     +++ 33  |⁠ [RecordCompositionToConstructionWrapperException.cs                                                             ](src/YourCompany.OLTP.StateOwnership.TransactionalComposition.Reflection/RecordCompositionToConstructionWrapperException.cs)</kbd><br>
 
 </td></tr></tbody></table>
 
@@ -1624,15 +1728,40 @@ completely.
 
 <!-- ### Commit: 4|🏠: enumerate OLTP use cases END -->
 
-<!-- ### Commit: 4|🏠: OLTP use cases by record type
+### Commit: 4|🏠: OLTP use cases by record type
 
 <table><tbody><tr><td>
 
-X files changed, Y insertions(+), Z deletions(-)<br>
-<sub><sub>src/YourCompany.Module/</sub></sub><br>
-<kbd> +++++++ NNN |⁠ [File.cs                                                                                                        ](src/YourCompany.Configuration/EnvironmentConventions.cs)</kbd><br>
+8 files changed, 770 insertions(+)<br>
+<sub><sub>src/YourCompany.OLTP.RecordsManagement.UseCases.TransactionalComposition/</sub></sub><br>
+<kbd> +++++++ 187 |⁠ [ComposableRecordsBatchTransaction.IteratingInParallel.cs                                                       ](src/YourCompany.OLTP.RecordsManagement.UseCases.TransactionalComposition/ComposableRecordsBatchTransaction.IteratingInParallel.cs)</kbd><br>
+<kbd>  ++++++ 166 |⁠ [ComposableRecordsBatchTransaction.ConfiguredIdentically.cs                                                     ](src/YourCompany.OLTP.RecordsManagement.UseCases.TransactionalComposition/ComposableRecordsBatchTransaction.ConfiguredIdentically.cs)</kbd><br>
+<kbd>   +++++ 144 |⁠ [ComposableRecordsBatchTransaction.ComposingRecords.cs                                                          ](src/YourCompany.OLTP.RecordsManagement.UseCases.TransactionalComposition/ComposableRecordsBatchTransaction.ComposingRecords.cs)</kbd><br>
+<kbd>    ++++ 111 |⁠ [ComposableRecordsBatchTransaction.ConfiguredIdentically.RepositoryRecords.cs                                   ](src/YourCompany.OLTP.RecordsManagement.UseCases.TransactionalComposition/ComposableRecordsBatchTransaction.ConfiguredIdentically.RepositoryRecords.cs)</kbd><br>
+<kbd>      ++ 54  |⁠ [AlwaysTrueSpecifications.cs                                                                                    ](src/YourCompany.OLTP.RecordsManagement.UseCases.TransactionalComposition/AlwaysTrueSpecifications.cs)</kbd><br>
+<kbd>      ++ 43  |⁠ [ComposableRecordsBatchTransaction.IteratedInParallel.cs                                                        ](src/YourCompany.OLTP.RecordsManagement.UseCases.TransactionalComposition/ComposableRecordsBatchTransaction.IteratedInParallel.cs)</kbd><br>
+<kbd>      ++ 36  |⁠ [ComposableRecordsBatchTransaction.ConfiguredIdentically.NonRepositoryRecords.cs                                ](src/YourCompany.OLTP.RecordsManagement.UseCases.TransactionalComposition/ComposableRecordsBatchTransaction.ConfiguredIdentically.NonRepositoryRecords.cs)</kbd><br>
+<kbd>       + 29  |⁠ [ComposableRecordsBatchTransaction.cs                                                                           ](src/YourCompany.OLTP.RecordsManagement.UseCases.TransactionalComposition/ComposableRecordsBatchTransaction.cs)</kbd><br>
 
-Commit body is multiline and compliant to markdown formatting 💥
+Here we utilize the ctor semantics and the previously introduced  
+SOP-idea based composition to introduce the way aggregates can trigger  
+each other's participation in a transaction. The way is to simply  
+reuse the transaction callback capabilities, so for the aggregate  
+being triggered to be no difference from handling regular use cases.  
+The latter are identified by one of particlar `EventArgs` inheritors.
+
+> The difference though and a recommendation is to separate regular  
+use case args from the triggering callback args. For the sake of  
+encapsulation it is best to keep regular ones "internal" while those  
+for triggering "public".
+
+Later we'll see how easy it is to add this new capability to the  
+generic repository and how much the value brought increases wih DI.  
+At current state you'll likely find it hard to implement those  
+semantics manually by inheriting record batch transaction per each  
+record type (here are both Entities and Mixins are meant). But  
+hopefully the suggested hierarchy will help, e.g. for adapting another  
+DI lib.
 
 </td></tr></tbody></table>
 

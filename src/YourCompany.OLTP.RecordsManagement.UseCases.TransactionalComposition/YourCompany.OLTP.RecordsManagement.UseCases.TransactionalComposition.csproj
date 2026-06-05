@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\YourCompany.OLTP.RecordsManagement.UseCases\YourCompany.OLTP.RecordsManagement.UseCases.csproj" />
+    <ProjectReference Include="..\YourCompany.OLTP.StateOwnership.TransactionalComposition.Reflection\YourCompany.OLTP.StateOwnership.TransactionalComposition.Reflection.csproj" />
+  </ItemGroup>
+
+</Project>
