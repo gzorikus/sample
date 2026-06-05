@@ -1147,15 +1147,13 @@ Commit body is multiline and compliant to markdown formatting 💥
 
 <!-- ### Commit: 2|🧱: AwaitTasksList END -->
 
-<!-- ### Commit: 2|🧱: GetMemberHelper
+### Commit: 2|🧱: GetMemberHelper
 
 <table><tbody><tr><td>
 
-X files changed, Y insertions(+), Z deletions(-)<br>
-<sub><sub>src/YourCompany.Module/</sub></sub><br>
-<kbd> +++++++ NNN |⁠ [File.cs                                                                                                        ](src/YourCompany.Configuration/EnvironmentConventions.cs)</kbd><br>
-
-Commit body is multiline and compliant to markdown formatting 💥
+1 file changed, 57 insertions(+)<br>
+<sub><sub>src/YourCompany.Reflection/</sub></sub><br>
+<kbd> +++++++ 57  |⁠ [GetMemberHelper.cs                                                                                             ](src/YourCompany.Reflection/GetMemberHelper.cs)</kbd><br>
 
 </td></tr></tbody></table>
 
