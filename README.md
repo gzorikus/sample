@@ -1175,15 +1175,14 @@ Commit body is multiline and compliant to markdown formatting 💥
 
 <!-- ### Commit: 2|🧱: DIConstructorHelper END -->
 
-<!-- ### Commit: 2|🧱: ValueTupleHelper
+### Commit: 2|🧱: ValueTupleHelper
 
 <table><tbody><tr><td>
 
-X files changed, Y insertions(+), Z deletions(-)<br>
-<sub><sub>src/YourCompany.Module/</sub></sub><br>
-<kbd> +++++++ NNN |⁠ [File.cs                                                                                                        ](src/YourCompany.Configuration/EnvironmentConventions.cs)</kbd><br>
-
-Commit body is multiline and compliant to markdown formatting 💥
+2 files changed, 143 insertions(+)<br>
+<sub><sub>src/YourCompany.Reflection/</sub></sub><br>
+<kbd> +++++++ 113 |⁠ [ValueTupleHelper.Expressions.cs                                                                                ](src/YourCompany.Reflection/ValueTupleHelper.Expressions.cs)</kbd><br>
+<kbd>      ++ 30  |⁠ [ValueTupleHelper.cs                                                                                            ](src/YourCompany.Reflection/ValueTupleHelper.cs)</kbd><br>
 
 </td></tr></tbody></table>
 
