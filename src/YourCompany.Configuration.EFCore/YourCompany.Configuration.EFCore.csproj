@@ -14,6 +14,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\YourCompany.Configuration\YourCompany.Configuration.csproj" />
+    <ProjectReference Include="..\YourCompany.Reflection\YourCompany.Reflection.csproj" />
   </ItemGroup>
 
   <ItemGroup>

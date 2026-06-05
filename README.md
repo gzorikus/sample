@@ -1394,15 +1394,14 @@ Commit body is multiline and compliant to markdown formatting 💥
 
 <!-- ### Commit: 3|🧱: OLTP transaction structure END -->
 
-<!-- ### Commit: 3|💾: EFPropertyExpressionsCache
+### Commit: 3|💾: EFPropertyExpressionsCache
 
 <table><tbody><tr><td>
 
-X files changed, Y insertions(+), Z deletions(-)<br>
-<sub><sub>src/YourCompany.Module/</sub></sub><br>
-<kbd> +++++++ NNN |⁠ [File.cs                                                                                                        ](src/YourCompany.Configuration/EnvironmentConventions.cs)</kbd><br>
-
-Commit body is multiline and compliant to markdown formatting 💥
+2 files changed, 87 insertions(+)<br>
+<sub><sub>src/YourCompany.Configuration.EFCore/ExpressionsCaching/</sub></sub><br>
+<kbd> +++++++ 50  |⁠ [EFPropertyExpressionsCache.FromParameter.cs                                                                    ](src/YourCompany.Configuration.EFCore/ExpressionsCaching/EFPropertyExpressionsCache.FromParameter.cs)</kbd><br>
+<kbd>   +++++ 37  |⁠ [EFPropertyExpressionsCache.cs                                                                                  ](src/YourCompany.Configuration.EFCore/ExpressionsCaching/EFPropertyExpressionsCache.cs)</kbd><br>
 
 </td></tr></tbody></table>
 
