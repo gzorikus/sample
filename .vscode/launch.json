@@ -4,21 +4,21 @@
     // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
     "version": "0.2.0",
     "configurations": [
-        // {
-        //     "name": "efcore-migrations",
-        //     "type": "coreclr",
-        //     "request": "launch",
-        //     "preLaunchTask": "build",
-        //     "program": "${workspaceFolder}/examples/efcore-migrations/src/YourCompany.ConsoleProgram/bin/Debug/net8.0/YourCompany.ConsoleProgram.dll",
-        //     "args": [],
-        //     "cwd": "${workspaceFolder}/examples/efcore-migrations/src/YourCompany.ConsoleProgram",
-        //     "console": "internalConsole",
-        //     "stopAtEntry": false,
-        //     "env": {
-        //         "DOTNET_ENVIRONMENT": "Development",
-        //         "YOURCOMPANY_INFRA_OBJECT_NAMES_PREFIX": "examples-",
-        //         "YOURCOMPANY_INFRA_OBJECT_NAMES_PREFIX_DEVENV_USE_CURRENT_GIT_BRANCH_FROM_REPO_PATH": "${workspaceFolder}"
-        //     }
-        // },
+        {
+            "name": "efcore-migrations",
+            "type": "coreclr",
+            "request": "launch",
+            "preLaunchTask": "build",
+            "program": "${workspaceFolder}/examples/efcore-migrations/src/YourCompany.ConsoleProgram/bin/Debug/net8.0/YourCompany.ConsoleProgram.dll",
+            "args": [],
+            "cwd": "${workspaceFolder}/examples/efcore-migrations/src/YourCompany.ConsoleProgram",
+            "console": "internalConsole",
+            "stopAtEntry": false,
+            "env": {
+                "DOTNET_ENVIRONMENT": "Development",
+                "YOURCOMPANY_INFRA_OBJECT_NAMES_PREFIX": "examples-",
+                "YOURCOMPANY_INFRA_OBJECT_NAMES_PREFIX_DEVENV_USE_CURRENT_GIT_BRANCH_FROM_REPO_PATH": "${workspaceFolder}"
+            }
+        },
     ]
 }
