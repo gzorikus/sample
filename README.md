@@ -1303,29 +1303,78 @@ Commit body is multiline and compliant to markdown formatting 💥
 
 <!-- ### Commit: 2|🧱: ValueTupleHelper END -->
 
-<!-- ### Commit: 2|🧱: TypeAbstractionsHelper
+### Commit: 2|🧱: TypeAbstractionsHelper
 
 <table><tbody><tr><td>
 
-X files changed, Y insertions(+), Z deletions(-)<br>
-<sub><sub>src/YourCompany.Module/</sub></sub><br>
-<kbd> +++++++ NNN |⁠ [File.cs                                                                                                        ](src/YourCompany.Configuration/EnvironmentConventions.cs)</kbd><br>
-
-Commit body is multiline and compliant to markdown formatting 💥
+1 file changed, 26 insertions(+)<br>
+<sub><sub>src/YourCompany.Reflection/</sub></sub><br>
+<kbd> +++++++ 26  |⁠ [TypeAbstractionsHelper.cs                                                                                      ](src/YourCompany.Reflection/TypeAbstractionsHelper.cs)</kbd><br>
 
 </td></tr></tbody></table>
 
 <!-- ### Commit: 2|🧱: TypeAbstractionsHelper END -->
 
-<!-- ### Commit: 2|🧱: TypesCompositionMap
+### Commit: 2|🧱: TypesCompositionMap
 
 <table><tbody><tr><td>
 
-X files changed, Y insertions(+), Z deletions(-)<br>
-<sub><sub>src/YourCompany.Module/</sub></sub><br>
-<kbd> +++++++ NNN |⁠ [File.cs                                                                                                        ](src/YourCompany.Configuration/EnvironmentConventions.cs)</kbd><br>
+16 files changed, 1050 insertions(+)<br>
+<sub><sub>src/YourCompany.Reflection/Composition/</sub></sub><br>
+<kbd> +++++++ 141 |⁠ [ComposableTypeInfo.ConstructionLimitations.cs                                                                  ](src/YourCompany.Reflection/Composition/ComposableTypeInfo.ConstructionLimitations.cs)</kbd><br>
+<kbd>  ++++++ 139 |⁠ [ComposableTypeInfo.Dependencies.cs                                                                             ](src/YourCompany.Reflection/Composition/ComposableTypeInfo.Dependencies.cs)</kbd><br>
+<kbd>  ++++++ 133 |⁠ [ComposableTypeInfo.cs                                                                                          ](src/YourCompany.Reflection/Composition/ComposableTypeInfo.cs)</kbd><br>
+<kbd>   +++++ 113 |⁠ [CompositionException.Composite.cs                                                                              ](src/YourCompany.Reflection/Composition/CompositionException.Composite.cs)</kbd><br>
+<kbd>   +++++ 104 |⁠ [ComposableTypeInfo.Dependencies.Mixins.Determined.cs                                                           ](src/YourCompany.Reflection/Composition/ComposableTypeInfo.Dependencies.Mixins.Determined.cs)</kbd><br>
+<kbd>    ++++ 82  |⁠ [ComposableTypeInfo.Dependencies.Mixins.CrossCutting.cs                                                         ](src/YourCompany.Reflection/Composition/ComposableTypeInfo.Dependencies.Mixins.CrossCutting.cs)</kbd><br>
+<kbd>    ++++ 72  |⁠ [TypesCompositionMap.cs                                                                                         ](src/YourCompany.Reflection/Composition/TypesCompositionMap.cs)</kbd><br>
+<kbd>      ++ 41  |⁠ [ComposableTypeInfo.Dependencies.ImplementedAbstractions.cs                                                     ](src/YourCompany.Reflection/Composition/ComposableTypeInfo.Dependencies.ImplementedAbstractions.cs)</kbd><br>
+<kbd>      ++ 39  |⁠ [CompositionException.DependenciesLoopDetected.cs                                                               ](src/YourCompany.Reflection/Composition/CompositionException.DependenciesLoopDetected.cs)</kbd><br>
+<kbd>      ++ 36  |⁠ [ComposableTypeInfo.Dependencies.Mixins.cs                                                                      ](src/YourCompany.Reflection/Composition/ComposableTypeInfo.Dependencies.Mixins.cs)</kbd><br>
+<kbd>      ++ 31  |⁠ [CompositionException.AbstractDependencyWithMultipleImplementationsPerApplicableRootMustBeEnumerable.cs         ](src/YourCompany.Reflection/Composition/CompositionException.AbstractDependencyWithMultipleImplementationsPerApplicableRootMustBeEnumerable.cs)</kbd><br>
+<kbd>      ++ 30  |⁠ [CompositionException.CrossCuttingMixinMustOnlyDependOnOtherCrossCutting.cs                                     ](src/YourCompany.Reflection/Composition/CompositionException.CrossCuttingMixinMustOnlyDependOnOtherCrossCutting.cs)</kbd><br>
+<kbd>      ++ 29  |⁠ [CompositionException.ProvidedComposableBaseTypesMustBeAbstract.cs                                              ](src/YourCompany.Reflection/Composition/CompositionException.ProvidedComposableBaseTypesMustBeAbstract.cs)</kbd><br>
+<kbd>      ++ 24  |⁠ [CompositionException.cs                                                                                        ](src/YourCompany.Reflection/Composition/CompositionException.cs)</kbd><br>
+<kbd>      ++ 24  |⁠ [ComposableTypesProvider.cs                                                                                     ](src/YourCompany.Reflection/Composition/ComposableTypesProvider.cs)</kbd><br>
+<kbd>       + 12  |⁠ [CompositionException.MixinMustHaveApplicableRoots.cs                                                           ](src/YourCompany.Reflection/Composition/CompositionException.MixinMustHaveApplicableRoots.cs)</kbd><br>
 
-Commit body is multiline and compliant to markdown formatting 💥
+While not as widespreadly known paradigm as others,  
+**Subject-Oriented-Programming** still managed to leave a positive  
+mark on the industry history, and its echoes are found not only in its  
+overshadowed AOP paradigm but also in several programming languages  
+in the limited form of "mixins" or "traits".
+
+Long story short (though higly recommend introducing yourself to this)  
+and as absurds as it sounds... True modularity sometimes is impossible  
+for one and very simple reason - you can't simply cut of your class  
+into smaller pieces without having to glue them back together elsewhere.
+
+When you come into this problem you have few options, patterns like  
+"bridge", or loosing strong typing benefits by wrapping such pieces  
+into kind of "memento" (dictionary, or alike, e.g. underlying form of  
+mixing in JS) and some other language and runtime abilities like  
+stateful extensions in C# utilizing "weak references", etc...
+
+As practice shows SOP is way more complex than OOP in a way presented,  
+i.e. as a paradigm, and the aforementioned ways of "mixing" too.  
+But what's interesting, and what we actually often miss is how  
+natural it sounds when you try building some descriptive model with it  
+rather trying to far-fetch it into an arbitrary procedural processing.
+
+Later we'll see this paradigm evolving into the practice while being  
+adopted into your framework for more focused goals. For now let's just  
+keep in mind that it's all about composition. And now we're organizing  
+the map serving as a basement for your framework to collect and  
+determine relationships between the pieces.
+
+Implementation hint: at `ComposableTypesProvider` you can see that  
+objects' construction is abstracted away meaning that the exact way  
+of instantiation will be taken over by another module in the framework.
+
+Also worth mentioning the cross cutting mixins that the provider is  
+responsible to denote for. These are the closest to AOP aspects,  
+but are not requiring to declare the "extensions point" explicitly to  
+be applicable for composition.
 
 </td></tr></tbody></table>
 
@@ -1387,15 +1436,16 @@ Commit body is multiline and compliant to markdown formatting 💥
 
 <!-- ### Commit: 2|💾: EFCore hosting migration run END -->
 
-<!-- ### Commit: 3|🏠: OLTP RecordTypesMap
+### Commit: 3|🏠: OLTP RecordTypesMap
 
 <table><tbody><tr><td>
 
-X files changed, Y insertions(+), Z deletions(-)<br>
-<sub><sub>src/YourCompany.Module/</sub></sub><br>
-<kbd> +++++++ NNN |⁠ [File.cs                                                                                                        ](src/YourCompany.Configuration/EnvironmentConventions.cs)</kbd><br>
-
-Commit body is multiline and compliant to markdown formatting 💥
+4 files changed, 263 insertions(+)<br>
+<sub><sub>src/YourCompany.OLTP.StateOwnership.Reflection/</sub></sub><br>
+<kbd> +++++++ 97  |⁠ [RecordConstructionHelper.cs                                                                                    ](src/YourCompany.OLTP.StateOwnership.Reflection/RecordConstructionHelper.cs)</kbd><br>
+<kbd>   +++++ 74  |⁠ [RecordTypeInfo.cs                                                                                              ](src/YourCompany.OLTP.StateOwnership.Reflection/RecordTypeInfo.cs)</kbd><br>
+<kbd>    ++++ 56  |⁠ [RecordConstructionException.cs                                                                                 ](src/YourCompany.OLTP.StateOwnership.Reflection/RecordConstructionException.cs)</kbd><br>
+<kbd>     +++ 36  |⁠ [RecordTypesMap.cs                                                                                              ](src/YourCompany.OLTP.StateOwnership.Reflection/RecordTypesMap.cs)</kbd><br>
 
 </td></tr></tbody></table>
 
