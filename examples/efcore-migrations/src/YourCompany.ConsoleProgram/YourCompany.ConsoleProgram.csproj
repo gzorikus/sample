@@ -7,6 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\..\..\src\YourCompany.Configuration.EFCore.Hosting\YourCompany.Configuration.EFCore.Hosting.csproj" />
     <ProjectReference Include="..\..\..\..\src\YourCompany.Configuration.EFCore.PostgreSQL\YourCompany.Configuration.EFCore.PostgreSQL.csproj" />
     <ProjectReference Include="..\..\..\..\src\YourCompany.Configuration.EFCore.Sqlite\YourCompany.Configuration.EFCore.Sqlite.csproj" />
   </ItemGroup>

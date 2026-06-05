@@ -224,7 +224,25 @@ sqlite3 'examples/efcore-migrations/src/YourCompany.ConsoleProgram/bin/Debug/net
 
 <!-- ## Commit: 2|💾: basic pluggable EFCore END -->
 
-<!-- ## Commit: 2|💾: EFCore hosting migration run -->
+## Commit: 2|💾: EFCore hosting migration run
+
+Meet `MigrateDatabaseOnStart` option in [appsettings.json](src/YourCompany.ConsoleProgram/appsettings.json)
+allowing to avoid manual [pending migrations run](#run-pending-migrations) what can be useful  
+especially for **Development** environment when you might have to switch between branches pretty often.
+
+> Thanks to these arguments that happens quick and painless, because your branches won't conflict each other anymore:
+> 
+> ```powershell
+>     -- `
+>     --override YOURCOMPANY_ENVIRONMENT='Development' `
+>     --override YOURCOMPANY_INFRA_OBJECT_NAMES_PREFIX='examples-' `
+>     --override YOURCOMPANY_INFRA_OBJECT_NAMES_PREFIX_DEVENV_USE_CURRENT_GIT_BRANCH_FROM_REPO_PATH=.
+> ```
+
+> P.S. If you run this example under the exact commit rather than one of supporting entry points make sure to create and  
+checkout a temporary `configuration-efcore-hosting-migration-run` branch locally.
+
+<!-- ## Commit: 2|💾: EFCore hosting migration run END -->
 
 ## Commit: 7|🧱: OLTP DI EFCore integrated
 

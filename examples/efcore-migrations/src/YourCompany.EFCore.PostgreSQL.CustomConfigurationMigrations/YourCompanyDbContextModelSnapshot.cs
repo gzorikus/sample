@@ -43,9 +43,15 @@ namespace YourCompany.EFCore.PostgreSQL.CustomConfigurationMigrations
                         .HasColumnType("text");
 
                     b.HasKey("Id")
+<<<<<<< HEAD
                         .HasName("eodehsotric_PK_Entity");
 
                     b.ToTable("eodehsotric_Entity");
+=======
+                        .HasName("e_con_e_h_m_r_PK_Entity");
+
+                    b.ToTable("e_con_e_h_m_r_Entity");
+>>>>>>> refs/rewritten/2-persistman--efcore-hosting-migration-run
                 });
 
             modelBuilder.Entity("YourCompany.EFCore.NeverPretendingToBeYourDomainModel.EFCoreConventionalEntity+SomeReusableEntityHereForBrevity", b =>
@@ -60,9 +66,15 @@ namespace YourCompany.EFCore.PostgreSQL.CustomConfigurationMigrations
                         .HasColumnType("text");
 
                     b.HasKey("Id")
+<<<<<<< HEAD
                         .HasName("eodehsotric_PK_ReusableEntity");
 
                     b.ToTable("eodehsotric_ReusableEntity");
+=======
+                        .HasName("e_con_e_h_m_r_PK_ReusableEntity");
+
+                    b.ToTable("e_con_e_h_m_r_ReusableEntity");
+>>>>>>> refs/rewritten/2-persistman--efcore-hosting-migration-run
                 });
 
             modelBuilder.Entity("YourCompany.EFCore.NeverPretendingToBeYourDomainModel.EFCoreConventionalEntity", b =>
@@ -85,6 +97,7 @@ namespace YourCompany.EFCore.PostgreSQL.CustomConfigurationMigrations
                                 .HasColumnType("text");
 
                             b1.HasKey("EntityId")
+<<<<<<< HEAD
                                 .HasName("eodehsotric_PK_EntityMixin");
 
                             b1.ToTable("eodehsotric_EntityMixin");
@@ -92,6 +105,15 @@ namespace YourCompany.EFCore.PostgreSQL.CustomConfigurationMigrations
                             b1.WithOwner()
                                 .HasForeignKey("EntityId")
                                 .HasConstraintName("eodehsotric_FK_EntityMixin_Entity_EntityId");
+=======
+                                .HasName("e_con_e_h_m_r_PK_EntityMixin");
+
+                            b1.ToTable("e_con_e_h_m_r_EntityMixin");
+
+                            b1.WithOwner()
+                                .HasForeignKey("EntityId")
+                                .HasConstraintName("e_con_e_h_m_r_FK_EntityMixin_Entity_EntityId");
+>>>>>>> refs/rewritten/2-persistman--efcore-hosting-migration-run
                         });
 
                     b.OwnsMany("YourCompany.EFCore.NeverPretendingToBeYourDomainModel.EFCoreConventionalEntity+HavingSomeOwnedCollection", "TypicallyAlwaysIncludedCollectionIfYouAreGoingToBuildAggregatesOnTopOfIt", b1 =>
@@ -118,6 +140,7 @@ namespace YourCompany.EFCore.PostgreSQL.CustomConfigurationMigrations
                                 .HasColumnType("integer");
 
                             b1.HasKey("Id")
+<<<<<<< HEAD
                                 .HasName("eodehsotric_PK_EntityOwnedCollection");
 
                             b1.HasIndex("EntityId")
@@ -128,6 +151,18 @@ namespace YourCompany.EFCore.PostgreSQL.CustomConfigurationMigrations
                             b1.WithOwner()
                                 .HasForeignKey("EntityId")
                                 .HasConstraintName("eodehsotric_FK_EntityOwnedCollection_Entity_EntityId");
+=======
+                                .HasName("e_con_e_h_m_r_PK_EntityOwnedCollection");
+
+                            b1.HasIndex("EntityId")
+                                .HasDatabaseName("e_con_e_h_m_r_IX_EntityOwnedCollection_EntityId");
+
+                            b1.ToTable("e_con_e_h_m_r_EntityOwnedCollection");
+
+                            b1.WithOwner()
+                                .HasForeignKey("EntityId")
+                                .HasConstraintName("e_con_e_h_m_r_FK_EntityOwnedCollection_Entity_EntityId");
+>>>>>>> refs/rewritten/2-persistman--efcore-hosting-migration-run
                         });
 
                     b.OwnsOne("YourCompany.EFCore.NeverPretendingToBeYourDomainModel.EFCoreConventionalEntity+HavingToManuallyLinkEveryTime", "SomeReusableStuffLink", b1 =>
@@ -139,6 +174,7 @@ namespace YourCompany.EFCore.PostgreSQL.CustomConfigurationMigrations
                                 .HasColumnType("integer");
 
                             b1.HasKey("EntityId")
+<<<<<<< HEAD
                                 .HasName("eodehsotric_PK_EntityLinkToReusableEntity");
 
                             b1.HasIndex("ReusableEntityId")
@@ -149,13 +185,29 @@ namespace YourCompany.EFCore.PostgreSQL.CustomConfigurationMigrations
                             b1.WithOwner()
                                 .HasForeignKey("EntityId")
                                 .HasConstraintName("eodehsotric_FK_EntityLinkToReusableEntity_Entity_EntityId");
+=======
+                                .HasName("e_con_e_h_m_r_PK_EntityLinkToReusableEntity");
+
+                            b1.HasIndex("ReusableEntityId")
+                                .HasDatabaseName("e_con_e_h_m_r_IX_EntityLinkToReusableEntity_ReusableEntityId");
+
+                            b1.ToTable("e_con_e_h_m_r_EntityLinkToReusableEntity");
+
+                            b1.WithOwner()
+                                .HasForeignKey("EntityId")
+                                .HasConstraintName("e_con_e_h_m_r_FK_EntityLinkToReusableEntity_Entity_EntityId");
+>>>>>>> refs/rewritten/2-persistman--efcore-hosting-migration-run
 
                             b1.HasOne("YourCompany.EFCore.NeverPretendingToBeYourDomainModel.EFCoreConventionalEntity+SomeReusableEntityHereForBrevity", null)
                                 .WithMany()
                                 .HasForeignKey("ReusableEntityId")
                                 .OnDelete(DeleteBehavior.Cascade)
                                 .IsRequired()
+<<<<<<< HEAD
                                 .HasConstraintName("eodehsotric_FK_EntityLinkToReusableEntity_ReusableEntiCB4546B");
+=======
+                                .HasConstraintName("e_con_e_h_m_r_FK_EntityLinkToReusableEntity_ReusableEntiCB4546B");
+>>>>>>> refs/rewritten/2-persistman--efcore-hosting-migration-run
                         });
 
                     b.Navigation("NonModularManualWayToMixIn");
