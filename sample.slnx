@@ -19,14 +19,14 @@
     <Project Path="src/YourCompany.OLTP.RecordsManagement/YourCompany.OLTP.RecordsManagement.csproj" />
     <Project Path="src/YourCompany.OLTP.RecordsManagement.DI/YourCompany.OLTP.RecordsManagement.DI.csproj" />
     <!-- <Project Path="src/YourCompany.OLTP.RecordsManagement.DI.EFCore/YourCompany.OLTP.RecordsManagement.DI.EFCore.csproj" /> -->
-    <!-- <Project Path="src/YourCompany.OLTP.RecordsManagement.DI.TransactionalComposition/YourCompany.OLTP.RecordsManagement.DI.TransactionalComposition.csproj" /> -->
+    <Project Path="src/YourCompany.OLTP.RecordsManagement.DI.TransactionalComposition/YourCompany.OLTP.RecordsManagement.DI.TransactionalComposition.csproj" />
     <Project Path="src/YourCompany.OLTP.RecordsManagement.Persistence/YourCompany.OLTP.RecordsManagement.Persistence.csproj" />
     <Project Path="src/YourCompany.OLTP.RecordsManagement.Persistence.Linq/YourCompany.OLTP.RecordsManagement.Persistence.Linq.csproj" />
     <!-- <Project Path="src/YourCompany.OLTP.RecordsManagement.Persistence.Linq.EFCore/YourCompany.OLTP.RecordsManagement.Persistence.Linq.EFCore.csproj" /> -->
     <Project Path="src/YourCompany.OLTP.RecordsManagement.UseCases/YourCompany.OLTP.RecordsManagement.UseCases.csproj" />
     <Project Path="src/YourCompany.OLTP.RecordsManagement.UseCases.Reflection/YourCompany.OLTP.RecordsManagement.UseCases.Reflection.csproj" />
     <Project Path="src/YourCompany.OLTP.RecordsManagement.UseCases.Reflection.DI/YourCompany.OLTP.RecordsManagement.UseCases.Reflection.DI.csproj" />
-    <Project Path="src/YourCompany.OLTP.RecordsManagement.UseCases.TransactionalComposition/YourCompany.OLTP.RecordsManagement.UseCases.TransactionalComposition.csproj" />
+    <!-- <Project Path="src/YourCompany.OLTP.RecordsManagement.UseCases.TransactionalComposition/YourCompany.OLTP.RecordsManagement.UseCases.TransactionalComposition.csproj" /> INLINED INTO YourCompany.OLTP.RecordsManagement.DI.TransactionalComposition -->
     <Project Path="src/YourCompany.OLTP.StateOwnership/YourCompany.OLTP.StateOwnership.csproj" />
     <!-- <Project Path="src/YourCompany.OLTP.StateOwnership.EventsProducing/YourCompany.OLTP.StateOwnership.EventsProducing.csproj" /> -->
     <Project Path="src/YourCompany.OLTP.StateOwnership.Reflection/YourCompany.OLTP.StateOwnership.Reflection.csproj" />

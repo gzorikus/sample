@@ -2,18 +2,23 @@ using System;
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
+using YourCompany.OLTP.RecordsManagement.Persistence;
 
-namespace YourCompany.OLTP.RecordsManagement.UseCases.TransactionalComposition
+namespace YourCompany.OLTP.RecordsManagement.DI.TransactionalComposition
 {
-    public static partial class ComposableRecordsBatchTransaction
+    internal static partial class ComposableRecordsBatchTransaction
     {
-        public abstract class IteratedInParallel<TRecord, TRecordData>
+        internal abstract class IteratedInParallel<TRecord, TRecordData>
             : ConfiguredIdentically<TRecord, TRecordData>.NonRepositoryRecords,
             IIteratedInParallel
             where TRecord : class
             where TRecordData : class
         {
             private IEnumerator<RunOnceStep> _runOnceStepEnumeratorToDispose;
+
+            internal IteratedInParallel(
+                ScopedRecordsBatchTransactionFactory provider, RecordsDataAccess.IStarting recordsDataAccess)
+                : base(provider, recordsDataAccess) { }
 
             IEnumerator<RunOnceStep> IIteratedInParallel.IterateRunOnceSteps(CancellationToken cancellationToken)
                 => IterateRunOnceSteps(cancellationToken);

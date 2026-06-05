@@ -12,7 +12,7 @@ namespace YourCompany.OLTP.StateOwnership.TransactionalComposition
             extraInterface.Trigger(parametersToJoinTransactionWith, atComposedRecord);
         }
 
-        public interface ITriggeringSenderExtraInterface
+        internal interface ITriggeringSenderExtraInterface
         {
             void Trigger(EventArgs parametersToJoinTransactionWith, object atComposedRecord);
         }

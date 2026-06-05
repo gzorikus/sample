@@ -1,15 +1,16 @@
 using System;
 using System.Collections.Generic;
+using YourCompany.OLTP.RecordsManagement.Persistence;
 using YourCompany.OLTP.StateOwnership;
 using YourCompany.OLTP.StateOwnership.TransactionalComposition;
 using YourCompany.OLTP.StateOwnership.TransactionalComposition.Reflection;
 
-namespace YourCompany.OLTP.RecordsManagement.UseCases.TransactionalComposition
+namespace YourCompany.OLTP.RecordsManagement.DI.TransactionalComposition
 {
-    public static partial class ComposableRecordsBatchTransaction
+    internal static partial class ComposableRecordsBatchTransaction
     {
-        public abstract class ComposingRecords<TRecord, TRecordData>
-            : RecordsBatchTransaction<TRecord, TRecordData>,
+        internal abstract class ComposingRecords<TRecord, TRecordData>
+            : RecordsBatchTransaction<TRecord, TRecordData>.CurrentStateAccess.Provider,
             IComposingRecords,
             RecordsBatchTransactionCallback.IExtraInterfacesProvider,
             TransactionalCompositionTransactionCallback.ITriggeringSenderExtraInterface
@@ -18,6 +19,10 @@ namespace YourCompany.OLTP.RecordsManagement.UseCases.TransactionalComposition
         {
             ComposableRecordTypeInfo IComposingRecords.RecordTypeInfo => RecordTypeInfo ?? throw new ApplicationException("RecordTypeInfo == null");
             protected abstract ComposableRecordTypeInfo RecordTypeInfo { get; }
+
+            internal ComposingRecords(
+                ScopedRecordsBatchTransactionFactory provider, RecordsDataAccess.IStarting recordsDataAccess)
+                : base(provider, recordsDataAccess) { }
 
             void RecordsBatchTransactionCallback.IExtraInterfacesProvider.CollectTransactionCallbackExtraInterfaces(
                 object sender, RecordsBatchTransactionCallback.IExtraInterfacesCollector extraInterfacesCollector)
@@ -89,7 +94,7 @@ namespace YourCompany.OLTP.RecordsManagement.UseCases.TransactionalComposition
                 if (Identities.Count != Records.Count) throw new ApplicationException("Identities.Count != Records.Count");
                 CurrentRunState.EnsureIsChangesAssertionStarted();
 
-                if (!(atComposedRecord is TRecord)) return false;
+                if (atComposedRecord is not TRecord) return false;
 
                 for (int recordIndex = 0; recordIndex < Records.Count; recordIndex++)
                 {
@@ -117,14 +122,14 @@ namespace YourCompany.OLTP.RecordsManagement.UseCases.TransactionalComposition
 
                 if (eventArgs is RecordsBatchTransactionSpecification.ReadOnlyIncompatible.ISpecificationWrapper)
                 {
-                    if (!(eventArgs is ISpecification<TRecordData> modifyingSpecification))
-                        throw new ApplicationException("!(eventArgs is ISpecification<TRecordData> modifyingSpecification)");
+                    if (eventArgs is not ISpecification<TRecordData> modifyingSpecification)
+                        throw new ApplicationException("eventArgs is not ISpecification<TRecordData> modifyingSpecification");
                     builtRecord.State.ChangeDataToMatch(modifyingSpecification);
                 }
                 else if (eventArgs is RecordsBatchTransactionSpecification.ISpecificationWrapper)
                 {
-                    if (!(eventArgs is ISpecification<TRecordData> specification))
-                        throw new ApplicationException("!(eventArgs is ISpecification<TRecordData> specification)");
+                    if (eventArgs is not ISpecification<TRecordData> specification)
+                        throw new ApplicationException("eventArgs is not ISpecification<TRecordData> specification");
                     builtRecord.State.MatchBeforeDataChanging(specification);
                 }
                 else

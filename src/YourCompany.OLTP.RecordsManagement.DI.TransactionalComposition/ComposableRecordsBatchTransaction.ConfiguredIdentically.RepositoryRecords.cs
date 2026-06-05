@@ -1,16 +1,21 @@
 using System;
 using System.Collections.Generic;
+using YourCompany.OLTP.RecordsManagement.Persistence;
 using YourCompany.OLTP.StateOwnership.TransactionalComposition.Reflection;
 
-namespace YourCompany.OLTP.RecordsManagement.UseCases.TransactionalComposition
+namespace YourCompany.OLTP.RecordsManagement.DI.TransactionalComposition
 {
-    public static partial class ComposableRecordsBatchTransaction
+    internal static partial class ComposableRecordsBatchTransaction
     {
-        public abstract partial class ConfiguredIdentically<TRecord, TRecordData>
+        internal abstract partial class ConfiguredIdentically<TRecord, TRecordData>
         {
-            public abstract class RepositoryRecords : ConfiguredIdentically<TRecord, TRecordData>,
+            internal abstract class RepositoryRecords : ConfiguredIdentically<TRecord, TRecordData>,
                 IConfiguredIdentically
             {
+                internal RepositoryRecords(
+                    ScopedRecordsBatchTransactionFactory provider, RecordsDataAccess.IStarting recordsDataAccess)
+                    : base(provider, recordsDataAccess) { }
+
                 bool IConfiguredIdentically.Add(RecordsBatchTransactionSpecification specification)
                     => throw new ApplicationException(nameof(RepositoryRecords));
 

@@ -1,6 +1,6 @@
 using YourCompany.OLTP.StateOwnership;
 
-namespace YourCompany.OLTP.RecordsManagement.UseCases.TransactionalComposition
+namespace YourCompany.OLTP.RecordsManagement.DI.TransactionalComposition
 {
     internal static class AlwaysTrueSpecifications
     {
@@ -14,9 +14,7 @@ namespace YourCompany.OLTP.RecordsManagement.UseCases.TransactionalComposition
             where TRecord : class
             where TRecordData : class
         {
-            internal static EachRecordWithoutDataChanges<TRecord, TRecordData> Instance { get; }
-                = new EachRecordWithoutDataChanges<TRecord, TRecordData>();
-
+            internal static EachRecordWithoutDataChanges<TRecord, TRecordData> Instance { get; } = new();
             private EachRecordWithoutDataChanges() { }
             protected override bool Match(TRecordData recordData) => true;
         }
@@ -30,9 +28,7 @@ namespace YourCompany.OLTP.RecordsManagement.UseCases.TransactionalComposition
             where TRecord : class
             where TRecordData : class
         {
-            internal static EachRecordAfterDataChanging<TRecord, TRecordData> Instance { get; }
-                = new EachRecordAfterDataChanging<TRecord, TRecordData>();
-
+            internal static EachRecordAfterDataChanging<TRecord, TRecordData> Instance { get; } = new();
             private EachRecordAfterDataChanging() { }
             protected override bool Match(TRecordData recordData) => true;
         }

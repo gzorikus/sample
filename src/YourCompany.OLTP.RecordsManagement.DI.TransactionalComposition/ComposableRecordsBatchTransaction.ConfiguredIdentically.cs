@@ -2,17 +2,22 @@ using System;
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
+using YourCompany.OLTP.RecordsManagement.Persistence;
 using YourCompany.OLTP.StateOwnership;
 
-namespace YourCompany.OLTP.RecordsManagement.UseCases.TransactionalComposition
+namespace YourCompany.OLTP.RecordsManagement.DI.TransactionalComposition
 {
-    public static partial class ComposableRecordsBatchTransaction
+    internal static partial class ComposableRecordsBatchTransaction
     {
-        public abstract partial class ConfiguredIdentically<TRecord, TRecordData>
+        internal abstract partial class ConfiguredIdentically<TRecord, TRecordData>
             : ComposingRecords<TRecord, TRecordData>
             where TRecord : class
             where TRecordData : class
         {
+            private ConfiguredIdentically(
+                ScopedRecordsBatchTransactionFactory provider, RecordsDataAccess.IStarting recordsDataAccess)
+                : base(provider, recordsDataAccess) { }
+
             protected virtual RecordsBatchTransactionSpecification GetSupportedRecordDataSpecificationToAdd(
                 RecordsBatchTransactionSpecification handlingSpecification)
             {
@@ -20,8 +25,8 @@ namespace YourCompany.OLTP.RecordsManagement.UseCases.TransactionalComposition
 
                 if (handlingSpecification is AlwaysTrueSpecifications.IIgnoredByPersistence)
                     throw new ApplicationException("handlingSpecification is AlwaysTrueSpecifications.IIgnoredByPersistence");
-                if (!(handlingSpecification is RecordsBatchTransactionSpecification.ISpecificationWrapper))
-                    throw new ApplicationException("!(handlingSpecification is RecordsBatchTransactionSpecification.ISpecificationWrapper)");
+                if (handlingSpecification is not RecordsBatchTransactionSpecification.ISpecificationWrapper)
+                    throw new ApplicationException("handlingSpecification is not RecordsBatchTransactionSpecification.ISpecificationWrapper");
 
                 if (handlingSpecification is ISpecification<TRecordData>) return handlingSpecification;
 
@@ -50,53 +55,41 @@ namespace YourCompany.OLTP.RecordsManagement.UseCases.TransactionalComposition
                 return null;
             }
 
-            protected sealed override bool HandleReadOnlyRecordsIncludingBeforeRead()
+            protected override bool HandleReadOnlyRecordsIncludingBeforeRead()
             {
                 CurrentRunState.EnsureIsAuthorized();
                 UseCurrentRecordType();
-                return HandleReadOnlyRecordsIncludingBeforeReadWithCurrentRecordType();
+                return base.HandleReadOnlyRecordsIncludingBeforeRead();
             }
 
-            protected virtual bool HandleReadOnlyRecordsIncludingBeforeReadWithCurrentRecordType() => false;
-
-            protected sealed override bool HandleEachRecordSpecificationBeforeReadWithoutIds(
+            protected override bool HandleEachRecordSpecificationBeforeReadWithoutIds(
                 ISpecification<TRecordData> specification)
             {
                 if (specification == null) throw new ArgumentNullException(nameof(specification));
                 if (ByIds) throw new ApplicationException("ByIds");
                 CurrentRunState.EnsureIsAuthorized();
                 UseCurrentRecordType();
-                return HandleEachRecordSpecificationBeforeReadWithoutIdsWithCurrentRecordType(specification);
+                return base.HandleEachRecordSpecificationBeforeReadWithoutIds(specification);
             }
 
-            protected virtual bool HandleEachRecordSpecificationBeforeReadWithoutIdsWithCurrentRecordType(
-                ISpecification<TRecordData> specification) => false;
-
-            protected sealed override bool HandleEachRecordModifyingSpecificationBeforeRead(
+            protected override bool HandleEachRecordModifyingSpecificationBeforeRead(
                 ISpecification<TRecordData> specification)
             {
                 if (specification == null) throw new ArgumentNullException(nameof(specification));
                 if (ReadOnly) throw new ApplicationException("ReadOnly");
                 CurrentRunState.EnsureIsAuthorized();
                 UseCurrentRecordTypeAndIncludeForChanges();
-                return HandleEachRecordModifyingSpecificationBeforeReadWithCurrentRecordType(specification);
+                return base.HandleEachRecordModifyingSpecificationBeforeRead(specification);
             }
 
-            protected virtual bool HandleEachRecordModifyingSpecificationBeforeReadWithCurrentRecordType(
-                ISpecification<TRecordData> specification) => false;
-
-            protected sealed override Task<int> ReadWithHandledEachRecordSpecifications(
+            protected override Task<int> ReadWithHandledEachRecordSpecifications(
                 bool lockForChangesPersisting, int batchSize, int recordsCountToSkip, CancellationToken cancellationToken)
             {
                 CurrentRunState.EnsureIsReadingStarted();
                 ResetCurrentRecordType();
-                return ParallelReadWithHandledEachRecordSpecifications(
+                return base.ReadWithHandledEachRecordSpecifications(
                     lockForChangesPersisting, batchSize, recordsCountToSkip, cancellationToken);
             }
-
-            protected virtual Task<int> ParallelReadWithHandledEachRecordSpecifications(
-                bool lockForChangesPersisting, int batchSize, int recordsCountToSkip, CancellationToken cancellationToken)
-                => throw new ApplicationException(nameof(ParallelReadWithHandledEachRecordSpecifications));
 
             protected override void HandleReadIdentities(int readRecordsCount)
             {
@@ -112,30 +105,25 @@ namespace YourCompany.OLTP.RecordsManagement.UseCases.TransactionalComposition
                 return base.CreateRecords(identities);
             }
 
-            protected sealed override bool HandleSpecifiedRecordModifyingSpecificationBeforePersist(
+            protected override bool HandleSpecifiedRecordModifyingSpecificationBeforePersist(
                 int recordIndex, Identity identity, ISpecification<TRecordData> specification)
             {
                 if (ReadOnly) throw new ApplicationException("ReadOnly");
                 CurrentRunState.EnsureIsChangesAssertionStarted();
                 UseCurrentRecordTypeAndIncludeForChanges();
-                return HandleSpecifiedRecordModifyingSpecificationBeforePersistWithCurrentRecordType(
-                    recordIndex, identity, specification);
+                return base.HandleSpecifiedRecordModifyingSpecificationBeforePersist(recordIndex, identity, specification);
             }
 
-            protected abstract bool HandleSpecifiedRecordModifyingSpecificationBeforePersistWithCurrentRecordType(
-                int recordIndex, Identity identity, ISpecification<TRecordData> specification);
-
-            protected sealed override Task PersistChanges(CancellationToken cancellationToken)
+            protected override Task PersistChanges(CancellationToken cancellationToken)
             {
                 if (ReadOnly) throw new ApplicationException("ReadOnly");
                 CurrentRunState.EnsureIsPersistChangesStarted();
                 ResetCurrentRecordType();
-                return ParallelPersistChanges(cancellationToken);
+                return base.PersistChanges(cancellationToken);
             }
 
-            protected abstract Task ParallelPersistChanges(CancellationToken cancellationToken);
-
-            protected override void TriggerAfterRecordDataLocking(TransactionCallback.ForStateAssertion.TriggeredAfterRecordDataLocking eventArgs)
+            protected override void TriggerAfterRecordDataLocking(
+                TransactionCallback.ForStateAssertion.TriggeredAfterRecordDataLocking eventArgs)
             {
                 if (ReadOnly) throw new ApplicationException("ReadOnly");
                 CurrentRunState.EnsureIsPersistChangesFinished();
@@ -143,15 +131,13 @@ namespace YourCompany.OLTP.RecordsManagement.UseCases.TransactionalComposition
                 base.TriggerAfterRecordDataLocking(eventArgs);
             }
 
-            protected sealed override Task FinishRecordsDataAccess(CancellationToken cancellationToken)
+            protected override Task FinishRecordsDataAccess(CancellationToken cancellationToken)
             {
                 if (ReadOnly && !ReadOnlyIncludeRecords) throw new ApplicationException("ReadOnly && !ReadOnlyIncludeRecords");
                 CurrentRunState.EnsureIsDataAccessFinished();
                 ResetCurrentRecordType();
-                return ParallelFinishRecordsDataAccess(cancellationToken);
+                return base.FinishRecordsDataAccess(cancellationToken);
             }
-
-            protected virtual Task ParallelFinishRecordsDataAccess(CancellationToken cancellationToken) => Task.CompletedTask;
 
             protected override void TriggerAfterDataAccess(
                 TransactionCallback.ForStateAssertion.TriggeredAfterDataAccess eventArgs)

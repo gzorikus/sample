@@ -2,20 +2,25 @@ using System;
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
+using YourCompany.OLTP.RecordsManagement.Persistence;
 using YourCompany.OLTP.StateOwnership.TransactionalComposition.Reflection;
 using YourCompany.Threading;
 
-namespace YourCompany.OLTP.RecordsManagement.UseCases.TransactionalComposition
+namespace YourCompany.OLTP.RecordsManagement.DI.TransactionalComposition
 {
-    public static partial class ComposableRecordsBatchTransaction
+    internal static partial class ComposableRecordsBatchTransaction
     {
-        public abstract class IteratingInParallel<TRecord, TRecordData>
+        internal abstract class IteratingInParallel<TRecord, TRecordData>
             : ConfiguredIdentically<TRecord, TRecordData>.RepositoryRecords,
             IIteratedInParallel
             where TRecord : class
             where TRecordData : class
         {
             private AwaitTasksList _runOncePendingTasks;
+
+            internal IteratingInParallel(
+                ScopedRecordsBatchTransactionFactory provider, RecordsDataAccess.IStarting recordsDataAccess)
+                : base(provider, recordsDataAccess) { }
 
             IEnumerator<RunOnceStep> IIteratedInParallel.IterateRunOnceSteps(CancellationToken cancellationToken)
                 => throw new ApplicationException(nameof(IteratingInParallel<TRecord, TRecordData>));
@@ -164,14 +169,14 @@ namespace YourCompany.OLTP.RecordsManagement.UseCases.TransactionalComposition
             {
                 if (step.AsyncStepTask != null)
                 {
-                    _runOncePendingTasks = _runOncePendingTasks ?? new AwaitTasksList();
+                    _runOncePendingTasks ??= new AwaitTasksList();
                     _runOncePendingTasks.Add(step.AsyncStepTask);
                 }
 
                 if (step.State != CurrentRunState) ThrowRunOncePendingTasksAware(new ApplicationException("step.State != CurrentRunState"));
             }
 
-            private RunOnceStep WaitAndClearRunOncePendingTasksStep() => new RunOnceStep(
+            private RunOnceStep WaitAndClearRunOncePendingTasksStep() => new(
                 CurrentRunState,
                 _runOncePendingTasks?.Count > 0
                     ? _runOncePendingTasks.WaitOnce()

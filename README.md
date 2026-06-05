@@ -204,7 +204,7 @@ All the entry point branches' heads are highlighted in the graph as ⏹️.
 ---
 config:
   gitGraph:
-    mainBranchName: "MERGED"
+    mainBranchName: "5|🧱: OLTP record composition to chassis"
     parallelCommits: true
     rotateCommitLabel: false
     showCommitLabel: false
@@ -266,11 +266,11 @@ gitGraph
 %% commit type:HIGHLIGHT tag:"5|🧱|oltp-di-combine-use-case-and-persistence-interfaces-with-record-types-composition|YourCompany.OLTP.RecordsManagement.DI.TransactionalComposition" %% ODMR
 
 %% branch "5|🧱: OLTP record composition to chassis" %% ORCTC
-%% commit type:HIGHLIGHT tag:"5|🧱|oltp-di-combine-use-case-and-persistence-interfaces-with-record-types-composition|YourCompany.OLTP.RecordsManagement.DI.TransactionalComposition|YourCompany.OLTP.StateOwnership.TransactionalComposition" %% ORCTC
+commit type:HIGHLIGHT tag:"5|🧱|oltp-di-combine-use-case-and-persistence-interfaces-with-record-types-composition|YourCompany.OLTP.RecordsManagement.DI.TransactionalComposition|YourCompany.OLTP.StateOwnership.TransactionalComposition" %% ORCTC
 %% commit type:NORMAL tag:"5|🧱|YourCompany.OLTP.RecordsManagement.DI.TransactionalComposition|YourCompany.OLTP.StateOwnership.TransactionalComposition" %% ORCTC
 
 %% checkout "7|🧱: OLTP DI EFCore switch to chassis" %% ODIFR
-%% branch "5|🧱: OLTP DI inheritance free repo" %% ODIFR
+branch "5|🧱: OLTP DI inheritance free repo" %% ODIFR
 %% commit type:REVERSE %% ODIFR>1
 commit type:HIGHLIGHT tag:"5|🧱|oltp-di-combine-use-case-and-persistence-interfaces-without-inheritance|YourCompany.OLTP.RecordsManagement.DI" %% ODIFR
 %% merge "5|🧱: OLTP record composition to chassis" type:HIGHLIGHT tag:"5|🧱|oltp-di-combine-use-case-and-persistence-interfaces-without-inheritance|YourCompany.OLTP.RecordsManagement.DI" %% ODIFR
@@ -391,24 +391,24 @@ commit type:HIGHLIGHT tag:"4|🧱|oltp-segregate-persistence-repository-is-for-u
 %% merge "5|💾: OLTP EFCore readonly" type:HIGHLIGHT tag:"4|🧱|oltp-segregate-persistence-repository-is-for-use-cases|YourCompany.OLTP.RecordsManagement.Persistence.Linq" %% OLMBU
 
 branch "4|🧱: OLTP identities are unique keys" %% OIAUK
-%% commit type:REVERSE %% OIAUK>1
+commit type:REVERSE %% OIAUK>1
 %% commit type:HIGHLIGHT tag:"4|🧱|oltp-segregate-persistence-repository-is-for-use-cases|YourCompany.OLTP.RecordsManagement.Persistence" %% OIAUK
 commit type:NORMAL tag:"4|🧱|YourCompany.OLTP.RecordsManagement.Persistence" %% OIAUK
 
-%% checkout "5|🧱: OLTP record composition to chassis" %% OUCBRT
-%% branch "4|🏠: OLTP use cases by record type" %% OUCBRT
-%% commit type:REVERSE %% OUCBRT>1
-%% commit type:REVERSE %% OUCBRT>2
-%% commit type:REVERSE %% OUCBRT>3
-%% commit type:REVERSE %% OUCBRT>4
-%% commit type:REVERSE %% OUCBRT>5
+checkout "5|🧱: OLTP record composition to chassis" %% OUCBRT
+branch "4|🏠: OLTP use cases by record type" %% OUCBRT
+commit type:REVERSE %% OUCBRT>1
+commit type:REVERSE %% OUCBRT>2
+commit type:REVERSE %% OUCBRT>3
+commit type:REVERSE %% OUCBRT>4
+commit type:REVERSE %% OUCBRT>5
 commit type:HIGHLIGHT tag:"4|🏠|oltp-segregate-use-cases-with-transactional-composition|YourCompany.OLTP.RecordsManagement.UseCases.TransactionalComposition" %% OUCBRT
 
-checkout "4|🏠: OLTP use cases by record type" %% EOUC
+%% checkout "4|🏠: OLTP use cases by record type" %% EOUC
 checkout "5|🧱: OLTP switch to chassis" %% EOUC
 branch "4|🏠: enumerate OLTP use cases" %% EOUC
-commit type:HIGHLIGHT tag:"4|🏠|oltp-segregate-use-cases-repository-is-for-persistence|YourCompany.OLTP.RecordsManagement.UseCases" %% EOUC
-%% merge "4|🏠: OLTP use cases by record type" type:HIGHLIGHT tag:"4|🏠|oltp-segregate-use-cases-repository-is-for-persistence|YourCompany.OLTP.RecordsManagement.UseCases" %% EOUC
+%% commit type:HIGHLIGHT tag:"4|🏠|oltp-segregate-use-cases-repository-is-for-persistence|YourCompany.OLTP.RecordsManagement.UseCases" %% EOUC
+merge "4|🏠: OLTP use cases by record type" type:HIGHLIGHT tag:"4|🏠|oltp-segregate-use-cases-repository-is-for-persistence|YourCompany.OLTP.RecordsManagement.UseCases" %% EOUC
 
 %% Startup Iteration 3
 
@@ -502,9 +502,9 @@ commit type:REVERSE %% OUCTM>1
 commit type:REVERSE %% OUCTM>2
 commit type:REVERSE %% OUCTM>3
 commit type:REVERSE %% OUCTM>4
-%% commit type:REVERSE %% OUCTM>5
-%% commit type:REVERSE %% OUCTM>6
-%% commit type:REVERSE %% OUCTM>7
+commit type:REVERSE %% OUCTM>5
+commit type:REVERSE %% OUCTM>6
+commit type:REVERSE %% OUCTM>7
 commit type:NORMAL tag:"3|🏠|YourCompany.OLTP.RecordsManagement.UseCases.Reflection" %% OUCTM
 
 checkout "4|🏠: enumerate OLTP use cases" %% GOUC
@@ -529,17 +529,17 @@ merge "3|🏠: OLTP UseCaseTypesMap" type:NORMAL tag:"3|🏠|YourCompany.OLTP.Re
 %% commit type:REVERSE %% OEMH 3>13
 %% commit type:REVERSE %% OEMH 3>14
 
-checkout "3|🏠: OLTP RecordTypesCompositionMap" %% ORTM
+%% checkout "3|🏠: OLTP RecordTypesCompositionMap" %% ORTM
 checkout "5|🧱: OLTP DI ScopedRecordsProvider" %% ORTM
 branch "3|🏠: OLTP RecordTypesMap" %% ORTM
 %% merge "3|🏠: OLTP RecordTypesCompositionMap" %% ORTM
-commit type:REVERSE %% ORTM>1
-commit type:REVERSE %% ORTM>2
-commit type:REVERSE %% ORTM>3
-commit type:REVERSE %% ORTM>4
-commit type:REVERSE %% ORTM>5
-commit type:NORMAL tag:"3|🏠|YourCompany.OLTP.StateOwnership.Reflection" %% ORTM
-%% merge "3|🏠: OLTP RecordTypesCompositionMap" type:NORMAL tag:"3|🏠|YourCompany.OLTP.StateOwnership.Reflection" %% ORTM
+%% commit type:REVERSE %% ORTM>1
+%% commit type:REVERSE %% ORTM>2
+%% commit type:REVERSE %% ORTM>3
+%% commit type:REVERSE %% ORTM>4
+%% commit type:REVERSE %% ORTM>5
+%% commit type:NORMAL tag:"3|🏠|YourCompany.OLTP.StateOwnership.Reflection" %% ORTM
+merge "3|🏠: OLTP RecordTypesCompositionMap" type:NORMAL tag:"3|🏠|YourCompany.OLTP.StateOwnership.Reflection" %% ORTM
 %% merge "4|💾: OLTP EFCore MetadataHelper" type:NORMAL tag:"3|🏠|YourCompany.OLTP.StateOwnership.Reflection" %% ORTM
 
 %% Startup Iteration 2
@@ -630,8 +630,8 @@ commit type:NORMAL tag:"3|🏠|YourCompany.OLTP.StateOwnership.Reflection" %% OR
 checkout "3|🏠: OLTP RecordTypesCompositionMap" %% TCM
 branch "2|🧱: TypesCompositionMap" %% TCM
 commit type:REVERSE %% TCM>1
-%% commit type:REVERSE %% TCM>2
-%% commit type:REVERSE %% TCM>3
+commit type:REVERSE %% TCM>2
+commit type:REVERSE %% TCM>3
 %% commit type:REVERSE %% TCM>4
 %% commit type:REVERSE %% TCM>5
 %% commit type:REVERSE %% TCM>6
@@ -640,16 +640,16 @@ commit type:REVERSE %% TCM>1
 commit type:NORMAL tag:"2|🧱|YourCompany.Reflection" %% TCM
 
 checkout "3|🏠: OLTP UseCaseTypesMap" %% TAH
-commit type:REVERSE %% TAH<1
-commit type:REVERSE %% TAH<2
+%% commit type:REVERSE %% TAH<1
+%% commit type:REVERSE %% TAH<2
 branch "2|🧱: TypeAbstractionsHelper" %% TAH
 %% commit type:REVERSE %% TAH>1
 %% commit type:REVERSE %% TAH>2
 %% commit type:REVERSE %% TAH>3
 %% commit type:REVERSE %% TAH>4
 %% commit type:REVERSE %% TAH>5
-commit type:NORMAL tag:"2|🧱|YourCompany.Reflection" %% TAH
-%% merge "2|🧱: TypesCompositionMap" type:NORMAL tag:"2|🧱|YourCompany.Reflection" %% TAH
+%% commit type:NORMAL tag:"2|🧱|YourCompany.Reflection" %% TAH
+merge "2|🧱: TypesCompositionMap" type:NORMAL tag:"2|🧱|YourCompany.Reflection" %% TAH
 
 %% checkout "4|💾: EFCore SortingKey reading" %% VTH
 %% commit type:REVERSE %% VTH<1
@@ -680,7 +680,7 @@ commit type:REVERSE %% DCH>6
 commit type:REVERSE %% DCH>7
 commit type:REVERSE %% DCH>8
 commit type:REVERSE %% DCH>9
-%% commit type:REVERSE %% DCH>10
+commit type:REVERSE %% DCH>10
 %% commit type:REVERSE %% DCH>11
 %% commit type:REVERSE %% DCH>12
 %% commit type:REVERSE %% DCH>13
@@ -698,7 +698,7 @@ commit type:NORMAL tag:"2|🧱|YourCompany.Reflection.DI" %% DCH
 %% checkout "3|💾: EFPropertyExpressionsCache" %% Startup Iteration 2
 %% commit type:REVERSE %% EPEC 2>1
 
-checkout "2|🧱: TypeAbstractionsHelper" %% GMH
+%% checkout "2|🧱: TypeAbstractionsHelper" %% GMH
 %% checkout "4|💾: EFEntityEntryPropertiesCache" %% GMH
 branch "2|🧱: GetMemberHelper" %% GMH
 %% merge "3|💾: EFPropertyExpressionsCache" %% GMH
@@ -708,8 +708,8 @@ commit type:NORMAL tag:"2|🧱|YourCompany.Reflection" %% GMH
 checkout "3|🏠: generic OLTP use cases" %% ATL
 branch "2|🧱: AwaitTasksList" %% ATL
 commit type:REVERSE %% ATL>1
-commit type:REVERSE %% ATL>2
-commit type:REVERSE %% ATL>3
+%% commit type:REVERSE %% ATL>2
+%% commit type:REVERSE %% ATL>3
 %% commit type:REVERSE %% ATL>4
 %% commit type:REVERSE %% ATL>5
 commit type:NORMAL tag:"2|🧱|YourCompany.Threading" %% ATL
@@ -720,7 +720,7 @@ commit type:REVERSE %% SH>1
 commit type:REVERSE %% SH>2
 commit type:REVERSE %% SH>3
 commit type:REVERSE %% SH>4
-%% commit type:REVERSE %% SH>5
+commit type:REVERSE %% SH>5
 %% commit type:REVERSE %% SH>6
 %% commit type:REVERSE %% SH>7
 %% commit type:REVERSE %% SH>8
@@ -741,7 +741,7 @@ commit type:REVERSE %% OTS 2>1
 commit type:REVERSE %% OTS 2>2
 commit type:REVERSE %% OTS 2>3
 commit type:REVERSE %% OTS 2>4
-%% commit type:REVERSE %% OTS 2>5
+commit type:REVERSE %% OTS 2>5
 %% commit type:REVERSE %% OTS 2>6
 %% commit type:REVERSE %% OTS 2>7
 %% commit type:REVERSE %% OTS 2>8
@@ -793,8 +793,8 @@ commit type:REVERSE %% OTC>1
 commit type:REVERSE %% OTC>2
 commit type:REVERSE %% OTC>3
 commit type:REVERSE %% OTC>4
-%% commit type:REVERSE %% OTC>5
-%% commit type:REVERSE %% OTC>6
+commit type:REVERSE %% OTC>5
+commit type:REVERSE %% OTC>6
 %% commit type:REVERSE %% OTC>7
 %% commit type:REVERSE %% OTC>8
 %% commit type:REVERSE %% OTC>9
@@ -909,15 +909,37 @@ Cons: why it might be not enough for you
 
 <!-- ### Branch: oltp-di-efcore-handle-specifications-only-the-rest-is-covered END -->
 
-<!-- ### Branch: oltp-di-combine-use-case-and-persistence-interfaces-with-record-types-composition
+### Branch: oltp-di-combine-use-case-and-persistence-interfaces-with-record-types-composition
 
-> Files: ### | Lines: #####  
-Pros: why do you choose this entry point  
-Cons: why it might be not enough for you
+> Files: 112 | Lines: 9165  
+Pros: no boilerplate required for transactional composition, domain modularity achieved  
+Cons: still lacking major things like events producing, persistence
 
 | Log | Examples | Modules |
 |-|-|-|
-| [replace_with_each_included_commit_subject](#commit-with-lower-case-subject) | <kbd> [at‑least‑one‑example‑solution‑name](examples/at-least-one-example-solution-per-commit/README.md#commit-with-lower-case-subject) </kbd><br><kbd> [extra‑example‑solution‑name](examples/extra-example-solution-name/README.md#commit-with-lower-case-subject) </kbd> | <kbd>YourCompany.Framework.Assembly.Name1 (+diff lines)</kbd><br><kbd>YourCompany.Framework.Assembly.Name2 (-diff lines)</kbd><br><kbd>YourCompany.Framework.Assembly.NameN (0 lines)</kbd> |
+| [1\|⁠🏠: the heart of OLTP is transaction](#commit-1-the-heart-of-oltp-is-transaction) | <kbd> [TODO](examples/at-least-one-example-solution-per-commit/README.md#commit-1-the-heart-of-oltp-is-transaction) </kbd> | <kbd>YourCompany.OLTP.StateOwnership (+371 lines)</kbd> |
+| [1\|⁠🏠: OLTP transactional composition](#commit-1-oltp-transactional-composition) | <kbd> [TODO](examples/at-least-one-example-solution-per-commit/README.md#commit-1-oltp-transactional-composition) </kbd> | <kbd>YourCompany.OLTP.StateOwnership.TransactionalComposition (+20 lines)</kbd> |
+| [2\|⁠🏠: OLTP transaction is limited size](#commit-2-oltp-transaction-is-limited-size) | <kbd> [TODO](examples/at-least-one-example-solution-per-commit/README.md#commit-2-oltp-transaction-is-limited-size) </kbd> | <kbd>YourCompany.OLTP.RecordsManagement (+1500 lines)</kbd> |
+| [2\|⁠🧱: StructHelper](#commit-2-structhelper) | <kbd> [TODO](examples/at-least-one-example-solution-per-commit/README.md#commit-2-structhelper) </kbd> | <kbd>YourCompany.CompilerServices (+18 lines)</kbd> |
+| [2\|⁠🧱: AwaitTasksList](#commit-2-awaittaskslist) | <kbd> [TODO](examples/at-least-one-example-solution-per-commit/README.md#commit-2-awaittaskslist) </kbd> | <kbd>YourCompany.Threading (+49 lines)</kbd> |
+| [2\|⁠🧱: GetMemberHelper](#commit-2-getmemberhelper) | <kbd> [TODO](examples/at-least-one-example-solution-per-commit/README.md#commit-2-getmemberhelper) </kbd> | <kbd>YourCompany.Reflection (+57 lines)</kbd> |
+| [2\|⁠🧱: DIConstructorHelper](#commit-2-diconstructorhelper) | <kbd> [TODO](examples/at-least-one-example-solution-per-commit/README.md#commit-2-diconstructorhelper) </kbd> | <kbd>YourCompany.Reflection.DI (+31 lines)</kbd> |
+| [2\|⁠🧱: TypeAbstractionsHelper](#commit-2-typeabstractionshelper) | <kbd> [TODO](examples/at-least-one-example-solution-per-commit/README.md#commit-2-typeabstractionshelper) </kbd> | <kbd>YourCompany.Reflection (+26 lines)</kbd> |
+| [2\|⁠🧱: TypesCompositionMap](#commit-2-typescompositionmap) | <kbd> [TODO](examples/at-least-one-example-solution-per-commit/README.md#commit-2-typescompositionmap) </kbd> | <kbd>YourCompany.Reflection (+1050 lines)</kbd> |
+| [3\|⁠🏠: OLTP RecordTypesMap](#commit-3-oltp-recordtypesmap) | <kbd> [TODO](examples/at-least-one-example-solution-per-commit/README.md#commit-3-oltp-recordtypesmap) </kbd> | <kbd>YourCompany.OLTP.StateOwnership.Reflection (+263 lines)</kbd> |
+| [3\|⁠🏠: generic OLTP use cases](#commit-3-generic-oltp-use-cases) | <kbd> [TODO](examples/at-least-one-example-solution-per-commit/README.md#commit-3-generic-oltp-use-cases) </kbd> | <kbd>YourCompany.OLTP.RecordsManagement.UseCases (+212 lines)</kbd> |
+| [3\|⁠🏠: OLTP UseCaseTypesMap](#commit-3-oltp-usecasetypesmap) | <kbd> [TODO](examples/at-least-one-example-solution-per-commit/README.md#commit-3-oltp-usecasetypesmap) </kbd> | <kbd>YourCompany.OLTP.RecordsManagement.UseCases.Reflection (+176 lines)</kbd> |
+| [3\|⁠🏠: OLTP RecordTypesCompositionMap](#commit-3-oltp-recordtypescompositionmap) | <kbd> [TODO](examples/at-least-one-example-solution-per-commit/README.md#commit-3-oltp-recordtypescompositionmap) </kbd> | <kbd>YourCompany.OLTP.StateOwnership.TransactionalComposition.Reflection (+260 lines)</kbd> |
+| [3\|⁠🧱: OLTP transaction structure](#commit-3-oltp-transaction-structure) | <kbd> [TODO](examples/at-least-one-example-solution-per-commit/README.md#commit-3-oltp-transaction-structure) </kbd> | <kbd>YourCompany.OLTP.RecordsManagement (+1918 lines)</kbd> |
+| [4\|⁠🏠: enumerate OLTP use cases](#commit-4-enumerate-oltp-use-cases) | <kbd> [TODO](examples/at-least-one-example-solution-per-commit/README.md#commit-4-enumerate-oltp-use-cases) </kbd> | <kbd>YourCompany.OLTP.RecordsManagement.UseCases (+117 lines)</kbd> |
+| [4\|⁠🏠: OLTP use cases by record type](#commit-4-oltp-use-cases-by-record-type) | <kbd> [TODO](examples/at-least-one-example-solution-per-commit/README.md#commit-4-oltp-use-cases-by-record-type) </kbd> | <kbd>YourCompany.OLTP.RecordsManagement.UseCases.TransactionalComposition (+770 lines)</kbd> |
+| [4\|⁠🧱: OLTP identities are unique keys](#commit-4-oltp-identities-are-unique-keys) | <kbd> [TODO](examples/at-least-one-example-solution-per-commit/README.md#commit-4-oltp-identities-are-unique-keys) </kbd> | <kbd>YourCompany.OLTP.RecordsManagement.Persistence (+1642 lines)</kbd> |
+| [4\|⁠🧱: OLTP LINQ may be useful](#commit-4-oltp-linq-may-be-useful) | <kbd> [TODO](examples/at-least-one-example-solution-per-commit/README.md#commit-4-oltp-linq-may-be-useful) </kbd> | <kbd>YourCompany.OLTP.RecordsManagement.Persistence.Linq (+59 lines)</kbd> |
+| [5\|⁠🧱: OLTP switch to chassis](#commit-5-oltp-switch-to-chassis) | <kbd> [TODO](examples/at-least-one-example-solution-per-commit/README.md#commit-5-oltp-switch-to-chassis) </kbd> | <kbd>YourCompany.OLTP.RecordsManagement (+1 lines)</kbd><br><kbd>YourCompany.OLTP.RecordsManagement.DI (+122 lines)</kbd><br><kbd>YourCompany.OLTP.RecordsManagement.Persistence (-26 lines)</kbd><br><kbd>YourCompany.OLTP.RecordsManagement.UseCases (-117 lines)</kbd><br><kbd>YourCompany.OLTP.StateOwnership (+6 lines)</kbd> |
+| [5\|⁠🧱: OLTP DI ScopedRecordsProvider](#commit-5-oltp-di-scopedrecordsprovider) | <kbd> [TODO](examples/at-least-one-example-solution-per-commit/README.md#commit-5-oltp-di-scopedrecordsprovider) </kbd> | <kbd>YourCompany.OLTP.StateOwnership.Reflection.DI (+120 lines)</kbd> |
+| [5\|⁠🧱: OLTP DI ScopedUseCasesProvider](#commit-5-oltp-di-scopedusecasesprovider) | <kbd> [TODO](examples/at-least-one-example-solution-per-commit/README.md#commit-5-oltp-di-scopedusecasesprovider) </kbd> | <kbd>YourCompany.OLTP.RecordsManagement.UseCases.Reflection.DI (+69 lines)</kbd> |
+| [5\|⁠🧱: OLTP DI inheritance free repo](#commit-5-oltp-di-inheritance-free-repo) | <kbd> [TODO](examples/at-least-one-example-solution-per-commit/README.md#commit-5-oltp-di-inheritance-free-repo) </kbd> | <kbd>YourCompany.OLTP.RecordsManagement.DI (+444 lines)</kbd> |
+| [5\|⁠🧱: OLTP record composition to chassis](#commit-5-oltp-record-composition-to-chassis) | <kbd> [TODO](examples/at-least-one-example-solution-per-commit/README.md#commit-5-oltp-record-composition-to-chassis) </kbd> | <kbd>YourCompany.OLTP.RecordsManagement.DI.TransactionalComposition (+777 lines)</kbd><br><kbd>YourCompany.OLTP.RecordsManagement.UseCases.TransactionalComposition (-770 lines)</kbd><br><kbd>YourCompany.OLTP.StateOwnership.TransactionalComposition (0 lines)</kbd> |
 
 <!-- ### Branch: oltp-di-combine-use-case-and-persistence-interfaces-with-record-types-composition END -->
 
@@ -1733,15 +1755,15 @@ completely.
 <table><tbody><tr><td>
 
 8 files changed, 770 insertions(+)<br>
-<sub><sub>src/YourCompany.OLTP.RecordsManagement.UseCases.TransactionalComposition/</sub></sub><br>
-<kbd> +++++++ 187 |⁠ [ComposableRecordsBatchTransaction.IteratingInParallel.cs                                                       ](src/YourCompany.OLTP.RecordsManagement.UseCases.TransactionalComposition/ComposableRecordsBatchTransaction.IteratingInParallel.cs)</kbd><br>
-<kbd>  ++++++ 166 |⁠ [ComposableRecordsBatchTransaction.ConfiguredIdentically.cs                                                     ](src/YourCompany.OLTP.RecordsManagement.UseCases.TransactionalComposition/ComposableRecordsBatchTransaction.ConfiguredIdentically.cs)</kbd><br>
-<kbd>   +++++ 144 |⁠ [ComposableRecordsBatchTransaction.ComposingRecords.cs                                                          ](src/YourCompany.OLTP.RecordsManagement.UseCases.TransactionalComposition/ComposableRecordsBatchTransaction.ComposingRecords.cs)</kbd><br>
-<kbd>    ++++ 111 |⁠ [ComposableRecordsBatchTransaction.ConfiguredIdentically.RepositoryRecords.cs                                   ](src/YourCompany.OLTP.RecordsManagement.UseCases.TransactionalComposition/ComposableRecordsBatchTransaction.ConfiguredIdentically.RepositoryRecords.cs)</kbd><br>
-<kbd>      ++ 54  |⁠ [AlwaysTrueSpecifications.cs                                                                                    ](src/YourCompany.OLTP.RecordsManagement.UseCases.TransactionalComposition/AlwaysTrueSpecifications.cs)</kbd><br>
-<kbd>      ++ 43  |⁠ [ComposableRecordsBatchTransaction.IteratedInParallel.cs                                                        ](src/YourCompany.OLTP.RecordsManagement.UseCases.TransactionalComposition/ComposableRecordsBatchTransaction.IteratedInParallel.cs)</kbd><br>
-<kbd>      ++ 36  |⁠ [ComposableRecordsBatchTransaction.ConfiguredIdentically.NonRepositoryRecords.cs                                ](src/YourCompany.OLTP.RecordsManagement.UseCases.TransactionalComposition/ComposableRecordsBatchTransaction.ConfiguredIdentically.NonRepositoryRecords.cs)</kbd><br>
-<kbd>       + 29  |⁠ [ComposableRecordsBatchTransaction.cs                                                                           ](src/YourCompany.OLTP.RecordsManagement.UseCases.TransactionalComposition/ComposableRecordsBatchTransaction.cs)</kbd><br>
+<sub><sub><del>src/YourCompany.OLTP.RecordsManagement.UseCases.TransactionalComposition/</del></sub></sub><br>
+<kbd> +++++++ 187 |⁠ ComposableRecordsBatchTransaction.IteratingInParallel.cs                                                       </kbd><br>
+<kbd>  ++++++ 166 |⁠ ComposableRecordsBatchTransaction.ConfiguredIdentically.cs                                                     </kbd><br>
+<kbd>   +++++ 144 |⁠ ComposableRecordsBatchTransaction.ComposingRecords.cs                                                          </kbd><br>
+<kbd>    ++++ 111 |⁠ ComposableRecordsBatchTransaction.ConfiguredIdentically.RepositoryRecords.cs                                   </kbd><br>
+<kbd>      ++ 54  |⁠ AlwaysTrueSpecifications.cs                                                                                    </kbd><br>
+<kbd>      ++ 43  |⁠ ComposableRecordsBatchTransaction.IteratedInParallel.cs                                                        </kbd><br>
+<kbd>      ++ 36  |⁠ ComposableRecordsBatchTransaction.ConfiguredIdentically.NonRepositoryRecords.cs                                </kbd><br>
+<kbd>       + 29  |⁠ ComposableRecordsBatchTransaction.cs                                                                           </kbd><br>
 
 Here we utilize the ctor semantics and the previously introduced  
 SOP-idea based composition to introduce the way aggregates can trigger  
@@ -2075,15 +2097,35 @@ are registered as scoped and will be used by a resolved IRepository.
 
 <!-- ### Commit: 5|🧱: OLTP DI inheritance free repo END -->
 
-<!-- ### Commit: 5|🧱: OLTP record composition to chassis
+### Commit: 5|🧱: OLTP record composition to chassis
 
 <table><tbody><tr><td>
 
-X files changed, Y insertions(+), Z deletions(-)<br>
-<sub><sub>src/YourCompany.Module/</sub></sub><br>
-<kbd> +++++++ NNN |⁠ [File.cs                                                                                                        ](src/YourCompany.Configuration/EnvironmentConventions.cs)</kbd><br>
+17 files changed, 778 insertions(+), 771 deletions(-)<br>
+<sub><sub>src/YourCompany.OLTP.RecordsManagement.DI.TransactionalComposition/</sub></sub><br>
+<kbd> +++++++ 192 |⁠ [ComposableRecordsBatchTransaction.IteratingInParallel.cs                                                       ](src/YourCompany.OLTP.RecordsManagement.DI.TransactionalComposition/ComposableRecordsBatchTransaction.IteratingInParallel.cs)</kbd><br>
+<kbd>   +++++ 152 |⁠ [ComposableRecordsBatchTransaction.ConfiguredIdentically.cs                                                     ](src/YourCompany.OLTP.RecordsManagement.DI.TransactionalComposition/ComposableRecordsBatchTransaction.ConfiguredIdentically.cs)</kbd><br>
+<kbd>   +++++ 149 |⁠ [ComposableRecordsBatchTransaction.ComposingRecords.cs                                                          ](src/YourCompany.OLTP.RecordsManagement.DI.TransactionalComposition/ComposableRecordsBatchTransaction.ComposingRecords.cs)</kbd><br>
+<kbd>    ++++ 116 |⁠ [ComposableRecordsBatchTransaction.ConfiguredIdentically.RepositoryRecords.cs                                   ](src/YourCompany.OLTP.RecordsManagement.DI.TransactionalComposition/ComposableRecordsBatchTransaction.ConfiguredIdentically.RepositoryRecords.cs)</kbd><br>
+<kbd>      ++ 50  |⁠ [AlwaysTrueSpecifications.cs                                                                                    ](src/YourCompany.OLTP.RecordsManagement.DI.TransactionalComposition/AlwaysTrueSpecifications.cs)</kbd><br>
+<kbd>      ++ 48  |⁠ [ComposableRecordsBatchTransaction.IteratedInParallel.cs                                                        ](src/YourCompany.OLTP.RecordsManagement.DI.TransactionalComposition/ComposableRecordsBatchTransaction.IteratedInParallel.cs)</kbd><br>
+<kbd>      ++ 41  |⁠ [ComposableRecordsBatchTransaction.ConfiguredIdentically.NonRepositoryRecords.cs                                ](src/YourCompany.OLTP.RecordsManagement.DI.TransactionalComposition/ComposableRecordsBatchTransaction.ConfiguredIdentically.NonRepositoryRecords.cs)</kbd><br>
+<kbd>       + 29  |⁠ [ComposableRecordsBatchTransaction.cs                                                                           ](src/YourCompany.OLTP.RecordsManagement.DI.TransactionalComposition/ComposableRecordsBatchTransaction.cs)</kbd><br>
+<sub><sub><del>src/YourCompany.OLTP.RecordsManagement.UseCases.TransactionalComposition/</del></sub></sub><br>
+<kbd>  ‑‑‑‑‑‑ 187 |⁠ ComposableRecordsBatchTransaction.IteratingInParallel.cs                                                       </kbd><br>
+<kbd>  ‑‑‑‑‑‑ 166 |⁠ ComposableRecordsBatchTransaction.ConfiguredIdentically.cs                                                     </kbd><br>
+<kbd>   ‑‑‑‑‑ 144 |⁠ ComposableRecordsBatchTransaction.ComposingRecords.cs                                                          </kbd><br>
+<kbd>    ‑‑‑‑ 111 |⁠ ComposableRecordsBatchTransaction.ConfiguredIdentically.RepositoryRecords.cs                                   </kbd><br>
+<kbd>      ‑‑ 54  |⁠ AlwaysTrueSpecifications.cs                                                                                    </kbd><br>
+<kbd>      ‑‑ 43  |⁠ ComposableRecordsBatchTransaction.IteratedInParallel.cs                                                        </kbd><br>
+<kbd>      ‑‑ 36  |⁠ ComposableRecordsBatchTransaction.ConfiguredIdentically.NonRepositoryRecords.cs                                </kbd><br>
+<kbd>       ‑ 29  |⁠ ComposableRecordsBatchTransaction.cs                                                                           </kbd><br>
+<sub><sub>src/YourCompany.OLTP.StateOwnership.TransactionalComposition/</sub></sub><br>
+<kbd>      +‑ 2   |⁠ [TransactionalCompositionTransactionCallback.cs                                                                 ](src/YourCompany.OLTP.StateOwnership.TransactionalComposition/TransactionalCompositionTransactionCallback.cs)</kbd><br>
 
-Commit body is multiline and compliant to markdown formatting 💥
+We continue to internalize public classes and methods previously  
+open for overriding per project and per record. The rationale may be  
+found in the earlier commit.
 
 </td></tr></tbody></table>
 

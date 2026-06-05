@@ -7,5 +7,9 @@
   <ItemGroup>
     <ProjectReference Include="..\YourCompany.OLTP.StateOwnership\YourCompany.OLTP.StateOwnership.csproj" />
   </ItemGroup>
+
+  <ItemGroup>
+    <InternalsVisibleTo Include="YourCompany.OLTP.RecordsManagement.DI.TransactionalComposition" />
+  </ItemGroup>
   
 </Project>
