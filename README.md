@@ -1159,15 +1159,13 @@ Commit body is multiline and compliant to markdown formatting 💥
 
 <!-- ### Commit: 2|🧱: GetMemberHelper END -->
 
-<!-- ### Commit: 2|🧱: DIConstructorHelper
+### Commit: 2|🧱: DIConstructorHelper
 
 <table><tbody><tr><td>
 
-X files changed, Y insertions(+), Z deletions(-)<br>
-<sub><sub>src/YourCompany.Module/</sub></sub><br>
-<kbd> +++++++ NNN |⁠ [File.cs                                                                                                        ](src/YourCompany.Configuration/EnvironmentConventions.cs)</kbd><br>
-
-Commit body is multiline and compliant to markdown formatting 💥
+1 file changed, 31 insertions(+)<br>
+<sub><sub>src/YourCompany.Reflection.DI/</sub></sub><br>
+<kbd> +++++++ 31  |⁠ [DIConstructorHelper.cs                                                                                         ](src/YourCompany.Reflection.DI/DIConstructorHelper.cs)</kbd><br>
 
 </td></tr></tbody></table>
 
