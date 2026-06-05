@@ -1,6 +1,6 @@
 # Sample
 
-Hey, it's Georgii here 👋
+Hey, it's Georgii here 👋 hey hey
 
 Meet an enterprise software developer faced a lot of mature systems  
 successfully competing in the market. Sounds too good? 😏 Unless  
