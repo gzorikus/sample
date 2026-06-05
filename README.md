@@ -1137,15 +1137,14 @@ identity structure is not a domain concern.
 
 <!-- ### Commit: 1|🏠: the heart of OLTP is transaction END -->
 
-<!-- ### Commit: 1|🏠: OLTP events producing
+### Commit: 1|🏠: OLTP events producing
 
 <table><tbody><tr><td>
 
-X files changed, Y insertions(+), Z deletions(-)<br>
-<sub><sub>src/YourCompany.Module/</sub></sub><br>
-<kbd> +++++++ NNN |⁠ [File.cs                                                                                                        ](src/YourCompany.Configuration/EnvironmentConventions.cs)</kbd><br>
-
-Commit body is multiline and compliant to markdown formatting 💥
+2 files changed, 51 insertions(+)<br>
+<sub><sub>src/YourCompany.OLTP.StateOwnership.EventsProducing/</sub></sub><br>
+<kbd> +++++++ 34  |⁠ [EventProducingTransactionCallback.cs                                                                           ](src/YourCompany.OLTP.StateOwnership.EventsProducing/EventProducingTransactionCallback.cs)</kbd><br>
+<kbd>    ++++ 17  |⁠ [EventsProducingStrategies.cs                                                                                   ](src/YourCompany.OLTP.StateOwnership.EventsProducing/EventsProducingStrategies.cs)</kbd><br>
 
 </td></tr></tbody></table>
 
