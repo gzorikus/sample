@@ -58,6 +58,7 @@ namespace YourCompany.Configuration.EFCore.Sqlite
                         MigrationAssemblyNameFormatFromConfigurationType, context.DbContextConfigurationType.Name))
                     .MigrationsHistoryTable(
                         tableName: SanitizeObjectNamesPrefix(context, objectNamesPrefix) + HistoryRepository.DefaultTableName));
+            optionsBuilder.AddInterceptors(SqlitePessimisticLockingUpdateInterceptor.Default);
         }
 
         private static string WithDeterministicPath(string connectionString)

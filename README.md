@@ -1282,29 +1282,34 @@ For demo provider plugins we've chosen PostgreSQL and Sqlite.
 
 <!-- ### Commit: 2|💾: basic pluggable EFCore END -->
 
-<!-- ### Commit: 2|💾: EFCore pessimistic locking
+### Commit: 2|💾: EFCore pessimistic locking
 
 <table><tbody><tr><td>
 
-X files changed, Y insertions(+), Z deletions(-)<br>
-<sub><sub>src/YourCompany.Module/</sub></sub><br>
-<kbd> +++++++ NNN |⁠ [File.cs                                                                                                        ](src/YourCompany.Configuration/EnvironmentConventions.cs)</kbd><br>
-
-Commit body is multiline and compliant to markdown formatting 💥
+7 files changed, 328 insertions(+)<br>
+<sub><sub>src/YourCompany.Configuration.EFCore/PessimisticLocking/</sub></sub><br>
+<kbd> +++++++ 117 |⁠ [ProviderSpecificPessimisticLockingUpdateInterceptor.cs                                                         ](src/YourCompany.Configuration.EFCore/PessimisticLocking/ProviderSpecificPessimisticLockingUpdateInterceptor.cs)</kbd><br>
+<kbd>    ++++ 60  |⁠ [PessimisticLockingUpdateInterceptionContext.cs                                                                 ](src/YourCompany.Configuration.EFCore/PessimisticLocking/PessimisticLockingUpdateInterceptionContext.cs)</kbd><br>
+<sub><sub>src/YourCompany.Configuration.EFCore.PostgreSQL/</sub></sub><br>
+<kbd>     +++ 58  |⁠ [NpgsqlPessimisticLockingUpdateInterceptor.cs                                                                   ](src/YourCompany.Configuration.EFCore.PostgreSQL/NpgsqlPessimisticLockingUpdateInterceptor.cs)</kbd><br>
+<kbd>       + 1   |⁠ [NpgsqlDbContextConfigurator.cs                                                                                 ](src/YourCompany.Configuration.EFCore.PostgreSQL/NpgsqlDbContextConfigurator.cs)</kbd><br>
+<sub><sub>src/YourCompany.Configuration.EFCore.Sqlite/</sub></sub><br>
+<kbd>     +++ 46  |⁠ [SqlitePessimisticLockingUpdateInterceptor.cs                                                                   ](src/YourCompany.Configuration.EFCore.Sqlite/SqlitePessimisticLockingUpdateInterceptor.cs)</kbd><br>
+<kbd>       + 1   |⁠ [SqliteDbContextConfigurator.cs                                                                                 ](src/YourCompany.Configuration.EFCore.Sqlite/SqliteDbContextConfigurator.cs)</kbd><br>
+<sub><sub>src/YourCompany.Configuration.EFCore/</sub></sub><br>
+<kbd>     +++ 45  |⁠ [YourCompanyDbContext.PessimisticLocking.cs                                                                     ](src/YourCompany.Configuration.EFCore/YourCompanyDbContext.PessimisticLocking.cs)</kbd><br>
 
 </td></tr></tbody></table>
 
 <!-- ### Commit: 2|💾: EFCore pessimistic locking END -->
 
-<!-- ### Commit: 2|💾: EFChangeTrackerTrackGraphStrategy
+### Commit: 2|💾: EFChangeTrackerTrackGraphStrategy
 
 <table><tbody><tr><td>
 
-X files changed, Y insertions(+), Z deletions(-)<br>
-<sub><sub>src/YourCompany.Module/</sub></sub><br>
-<kbd> +++++++ NNN |⁠ [File.cs                                                                                                        ](src/YourCompany.Configuration/EnvironmentConventions.cs)</kbd><br>
-
-Commit body is multiline and compliant to markdown formatting 💥
+1 file changed, 106 insertions(+)<br>
+<sub><sub>src/YourCompany.Configuration.EFCore/ChangeTracking/</sub></sub><br>
+<kbd> +++++++ 106 |⁠ [EFChangeTrackerTrackGraphStrategy.cs                                                                           ](src/YourCompany.Configuration.EFCore/ChangeTracking/EFChangeTrackerTrackGraphStrategy.cs)</kbd><br>
 
 </td></tr></tbody></table>
 
