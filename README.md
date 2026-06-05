@@ -1544,15 +1544,13 @@ Commit body is multiline and compliant to markdown formatting 💥
 
 <!-- ### Commit: 4|💾: EFCore SortingKey ⇆ EntityEntry END -->
 
-<!-- ### Commit: 4|💾: OLTP EFCore MetadataHelper
+### Commit: 4|💾: OLTP EFCore MetadataHelper
 
 <table><tbody><tr><td>
 
-X files changed, Y insertions(+), Z deletions(-)<br>
-<sub><sub>src/YourCompany.Module/</sub></sub><br>
-<kbd> +++++++ NNN |⁠ [File.cs                                                                                                        ](src/YourCompany.Configuration/EnvironmentConventions.cs)</kbd><br>
-
-Commit body is multiline and compliant to markdown formatting 💥
+1 file changed, 45 insertions(+)<br>
+<sub><sub>src/YourCompany.OLTP.StateOwnership.Reflection.EFCore/</sub></sub><br>
+<kbd> +++++++ 45  |⁠ [MetadataHelper.cs                                                                                              ](src/YourCompany.OLTP.StateOwnership.Reflection.EFCore/MetadataHelper.cs)</kbd><br>
 
 </td></tr></tbody></table>
 
