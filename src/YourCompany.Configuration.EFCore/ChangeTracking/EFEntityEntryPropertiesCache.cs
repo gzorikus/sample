@@ -6,7 +6,7 @@ using YourCompany.Reflection;
 
 namespace YourCompany.Configuration.EFCore.ChangeTracking
 {
-    public static class EFEntityEntryPropertiesCache<TProperty>
+    internal static class EFEntityEntryPropertiesCache<TProperty>
     {
         private static readonly Expression<Action<EntityEntry<object>>> MethodExpression
             = entry => entry.Property<TProperty>("dummy");
@@ -46,14 +46,14 @@ namespace YourCompany.Configuration.EFCore.ChangeTracking
             return Expression.Lambda<Action<EntityEntry, TProperty>>(assignment, entityEntry, setValue).Compile();
         };
 
-        public static Func<EntityEntry, TProperty> GetGetter(Type entityType, string propertyName)
+        internal static Func<EntityEntry, TProperty> GetGetter(Type entityType, string propertyName)
         {
             if (entityType == null) throw new ArgumentNullException(nameof(entityType));
             if (propertyName == null) throw new ArgumentNullException(nameof(propertyName));
             return Getters.GetOrAdd((entityType, propertyName), CreateGetterNonExclusiveStrategy);
         }
 
-        public static Action<EntityEntry, TProperty> GetSetter(Type entityType, string propertyName)
+        internal static Action<EntityEntry, TProperty> GetSetter(Type entityType, string propertyName)
         {
             if (entityType == null) throw new ArgumentNullException(nameof(entityType));
             if (propertyName == null) throw new ArgumentNullException(nameof(propertyName));

@@ -204,7 +204,7 @@ All the entry point branches' heads are highlighted in the graph as ⏹️.
 ---
 config:
   gitGraph:
-    mainBranchName: "MERGED"
+    mainBranchName: "7|🧱: OLTP DI EFCore switch to chassis"
     parallelCommits: true
     rotateCommitLabel: false
     showCommitLabel: false
@@ -235,25 +235,25 @@ gitGraph
 %% commit type:HIGHLIGHT tag:"7|🧱|public|oltp-di-efcore-handle-specifications-only-the-rest-is-covered|YourCompany.Configuration.EFCore|YourCompany.OLTP.RecordsManagement.DI.EFCore|YourCompany.OLTP.RecordsManagement.Persistence.Linq.EFCore" %% ODEI
 
 %% branch "7|🧱: OLTP DI EFCore switch to chassis" %% ODESTC
-%% commit type:HIGHLIGHT tag:"7|🧱|oltp-di-efcore-handle-specifications-only-the-rest-is-covered|YourCompany.Configuration.EFCore|YourCompany.OLTP.RecordsManagement.Persistence.Linq.EFCore" %% ODESTC
+commit type:HIGHLIGHT tag:"7|🧱|oltp-di-efcore-handle-specifications-only-the-rest-is-covered|YourCompany.Configuration.EFCore|YourCompany.OLTP.RecordsManagement.Persistence.Linq.EFCore" %% ODESTC
 %% commit type:NORMAL tag:"7|🧱|YourCompany.Configuration.EFCore|YourCompany.OLTP.RecordsManagement.Persistence.Linq.EFCore" %% ODESTC
 
 %% Startup Iteration 6
 
-%% checkout "7|🧱: OLTP DI EFCore switch to chassis" %% OEF
-%% branch "6|💾: OLTP EFCore finalized" %% OEF
-%% commit type:NORMAL tag:"6|💾|YourCompany.OLTP.RecordsManagement.Persistence.Linq.EFCore" %% OEF
+checkout "7|🧱: OLTP DI EFCore switch to chassis" %% OEF
+branch "6|💾: OLTP EFCore finalized" %% OEF
+commit type:NORMAL tag:"6|💾|YourCompany.OLTP.RecordsManagement.Persistence.Linq.EFCore" %% OEF
 
 %% Startup Iteration 5
 
-%% checkout "6|💾: OLTP EFCore finalized" %% OER
-%% branch "5|💾: OLTP EFCore readonly" %% OER
+checkout "6|💾: OLTP EFCore finalized" %% OER
+branch "5|💾: OLTP EFCore readonly" %% OER
 %% commit type:REVERSE %% OER>1
 %% commit type:REVERSE %% OER>2
 %% commit type:REVERSE %% OER>3
 %% commit type:REVERSE %% OER>4
 %% commit type:REVERSE %% OER>5
-%% commit type:NORMAL tag:"5|💾|YourCompany.OLTP.RecordsManagement.Persistence.Linq.EFCore" %% OER
+commit type:NORMAL tag:"5|💾|YourCompany.OLTP.RecordsManagement.Persistence.Linq.EFCore" %% OER
 
 %% checkout "7|🧱: OLTP DI EFCore integrated" %% ODMR
 %% checkout "N|🧱: OLTP EFCore multi-entity chassis" %% ODMR
@@ -269,9 +269,9 @@ gitGraph
 %% commit type:HIGHLIGHT tag:"5|🧱|oltp-di-combine-use-case-and-persistence-interfaces-with-record-types-composition|YourCompany.OLTP.RecordsManagement.DI.TransactionalComposition|YourCompany.OLTP.StateOwnership.TransactionalComposition" %% ORCTC
 %% commit type:NORMAL tag:"5|🧱|YourCompany.OLTP.RecordsManagement.DI.TransactionalComposition|YourCompany.OLTP.StateOwnership.TransactionalComposition" %% ORCTC
 
-%% checkout "7|🧱: OLTP DI EFCore switch to chassis" %% ODIFR
-%% branch "5|🧱: OLTP DI inheritance free repo" %% ODIFR
-%% commit type:REVERSE %% ODIFR>1
+checkout "7|🧱: OLTP DI EFCore switch to chassis" %% ODIFR
+branch "5|🧱: OLTP DI inheritance free repo" %% ODIFR
+commit type:REVERSE %% ODIFR>1
 commit type:HIGHLIGHT tag:"5|🧱|oltp-di-combine-use-case-and-persistence-interfaces-without-inheritance|YourCompany.OLTP.RecordsManagement.DI" %% ODIFR
 %% merge "5|🧱: OLTP record composition to chassis" type:HIGHLIGHT tag:"5|🧱|oltp-di-combine-use-case-and-persistence-interfaces-without-inheritance|YourCompany.OLTP.RecordsManagement.DI" %% ODIFR
 
@@ -283,11 +283,11 @@ branch "5|🧱: OLTP DI ScopedRecordsProvider" %% ODSRP
 commit type:NORMAL tag:"5|🧱|YourCompany.OLTP.StateOwnership.Reflection.DI" %% ODSRP
 
 checkout "5|🧱: OLTP DI inheritance free repo" %% OSTC
-commit type:REVERSE %% OSTC<1
-commit type:REVERSE %% OSTC<2
-commit type:REVERSE %% OSTC<3
+%% commit type:REVERSE %% OSTC<1
+%% commit type:REVERSE %% OSTC<2
+%% commit type:REVERSE %% OSTC<3
 branch "5|🧱: OLTP switch to chassis" %% OSTC
-%% commit type:REVERSE %% OSTC>1
+commit type:REVERSE %% OSTC>1
 commit type:HIGHLIGHT tag:"5|🧱|oltp-di-combine-use-case-and-persistence-interfaces-switch-to-chassis|YourCompany.OLTP.RecordsManagement|YourCompany.OLTP.RecordsManagement.DI|YourCompany.OLTP.RecordsManagement.Persistence|YourCompany.OLTP.RecordsManagement.UseCases|YourCompany.OLTP.StateOwnership" %% OSTC
 
 %% Startup Iteration 4
@@ -307,29 +307,29 @@ commit type:HIGHLIGHT tag:"5|🧱|oltp-di-combine-use-case-and-persistence-inter
 %% commit type:REVERSE %% CEPFVT>11
 %% commit type:NORMAL tag:"4|💾|YourCompany.Configuration.EFCore" %% CEPFVT
 
-%% checkout "6|💾: OLTP EFCore finalized" %% EETSKT
-%% branch "4|💾: EFEntityTypeSortingKeyTopology" %% EETSKT
-%% commit type:REVERSE %% EETSKT>1
-%% commit type:REVERSE %% EETSKT>2
-%% commit type:REVERSE %% EETSKT>3
-%% commit type:REVERSE %% EETSKT>4
-%% commit type:REVERSE %% EETSKT>5
+checkout "6|💾: OLTP EFCore finalized" %% EETSKT
+branch "4|💾: EFEntityTypeSortingKeyTopology" %% EETSKT
+commit type:REVERSE %% EETSKT>1
+commit type:REVERSE %% EETSKT>2
+commit type:REVERSE %% EETSKT>3
+commit type:REVERSE %% EETSKT>4
+commit type:REVERSE %% EETSKT>5
 %% commit type:REVERSE %% EETSKT>6
 %% commit type:REVERSE %% EETSKT>7
-%% commit type:NORMAL tag:"4|💾|YourCompany.Configuration.EFCore" %% EETSKT
+commit type:NORMAL tag:"4|💾|YourCompany.Configuration.EFCore" %% EETSKT
 
-%% checkout "5|💾: OLTP EFCore readonly" %% Startup Iteration 4
-%% commit type:REVERSE %% OER 4>1
-%% commit type:REVERSE %% OER 4>2
-%% commit type:REVERSE %% OER 4>3
+checkout "5|💾: OLTP EFCore readonly" %% Startup Iteration 4
+commit type:REVERSE %% OER 4>1
+commit type:REVERSE %% OER 4>2
+commit type:REVERSE %% OER 4>3
 
-%% checkout "5|💾: OLTP EFCore readonly" %% OEIG
-%% branch "4|💾: OLTP EFCore ID generation" %% OEIG
-%% commit type:REVERSE %% OEIG>1
-%% commit type:NORMAL tag:"4|💾|YourCompany.OLTP.StateOwnership.Reflection.EFCore" %% OEIG
+checkout "5|💾: OLTP EFCore readonly" %% OEIG
+branch "4|💾: OLTP EFCore ID generation" %% OEIG
+commit type:REVERSE %% OEIG>1
+commit type:NORMAL tag:"4|💾|YourCompany.OLTP.StateOwnership.Reflection.EFCore" %% OEIG
 
-%% branch "4|💾: OLTP EFCore MetadataHelper" %% OEMH
-%% commit type:NORMAL tag:"4|💾|YourCompany.OLTP.StateOwnership.Reflection.EFCore" %% OEMH
+branch "4|💾: OLTP EFCore MetadataHelper" %% OEMH
+commit type:NORMAL tag:"4|💾|YourCompany.OLTP.StateOwnership.Reflection.EFCore" %% OEMH
 
 %% checkout "7|💾: EFCore multi EntityEntry visitors" %% Startup Iteration 4
 %% commit type:REVERSE %% EMEEV 4>1
@@ -346,16 +346,16 @@ commit type:HIGHLIGHT tag:"5|🧱|oltp-di-combine-use-case-and-persistence-inter
 %% commit type:REVERSE %% EMEEV 4>12
 %% commit type:REVERSE %% EMEEV 4>13
 
-%% checkout "5|💾: OLTP EFCore readonly" %% ESKEE
-%% branch "4|💾: EFCore SortingKey ⇆ EntityEntry" %% ESKEE
-%% commit type:REVERSE %% ESKEE>1
-%% commit type:REVERSE %% ESKEE>2
-%% commit type:REVERSE %% ESKEE>3
-%% commit type:NORMAL tag:"4|💾|YourCompany.Configuration.EFCore" %% ESKEE
+checkout "5|💾: OLTP EFCore readonly" %% ESKEE
+branch "4|💾: EFCore SortingKey ⇆ EntityEntry" %% ESKEE
+commit type:REVERSE %% ESKEE>1
+commit type:REVERSE %% ESKEE>2
+commit type:REVERSE %% ESKEE>3
+commit type:NORMAL tag:"4|💾|YourCompany.Configuration.EFCore" %% ESKEE
 %% merge "7|💾: EFCore multi EntityEntry visitors" type:NORMAL tag:"4|💾|YourCompany.Configuration.EFCore" %% ESKEE
 
-%% branch "4|💾: EFEntityEntryPropertiesCache" %% EEEPC
-%% commit type:NORMAL tag:"4|💾|YourCompany.Configuration.EFCore" %% EEEPC
+branch "4|💾: EFEntityEntryPropertiesCache" %% EEEPC
+commit type:NORMAL tag:"4|💾|YourCompany.Configuration.EFCore" %% EEEPC
 
 %% checkout "7|💾: EFCore multi-entity sorting" %% Startup Iteration 4
 %% commit type:REVERSE %% EMES 4>1
@@ -375,20 +375,20 @@ commit type:HIGHLIGHT tag:"5|🧱|oltp-di-combine-use-case-and-persistence-inter
 %% commit type:REVERSE %% EMES 4>15
 %% commit type:REVERSE %% EMES 4>16
 
-%% checkout "5|💾: OLTP EFCore readonly" %% ESKR
-%% branch "4|💾: EFCore SortingKey reading" %% ESKR
-%% commit type:REVERSE %% ESKR>1
-%% commit type:REVERSE %% ESKR>2
-%% commit type:REVERSE %% ESKR>3
-%% commit type:REVERSE %% ESKR>4
-%% commit type:REVERSE %% ESKR>5
-%% commit type:NORMAL tag:"4|💾|YourCompany.Configuration.EFCore" %% ESKR
+checkout "5|💾: OLTP EFCore readonly" %% ESKR
+branch "4|💾: EFCore SortingKey reading" %% ESKR
+commit type:REVERSE %% ESKR>1
+commit type:REVERSE %% ESKR>2
+commit type:REVERSE %% ESKR>3
+commit type:REVERSE %% ESKR>4
+commit type:REVERSE %% ESKR>5
+commit type:NORMAL tag:"4|💾|YourCompany.Configuration.EFCore" %% ESKR
 %% merge "7|💾: EFCore multi-entity sorting" type:NORMAL tag:"4|💾|YourCompany.Configuration.EFCore" %% ESKR
 
 checkout "5|🧱: OLTP switch to chassis" %% OLMBU
 branch "4|🧱: OLTP LINQ may be useful" %% OLMBU
-commit type:HIGHLIGHT tag:"4|🧱|oltp-segregate-persistence-repository-is-for-use-cases|YourCompany.OLTP.RecordsManagement.Persistence.Linq" %% OLMBU
-%% merge "5|💾: OLTP EFCore readonly" type:HIGHLIGHT tag:"4|🧱|oltp-segregate-persistence-repository-is-for-use-cases|YourCompany.OLTP.RecordsManagement.Persistence.Linq" %% OLMBU
+%% commit type:HIGHLIGHT tag:"4|🧱|oltp-segregate-persistence-repository-is-for-use-cases|YourCompany.OLTP.RecordsManagement.Persistence.Linq" %% OLMBU
+merge "5|💾: OLTP EFCore readonly" type:HIGHLIGHT tag:"4|🧱|oltp-segregate-persistence-repository-is-for-use-cases|YourCompany.OLTP.RecordsManagement.Persistence.Linq" %% OLMBU
 
 branch "4|🧱: OLTP identities are unique keys" %% OIAUK
 %% commit type:REVERSE %% OIAUK>1
@@ -412,29 +412,29 @@ commit type:HIGHLIGHT tag:"4|🏠|oltp-segregate-use-cases-repository-is-for-per
 
 %% Startup Iteration 3
 
-%% checkout "4|💾: EFEntityTypeSortingKeyTopology" %% Startup Iteration 3
-%% commit type:REVERSE %% EETSKT 3>1
-%% commit type:REVERSE %% EETSKT 3>2
-%% commit type:REVERSE %% EETSKT 3>3
-%% commit type:REVERSE %% EETSKT 3>4
-%% commit type:REVERSE %% EETSKT 3>5
+checkout "4|💾: EFEntityTypeSortingKeyTopology" %% Startup Iteration 3
+commit type:REVERSE %% EETSKT 3>1
+commit type:REVERSE %% EETSKT 3>2
+commit type:REVERSE %% EETSKT 3>3
+commit type:REVERSE %% EETSKT 3>4
+commit type:REVERSE %% EETSKT 3>5
 %% commit type:REVERSE %% EETSKT 3>6
 
 %% checkout "4|💾: EFCore SortingKey ⇆ EntityEntry" %% Startup Iteration 3
 %% commit type:REVERSE %% ESKEE 3>1
 
-%% checkout "4|💾: EFCore SortingKey ⇆ EntityEntry" %% EFCSK
+checkout "4|💾: EFCore SortingKey ⇆ EntityEntry" %% EFCSK
 %% checkout "7|💾: EFCore SortingKey multi-entity" %% EFCSK
-%% branch "3|💾: EFCore first-class SortingKey" %% EFCSK
+branch "3|💾: EFCore first-class SortingKey" %% EFCSK
 %% merge "4|💾: EFCore SortingKey ⇆ EntityEntry" %% EFCSK
-%% merge "4|💾: EFCore SortingKey reading" %% EFCSK
+merge "4|💾: EFCore SortingKey reading" %% EFCSK
 %% merge "4|💾: EFCore SortingKey ⇆ EntityEntry" %% EFCSK
-%% merge "4|💾: EFEntityTypeSortingKeyTopology" %% EFCSK
-%% commit type:REVERSE %% EFCSK>1
+merge "4|💾: EFEntityTypeSortingKeyTopology" %% EFCSK
+commit type:REVERSE %% EFCSK>1
 %% commit type:REVERSE %% EFCSK>2
 %% commit type:REVERSE %% EFCSK>3
 %% commit type:REVERSE %% EFCSK>4
-%% commit type:NORMAL tag:"3|💾|YourCompany.Configuration.EFCore|YourCompany.Configuration.EFCore.PostgreSQL|YourCompany.Configuration.EFCore.Sqlite" %% EFCSK
+commit type:NORMAL tag:"3|💾|YourCompany.Configuration.EFCore|YourCompany.Configuration.EFCore.PostgreSQL|YourCompany.Configuration.EFCore.Sqlite" %% EFCSK
 
 %% checkout "4|💾: cache EFProperty from ValueTuple" %% Startup Iteration 3
 %% commit type:REVERSE %% CEPFVT 3>1
@@ -446,8 +446,8 @@ commit type:HIGHLIGHT tag:"4|🏠|oltp-segregate-use-cases-repository-is-for-per
 %% commit type:REVERSE %% CEPFVT 3>7
 
 %% checkout "3|💾: EFCore first-class SortingKey" %% EPEC
-%% branch "3|💾: EFPropertyExpressionsCache" %% EPEC
-%% commit type:NORMAL tag:"3|💾|YourCompany.Configuration.EFCore" %% EPEC
+branch "3|💾: EFPropertyExpressionsCache" %% EPEC
+commit type:NORMAL tag:"3|💾|YourCompany.Configuration.EFCore" %% EPEC
 %% merge "4|💾: cache EFProperty from ValueTuple" type:NORMAL tag:"3|💾|YourCompany.Configuration.EFCore" %% EPEC
 
 %% checkout "4|🧱: OLTP identities are unique keys" %% Startup Iteration 3
@@ -456,16 +456,16 @@ commit type:HIGHLIGHT tag:"4|🏠|oltp-segregate-use-cases-repository-is-for-per
 checkout "4|🏠: enumerate OLTP use cases" %% OTS
 %% checkout "4|🧱: OLTP identities are unique keys" %% OTS
 branch "3|🧱: OLTP transaction structure" %% OTS
-%% merge "4|🧱: OLTP identities are unique keys" %% OTS
-%% commit type:REVERSE %% OTS>1
-%% commit type:REVERSE %% OTS>2
-%% commit type:REVERSE %% OTS>3
-%% commit type:REVERSE %% OTS>4
-%% commit type:REVERSE %% OTS>5
-%% commit type:REVERSE %% OTS>6
+merge "4|🧱: OLTP identities are unique keys" %% OTS
+commit type:REVERSE %% OTS>1
+commit type:REVERSE %% OTS>2
+commit type:REVERSE %% OTS>3
+commit type:REVERSE %% OTS>4
+commit type:REVERSE %% OTS>5
+commit type:REVERSE %% OTS>6
 %% commit type:REVERSE %% OTS>7
-%% commit type:HIGHLIGHT tag:"3|🧱|oltp-typical-transaction-structure-repository-is-up-to-you|YourCompany.OLTP.RecordsManagement" %% OTS
-merge "4|🧱: OLTP identities are unique keys" type:HIGHLIGHT tag:"3|🧱|oltp-typical-transaction-structure-repository-is-up-to-you|YourCompany.OLTP.RecordsManagement" %% OTS
+commit type:HIGHLIGHT tag:"3|🧱|oltp-typical-transaction-structure-repository-is-up-to-you|YourCompany.OLTP.RecordsManagement" %% OTS
+%% merge "4|🧱: OLTP identities are unique keys" type:HIGHLIGHT tag:"3|🧱|oltp-typical-transaction-structure-repository-is-up-to-you|YourCompany.OLTP.RecordsManagement" %% OTS
 
 %% checkout "4|🏠: OLTP use cases by record type" %% ORTCM
 %% branch "3|🏠: OLTP RecordTypesCompositionMap" %% ORTCM
@@ -483,25 +483,25 @@ merge "4|🧱: OLTP identities are unique keys" type:HIGHLIGHT tag:"3|🧱|oltp-
 
 checkout "5|🧱: OLTP DI ScopedUseCasesProvider" %% OUCTM
 commit type:REVERSE %% OUCTM<1
-%% commit type:REVERSE %% OUCTM<2
-%% commit type:REVERSE %% OUCTM<3
-%% commit type:REVERSE %% OUCTM<4
-%% commit type:REVERSE %% OUCTM<5
-%% commit type:REVERSE %% OUCTM<6
-%% commit type:REVERSE %% OUCTM<7
-%% commit type:REVERSE %% OUCTM<8
-%% commit type:REVERSE %% OUCTM<9
-%% commit type:REVERSE %% OUCTM<10
-%% commit type:REVERSE %% OUCTM<11
+commit type:REVERSE %% OUCTM<2
+commit type:REVERSE %% OUCTM<3
+commit type:REVERSE %% OUCTM<4
+commit type:REVERSE %% OUCTM<5
+commit type:REVERSE %% OUCTM<6
+commit type:REVERSE %% OUCTM<7
+commit type:REVERSE %% OUCTM<8
+commit type:REVERSE %% OUCTM<9
+commit type:REVERSE %% OUCTM<10
+commit type:REVERSE %% OUCTM<11
 %% commit type:REVERSE %% OUCTM<12
 %% commit type:REVERSE %% OUCTM<13
 %% commit type:REVERSE %% OUCTM<14
 %% commit type:REVERSE %% OUCTM<15
 branch "3|🏠: OLTP UseCaseTypesMap" %% OUCTM
-commit type:REVERSE %% OUCTM>1
-commit type:REVERSE %% OUCTM>2
-commit type:REVERSE %% OUCTM>3
-commit type:REVERSE %% OUCTM>4
+%% commit type:REVERSE %% OUCTM>1
+%% commit type:REVERSE %% OUCTM>2
+%% commit type:REVERSE %% OUCTM>3
+%% commit type:REVERSE %% OUCTM>4
 %% commit type:REVERSE %% OUCTM>5
 %% commit type:REVERSE %% OUCTM>6
 %% commit type:REVERSE %% OUCTM>7
@@ -513,17 +513,17 @@ branch "3|🏠: generic OLTP use cases" %% GOUC
 %% commit type:NORMAL tag:"3|🏠|YourCompany.OLTP.RecordsManagement.UseCases" %% GOUC
 merge "3|🏠: OLTP UseCaseTypesMap" type:NORMAL tag:"3|🏠|YourCompany.OLTP.RecordsManagement.UseCases" %% GOUC
 
-%% checkout "4|💾: OLTP EFCore MetadataHelper" %% Startup Iteration 3
-%% commit type:REVERSE %% OEMH 3>1
-%% commit type:REVERSE %% OEMH 3>2
-%% commit type:REVERSE %% OEMH 3>3
-%% commit type:REVERSE %% OEMH 3>4
-%% commit type:REVERSE %% OEMH 3>5
-%% commit type:REVERSE %% OEMH 3>6
-%% commit type:REVERSE %% OEMH 3>7
-%% commit type:REVERSE %% OEMH 3>8
-%% commit type:REVERSE %% OEMH 3>9
-%% commit type:REVERSE %% OEMH 3>10
+checkout "4|💾: OLTP EFCore MetadataHelper" %% Startup Iteration 3
+commit type:REVERSE %% OEMH 3>1
+commit type:REVERSE %% OEMH 3>2
+commit type:REVERSE %% OEMH 3>3
+commit type:REVERSE %% OEMH 3>4
+commit type:REVERSE %% OEMH 3>5
+commit type:REVERSE %% OEMH 3>6
+commit type:REVERSE %% OEMH 3>7
+commit type:REVERSE %% OEMH 3>8
+commit type:REVERSE %% OEMH 3>9
+commit type:REVERSE %% OEMH 3>10
 %% commit type:REVERSE %% OEMH 3>11
 %% commit type:REVERSE %% OEMH 3>12
 %% commit type:REVERSE %% OEMH 3>13
@@ -533,14 +533,14 @@ merge "3|🏠: OLTP UseCaseTypesMap" type:NORMAL tag:"3|🏠|YourCompany.OLTP.Re
 checkout "5|🧱: OLTP DI ScopedRecordsProvider" %% ORTM
 branch "3|🏠: OLTP RecordTypesMap" %% ORTM
 %% merge "3|🏠: OLTP RecordTypesCompositionMap" %% ORTM
-commit type:REVERSE %% ORTM>1
-commit type:REVERSE %% ORTM>2
-commit type:REVERSE %% ORTM>3
-commit type:REVERSE %% ORTM>4
-commit type:REVERSE %% ORTM>5
-commit type:NORMAL tag:"3|🏠|YourCompany.OLTP.StateOwnership.Reflection" %% ORTM
+%% commit type:REVERSE %% ORTM>1
+%% commit type:REVERSE %% ORTM>2
+%% commit type:REVERSE %% ORTM>3
+%% commit type:REVERSE %% ORTM>4
+%% commit type:REVERSE %% ORTM>5
+%% commit type:NORMAL tag:"3|🏠|YourCompany.OLTP.StateOwnership.Reflection" %% ORTM
 %% merge "3|🏠: OLTP RecordTypesCompositionMap" type:NORMAL tag:"3|🏠|YourCompany.OLTP.StateOwnership.Reflection" %% ORTM
-%% merge "4|💾: OLTP EFCore MetadataHelper" type:NORMAL tag:"3|🏠|YourCompany.OLTP.StateOwnership.Reflection" %% ORTM
+merge "4|💾: OLTP EFCore MetadataHelper" type:NORMAL tag:"3|🏠|YourCompany.OLTP.StateOwnership.Reflection" %% ORTM
 
 %% Startup Iteration 2
 
@@ -581,50 +581,50 @@ commit type:NORMAL tag:"3|🏠|YourCompany.OLTP.StateOwnership.Reflection" %% OR
 %% commit type:REVERSE %% EHMR>33
 %% commit type:NORMAL tag:"2|💾|YourCompany.Configuration.EFCore.Hosting" %% EHMR
 
-%% checkout "6|💾: OLTP EFCore finalized" %% ECTTGS
-%% commit type:REVERSE %% ECTTGS<1
-%% commit type:REVERSE %% ECTTGS<2
-%% commit type:REVERSE %% ECTTGS<3
-%% commit type:REVERSE %% ECTTGS<4
-%% commit type:REVERSE %% ECTTGS<5
-%% commit type:REVERSE %% ECTTGS<6
-%% commit type:REVERSE %% ECTTGS<7
-%% commit type:REVERSE %% ECTTGS<8
-%% commit type:REVERSE %% ECTTGS<9
-%% commit type:REVERSE %% ECTTGS<10
-%% commit type:REVERSE %% ECTTGS<11
-%% commit type:REVERSE %% ECTTGS<12
-%% commit type:REVERSE %% ECTTGS<13
-%% commit type:REVERSE %% ECTTGS<14
-%% commit type:REVERSE %% ECTTGS<15
-%% commit type:REVERSE %% ECTTGS<16
-%% commit type:REVERSE %% ECTTGS<17
-%% commit type:REVERSE %% ECTTGS<18
-%% commit type:REVERSE %% ECTTGS<19
+checkout "6|💾: OLTP EFCore finalized" %% ECTTGS
+commit type:REVERSE %% ECTTGS<1
+commit type:REVERSE %% ECTTGS<2
+commit type:REVERSE %% ECTTGS<3
+commit type:REVERSE %% ECTTGS<4
+commit type:REVERSE %% ECTTGS<5
+commit type:REVERSE %% ECTTGS<6
+commit type:REVERSE %% ECTTGS<7
+commit type:REVERSE %% ECTTGS<8
+commit type:REVERSE %% ECTTGS<9
+commit type:REVERSE %% ECTTGS<10
+commit type:REVERSE %% ECTTGS<11
+commit type:REVERSE %% ECTTGS<12
+commit type:REVERSE %% ECTTGS<13
+commit type:REVERSE %% ECTTGS<14
+commit type:REVERSE %% ECTTGS<15
+commit type:REVERSE %% ECTTGS<16
+commit type:REVERSE %% ECTTGS<17
+commit type:REVERSE %% ECTTGS<18
+commit type:REVERSE %% ECTTGS<19
 %% commit type:REVERSE %% ECTTGS<20
 %% commit type:REVERSE %% ECTTGS<21
 %% commit type:REVERSE %% ECTTGS<22
 %% commit type:REVERSE %% ECTTGS<23
 %% commit type:REVERSE %% ECTTGS<24
 %% commit type:REVERSE %% ECTTGS<25
-%% branch "2|💾: EFChangeTrackerTrackGraphStrategy" %% ECTTGS
-%% commit type:NORMAL tag:"2|💾|YourCompany.Configuration.EFCore" %% ECTTGS
+branch "2|💾: EFChangeTrackerTrackGraphStrategy" %% ECTTGS
+commit type:NORMAL tag:"2|💾|YourCompany.Configuration.EFCore" %% ECTTGS
 
-%% checkout "6|💾: OLTP EFCore finalized" %% EPL
-%% branch "2|💾: EFCore pessimistic locking" %% EPL
-%% commit type:NORMAL tag:"2|💾|YourCompany.Configuration.EFCore|YourCompany.Configuration.EFCore.PostgreSQL|YourCompany.Configuration.EFCore.Sqlite" %% EPL
+checkout "6|💾: OLTP EFCore finalized" %% EPL
+branch "2|💾: EFCore pessimistic locking" %% EPL
+commit type:NORMAL tag:"2|💾|YourCompany.Configuration.EFCore|YourCompany.Configuration.EFCore.PostgreSQL|YourCompany.Configuration.EFCore.Sqlite" %% EPL
 
-%% checkout "4|💾: EFEntityEntryPropertiesCache" %% BPE
-%% branch "2|💾: basic pluggable EFCore" %% BPE
+checkout "4|💾: EFEntityEntryPropertiesCache" %% BPE
+branch "2|💾: basic pluggable EFCore" %% BPE
 
-%% checkout "2|💾: EFChangeTrackerTrackGraphStrategy" %% BPE
-%% commit type:REVERSE %% ECTTGS BPE>1
+checkout "2|💾: EFChangeTrackerTrackGraphStrategy" %% BPE
+commit type:REVERSE %% ECTTGS BPE>1
 
-%% checkout "2|💾: basic pluggable EFCore" %% BPE
-%% merge "3|💾: EFPropertyExpressionsCache" %% BPE
-%% merge "2|💾: EFCore pessimistic locking" %% BPE
+checkout "2|💾: basic pluggable EFCore" %% BPE
+merge "3|💾: EFPropertyExpressionsCache" %% BPE
+merge "2|💾: EFCore pessimistic locking" %% BPE
 %% merge "2|💾: EFChangeTrackerTrackGraphStrategy" %% BPE
-%% merge "2|💾: EFChangeTrackerTrackGraphStrategy" type:NORMAL tag:"2|💾|YourCompany.Configuration.EFCore|YourCompany.Configuration.EFCore.PostgreSQL|YourCompany.Configuration.EFCore.Sqlite" %% BPE
+merge "2|💾: EFChangeTrackerTrackGraphStrategy" type:NORMAL tag:"2|💾|YourCompany.Configuration.EFCore|YourCompany.Configuration.EFCore.PostgreSQL|YourCompany.Configuration.EFCore.Sqlite" %% BPE
 %% merge "2|💾: EFCore hosting migration run" type:NORMAL tag:"2|💾|YourCompany.Configuration.EFCore|YourCompany.Configuration.EFCore.PostgreSQL|YourCompany.Configuration.EFCore.Sqlite" %% BPE
 
 %% checkout "3|🏠: OLTP RecordTypesCompositionMap" %% TCM
@@ -640,34 +640,34 @@ commit type:NORMAL tag:"3|🏠|YourCompany.OLTP.StateOwnership.Reflection" %% OR
 %% commit type:NORMAL tag:"2|🧱|YourCompany.Reflection" %% TCM
 
 checkout "3|🏠: OLTP UseCaseTypesMap" %% TAH
-commit type:REVERSE %% TAH<1
-commit type:REVERSE %% TAH<2
+%% commit type:REVERSE %% TAH<1
+%% commit type:REVERSE %% TAH<2
 branch "2|🧱: TypeAbstractionsHelper" %% TAH
-%% commit type:REVERSE %% TAH>1
-%% commit type:REVERSE %% TAH>2
-%% commit type:REVERSE %% TAH>3
-%% commit type:REVERSE %% TAH>4
-%% commit type:REVERSE %% TAH>5
+commit type:REVERSE %% TAH>1
+commit type:REVERSE %% TAH>2
+commit type:REVERSE %% TAH>3
+commit type:REVERSE %% TAH>4
+commit type:REVERSE %% TAH>5
 commit type:NORMAL tag:"2|🧱|YourCompany.Reflection" %% TAH
 %% merge "2|🧱: TypesCompositionMap" type:NORMAL tag:"2|🧱|YourCompany.Reflection" %% TAH
 
-%% checkout "4|💾: EFCore SortingKey reading" %% VTH
+checkout "4|💾: EFCore SortingKey reading" %% VTH
 %% commit type:REVERSE %% VTH<1
 %% commit type:REVERSE %% VTH<2
 %% commit type:REVERSE %% VTH<3
 %% commit type:REVERSE %% VTH<4
-%% branch "2|🧱: ValueTupleHelper" %% VTH
+branch "2|🧱: ValueTupleHelper" %% VTH
 %% merge "4|💾: cache EFProperty from ValueTuple" %% VTH
-%% commit type:REVERSE %% VTH>1
-%% commit type:REVERSE %% VTH>2
-%% commit type:REVERSE %% VTH>3
-%% commit type:REVERSE %% VTH>4
-%% commit type:REVERSE %% VTH>5
-%% commit type:REVERSE %% VTH>6
-%% commit type:REVERSE %% VTH>7
-%% commit type:REVERSE %% VTH>8
-%% commit type:REVERSE %% VTH>9
-%% commit type:NORMAL tag:"2|🧱|YourCompany.Reflection" %% VTH
+commit type:REVERSE %% VTH>1
+commit type:REVERSE %% VTH>2
+commit type:REVERSE %% VTH>3
+commit type:REVERSE %% VTH>4
+commit type:REVERSE %% VTH>5
+commit type:REVERSE %% VTH>6
+commit type:REVERSE %% VTH>7
+commit type:REVERSE %% VTH>8
+commit type:REVERSE %% VTH>9
+commit type:NORMAL tag:"2|🧱|YourCompany.Reflection" %% VTH
 
 checkout "5|🧱: OLTP DI ScopedRecordsProvider" %% DCH
 branch "2|🧱: DIConstructorHelper" %% DCH
@@ -680,14 +680,14 @@ commit type:REVERSE %% DCH>6
 commit type:REVERSE %% DCH>7
 commit type:REVERSE %% DCH>8
 commit type:REVERSE %% DCH>9
-%% commit type:REVERSE %% DCH>10
-%% commit type:REVERSE %% DCH>11
-%% commit type:REVERSE %% DCH>12
-%% commit type:REVERSE %% DCH>13
-%% commit type:REVERSE %% DCH>14
-%% commit type:REVERSE %% DCH>15
-%% commit type:REVERSE %% DCH>16
-%% commit type:REVERSE %% DCH>17
+commit type:REVERSE %% DCH>10
+commit type:REVERSE %% DCH>11
+commit type:REVERSE %% DCH>12
+commit type:REVERSE %% DCH>13
+commit type:REVERSE %% DCH>14
+commit type:REVERSE %% DCH>15
+commit type:REVERSE %% DCH>16
+commit type:REVERSE %% DCH>17
 %% commit type:REVERSE %% DCH>18
 %% commit type:REVERSE %% DCH>19
 %% commit type:REVERSE %% DCH>20
@@ -695,23 +695,23 @@ commit type:REVERSE %% DCH>9
 %% commit type:REVERSE %% DCH>22
 commit type:NORMAL tag:"2|🧱|YourCompany.Reflection.DI" %% DCH
 
-%% checkout "3|💾: EFPropertyExpressionsCache" %% Startup Iteration 2
-%% commit type:REVERSE %% EPEC 2>1
+checkout "3|💾: EFPropertyExpressionsCache" %% Startup Iteration 2
+commit type:REVERSE %% EPEC 2>1
 
-checkout "2|🧱: TypeAbstractionsHelper" %% GMH
-%% checkout "4|💾: EFEntityEntryPropertiesCache" %% GMH
+%% checkout "2|🧱: TypeAbstractionsHelper" %% GMH
+checkout "4|💾: EFEntityEntryPropertiesCache" %% GMH
 branch "2|🧱: GetMemberHelper" %% GMH
-%% merge "3|💾: EFPropertyExpressionsCache" %% GMH
-commit type:NORMAL tag:"2|🧱|YourCompany.Reflection" %% GMH
-%% merge "2|🧱: DIConstructorHelper" type:NORMAL tag:"2|🧱|YourCompany.Reflection" %% GMH
+merge "3|💾: EFPropertyExpressionsCache" %% GMH
+%% commit type:NORMAL tag:"2|🧱|YourCompany.Reflection" %% GMH
+merge "2|🧱: DIConstructorHelper" type:NORMAL tag:"2|🧱|YourCompany.Reflection" %% GMH
 
 checkout "3|🏠: generic OLTP use cases" %% ATL
 branch "2|🧱: AwaitTasksList" %% ATL
 commit type:REVERSE %% ATL>1
 commit type:REVERSE %% ATL>2
-%% commit type:REVERSE %% ATL>3
-%% commit type:REVERSE %% ATL>4
-%% commit type:REVERSE %% ATL>5
+commit type:REVERSE %% ATL>3
+commit type:REVERSE %% ATL>4
+commit type:REVERSE %% ATL>5
 commit type:NORMAL tag:"2|🧱|YourCompany.Threading" %% ATL
 
 checkout "4|🧱: OLTP identities are unique keys" %% SH
@@ -720,16 +720,16 @@ commit type:REVERSE %% SH>1
 commit type:REVERSE %% SH>2
 commit type:REVERSE %% SH>3
 commit type:REVERSE %% SH>4
-%% commit type:REVERSE %% SH>5
-%% commit type:REVERSE %% SH>6
-%% commit type:REVERSE %% SH>7
-%% commit type:REVERSE %% SH>8
-%% commit type:REVERSE %% SH>9
-%% commit type:REVERSE %% SH>10
-%% commit type:REVERSE %% SH>11
-%% commit type:REVERSE %% SH>12
-%% commit type:REVERSE %% SH>13
-%% commit type:REVERSE %% SH>14
+commit type:REVERSE %% SH>5
+commit type:REVERSE %% SH>6
+commit type:REVERSE %% SH>7
+commit type:REVERSE %% SH>8
+commit type:REVERSE %% SH>9
+commit type:REVERSE %% SH>10
+commit type:REVERSE %% SH>11
+commit type:REVERSE %% SH>12
+commit type:REVERSE %% SH>13
+commit type:REVERSE %% SH>14
 %% commit type:REVERSE %% SH>15
 %% commit type:REVERSE %% SH>16
 %% commit type:REVERSE %% SH>17
@@ -741,10 +741,10 @@ commit type:REVERSE %% OTS 2>1
 commit type:REVERSE %% OTS 2>2
 commit type:REVERSE %% OTS 2>3
 commit type:REVERSE %% OTS 2>4
-%% commit type:REVERSE %% OTS 2>5
-%% commit type:REVERSE %% OTS 2>6
-%% commit type:REVERSE %% OTS 2>7
-%% commit type:REVERSE %% OTS 2>8
+commit type:REVERSE %% OTS 2>5
+commit type:REVERSE %% OTS 2>6
+commit type:REVERSE %% OTS 2>7
+commit type:REVERSE %% OTS 2>8
 %% commit type:REVERSE %% OTS 2>9
 %% commit type:REVERSE %% OTS 2>10
 %% commit type:REVERSE %% OTS 2>11
@@ -758,13 +758,13 @@ merge "3|🧱: OLTP transaction structure" type:HIGHLIGHT tag:"2|🏠|oltp-ways-
 
 %% Startup Iteration 1
 
-checkout "MERGED" %% BCC
-%% checkout "2|💾: basic pluggable EFCore" %% BCC
+%% checkout "MERGED" %% BCC
+checkout "2|💾: basic pluggable EFCore" %% BCC
 branch "1|🧱: basic configurations covered" %% BCC
 commit type:REVERSE %% BCC>1
-commit type:REVERSE %% BCC>2
-commit type:REVERSE %% BCC>3
-commit type:REVERSE %% BCC>4
+%% commit type:REVERSE %% BCC>2
+%% commit type:REVERSE %% BCC>3
+%% commit type:REVERSE %% BCC>4
 commit type:HIGHLIGHT tag:"1|🧱|configuration-entry-assembly-rotating-secrets-scaling-plugins|YourCompany.Configuration" %% BCC
 
 %% checkout "3|🏠: OLTP RecordTypesCompositionMap" %% OTC
@@ -864,8 +864,8 @@ commit type:HIGHLIGHT tag:"1|🧱|configuration-entry-assembly-rotating-secrets-
 %% commit type:REVERSE %% OEP>36
 %% commit type:NORMAL tag:"1|🏠|YourCompany.OLTP.StateOwnership.EventsProducing" %% OEP
 
-%% checkout "2|🏠: OLTP transaction is limited size" %% Startup Iteration 1
-%% commit type:REVERSE %% OTILS 1>1
+checkout "2|🏠: OLTP transaction is limited size" %% Startup Iteration 1
+commit type:REVERSE %% OTILS 1>1
 %% commit type:REVERSE %% OTILS 1>2
 %% commit type:REVERSE %% OTILS 1>3
 
@@ -897,15 +897,48 @@ Now let's dive in into the entry point branches available. It's sorted
 by complexity decrease top to bottom. The first block is the current  
 solution, the latest is a template.
 
-<!-- ### Branch: oltp-di-efcore-handle-specifications-only-the-rest-is-covered
+### Branch: oltp-di-efcore-handle-specifications-only-the-rest-is-covered
 
-> Files: ### | Lines: #####  
-Pros: why do you choose this entry point  
-Cons: why it might be not enough for you
+> Files: 197 | Lines: 16989  
+Pros: out-of-the-box full-fledged persistence utilizing the linq record data builders  
+Cons: significant entry point complexity increase because of covering EFCore missing capabilities
 
 | Log | Examples | Modules |
 |-|-|-|
-| [replace_with_each_included_commit_subject](#commit-with-lower-case-subject) | <kbd> [at‑least‑one‑example‑solution‑name](examples/at-least-one-example-solution-per-commit/README.md#commit-with-lower-case-subject) </kbd><br><kbd> [extra‑example‑solution‑name](examples/extra-example-solution-name/README.md#commit-with-lower-case-subject) </kbd> | <kbd>YourCompany.Framework.Assembly.Name1 (+diff lines)</kbd><br><kbd>YourCompany.Framework.Assembly.Name2 (-diff lines)</kbd><br><kbd>YourCompany.Framework.Assembly.NameN (0 lines)</kbd> |
+| [1\|⁠🏠: the heart of OLTP is transaction](#commit-1-the-heart-of-oltp-is-transaction) | <kbd> [TODO](examples/at-least-one-example-solution-per-commit/README.md#commit-1-the-heart-of-oltp-is-transaction) </kbd> | <kbd>YourCompany.OLTP.StateOwnership (+371 lines)</kbd> |
+| [1\|⁠🧱: basic configurations covered](#commit-1-basic-configurations-covered) | <kbd> [TODO](examples/at-least-one-example-solution-per-commit/README.md#commit-1-basic-configurations-covered) </kbd> | <kbd>YourCompany.Configuration (+637 lines)</kbd> |
+| [2\|⁠🏠: OLTP transaction is limited size](#commit-2-oltp-transaction-is-limited-size) | <kbd> [TODO](examples/at-least-one-example-solution-per-commit/README.md#commit-2-oltp-transaction-is-limited-size) </kbd> | <kbd>YourCompany.OLTP.RecordsManagement (+1500 lines)</kbd> |
+| [2\|⁠🧱: StructHelper](#commit-2-structhelper) | <kbd> [TODO](examples/at-least-one-example-solution-per-commit/README.md#commit-2-structhelper) </kbd> | <kbd>YourCompany.CompilerServices (+18 lines)</kbd> |
+| [2\|⁠🧱: AwaitTasksList](#commit-2-awaittaskslist) | <kbd> [TODO](examples/at-least-one-example-solution-per-commit/README.md#commit-2-awaittaskslist) </kbd> | <kbd>YourCompany.Threading (+49 lines)</kbd> |
+| [2\|⁠🧱: GetMemberHelper](#commit-2-getmemberhelper) | <kbd> [TODO](examples/at-least-one-example-solution-per-commit/README.md#commit-2-getmemberhelper) </kbd> | <kbd>YourCompany.Reflection (+57 lines)</kbd> |
+| [2\|⁠🧱: DIConstructorHelper](#commit-2-diconstructorhelper) | <kbd> [TODO](examples/at-least-one-example-solution-per-commit/README.md#commit-2-diconstructorhelper) </kbd> | <kbd>YourCompany.Reflection.DI (+31 lines)</kbd> |
+| [2\|⁠🧱: ValueTupleHelper](#commit-2-valuetuplehelper) | <kbd> [TODO](examples/at-least-one-example-solution-per-commit/README.md#commit-2-valuetuplehelper) </kbd> | <kbd>YourCompany.Reflection (+143 lines)</kbd> |
+| [2\|⁠🧱: TypeAbstractionsHelper](#commit-2-typeabstractionshelper) | <kbd> [TODO](examples/at-least-one-example-solution-per-commit/README.md#commit-2-typeabstractionshelper) </kbd> | <kbd>YourCompany.Reflection (+26 lines)</kbd> |
+| [2\|⁠💾: basic pluggable EFCore](#commit-2-basic-pluggable-efcore) | <kbd> [efcore‑migrations](examples/efcore-migrations/README.md#commit-2-basic-pluggable-efcore) </kbd> | <kbd>YourCompany.Configuration.EFCore (+429 lines)</kbd><br><kbd>YourCompany.Configuration.EFCore.PostgreSQL (+181 lines)</kbd><br><kbd>YourCompany.Configuration.EFCore.Sqlite (+71 lines)</kbd> |
+| [2\|⁠💾: EFCore pessimistic locking](#commit-2-efcore-pessimistic-locking) | <kbd> [TODO](examples/at-least-one-example-solution-per-commit/README.md#commit-2-efcore-pessimistic-locking) </kbd> | <kbd>YourCompany.Configuration.EFCore (+222 lines)</kbd><br><kbd>YourCompany.Configuration.EFCore.PostgreSQL (+59 lines)</kbd><br><kbd>YourCompany.Configuration.EFCore.Sqlite (+47 lines)</kbd> |
+| [2\|⁠💾: EFChangeTrackerTrackGraphStrategy](#commit-2-efchangetrackertrackgraphstrategy) | <kbd> [TODO](examples/at-least-one-example-solution-per-commit/README.md#commit-2-efchangetrackertrackgraphstrategy) </kbd> | <kbd>YourCompany.Configuration.EFCore (+106 lines)</kbd> |
+| [3\|⁠🏠: OLTP RecordTypesMap](#commit-3-oltp-recordtypesmap) | <kbd> [TODO](examples/at-least-one-example-solution-per-commit/README.md#commit-3-oltp-recordtypesmap) </kbd> | <kbd>YourCompany.OLTP.StateOwnership.Reflection (+263 lines)</kbd> |
+| [3\|⁠🏠: generic OLTP use cases](#commit-3-generic-oltp-use-cases) | <kbd> [TODO](examples/at-least-one-example-solution-per-commit/README.md#commit-3-generic-oltp-use-cases) </kbd> | <kbd>YourCompany.OLTP.RecordsManagement.UseCases (+212 lines)</kbd> |
+| [3\|⁠🏠: OLTP UseCaseTypesMap](#commit-3-oltp-usecasetypesmap) | <kbd> [TODO](examples/at-least-one-example-solution-per-commit/README.md#commit-3-oltp-usecasetypesmap) </kbd> | <kbd>YourCompany.OLTP.RecordsManagement.UseCases.Reflection (+176 lines)</kbd> |
+| [3\|⁠🧱: OLTP transaction structure](#commit-3-oltp-transaction-structure) | <kbd> [TODO](examples/at-least-one-example-solution-per-commit/README.md#commit-3-oltp-transaction-structure) </kbd> | <kbd>YourCompany.OLTP.RecordsManagement (+1918 lines)</kbd> |
+| [3\|⁠💾: EFPropertyExpressionsCache](#commit-3-efpropertyexpressionscache) | <kbd> [TODO](examples/at-least-one-example-solution-per-commit/README.md#commit-3-efpropertyexpressionscache) </kbd> | <kbd>YourCompany.Configuration.EFCore (+87 lines)</kbd> |
+| [3\|⁠💾: EFCore first-class SortingKey](#commit-3-efcore-first-class-sortingkey) | <kbd> [TODO](examples/at-least-one-example-solution-per-commit/README.md#commit-3-efcore-first-class-sortingkey) </kbd> | <kbd>YourCompany.Configuration.EFCore (+2388 lines)</kbd><br><kbd>YourCompany.Configuration.EFCore.PostgreSQL (+37 lines)</kbd><br><kbd>YourCompany.Configuration.EFCore.Sqlite (+37 lines)</kbd> |
+| [4\|⁠🏠: enumerate OLTP use cases](#commit-4-enumerate-oltp-use-cases) | <kbd> [TODO](examples/at-least-one-example-solution-per-commit/README.md#commit-4-enumerate-oltp-use-cases) </kbd> | <kbd>YourCompany.OLTP.RecordsManagement.UseCases (+117 lines)</kbd> |
+| [4\|⁠🧱: OLTP identities are unique keys](#commit-4-oltp-identities-are-unique-keys) | <kbd> [TODO](examples/at-least-one-example-solution-per-commit/README.md#commit-4-oltp-identities-are-unique-keys) </kbd> | <kbd>YourCompany.OLTP.RecordsManagement.Persistence (+1642 lines)</kbd> |
+| [4\|⁠🧱: OLTP LINQ may be useful](#commit-4-oltp-linq-may-be-useful) | <kbd> [TODO](examples/at-least-one-example-solution-per-commit/README.md#commit-4-oltp-linq-may-be-useful) </kbd> | <kbd>YourCompany.OLTP.RecordsManagement.Persistence.Linq (+59 lines)</kbd> |
+| [4\|⁠💾: EFCore SortingKey reading](#commit-4-efcore-sortingkey-reading) | <kbd> [TODO](examples/at-least-one-example-solution-per-commit/README.md#commit-4-efcore-sortingkey-reading) </kbd> | <kbd>YourCompany.Configuration.EFCore (+789 lines)</kbd> |
+| [4\|⁠💾: EFEntityEntryPropertiesCache](#commit-4-efentityentrypropertiescache) | <kbd> [TODO](examples/at-least-one-example-solution-per-commit/README.md#commit-4-efentityentrypropertiescache) </kbd> | <kbd>YourCompany.Configuration.EFCore (+63 lines)</kbd> |
+| [4\|⁠💾: EFCore SortingKey ⇆ EntityEntry](#commit-4-efcore-sortingkey-entityentry) | <kbd> [TODO](examples/at-least-one-example-solution-per-commit/README.md#commit-4-efcore-sortingkey-entityentry) </kbd> | <kbd>YourCompany.Configuration.EFCore (+763 lines)</kbd> |
+| [4\|⁠💾: OLTP EFCore MetadataHelper](#commit-4-oltp-efcore-metadatahelper) | <kbd> [TODO](examples/at-least-one-example-solution-per-commit/README.md#commit-4-oltp-efcore-metadatahelper) </kbd> | <kbd>YourCompany.OLTP.StateOwnership.Reflection.EFCore (+45 lines)</kbd> |
+| [4\|⁠💾: OLTP EFCore ID generation](#commit-4-oltp-efcore-id-generation) | <kbd> [TODO](examples/at-least-one-example-solution-per-commit/README.md#commit-4-oltp-efcore-id-generation) </kbd> | <kbd>YourCompany.OLTP.StateOwnership.Reflection.EFCore (+111 lines)</kbd> |
+| [4\|⁠💾: EFEntityTypeSortingKeyTopology](#commit-4-efentitytypesortingkeytopology) | <kbd> [TODO](examples/at-least-one-example-solution-per-commit/README.md#commit-4-efentitytypesortingkeytopology) </kbd> | <kbd>YourCompany.Configuration.EFCore (+347 lines)</kbd> |
+| [5\|⁠🧱: OLTP switch to chassis](#commit-5-oltp-switch-to-chassis) | <kbd> [TODO](examples/at-least-one-example-solution-per-commit/README.md#commit-5-oltp-switch-to-chassis) </kbd> | <kbd>YourCompany.OLTP.RecordsManagement (+1 lines)</kbd><br><kbd>YourCompany.OLTP.RecordsManagement.DI (+122 lines)</kbd><br><kbd>YourCompany.OLTP.RecordsManagement.Persistence (-26 lines)</kbd><br><kbd>YourCompany.OLTP.RecordsManagement.UseCases (-117 lines)</kbd><br><kbd>YourCompany.OLTP.StateOwnership (+6 lines)</kbd> |
+| [5\|⁠🧱: OLTP DI ScopedRecordsProvider](#commit-5-oltp-di-scopedrecordsprovider) | <kbd> [TODO](examples/at-least-one-example-solution-per-commit/README.md#commit-5-oltp-di-scopedrecordsprovider) </kbd> | <kbd>YourCompany.OLTP.StateOwnership.Reflection.DI (+120 lines)</kbd> |
+| [5\|⁠🧱: OLTP DI ScopedUseCasesProvider](#commit-5-oltp-di-scopedusecasesprovider) | <kbd> [TODO](examples/at-least-one-example-solution-per-commit/README.md#commit-5-oltp-di-scopedusecasesprovider) </kbd> | <kbd>YourCompany.OLTP.RecordsManagement.UseCases.Reflection.DI (+69 lines)</kbd> |
+| [5\|⁠🧱: OLTP DI inheritance free repo](#commit-5-oltp-di-inheritance-free-repo) | <kbd> [TODO](examples/at-least-one-example-solution-per-commit/README.md#commit-5-oltp-di-inheritance-free-repo) </kbd> | <kbd>YourCompany.OLTP.RecordsManagement.DI (+444 lines)</kbd> |
+| [5\|⁠💾: OLTP EFCore readonly](#commit-5-oltp-efcore-readonly) | <kbd> [TODO](examples/at-least-one-example-solution-per-commit/README.md#commit-5-oltp-efcore-readonly) </kbd> | <kbd>YourCompany.OLTP.RecordsManagement.Persistence.Linq.EFCore (+2256 lines)</kbd> |
+| [6\|⁠💾: OLTP EFCore finalized](#commit-6-oltp-efcore-finalized) | <kbd> [TODO](examples/at-least-one-example-solution-per-commit/README.md#commit-6-oltp-efcore-finalized) </kbd> | <kbd>YourCompany.OLTP.RecordsManagement.Persistence.Linq.EFCore (+1108 lines)</kbd> |
+| [7\|⁠🧱: OLTP DI EFCore switch to chassis](#commit-7-oltp-di-efcore-switch-to-chassis) | <kbd> [TODO](examples/at-least-one-example-solution-per-commit/README.md#commit-7-oltp-di-efcore-switch-to-chassis) </kbd> | <kbd>YourCompany.Configuration.EFCore (+4 lines)</kbd><br><kbd>YourCompany.OLTP.RecordsManagement.Persistence.Linq.EFCore (+1 lines)</kbd> |
 
 <!-- ### Branch: oltp-di-efcore-handle-specifications-only-the-rest-is-covered END -->
 
@@ -2207,15 +2240,76 @@ within its use case strategies, i.e. time and context bound.
 
 <!-- ### Commit: 6|💾: OLTP EFCore finalized END -->
 
-<!-- ### Commit: 7|🧱: OLTP DI EFCore switch to chassis
+### Commit: 7|🧱: OLTP DI EFCore switch to chassis
 
 <table><tbody><tr><td>
 
-X files changed, Y insertions(+), Z deletions(-)<br>
-<sub><sub>src/YourCompany.Module/</sub></sub><br>
-<kbd> +++++++ NNN |⁠ [File.cs                                                                                                        ](src/YourCompany.Configuration/EnvironmentConventions.cs)</kbd><br>
+51 files changed, 226 insertions(+), 221 deletions(-)<br>
+<sub><sub>src/YourCompany.OLTP.RecordsManagement.Persistence.Linq.EFCore/</sub></sub><br>
+<kbd> +++‑‑‑‑ 42  |⁠ [YourCompanyDbContextLockingRecordDataReader.cs                                                                 ](src/YourCompany.OLTP.RecordsManagement.Persistence.Linq.EFCore/YourCompanyDbContextLockingRecordDataReader.cs)</kbd><br>
+<kbd>   ++‑‑‑ 30  |⁠ [YourCompanyDbContextLockingRecordDataReader.SingleEntityQuery.ByIds.cs                                         ](src/YourCompany.OLTP.RecordsManagement.Persistence.Linq.EFCore/YourCompanyDbContextLockingRecordDataReader.SingleEntityQuery.ByIds.cs)</kbd><br>
+<kbd>     +‑‑ 16  |⁠ [YourCompanyDbContextLockingRecordDataReader.SingleEntityQuery.WithoutIds.After.cs                              ](src/YourCompany.OLTP.RecordsManagement.Persistence.Linq.EFCore/YourCompanyDbContextLockingRecordDataReader.SingleEntityQuery.WithoutIds.After.cs)</kbd><br>
+<kbd>     +‑‑ 16  |⁠ [YourCompanyDbContextLockingRecordDataReader.SingleEntityQuery.WithoutIds.NoSorting.cs                          ](src/YourCompany.OLTP.RecordsManagement.Persistence.Linq.EFCore/YourCompanyDbContextLockingRecordDataReader.SingleEntityQuery.WithoutIds.NoSorting.cs)</kbd><br>
+<kbd>      +‑ 12  |⁠ [YourCompanyDbContextLockingRecordDataReader.SingleEntityQuery.ReadBeforeModifying.cs                           ](src/YourCompany.OLTP.RecordsManagement.Persistence.Linq.EFCore/YourCompanyDbContextLockingRecordDataReader.SingleEntityQuery.ReadBeforeModifying.cs)</kbd><br>
+<kbd>      +‑ 10  |⁠ [YourCompanyDbContext.PessimisticLocking.cs                                                                     ](src/YourCompany.OLTP.RecordsManagement.Persistence.Linq.EFCore/YourCompanyDbContext.PessimisticLocking.cs)</kbd><br>
+<kbd>      +‑ 10  |⁠ [YourCompanyDbContextFactory.cs                                                                                 ](src/YourCompany.OLTP.RecordsManagement.Persistence.Linq.EFCore/YourCompanyDbContextFactory.cs)</kbd><br>
+<kbd>      +‑ 8   |⁠ [YourCompanyDbContextLockingRecordDataReader.SingleEntityQuery.ReadBeforeModifying.Modifying.cs                 ](src/YourCompany.OLTP.RecordsManagement.Persistence.Linq.EFCore/YourCompanyDbContextLockingRecordDataReader.SingleEntityQuery.ReadBeforeModifying.Modifying.cs)</kbd><br>
+<kbd>      +‑ 6   |⁠ [YourCompanyDbContextLockingRecordDataReader.SingleEntityQuery.ByIds.ResolvePrivateKeys.cs                      ](src/YourCompany.OLTP.RecordsManagement.Persistence.Linq.EFCore/YourCompanyDbContextLockingRecordDataReader.SingleEntityQuery.ByIds.ResolvePrivateKeys.cs)</kbd><br>
+<kbd>      +‑ 6   |⁠ [YourCompanyDbContextLockingRecordDataReader.SingleEntityQuery.ReadBeforeModifying.Finishing.cs                 ](src/YourCompany.OLTP.RecordsManagement.Persistence.Linq.EFCore/YourCompanyDbContextLockingRecordDataReader.SingleEntityQuery.ReadBeforeModifying.Finishing.cs)</kbd><br>
+<kbd>      +‑ 6   |⁠ [YourCompanyDbContextLockingRecordDataReader.SingleEntityQuery.ByIds.ResolvePrivateKeys.FromNatural.cs          ](src/YourCompany.OLTP.RecordsManagement.Persistence.Linq.EFCore/YourCompanyDbContextLockingRecordDataReader.SingleEntityQuery.ByIds.ResolvePrivateKeys.FromNatural.cs)</kbd><br>
+<kbd>      +‑ 6   |⁠ [YourCompanyDbContextLockingRecordDataReader.SingleEntityQuery.WithoutIds.cs                                    ](src/YourCompany.OLTP.RecordsManagement.Persistence.Linq.EFCore/YourCompanyDbContextLockingRecordDataReader.SingleEntityQuery.WithoutIds.cs)</kbd><br>
+<kbd>      +‑ 6   |⁠ [YourCompanyDbContextLockingRecordDataReader.SingleEntityQuery.cs                                               ](src/YourCompany.OLTP.RecordsManagement.Persistence.Linq.EFCore/YourCompanyDbContextLockingRecordDataReader.SingleEntityQuery.cs)</kbd><br>
+<kbd>      +‑ 6   |⁠ [YourCompanyDbContextLockingRecordDataReader.SingleEntityQuery.ByIds.ResolvePrivateKeys.FromPublic.cs           ](src/YourCompany.OLTP.RecordsManagement.Persistence.Linq.EFCore/YourCompanyDbContextLockingRecordDataReader.SingleEntityQuery.ByIds.ResolvePrivateKeys.FromPublic.cs)</kbd><br>
+<kbd>      +‑ 4   |⁠ [YourCompanyDbContext.DelegatedPrimaryKeys.cs                                                                   ](src/YourCompany.OLTP.RecordsManagement.Persistence.Linq.EFCore/YourCompanyDbContext.DelegatedPrimaryKeys.cs)</kbd><br>
+<kbd>      +‑ 4   |⁠ [YourCompanyDbContextRecordsDataAccessAdapter.cs                                                                ](src/YourCompany.OLTP.RecordsManagement.Persistence.Linq.EFCore/YourCompanyDbContextRecordsDataAccessAdapter.cs)</kbd><br>
+<kbd>      +‑ 3   |⁠ [YourCompanyDbContext.cs                                                                                        ](src/YourCompany.OLTP.RecordsManagement.Persistence.Linq.EFCore/YourCompanyDbContext.cs)</kbd><br>
+<kbd>      +‑ 2   |⁠ [YourCompanyDbContext.DbContextLocking.cs                                                                       ](src/YourCompany.OLTP.RecordsManagement.Persistence.Linq.EFCore/YourCompanyDbContext.DbContextLocking.cs)</kbd><br>
+<kbd>      +‑ 2   |⁠ [YourCompanyDbContextLockingRecordDataReader.FactoriesCache.cs                                                  ](src/YourCompany.OLTP.RecordsManagement.Persistence.Linq.EFCore/YourCompanyDbContextLockingRecordDataReader.FactoriesCache.cs)</kbd><br>
+<kbd>      +‑ 2   |⁠ [YourCompanyDbContext.QueryableRecordDataTypes.cs                                                               ](src/YourCompany.OLTP.RecordsManagement.Persistence.Linq.EFCore/YourCompanyDbContext.QueryableRecordDataTypes.cs)</kbd><br>
+<sub><sub>src/YourCompany.Configuration.EFCore/CollationAwareSorting/ChangeTracking/</sub></sub><br>
+<kbd>     +‑‑ 16  |⁠ [EntityEntryPropertiesCopyingVisitor.NonGeneric.cs                                                              ](src/YourCompany.Configuration.EFCore/CollationAwareSorting/ChangeTracking/EntityEntryPropertiesCopyingVisitor.NonGeneric.cs)</kbd><br>
+<kbd>     +‑‑ 16  |⁠ [EntityEntryPropertiesCopyingVisitor.Generic.cs                                                                 ](src/YourCompany.Configuration.EFCore/CollationAwareSorting/ChangeTracking/EntityEntryPropertiesCopyingVisitor.Generic.cs)</kbd><br>
+<kbd>      +‑ 10  |⁠ [EntityEntryPropertiesSettingVisitor.NonGeneric.cs                                                              ](src/YourCompany.Configuration.EFCore/CollationAwareSorting/ChangeTracking/EntityEntryPropertiesSettingVisitor.NonGeneric.cs)</kbd><br>
+<kbd>      +‑ 10  |⁠ [EntityEntrySortingKeyCreatingVisitor.Generic.cs                                                                ](src/YourCompany.Configuration.EFCore/CollationAwareSorting/ChangeTracking/EntityEntrySortingKeyCreatingVisitor.Generic.cs)</kbd><br>
+<kbd>      +‑ 10  |⁠ [EntityEntryPropertiesSettingVisitor.Generic.cs                                                                 ](src/YourCompany.Configuration.EFCore/CollationAwareSorting/ChangeTracking/EntityEntryPropertiesSettingVisitor.Generic.cs)</kbd><br>
+<kbd>      +‑ 8   |⁠ [EntityEntrySortingKeyCreatingVisitor.NonGeneric.cs                                                             ](src/YourCompany.Configuration.EFCore/CollationAwareSorting/ChangeTracking/EntityEntrySortingKeyCreatingVisitor.NonGeneric.cs)</kbd><br>
+<kbd>      +‑ 6   |⁠ [EntityEntrySortingKeyCreatingVisitor.cs                                                                        ](src/YourCompany.Configuration.EFCore/CollationAwareSorting/ChangeTracking/EntityEntrySortingKeyCreatingVisitor.cs)</kbd><br>
+<kbd>      +‑ 2   |⁠ [EntityEntryPropertiesCopyingVisitor.cs                                                                         ](src/YourCompany.Configuration.EFCore/CollationAwareSorting/ChangeTracking/EntityEntryPropertiesCopyingVisitor.cs)</kbd><br>
+<kbd>      +‑ 2   |⁠ [EntityEntryPropertiesSettingVisitor.cs                                                                         ](src/YourCompany.Configuration.EFCore/CollationAwareSorting/ChangeTracking/EntityEntryPropertiesSettingVisitor.cs)</kbd><br>
+<sub><sub>src/YourCompany.Configuration.EFCore/CollationAwareSorting/</sub></sub><br>
+<kbd>    ++‑‑ 24  |⁠ [SortingKeyPropertiesVisitor.cs                                                                                 ](src/YourCompany.Configuration.EFCore/CollationAwareSorting/SortingKeyPropertiesVisitor.cs)</kbd><br>
+<kbd>     +‑‑ 14  |⁠ [OrElseEqualityKeys.cs                                                                                          ](src/YourCompany.Configuration.EFCore/CollationAwareSorting/OrElseEqualityKeys.cs)</kbd><br>
+<kbd>      +‑ 10  |⁠ [SortingKey.Querying.cs                                                                                         ](src/YourCompany.Configuration.EFCore/CollationAwareSorting/SortingKey.Querying.cs)</kbd><br>
+<kbd>      +‑ 10  |⁠ [OrElseEqualityKeys.Querying.cs                                                                                 ](src/YourCompany.Configuration.EFCore/CollationAwareSorting/OrElseEqualityKeys.Querying.cs)</kbd><br>
+<kbd>      +‑ 4   |⁠ [SortingKey.Visiting.cs                                                                                         ](src/YourCompany.Configuration.EFCore/CollationAwareSorting/SortingKey.Visiting.cs)</kbd><br>
+<kbd>      +‑ 4   |⁠ [ICollationCompatibleComparersProvider.cs                                                                       ](src/YourCompany.Configuration.EFCore/CollationAwareSorting/ICollationCompatibleComparersProvider.cs)</kbd><br>
+<kbd>      +‑ 2   |⁠ [OrElseEqualityKeys.ToString.cs                                                                                 ](src/YourCompany.Configuration.EFCore/CollationAwareSorting/OrElseEqualityKeys.ToString.cs)</kbd><br>
+<kbd>      +‑ 2   |⁠ [SortingKeyPredicatesBuilder.cs                                                                                 ](src/YourCompany.Configuration.EFCore/CollationAwareSorting/SortingKeyPredicatesBuilder.cs)</kbd><br>
+<kbd>      +‑ 2   |⁠ [SortingKey.Building.cs                                                                                         ](src/YourCompany.Configuration.EFCore/CollationAwareSorting/SortingKey.Building.cs)</kbd><br>
+<kbd>      +‑ 2   |⁠ [SortingKey.ValueHolding.ConvertedFrom.cs                                                                       ](src/YourCompany.Configuration.EFCore/CollationAwareSorting/SortingKey.ValueHolding.ConvertedFrom.cs)</kbd><br>
+<kbd>      +‑ 2   |⁠ [SortingKey.ValueHolding.cs                                                                                     ](src/YourCompany.Configuration.EFCore/CollationAwareSorting/SortingKey.ValueHolding.cs)</kbd><br>
+<sub><sub>src/YourCompany.OLTP.RecordsManagement.Persistence.Linq.EFCore/CollationAwareSorting/</sub></sub><br>
+<kbd>     +‑‑ 16  |⁠ [EntityEntryModifyingVisitor.cs                                                                                 ](src/YourCompany.OLTP.RecordsManagement.Persistence.Linq.EFCore/CollationAwareSorting/EntityEntryModifyingVisitor.cs)</kbd><br>
+<kbd>      +‑ 10  |⁠ [EntityEntryModifyingPair.cs                                                                                    ](src/YourCompany.OLTP.RecordsManagement.Persistence.Linq.EFCore/CollationAwareSorting/EntityEntryModifyingPair.cs)</kbd><br>
+<sub><sub>src/YourCompany.Configuration.EFCore/ChangeTracking/</sub></sub><br>
+<kbd>     +‑‑ 14  |⁠ [EFChangeTrackerTrackGraphStrategy.cs                                                                           ](src/YourCompany.Configuration.EFCore/ChangeTracking/EFChangeTrackerTrackGraphStrategy.cs)</kbd><br>
+<kbd>      +‑ 6   |⁠ [EFEntityEntryPropertiesCache.cs                                                                                ](src/YourCompany.Configuration.EFCore/ChangeTracking/EFEntityEntryPropertiesCache.cs)</kbd><br>
+<sub><sub>src/YourCompany.Configuration.EFCore/ExpressionsCaching/</sub></sub><br>
+<kbd>      +‑ 12  |⁠ [EFPropertyExpressionsCache.FromParameter.cs                                                                    ](src/YourCompany.Configuration.EFCore/ExpressionsCaching/EFPropertyExpressionsCache.FromParameter.cs)</kbd><br>
+<kbd>      +‑ 8   |⁠ [EFPropertyExpressionsCache.cs                                                                                  ](src/YourCompany.Configuration.EFCore/ExpressionsCaching/EFPropertyExpressionsCache.cs)</kbd><br>
+<sub><sub>src/YourCompany.Configuration.EFCore/</sub></sub><br>
+<kbd>      +‑ 8   |⁠ [YourCompanyDbContextFactory.cs                                                                                 ](src/YourCompany.Configuration.EFCore/YourCompanyDbContextFactory.cs)</kbd><br>
+<kbd>      +‑ 6   |⁠ [YourCompanyDbContext.cs                                                                                        ](src/YourCompany.Configuration.EFCore/YourCompanyDbContext.cs)</kbd><br>
+<kbd>      +‑ 4   |⁠ [YourCompanyDbContext.PessimisticLocking.cs                                                                     ](src/YourCompany.Configuration.EFCore/YourCompanyDbContext.PessimisticLocking.cs)</kbd><br>
+<sub><sub>src/YourCompany.Configuration.EFCore/PessimisticLocking/</sub></sub><br>
+<kbd>      +‑ 8   |⁠ [PessimisticLockingUpdateInterceptionContext.cs                                                                 ](src/YourCompany.Configuration.EFCore/PessimisticLocking/PessimisticLockingUpdateInterceptionContext.cs)</kbd><br>
+<sub><sub>src/YourCompany.Configuration.EFCore/CollationAwareSorting/Metadata/</sub></sub><br>
+<kbd>      +‑ 2   |⁠ [EFEntityTypeSortingKeyTopology.cs                                                                              ](src/YourCompany.Configuration.EFCore/CollationAwareSorting/Metadata/EFEntityTypeSortingKeyTopology.cs)</kbd><br>
 
-Commit body is multiline and compliant to markdown formatting 💥
+We continue to internalize public classes and methods previously  
+open for overriding per project and for using extra capabilites  
+implemented over original EFCore. The rationale may be found in the  
+earlier commit.
 
 </td></tr></tbody></table>
 

@@ -7,7 +7,7 @@ namespace YourCompany.OLTP.RecordsManagement.Persistence.Linq.EFCore
 {
     public partial class YourCompanyDbContext<TConfiguration>
     {
-        public void SetExplicitLastModifiedAtPropertyIfUnset<TRecordData, TQueryableRecordData>(
+        internal void SetExplicitLastModifiedAtPropertyIfUnset<TRecordData, TQueryableRecordData>(
             EntityEntry<TQueryableRecordData> entry)
             where TRecordData : class
             where TQueryableRecordData : class, TRecordData
@@ -20,7 +20,7 @@ namespace YourCompany.OLTP.RecordsManagement.Persistence.Linq.EFCore
                 SetExplicitLastModifiedAtPropertyIfUnset<TRecordData, TQueryableRecordData>(entry, lastModifiedAtProperty);
         }
 
-        public virtual void SetExplicitLastModifiedAtPropertyIfUnset<TRecordData, TQueryableRecordData>(
+        internal virtual void SetExplicitLastModifiedAtPropertyIfUnset<TRecordData, TQueryableRecordData>(
             EntityEntry<TQueryableRecordData> entry, IReadOnlyProperty lastModifiedAtProperty)
             where TRecordData : class
             where TQueryableRecordData : class, TRecordData
@@ -69,7 +69,7 @@ namespace YourCompany.OLTP.RecordsManagement.Persistence.Linq.EFCore
             }
         }
 
-        protected IReadOnlyProperty GetLastModifiedAtProperty<TRecordData, TQueryableRecordData>(
+        internal IReadOnlyProperty GetLastModifiedAtProperty<TRecordData, TQueryableRecordData>(
             IReadOnlyEntityType entityType)
             where TRecordData : class
             where TQueryableRecordData : class, TRecordData
@@ -79,7 +79,7 @@ namespace YourCompany.OLTP.RecordsManagement.Persistence.Linq.EFCore
             return entityType.FindProperty(lastModifiedAtPropertyName) ?? throw new ApplicationException("lastModifiedAtProperty == null");
         }
 
-        protected virtual string GetLastModifiedAtPropertyName(Type recordDataType)
+        internal virtual string GetLastModifiedAtPropertyName(Type recordDataType)
         {
             if (recordDataType == null) throw new ArgumentNullException(nameof(recordDataType));
             _ = GetQueryableRecordDataType(recordDataType);
@@ -90,7 +90,7 @@ namespace YourCompany.OLTP.RecordsManagement.Persistence.Linq.EFCore
             return lastModifiedAtPropertyName ?? throw new ApplicationException("lastModifiedAtPropertyName == null");
         }
 
-        protected virtual string GetLastModifiedAtColumnName(Type recordDataType)
+        internal virtual string GetLastModifiedAtColumnName(Type recordDataType)
         {
             if (recordDataType == null) throw new ArgumentNullException(nameof(recordDataType));
             _ = GetQueryableRecordDataType(recordDataType);

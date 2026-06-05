@@ -12,8 +12,9 @@ namespace YourCompany.OLTP.RecordsManagement.Persistence.Linq.EFCore
             YourCompany.Configuration.EFCore.YourCompanyDbContext<TConfiguration>.ConfiguratorsLoadingContext;
 
         protected IRecordDataQueryBuildersProvider RuntimeQueryBuilders { get; }
+        protected internal Type CreatedForRecordDataType { get; internal set; }
 
-        public YourCompanyDbContext(
+        internal YourCompanyDbContext(
             YourCompanyDbContextConfiguratorsLoadingContext configuratorsLoadingContext,
             IReadOnlyList<Configuration.EFCore.YourCompanyDbContextConfigurator> configurators,
             IRecordDataQueryBuildersProvider runtimeQueryBuilders)

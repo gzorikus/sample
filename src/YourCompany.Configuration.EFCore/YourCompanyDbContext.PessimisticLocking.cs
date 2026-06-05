@@ -6,7 +6,7 @@ namespace YourCompany.Configuration.EFCore
 {
     public partial class YourCompanyDbContext<TConfiguration>
     {
-        public PessimisticLockingUpdateInterceptionContext StartPessimisticLockingInterception<TId>(
+        internal PessimisticLockingUpdateInterceptionContext StartPessimisticLockingInterception<TId>(
             Type entityType,
             IReadOnlyList<TId> ids,
             string lastModifiedAtColumnName = PessimisticLockingUpdateInterceptionContext.DefaultLastModifiedAtColumnName)
@@ -21,7 +21,7 @@ namespace YourCompany.Configuration.EFCore
             return context;
         }
 
-        public PessimisticLockingUpdateInterceptionContext StartPessimisticLockingInterception<TId>(
+        internal PessimisticLockingUpdateInterceptionContext StartPessimisticLockingInterception<TId>(
             string entityName,
             IReadOnlyList<TId> ids,
             string lastModifiedAtColumnName = PessimisticLockingUpdateInterceptionContext.DefaultLastModifiedAtColumnName)

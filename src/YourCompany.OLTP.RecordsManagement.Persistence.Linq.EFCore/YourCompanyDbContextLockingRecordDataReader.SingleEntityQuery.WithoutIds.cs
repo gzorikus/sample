@@ -10,14 +10,14 @@ using PrimaryKey = YourCompany.OLTP.RecordsManagement.Persistence
 
 namespace YourCompany.OLTP.RecordsManagement.Persistence.Linq.EFCore
 {
-    public abstract partial class YourCompanyDbContextLockingRecordDataReader<TConfiguration>
+    internal abstract partial class YourCompanyDbContextLockingRecordDataReader<TConfiguration>
         where TConfiguration : YourCompanyDbContextConfiguration, new()
     {
-        public abstract partial class SingleEntityQuery<TRecordData, TQueryableRecordData>
+        internal abstract partial class SingleEntityQuery<TRecordData, TQueryableRecordData>
             where TRecordData : class
             where TQueryableRecordData : class, TRecordData
         {
-            public abstract partial class WithoutIds : SingleEntityQuery<TRecordData, TQueryableRecordData>,
+            internal abstract partial class WithoutIds : SingleEntityQuery<TRecordData, TQueryableRecordData>,
                 RecordsDataAccess.IFilterBeforeRead
             {
                 private IQueryable<TQueryableRecordData> _queryable;

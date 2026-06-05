@@ -10,7 +10,7 @@ using PrimaryKey = YourCompany.OLTP.RecordsManagement.Persistence
 
 namespace YourCompany.OLTP.RecordsManagement.Persistence.Linq.EFCore
 {
-    public abstract partial class YourCompanyDbContextLockingRecordDataReader<TConfiguration>
+    internal abstract partial class YourCompanyDbContextLockingRecordDataReader<TConfiguration>
         where TConfiguration : YourCompanyDbContextConfiguration, new()
     {
         internal interface IByIdsSetSkipMissing
@@ -18,26 +18,26 @@ namespace YourCompany.OLTP.RecordsManagement.Persistence.Linq.EFCore
             bool SkipMissing { set; }
         }
 
-        public abstract partial class SingleEntityQuery<TRecordData, TQueryableRecordData>
+        internal abstract partial class SingleEntityQuery<TRecordData, TQueryableRecordData>
         {
-            public new abstract partial class ByIds : SingleEntityQuery<TRecordData, TQueryableRecordData>,
+            internal new abstract partial class ByIds : SingleEntityQuery<TRecordData, TQueryableRecordData>,
                 RecordsDataAccess.IReadOnly<PrimaryKey>,
                 RecordsDataAccess.IReadIdentity<PrimaryKey>
             {
-                protected abstract bool SkipMissing { get; }
+                internal abstract bool SkipMissing { get; }
 
                 RecordsDataAccess.IReadIdentity<PrimaryKey> RecordsDataAccess.IReadOnly<PrimaryKey>.Next => this;
                 RecordsDataAccess.IFinish RecordsDataAccess.IReadIdentity<PrimaryKey>.Next => this;
 
                 private ByIds(YourCompanyDbContext<TConfiguration> context) : base(context) { }
 
-                public override RecordsDataAccess.IReadOnly<PrimaryKey>
+                internal override RecordsDataAccess.IReadOnly<PrimaryKey>
                     ForReadOnlyByIdsWithoutRecordsData() => (this, ReadOnly = true, WithoutRecordsData = true).Item1;
 
-                public override RecordsDataAccess.IReadOnly<PrimaryKey>
+                internal override RecordsDataAccess.IReadOnly<PrimaryKey>
                     ForReadOnlyByIdsWithRecordsData() => (this, ReadOnly = true, WithoutRecordsData = false).Item1;
 
-                public override RecordsDataAccess.IReadBeforeModifying<PrimaryKey>
+                internal override RecordsDataAccess.IReadBeforeModifying<PrimaryKey>
                     ForModifyingAfterReadingByIds()
                         => ((RecordsDataAccess.IReadBeforeModifying<PrimaryKey>)null,
                             ReadOnly = false,
@@ -108,14 +108,14 @@ namespace YourCompany.OLTP.RecordsManagement.Persistence.Linq.EFCore
                     }
                 }
 
-                public class WithoutForcedReadIfModifying : ByIds
+                internal class WithoutForcedReadIfModifying : ByIds
                 {
                     private readonly IReadOnlyList<PrimaryKey> _primaryKeys;
 
-                    public override IReadOnlyList<PrimaryKey> PrimaryKeys => _primaryKeys;
-                    protected override bool SkipMissing => false;
+                    internal override IReadOnlyList<PrimaryKey> PrimaryKeys => _primaryKeys;
+                    internal override bool SkipMissing => false;
 
-                    protected internal WithoutForcedReadIfModifying(
+                    internal WithoutForcedReadIfModifying(
                         YourCompanyDbContext<TConfiguration> context, IReadOnlyList<PrimaryKey> ids)
                         : base(context)
                     {
@@ -129,17 +129,17 @@ namespace YourCompany.OLTP.RecordsManagement.Persistence.Linq.EFCore
                         => throw new ApplicationException(nameof(WithoutForcedReadIfModifying));
                 }
 
-                public class WithForcedReadIfModifying : ByIds, IByIdsSetSkipMissing
+                internal class WithForcedReadIfModifying : ByIds, IByIdsSetSkipMissing
                 {
                     private readonly IReadOnlyList<PrimaryKey> _primaryKeys;
                     private readonly IList<PrimaryKey> _primaryKeysEditableReference;
                     private bool _skipMissing;
 
-                    public override IReadOnlyList<PrimaryKey> PrimaryKeys => _primaryKeys;
+                    internal override IReadOnlyList<PrimaryKey> PrimaryKeys => _primaryKeys;
                     bool IByIdsSetSkipMissing.SkipMissing { set => _skipMissing = value; }
-                    protected override bool SkipMissing => _skipMissing;
+                    internal override bool SkipMissing => _skipMissing;
 
-                    protected internal WithForcedReadIfModifying(
+                    internal WithForcedReadIfModifying(
                         YourCompanyDbContext<TConfiguration> context, IReadOnlyList<Identity> ids)
                         : base(context)
                     {

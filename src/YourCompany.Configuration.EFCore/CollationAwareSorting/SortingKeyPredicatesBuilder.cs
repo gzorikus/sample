@@ -156,7 +156,7 @@ namespace YourCompany.Configuration.EFCore.CollationAwareSorting
             return Expression.Equal(property, value);
         }
 
-        public override void ResetVisitState()
+        internal override void ResetVisitState()
         {
             base.ResetVisitState();
             BuildingPredicateKind = PredicateKind.Unspecified;

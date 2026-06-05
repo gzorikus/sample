@@ -9,7 +9,7 @@ using PrimaryKey = YourCompany.OLTP.RecordsManagement.Persistence
 
 namespace YourCompany.OLTP.RecordsManagement.Persistence.Linq.EFCore
 {
-    public abstract partial class YourCompanyDbContextLockingRecordDataReader<TConfiguration>
+    internal abstract partial class YourCompanyDbContextLockingRecordDataReader<TConfiguration>
         : RecordsDataAccess.IReadOnly,
         RecordsDataAccess.IFinish
         where TConfiguration : YourCompanyDbContextConfiguration, new()
@@ -18,16 +18,16 @@ namespace YourCompany.OLTP.RecordsManagement.Persistence.Linq.EFCore
         private TaskCompletionSource _contextLock;
         private bool _preventFurtherLockingByOriginalReader;
 
-        public bool ContextIsLocked => _contextLock != null;
-        public bool ReadOnly { get; private set; }
-        public bool WithoutRecordsData { get; private set; }
+        internal bool ContextIsLocked => _contextLock != null;
+        internal bool ReadOnly { get; private set; }
+        internal bool WithoutRecordsData { get; private set; }
 
-        public abstract IReadOnlyList<PrimaryKey> PrimaryKeys { get; }
+        internal abstract IReadOnlyList<PrimaryKey> PrimaryKeys { get; }
 
-        protected YourCompanyDbContextLockingRecordDataReader(YourCompanyDbContext<TConfiguration> context)
+        internal YourCompanyDbContextLockingRecordDataReader(YourCompanyDbContext<TConfiguration> context)
             => _context = context ?? throw new ArgumentNullException(nameof(context));
 
-        public static YourCompanyDbContextLockingRecordDataReader<TConfiguration>
+        internal static YourCompanyDbContextLockingRecordDataReader<TConfiguration>
             ByIdsWithoutForcedReadIfModifying(
                 Type recordDataType,
                 Type queryableRecordDataType,
@@ -35,7 +35,7 @@ namespace YourCompany.OLTP.RecordsManagement.Persistence.Linq.EFCore
                 IReadOnlyList<PrimaryKey> ids)
                 => FactoriesCache.ByIdsWithoutForcedReadIfModifying(recordDataType, queryableRecordDataType, context, ids);
 
-        public static YourCompanyDbContextLockingRecordDataReader<TConfiguration>
+        internal static YourCompanyDbContextLockingRecordDataReader<TConfiguration>
             ByIds(
                 Type recordDataType,
                 Type queryableRecordDataType,
@@ -49,7 +49,7 @@ namespace YourCompany.OLTP.RecordsManagement.Persistence.Linq.EFCore
             return byIds;
         }
 
-        public static YourCompanyDbContextLockingRecordDataReader<TConfiguration>
+        internal static YourCompanyDbContextLockingRecordDataReader<TConfiguration>
             After(
                 Type recordDataType,
                 Type queryableRecordDataType,
@@ -58,24 +58,24 @@ namespace YourCompany.OLTP.RecordsManagement.Persistence.Linq.EFCore
                 Identity afterId)
                 => FactoriesCache.After(recordDataType, queryableRecordDataType, context, afterId);
 
-        public static YourCompanyDbContextLockingRecordDataReader<TConfiguration>
+        internal static YourCompanyDbContextLockingRecordDataReader<TConfiguration>
             NoSorting(Type recordDataType, Type queryableRecordDataType, YourCompanyDbContext<TConfiguration> context)
                 => FactoriesCache.NoSorting(recordDataType, queryableRecordDataType, context);
 
-        public virtual RecordsDataAccess.IReadOnly<PrimaryKey> ForReadOnlyByIdsWithoutRecordsData() => null;
-        public virtual RecordsDataAccess.IReadOnly<PrimaryKey> ForReadOnlyByIdsWithRecordsData() => null;
-        public virtual RecordsDataAccess.IReadBeforeModifying<PrimaryKey> ForModifyingAfterReadingByIds() => null;
+        internal virtual RecordsDataAccess.IReadOnly<PrimaryKey> ForReadOnlyByIdsWithoutRecordsData() => null;
+        internal virtual RecordsDataAccess.IReadOnly<PrimaryKey> ForReadOnlyByIdsWithRecordsData() => null;
+        internal virtual RecordsDataAccess.IReadBeforeModifying<PrimaryKey> ForModifyingAfterReadingByIds() => null;
 
-        public virtual RecordsDataAccess.IReadOnlyWithoutIds<PrimaryKey.WithoutExtraValues>
+        internal virtual RecordsDataAccess.IReadOnlyWithoutIds<PrimaryKey.WithoutExtraValues>
             ForReadOnlyWithoutIdsWithoutRecordsData() => null;
 
-        public virtual RecordsDataAccess.IReadOnlyWithoutIds<PrimaryKey.AfterAlternateSorting>
+        internal virtual RecordsDataAccess.IReadOnlyWithoutIds<PrimaryKey.AfterAlternateSorting>
             ForReadOnlyWithoutIdsWithRecordsDataAfterAlternateSorting() => null;
 
-        public virtual RecordsDataAccess.IReadOnlyWithoutIds<PrimaryKey.WithoutExtraValues>
+        internal virtual RecordsDataAccess.IReadOnlyWithoutIds<PrimaryKey.WithoutExtraValues>
             ForReadOnlyWithoutIdsWithRecordsDataWithoutExtraValues() => null;
 
-        public bool FilterAfterSortingWithoutIds(object specification)
+        internal bool FilterAfterSortingWithoutIds(object specification)
         {
             if (specification == null) throw new ArgumentNullException(nameof(specification));
             EnsureNoContextLock();
@@ -105,7 +105,7 @@ namespace YourCompany.OLTP.RecordsManagement.Persistence.Linq.EFCore
             }
         }
 
-        public (
+        internal (
             YourCompanyDbContextLockingRecordDataReader<TConfiguration>,
             RecordsDataAccess.IReadBeforeModifying<TPrimaryKey>)
             BeforeModifying<TPrimaryKey>(
@@ -120,7 +120,7 @@ namespace YourCompany.OLTP.RecordsManagement.Persistence.Linq.EFCore
             return (wrapped, (RecordsDataAccess.IReadBeforeModifying<TPrimaryKey>)wrapped);
         }
 
-        public virtual Task<int> ReadAndLockForChangesPersisting(
+        internal virtual Task<int> ReadAndLockForChangesPersisting(
             int batchSize, int recordsCountToSkip, CancellationToken cancellationToken)
         {
             EnsureUsedByModifyingWrapperOnly();
@@ -200,14 +200,14 @@ namespace YourCompany.OLTP.RecordsManagement.Persistence.Linq.EFCore
 
         protected abstract object GetExistingRecordDataIfReadByPrivateKey(long primaryKey);
 
-        public Task LockContext()
+        internal Task LockContext()
         {
             EnsureNoContextLock();
             _contextLock = new TaskCompletionSource();
             return _context.Lock(_contextLock.Task);
         }
 
-        public void ReleaseContextLock(Exception trySetException = null)
+        internal void ReleaseContextLock(Exception trySetException = null)
         {
             var contextLock = _contextLock;
             _contextLock = null;

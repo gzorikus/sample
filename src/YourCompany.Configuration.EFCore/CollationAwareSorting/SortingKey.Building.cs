@@ -57,7 +57,7 @@ namespace YourCompany.Configuration.EFCore.CollationAwareSorting
             };
         }
 
-        public SortingKey ToIntermediate() => WithDescending(Descending, overrideSingleEntityReplacingQueriedSetName: null);
+        internal SortingKey ToIntermediate() => WithDescending(Descending, overrideSingleEntityReplacingQueriedSetName: null);
 
         public SortingKey WithDescending(
             bool descending,

@@ -6,7 +6,7 @@ using YourCompany.Configuration.EFCore.CollationAwareSorting;
 
 namespace YourCompany.Configuration.EFCore
 {
-    public sealed class YourCompanyDbContextFactory
+    internal sealed class YourCompanyDbContextFactory
         : YourCompanyDbContextFactory<YourCompanyDbContextFactoryLoadingConfiguration, YourCompanyDbContextConfiguration>
     {
         internal sealed class DefaultDesignTimeForMigrations
@@ -34,7 +34,7 @@ namespace YourCompany.Configuration.EFCore
         }
     }
 
-    public abstract class YourCompanyDbContextFactory<TLoadingConfiguration, TDbContextConfiguration> :
+    internal abstract class YourCompanyDbContextFactory<TLoadingConfiguration, TDbContextConfiguration> :
         YourCompanyPluginsLoader<
             YourCompanyDbContextConfigurator,
             YourCompanyDbContextConfiguratorsLoadingContext,
@@ -56,10 +56,10 @@ namespace YourCompany.Configuration.EFCore
         protected virtual YourCompanyDbContext<TDbContextConfiguration> CreateInitializedDbContext()
             => new(LoadingContext, Plugins);
 
-        public class RunTime : YourCompanyDbContextFactory<TLoadingConfiguration, TDbContextConfiguration>,
+        internal class RunTime : YourCompanyDbContextFactory<TLoadingConfiguration, TDbContextConfiguration>,
             IDbContextFactory<YourCompanyDbContext<TDbContextConfiguration>>
         {
-            public RunTime()
+            internal RunTime()
             {
                 LoadOnce();
                 if (LoadingContext.IsDesignTime) throw new ApplicationException("LoadingContext.IsDesignTime");

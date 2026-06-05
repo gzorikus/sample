@@ -3,16 +3,16 @@ using System.Linq;
 
 namespace YourCompany.Configuration.EFCore.CollationAwareSorting
 {
-    public sealed partial class OrElseEqualityKeys : SortingKeyQueries.ISingleEntityEquality
+    internal sealed partial class OrElseEqualityKeys : SortingKeyQueries.ISingleEntityEquality
     {
-        public string ReplaceQueriedSetName { get; set; }
+        public string ReplaceQueriedSetName { get; internal set; }
 
         IQueryable<TEntity> SortingKeyQueries.ISingleEntityEquality.GetEqual<TEntity>(IQueryable<TEntity> queryable)
             => PossibleSingleTopology != null
                 ? GetSingleTopologySingleEntityEqual(queryable)
                 : GetMultiTopologySingleEntityEqual(queryable);
 
-        public IOrderedQueryable<TEntity> GetSingleTopologySingleEntityEqual<TEntity>(IQueryable<TEntity> queryable)
+        internal IOrderedQueryable<TEntity> GetSingleTopologySingleEntityEqual<TEntity>(IQueryable<TEntity> queryable)
             where TEntity : class
         {
             if (queryable == null) throw new ArgumentNullException(nameof(queryable));
@@ -24,7 +24,7 @@ namespace YourCompany.Configuration.EFCore.CollationAwareSorting
             return this[0].SingleEntitySort(queryable);
         }
 
-        public IQueryable<TEntity> GetMultiTopologySingleEntityEqual<TEntity>(IQueryable<TEntity> queryable)
+        internal IQueryable<TEntity> GetMultiTopologySingleEntityEqual<TEntity>(IQueryable<TEntity> queryable)
             where TEntity : class
         {
             if (queryable == null) throw new ArgumentNullException(nameof(queryable));
@@ -47,7 +47,7 @@ namespace YourCompany.Configuration.EFCore.CollationAwareSorting
             }
         }
 
-        public void EnsureCompatibleWithSingleEntityQueries()
+        internal void EnsureCompatibleWithSingleEntityQueries()
         {
             if (Count == 0) throw new ApplicationException("Count == 0");
             var singlePropertiesOwner = this[0]?.PropertyOwner ?? throw new ApplicationException("this[0] == null");

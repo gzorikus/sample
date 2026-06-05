@@ -12,7 +12,7 @@ using PrimaryKey = YourCompany.OLTP.RecordsManagement.Persistence
 
 namespace YourCompany.OLTP.RecordsManagement.Persistence.Linq.EFCore
 {
-    public abstract partial class YourCompanyDbContextLockingRecordDataReader<TConfiguration>
+    internal abstract partial class YourCompanyDbContextLockingRecordDataReader<TConfiguration>
         where TConfiguration : YourCompanyDbContextConfiguration, new()
     {
         private static class FactoriesCache

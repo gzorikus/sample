@@ -4,14 +4,14 @@ using YourCompany.Configuration.EFCore.ChangeTracking;
 
 namespace YourCompany.Configuration.EFCore.CollationAwareSorting.ChangeTracking
 {
-    public abstract partial class EntityEntryPropertiesCopyingVisitor
+    internal abstract partial class EntityEntryPropertiesCopyingVisitor
     {
-        public class NonGeneric : EntityEntryPropertiesCopyingVisitor
+        internal class NonGeneric : EntityEntryPropertiesCopyingVisitor
         {
-            public EntityEntry SourcePropertiesOwner { get; private set; }
-            public EntityEntry TargetPropertiesOwner { get; private set; }
+            internal EntityEntry SourcePropertiesOwner { get; private set; }
+            internal EntityEntry TargetPropertiesOwner { get; private set; }
 
-            public NonGeneric CopyAll(
+            internal NonGeneric CopyAll(
                 SortingKeyTopology.ILastProperty topology,
                 EntityEntry sourcePropertiesOwner,
                 EntityEntry targetPropertiesOwner)
@@ -21,7 +21,7 @@ namespace YourCompany.Configuration.EFCore.CollationAwareSorting.ChangeTracking
                 return this;
             }
 
-            public NonGeneric UseForCopyAll(EntityEntry sourcePropertiesOwner, EntityEntry targetPropertiesOwner)
+            internal NonGeneric UseForCopyAll(EntityEntry sourcePropertiesOwner, EntityEntry targetPropertiesOwner)
             {
                 SourcePropertiesOwner = sourcePropertiesOwner ?? throw new ArgumentNullException(nameof(sourcePropertiesOwner));
                 TargetPropertiesOwner = targetPropertiesOwner ?? throw new ArgumentNullException(nameof(targetPropertiesOwner));
@@ -29,7 +29,7 @@ namespace YourCompany.Configuration.EFCore.CollationAwareSorting.ChangeTracking
                 return this;
             }
 
-            public NonGeneric CopyNonDefault(
+            internal NonGeneric CopyNonDefault(
                 SortingKeyTopology.ILastProperty topology,
                 EntityEntry sourcePropertiesOwner,
                 EntityEntry targetPropertiesOwner)
@@ -39,7 +39,7 @@ namespace YourCompany.Configuration.EFCore.CollationAwareSorting.ChangeTracking
                 return this;
             }
 
-            public NonGeneric UseForCopyNonDefault(EntityEntry sourcePropertiesOwner, EntityEntry targetPropertiesOwner)
+            internal NonGeneric UseForCopyNonDefault(EntityEntry sourcePropertiesOwner, EntityEntry targetPropertiesOwner)
             {
                 SourcePropertiesOwner = sourcePropertiesOwner ?? throw new ArgumentNullException(nameof(sourcePropertiesOwner));
                 TargetPropertiesOwner = targetPropertiesOwner ?? throw new ArgumentNullException(nameof(targetPropertiesOwner));

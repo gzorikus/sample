@@ -12,16 +12,16 @@ using PrimaryKey = YourCompany.OLTP.RecordsManagement.Persistence
 
 namespace YourCompany.OLTP.RecordsManagement.Persistence.Linq.EFCore
 {
-    public abstract partial class YourCompanyDbContextLockingRecordDataReader<TConfiguration>
+    internal abstract partial class YourCompanyDbContextLockingRecordDataReader<TConfiguration>
         where TConfiguration : YourCompanyDbContextConfiguration, new()
     {
-        public abstract partial class SingleEntityQuery<TRecordData, TQueryableRecordData>
+        internal abstract partial class SingleEntityQuery<TRecordData, TQueryableRecordData>
             where TRecordData : class
             where TQueryableRecordData : class, TRecordData
         {
-            public abstract partial class WithoutIds
+            internal abstract partial class WithoutIds
             {
-                public new class After : WithoutIds,
+                internal new class After : WithoutIds,
                     RecordsDataAccess.IAfterSortingWithoutIdsForReadOnlyWithoutRecordsData,
                     RecordsDataAccess.IAfterSortingWithoutIdsForReadOnly<PrimaryKey.AfterAlternateSorting>,
                     RecordsDataAccess.IReadOnlyWithoutIds<PrimaryKey.AfterAlternateSorting>,
@@ -38,11 +38,11 @@ namespace YourCompany.OLTP.RecordsManagement.Persistence.Linq.EFCore
                     private PrimaryKey.WithoutExtraValues[] _primaryKeysWithoutRecordsData;
                     private PrimaryKey.AfterAlternateSorting[] _primaryKeysWithRecordsData;
 
-                    public override IReadOnlyList<PrimaryKey> PrimaryKeys => WithoutRecordsData
+                    internal override IReadOnlyList<PrimaryKey> PrimaryKeys => WithoutRecordsData
                         ? _primaryKeysWithoutRecordsData
                         : _primaryKeysWithRecordsData;
 
-                    protected internal After(YourCompanyDbContext<TConfiguration> context, Identity afterId) : base(context)
+                    internal After(YourCompanyDbContext<TConfiguration> context, Identity afterId) : base(context)
                     {
                         if (afterId is not UniqueKey uniqueKey) throw new ApplicationException("afterId is not UniqueKey uniqueKey");
                         _afterId = uniqueKey.AsAssignedSortingImplementedWith<CollationAwareSortingUniqueKeyAdapter>()
@@ -55,7 +55,7 @@ namespace YourCompany.OLTP.RecordsManagement.Persistence.Linq.EFCore
                         RecordsDataAccess.IAfterSortingWithoutIdsForReadOnlyWithoutRecordsData
                             .ForReadOnlyWithoutRecordsData() => ForReadOnlyWithoutIdsWithoutRecordsData();
 
-                    public override RecordsDataAccess.IReadOnlyWithoutIds<PrimaryKey.WithoutExtraValues>
+                    internal override RecordsDataAccess.IReadOnlyWithoutIds<PrimaryKey.WithoutExtraValues>
                         ForReadOnlyWithoutIdsWithoutRecordsData()
                             => (this, ReadOnly = true, WithoutRecordsData = true).Item1;
 
@@ -63,7 +63,7 @@ namespace YourCompany.OLTP.RecordsManagement.Persistence.Linq.EFCore
                         RecordsDataAccess.IAfterSortingWithoutIdsForReadOnly<PrimaryKey.AfterAlternateSorting>
                             .ForReadOnlyWithRecordsData() => ForReadOnlyWithoutIdsWithRecordsDataAfterAlternateSorting();
 
-                    public override RecordsDataAccess.IReadOnlyWithoutIds<PrimaryKey.AfterAlternateSorting>
+                    internal override RecordsDataAccess.IReadOnlyWithoutIds<PrimaryKey.AfterAlternateSorting>
                         ForReadOnlyWithoutIdsWithRecordsDataAfterAlternateSorting()
                             => (this, ReadOnly = true, WithoutRecordsData = false).Item1;
 

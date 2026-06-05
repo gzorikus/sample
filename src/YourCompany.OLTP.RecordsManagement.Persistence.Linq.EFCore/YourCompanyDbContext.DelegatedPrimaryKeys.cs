@@ -15,7 +15,7 @@ namespace YourCompany.OLTP.RecordsManagement.Persistence.Linq.EFCore
 {
     public partial class YourCompanyDbContext<TConfiguration>
     {
-        public PropertyEntry<DelegatedPrimaryKeyGenerationTable, long>
+        internal PropertyEntry<DelegatedPrimaryKeyGenerationTable, long>
             GeneratePrimaryKey<TRecordData, TQueryableRecordData>(PrimaryKey primaryKey)
             where TRecordData : class
             where TQueryableRecordData : class, TRecordData
@@ -41,7 +41,7 @@ namespace YourCompany.OLTP.RecordsManagement.Persistence.Linq.EFCore
             return generatedPrivateKeyEntry;
         }
 
-        public PropertyEntry<DelegatedPrimaryKeyGenerationTable, long>
+        internal PropertyEntry<DelegatedPrimaryKeyGenerationTable, long>
             AttachExistingPrimaryKeyWithMissingRecordData<TRecordData, TQueryableRecordData>(
             PrimaryKey primaryKey)
             where TRecordData : class

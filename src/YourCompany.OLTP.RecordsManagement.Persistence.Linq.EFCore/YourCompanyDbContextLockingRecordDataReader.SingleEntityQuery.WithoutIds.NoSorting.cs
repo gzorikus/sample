@@ -9,16 +9,16 @@ using PrimaryKey = YourCompany.OLTP.RecordsManagement.Persistence
 
 namespace YourCompany.OLTP.RecordsManagement.Persistence.Linq.EFCore
 {
-    public abstract partial class YourCompanyDbContextLockingRecordDataReader<TConfiguration>
+    internal abstract partial class YourCompanyDbContextLockingRecordDataReader<TConfiguration>
         where TConfiguration : YourCompanyDbContextConfiguration, new()
     {
-        public abstract partial class SingleEntityQuery<TRecordData, TQueryableRecordData>
+        internal abstract partial class SingleEntityQuery<TRecordData, TQueryableRecordData>
             where TRecordData : class
             where TQueryableRecordData : class, TRecordData
         {
-            public abstract partial class WithoutIds
+            internal abstract partial class WithoutIds
             {
-                public new class NoSorting : WithoutIds,
+                internal new class NoSorting : WithoutIds,
                     RecordsDataAccess.IAfterSortingWithoutIdsForReadOnlyWithoutRecordsData,
                     RecordsDataAccess.IAfterSortingWithoutIdsForReadOnly<PrimaryKey.WithoutExtraValues>,
                     RecordsDataAccess.IReadOnlyWithoutIds<PrimaryKey.WithoutExtraValues>,
@@ -26,15 +26,15 @@ namespace YourCompany.OLTP.RecordsManagement.Persistence.Linq.EFCore
                 {
                     private PrimaryKey.WithoutExtraValues[] _primaryKeys;
 
-                    public override IReadOnlyList<PrimaryKey> PrimaryKeys => _primaryKeys;
+                    internal override IReadOnlyList<PrimaryKey> PrimaryKeys => _primaryKeys;
 
-                    protected internal NoSorting(YourCompanyDbContext<TConfiguration> context) : base(context) { }
+                    internal NoSorting(YourCompanyDbContext<TConfiguration> context) : base(context) { }
 
                     RecordsDataAccess.IReadOnlyWithoutIds<PrimaryKey.WithoutExtraValues>
                         RecordsDataAccess.IAfterSortingWithoutIdsForReadOnlyWithoutRecordsData
                             .ForReadOnlyWithoutRecordsData() => ForReadOnlyWithoutIdsWithoutRecordsData();
 
-                    public override RecordsDataAccess.IReadOnlyWithoutIds<PrimaryKey.WithoutExtraValues>
+                    internal override RecordsDataAccess.IReadOnlyWithoutIds<PrimaryKey.WithoutExtraValues>
                         ForReadOnlyWithoutIdsWithoutRecordsData()
                             => (this, ReadOnly = true, WithoutRecordsData = true).Item1;
 
@@ -42,7 +42,7 @@ namespace YourCompany.OLTP.RecordsManagement.Persistence.Linq.EFCore
                         RecordsDataAccess.IAfterSortingWithoutIdsForReadOnly<PrimaryKey.WithoutExtraValues>
                             .ForReadOnlyWithRecordsData() => ForReadOnlyWithoutIdsWithRecordsDataWithoutExtraValues();
 
-                    public override RecordsDataAccess.IReadOnlyWithoutIds<PrimaryKey.WithoutExtraValues>
+                    internal override RecordsDataAccess.IReadOnlyWithoutIds<PrimaryKey.WithoutExtraValues>
                         ForReadOnlyWithoutIdsWithRecordsDataWithoutExtraValues()
                             => (this, ReadOnly = true, WithoutRecordsData = false).Item1;
 

@@ -7,11 +7,11 @@ using YourCompany.OLTP.RecordsManagement.Persistence.Linq.EFCore.CollationAwareS
 
 namespace YourCompany.OLTP.RecordsManagement.Persistence.Linq.EFCore
 {
-    public abstract partial class YourCompanyDbContextLockingRecordDataReader<TConfiguration>
+    internal abstract partial class YourCompanyDbContextLockingRecordDataReader<TConfiguration>
     {
-        public abstract partial class SingleEntityQuery<TRecordData, TQueryableRecordData>
+        internal abstract partial class SingleEntityQuery<TRecordData, TQueryableRecordData>
         {
-            public abstract partial class ByIds
+            internal abstract partial class ByIds
             {
                 protected override async Task<IReadOnlyList<long>> ResolvePrimaryKeys(
                     int batchSize, int recordsCountToSkip, CancellationToken cancellationToken)

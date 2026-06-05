@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.ChangeTracking;
 
 namespace YourCompany.Configuration.EFCore.CollationAwareSorting.ChangeTracking
 {
-    public abstract partial class EntityEntryPropertiesSettingVisitor : SortingKeyPropertiesVisitor
+    internal abstract partial class EntityEntryPropertiesSettingVisitor : SortingKeyPropertiesVisitor
     {
         protected void UseForAllPropertiesSetting()
         {

@@ -11,10 +11,10 @@ using PrimaryKey = YourCompany.OLTP.RecordsManagement.Persistence
 
 namespace YourCompany.OLTP.RecordsManagement.Persistence.Linq.EFCore
 {
-    public abstract partial class YourCompanyDbContextLockingRecordDataReader<TConfiguration>
+    internal abstract partial class YourCompanyDbContextLockingRecordDataReader<TConfiguration>
         where TConfiguration : YourCompanyDbContextConfiguration, new()
     {
-        public abstract partial class SingleEntityQuery<TRecordData, TQueryableRecordData>
+        internal abstract partial class SingleEntityQuery<TRecordData, TQueryableRecordData>
             : YourCompanyDbContextLockingRecordDataReader<TConfiguration>
             where TRecordData : class
             where TQueryableRecordData : class, TRecordData
@@ -24,7 +24,7 @@ namespace YourCompany.OLTP.RecordsManagement.Persistence.Linq.EFCore
 
             private EntityEntryPropertiesSettingVisitor.Generic<TQueryableRecordData> _sortingKeyValuesSettingVisitor;
 
-            public EntityEntryPropertiesSettingVisitor.Generic<TQueryableRecordData> SortingKeyValuesSettingVisitor
+            internal EntityEntryPropertiesSettingVisitor.Generic<TQueryableRecordData> SortingKeyValuesSettingVisitor
                 => _sortingKeyValuesSettingVisitor ??= new();
 
             private SingleEntityQuery(YourCompanyDbContext<TConfiguration> context) : base(context) { }

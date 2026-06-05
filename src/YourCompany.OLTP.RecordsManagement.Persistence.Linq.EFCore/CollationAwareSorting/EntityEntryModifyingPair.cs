@@ -7,12 +7,12 @@ using PrimaryKey = YourCompany.OLTP.RecordsManagement.Persistence
 
 namespace YourCompany.OLTP.RecordsManagement.Persistence.Linq.EFCore.CollationAwareSorting
 {
-    public readonly record struct EntityEntryModifyingPair<TEntity> where TEntity : class
+    internal readonly record struct EntityEntryModifyingPair<TEntity> where TEntity : class
     {
-        public EntityEntry<TEntity> LockedOrCreatedRecordData { get; }
-        public EntityEntry<TEntity> DetachedRecordDataForSettingChangedProperties { get; }
+        internal EntityEntry<TEntity> LockedOrCreatedRecordData { get; }
+        internal EntityEntry<TEntity> DetachedRecordDataForSettingChangedProperties { get; }
 
-        public EntityEntryModifyingPair(EntityEntry<TEntity> unchangedEntry, EntityEntry<TEntity> propertiesChangingEntry)
+        internal EntityEntryModifyingPair(EntityEntry<TEntity> unchangedEntry, EntityEntry<TEntity> propertiesChangingEntry)
         {
             LockedOrCreatedRecordData = unchangedEntry ?? throw new ArgumentNullException(nameof(unchangedEntry));
             DetachedRecordDataForSettingChangedProperties = propertiesChangingEntry ?? throw new ArgumentNullException(nameof(propertiesChangingEntry));
@@ -20,7 +20,7 @@ namespace YourCompany.OLTP.RecordsManagement.Persistence.Linq.EFCore.CollationAw
                 throw new ApplicationException("ReferenceEquals(unchangedEntry, propertiesChangingEntry)");
         }
 
-        public void ResolvePrivateKey(PrimaryKey primaryKey)
+        internal void ResolvePrivateKey(PrimaryKey primaryKey)
         {
             if (primaryKey == null) throw new ArgumentNullException(nameof(primaryKey));
             if (primaryKey.CheckPrivateKeyIsAssigned()) throw new ApplicationException("primaryKey.CheckPrivateKeyIsAssigned()");

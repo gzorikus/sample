@@ -10,14 +10,14 @@ using PrimaryKey = YourCompany.OLTP.RecordsManagement.Persistence
 
 namespace YourCompany.OLTP.RecordsManagement.Persistence.Linq.EFCore
 {
-    public abstract partial class YourCompanyDbContextLockingRecordDataReader<TConfiguration>
+    internal abstract partial class YourCompanyDbContextLockingRecordDataReader<TConfiguration>
         where TConfiguration : YourCompanyDbContextConfiguration, new()
     {
-        public abstract partial class SingleEntityQuery<TRecordData, TQueryableRecordData>
+        internal abstract partial class SingleEntityQuery<TRecordData, TQueryableRecordData>
             where TRecordData : class
             where TQueryableRecordData : class, TRecordData
         {
-            public partial class ReadBeforeModifying<TPrimaryKey> : SingleEntityQuery<TRecordData, TQueryableRecordData>,
+            internal partial class ReadBeforeModifying<TPrimaryKey> : SingleEntityQuery<TRecordData, TQueryableRecordData>,
                 RecordsDataAccess.IReadBeforeModifying<TPrimaryKey>,
                 RecordsDataAccess.IReadBeforeModifyingIdentity<TPrimaryKey>
                 where TPrimaryKey : PrimaryKey
@@ -26,9 +26,9 @@ namespace YourCompany.OLTP.RecordsManagement.Persistence.Linq.EFCore
                 private readonly RecordsDataAccess.IReadBeforeModifying _readBeforeModifying;
                 private readonly RecordsDataAccess.IFinish _finishNext;
 
-                public override IReadOnlyList<PrimaryKey> PrimaryKeys => _reader.PrimaryKeys;
+                internal override IReadOnlyList<PrimaryKey> PrimaryKeys => _reader.PrimaryKeys;
 
-                protected internal ReadBeforeModifying(
+                internal ReadBeforeModifying(
                     SingleEntityQuery<TRecordData, TQueryableRecordData> reader,
                     RecordsDataAccess.IReadBeforeModifying readBeforeModifying,
                     RecordsDataAccess.IFinish finishNext)
@@ -59,7 +59,7 @@ namespace YourCompany.OLTP.RecordsManagement.Persistence.Linq.EFCore
                     int batchSize, int recordsCountToSkip, CancellationToken cancellationToken)
                     => _readBeforeModifying.ReadAndLockForChangesPersisting(batchSize, recordsCountToSkip, cancellationToken);
 
-                public override async Task<int> ReadAndLockForChangesPersisting(
+                internal override async Task<int> ReadAndLockForChangesPersisting(
                     int batchSize, int recordsCountToSkip, CancellationToken cancellationToken)
                 {
                     EnsureContextLockedModifyingOnly();

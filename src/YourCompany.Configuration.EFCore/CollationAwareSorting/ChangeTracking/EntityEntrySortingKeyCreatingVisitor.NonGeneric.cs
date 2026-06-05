@@ -4,13 +4,13 @@ using YourCompany.Configuration.EFCore.ChangeTracking;
 
 namespace YourCompany.Configuration.EFCore.CollationAwareSorting.ChangeTracking
 {
-    public abstract partial class EntityEntrySortingKeyCreatingVisitor
+    internal abstract partial class EntityEntrySortingKeyCreatingVisitor
     {
-        public class NonGeneric : EntityEntrySortingKeyCreatingVisitor
+        internal class NonGeneric : EntityEntrySortingKeyCreatingVisitor
         {
-            public EntityEntry PropertiesOwner { get; private set; }
+            internal EntityEntry PropertiesOwner { get; private set; }
 
-            public SortingKey CreateForSingleEntityQuery(
+            internal SortingKey CreateForSingleEntityQuery(
                 SortingKeyTopology.ILastProperty topology,
                 EntityEntry propertiesOwner,
                 SortingKey prefix = null,

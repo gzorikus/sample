@@ -3,7 +3,7 @@ using System.Text;
 
 namespace YourCompany.Configuration.EFCore.CollationAwareSorting
 {
-    public sealed partial class OrElseEqualityKeys
+    internal sealed partial class OrElseEqualityKeys
     {
         public override string ToString()
         {

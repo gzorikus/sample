@@ -3,12 +3,12 @@ using Microsoft.EntityFrameworkCore.ChangeTracking;
 
 namespace YourCompany.Configuration.EFCore.CollationAwareSorting.ChangeTracking
 {
-    public abstract partial class EntityEntrySortingKeyCreatingVisitor
+    internal abstract partial class EntityEntrySortingKeyCreatingVisitor
         : SortingKeyTopology.IPrefixFirstPropertiesVisitor
     {
         public ICollationAwareModelProvider ModelProvider { get; set; }
-        public SortingKey Prefix { get; private set; }
-        public string LastSortingKeyReplacingQueriedSetName { get; private set; }
+        internal SortingKey Prefix { get; private set; }
+        internal string LastSortingKeyReplacingQueriedSetName { get; private set; }
 
         public void VisitProperty<TValue>(SortingKeyTopology.ILastProperty topology)
             where TValue : IEquatable<TValue>, IComparable<TValue>

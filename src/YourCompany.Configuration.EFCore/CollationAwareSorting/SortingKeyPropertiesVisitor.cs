@@ -2,20 +2,20 @@ using System;
 
 namespace YourCompany.Configuration.EFCore.CollationAwareSorting
 {
-    public abstract class SortingKeyPropertiesVisitor : SortingKey.IPrefixFirstPropertiesVisitor,
+    internal abstract class SortingKeyPropertiesVisitor : SortingKey.IPrefixFirstPropertiesVisitor,
         SortingKeyQueries.IMultiTopologyQueryComposedSortingKeysVisitor
     {
         public ICollationAwareModelProvider ModelProvider { get; set; }
 
-        public SortingKey CurrentSortingKey { get; private set; }
-        public SortingKey CurrentSortingKeyPredecessor { get; private set; }
-        public int CurrentSortingKeyIndex { get; private set; } = -1;
-        public SortingKey CurrentSortingKeyProperty { get; private set; }
-        public SortingKey CurrentSortingKeyPropertyPrefix { get; private set; }
-        public int CurrentSortingKeyPropertyIndex { get; private set; } = -1;
-        public int VisitedPropertiesTotal { get; private set; }
+        internal SortingKey CurrentSortingKey { get; private set; }
+        internal SortingKey CurrentSortingKeyPredecessor { get; private set; }
+        internal int CurrentSortingKeyIndex { get; private set; } = -1;
+        internal SortingKey CurrentSortingKeyProperty { get; private set; }
+        internal SortingKey CurrentSortingKeyPropertyPrefix { get; private set; }
+        internal int CurrentSortingKeyPropertyIndex { get; private set; } = -1;
+        internal int VisitedPropertiesTotal { get; private set; }
 
-        public SortingKeyTopology.ILastProperty EnsureSingleTopology { get; set; }
+        internal SortingKeyTopology.ILastProperty EnsureSingleTopology { get; set; }
 
         void SortingKeyQueries.IMultiTopologyQueryComposedSortingKeysVisitor.VisitSortingKey(SortingKey sortingKey)
         {
@@ -84,7 +84,7 @@ namespace YourCompany.Configuration.EFCore.CollationAwareSorting
         protected virtual void VisitCurrentProperty<TProperty>(SortingKey property, TProperty value)
             => ValidateCurrentPropertyBeforeVisit(property);
 
-        public SortingKey SetNextSortingKey(SortingKey sortingKey)
+        internal SortingKey SetNextSortingKey(SortingKey sortingKey)
         {
             if (sortingKey == null) throw new ArgumentNullException(nameof(sortingKey));
             if (CurrentSortingKey != null) throw new ApplicationException("CurrentSortingKey != null");
@@ -126,7 +126,7 @@ namespace YourCompany.Configuration.EFCore.CollationAwareSorting
             CurrentSortingKeyPropertyIndex = -1;
         }
 
-        public SortingKey SetNextProperty(SortingKey property)
+        internal SortingKey SetNextProperty(SortingKey property)
         {
             if (property == null) throw new ArgumentNullException(nameof(property));
             if (CurrentSortingKey == null) throw new ApplicationException("CurrentSortingKey == null");
@@ -163,7 +163,7 @@ namespace YourCompany.Configuration.EFCore.CollationAwareSorting
             VisitedPropertiesTotal++;
         }
 
-        public virtual void ResetVisitState()
+        internal virtual void ResetVisitState()
         {
             CurrentSortingKey = null;
             CurrentSortingKeyPredecessor = null;

@@ -9,7 +9,7 @@ using YourCompany.OLTP.StateOwnership.Reflection.EFCore;
 
 namespace YourCompany.OLTP.RecordsManagement.Persistence.Linq.EFCore.CollationAwareSorting
 {
-    public class EntityEntryModifyingVisitor<TRecordData, TQueryableRecordData>
+    internal class EntityEntryModifyingVisitor<TRecordData, TQueryableRecordData>
         : EntityEntryPropertiesCopyingVisitor.Generic<TQueryableRecordData>
         where TRecordData : class
         where TQueryableRecordData : class, TRecordData
@@ -18,10 +18,10 @@ namespace YourCompany.OLTP.RecordsManagement.Persistence.Linq.EFCore.CollationAw
         private Dictionary<object, ModifyingSpecificationItem> _modifyingSpecifications;
         private EFChangeTrackerTrackGraphStrategy _ensureUnchangedBeforeModifying;
 
-        public EntityEntryModifyingVisitor(ICollationAwareModelProvider collationAwareModelProvider)
+        internal EntityEntryModifyingVisitor(ICollationAwareModelProvider collationAwareModelProvider)
             => _collationAwareModelProvider = collationAwareModelProvider ?? throw new ArgumentNullException(nameof(collationAwareModelProvider));
 
-        public void AddEachRecordModifyingSpecification(
+        internal void AddEachRecordModifyingSpecification(
             object specification, RecordDataQueryBuilder.ForSingleRecordData<TRecordData> queryBuilder)
         {
             if (specification == null) throw new ArgumentNullException(nameof(specification));
@@ -31,7 +31,7 @@ namespace YourCompany.OLTP.RecordsManagement.Persistence.Linq.EFCore.CollationAw
                 specification, new ModifyingSpecificationItem { QueryBuilder = queryBuilder, EachRecord = true });
         }
 
-        public void AddSpecifiedRecordModifyingSpecification(
+        internal void AddSpecifiedRecordModifyingSpecification(
             int recordIndex, object specification, RecordDataQueryBuilder.ForSingleRecordData<TRecordData> queryBuilder)
         {
             if (specification == null) throw new ArgumentNullException(nameof(specification));
@@ -70,7 +70,7 @@ namespace YourCompany.OLTP.RecordsManagement.Persistence.Linq.EFCore.CollationAw
             }
         }
 
-        public virtual PropertyEntry<TQueryableRecordData, long> ApplyChanges(
+        internal virtual PropertyEntry<TQueryableRecordData, long> ApplyChanges(
             int recordIndex, EntityEntryModifyingPair<TQueryableRecordData> modifyingEntriesPair, bool ensureUnchangedBeforeModifying)
         {
             var unchangedEntry = modifyingEntriesPair.LockedOrCreatedRecordData
@@ -89,7 +89,7 @@ namespace YourCompany.OLTP.RecordsManagement.Persistence.Linq.EFCore.CollationAw
             return unchangedEntry.GetNeverGeneratedSingleColumnBigintPrimaryKey();
         }
 
-        public void ApplyModifyingSpecifications(int recordIndex, EntityEntry<TQueryableRecordData> unchangedEntry)
+        internal void ApplyModifyingSpecifications(int recordIndex, EntityEntry<TQueryableRecordData> unchangedEntry)
         {
             if (unchangedEntry == null) throw new ArgumentNullException(nameof(unchangedEntry));
             if (_modifyingSpecifications == null) return;
@@ -105,7 +105,7 @@ namespace YourCompany.OLTP.RecordsManagement.Persistence.Linq.EFCore.CollationAw
             }
         }
 
-        public void SetChangedScalarProperties(
+        internal void SetChangedScalarProperties(
             EntityEntry<TQueryableRecordData> propertiesChangingEntry, EntityEntry<TQueryableRecordData> unchangedEntry)
         {
             if (propertiesChangingEntry == null) throw new ArgumentNullException(nameof(propertiesChangingEntry));
@@ -115,7 +115,7 @@ namespace YourCompany.OLTP.RecordsManagement.Persistence.Linq.EFCore.CollationAw
             CopyNonDefault(entityTypeTopology, propertiesChangingEntry, unchangedEntry);
         }
 
-        public void SetChangedNavigationProperties(
+        internal void SetChangedNavigationProperties(
             EntityEntry propertiesChangingEntry, EntityEntry unchangedEntry, bool ensureUnchangedBeforeModifying)
         {
             if (propertiesChangingEntry == null) throw new ArgumentNullException(nameof(propertiesChangingEntry));

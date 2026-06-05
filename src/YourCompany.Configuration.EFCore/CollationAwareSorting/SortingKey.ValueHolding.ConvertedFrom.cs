@@ -57,7 +57,7 @@ namespace YourCompany.Configuration.EFCore.CollationAwareSorting
                     return count + 1;
                 }
 
-                public override int VisitPrefixFirst(IPrefixFirstPropertiesVisitor visitor)
+                internal override int VisitPrefixFirst(IPrefixFirstPropertiesVisitor visitor)
                 {
                     if (visitor == null) throw new ArgumentNullException(nameof(visitor));
                     if (PropertyName == null) throw new ApplicationException("PropertyName == null");

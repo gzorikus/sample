@@ -8,7 +8,7 @@ using YourCompany.OLTP.StateOwnership.Reflection;
 
 namespace YourCompany.OLTP.RecordsManagement.Persistence.Linq.EFCore
 {
-    public sealed class YourCompanyDbContextFactory
+    internal sealed class YourCompanyDbContextFactory
         : YourCompanyDbContextFactory<YourCompanyDbContextFactoryLoadingConfiguration, YourCompanyDbContextConfiguration>
     {
         internal static RecordDataQueryBuilder[] NoLoadedQueryBuilders => Array.Empty<RecordDataQueryBuilder>();
@@ -38,7 +38,7 @@ namespace YourCompany.OLTP.RecordsManagement.Persistence.Linq.EFCore
         }
     }
 
-    public abstract class YourCompanyDbContextFactory<TLoadingConfiguration, TDbContextConfiguration> :
+    internal abstract class YourCompanyDbContextFactory<TLoadingConfiguration, TDbContextConfiguration> :
         Configuration.EFCore.YourCompanyDbContextFactory<TLoadingConfiguration, TDbContextConfiguration>
         where TLoadingConfiguration : YourCompanyDbContextFactoryLoadingConfiguration, new()
         where TDbContextConfiguration : YourCompanyDbContextConfiguration, new()
@@ -107,7 +107,7 @@ namespace YourCompany.OLTP.RecordsManagement.Persistence.Linq.EFCore
         protected virtual new YourCompanyDbContext<TDbContextConfiguration> CreateInitializedDbContext()
             => new(LoadingContext, Plugins, RuntimeQueryBuilders);
 
-        public new class RunTime : YourCompanyDbContextFactory<TLoadingConfiguration, TDbContextConfiguration>,
+        internal new class RunTime : YourCompanyDbContextFactory<TLoadingConfiguration, TDbContextConfiguration>,
             IDbContextFactory<YourCompanyDbContext<TDbContextConfiguration>>,
             IDbContextFactory<Configuration.EFCore.YourCompanyDbContext<TDbContextConfiguration>>,
             IRecordDataQueryBuildersProvider
@@ -117,7 +117,7 @@ namespace YourCompany.OLTP.RecordsManagement.Persistence.Linq.EFCore
 
             protected override IRecordDataQueryBuildersProvider RuntimeQueryBuilders => this;
 
-            public RunTime(IEnumerable<RecordDataQueryBuilder> queryBuilders)
+            internal RunTime(IEnumerable<RecordDataQueryBuilder> queryBuilders)
             {
                 _queryBuilders = queryBuilders ?? throw new ArgumentNullException(nameof(queryBuilders));
                 LoadOnce();
@@ -164,7 +164,7 @@ namespace YourCompany.OLTP.RecordsManagement.Persistence.Linq.EFCore
                     => CreateInitializedDbContext();
         }
 
-        internal class DesignTimeSemiSealed : YourCompanyDbContextFactory<TLoadingConfiguration, TDbContextConfiguration>
+        internal new class DesignTimeSemiSealed : YourCompanyDbContextFactory<TLoadingConfiguration, TDbContextConfiguration>
         {
             internal YourCompanyDbContext<TDbContextConfiguration> CreateDbContext(string[] args)
             {

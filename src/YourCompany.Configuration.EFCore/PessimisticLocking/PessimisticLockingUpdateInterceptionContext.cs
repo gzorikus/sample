@@ -5,9 +5,9 @@ using Microsoft.EntityFrameworkCore;
 
 namespace YourCompany.Configuration.EFCore.PessimisticLocking
 {
-    public abstract class PessimisticLockingUpdateInterceptionContext
+    internal abstract class PessimisticLockingUpdateInterceptionContext
     {
-        public const string DefaultLastModifiedAtColumnName = "LastModifiedAt";
+        internal const string DefaultLastModifiedAtColumnName = "LastModifiedAt";
 
         private bool _disposed;
 
@@ -18,7 +18,7 @@ namespace YourCompany.Configuration.EFCore.PessimisticLocking
         internal DateTime SetLastModifiedAt { get; init; } = DateTime.UtcNow;
         internal string SetLastModifiedAtColumnName { get; init; } = DefaultLastModifiedAtColumnName;
 
-        public IQueryable<T> Intercept<T>(IQueryable<T> queryable)
+        internal IQueryable<T> Intercept<T>(IQueryable<T> queryable)
         {
             if (_disposed) throw new ObjectDisposedException(nameof(PessimisticLockingUpdateInterceptionContext));
             if (queryable == null) throw new ArgumentNullException(nameof(queryable));
@@ -27,7 +27,7 @@ namespace YourCompany.Configuration.EFCore.PessimisticLocking
             return queryable.TagWith(QueryableTagWith);
         }
 
-        public void Dispose()
+        internal void Dispose()
         {
             bool disposed = _disposed;
             _disposed = true;

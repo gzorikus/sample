@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.ChangeTracking;
 
 namespace YourCompany.Configuration.EFCore.ChangeTracking
 {
-    public class EFChangeTrackerTrackGraphStrategy : HashSet<EntityEntry>
+    internal class EFChangeTrackerTrackGraphStrategy : HashSet<EntityEntry>
     {
         private static readonly Func<EntityEntryGraphNode<HashSet<EntityEntry>>, bool>
             EnsureUnchangedCallback = unchangedNode =>
@@ -23,31 +23,31 @@ namespace YourCompany.Configuration.EFCore.ChangeTracking
                 return ContinueTraversing(unchangedOrDetachedNode);
             };
 
-        public void EnsureUnchanged(EntityEntry unchangedEntry)
+        internal void EnsureUnchanged(EntityEntry unchangedEntry)
         {
             if (unchangedEntry == null) throw new ArgumentNullException(nameof(unchangedEntry));
             TrackGraphWithVisitedNodesState(unchangedEntry, EnsureUnchangedCallback);
         }
 
-        public void EnsureUnchangedOrDetached(EntityEntry unchangedOrDetachedEntry)
+        internal void EnsureUnchangedOrDetached(EntityEntry unchangedOrDetachedEntry)
         {
             if (unchangedOrDetachedEntry == null) throw new ArgumentNullException(nameof(unchangedOrDetachedEntry));
             TrackGraphWithVisitedNodesState(unchangedOrDetachedEntry, EnsureUnchangedOrDetachedCallback);
         }
 
-        public void EnsureUnchanged(NavigationEntry unchangedNavigation)
+        internal void EnsureUnchanged(NavigationEntry unchangedNavigation)
         {
             if (unchangedNavigation == null) throw new ArgumentNullException(nameof(unchangedNavigation));
             TrackGraphWithVisitedNodesState(unchangedNavigation, EnsureUnchangedCallback);
         }
 
-        public void EnsureUnchangedOrDetached(NavigationEntry unchangedOrDetachedNavigation)
+        internal void EnsureUnchangedOrDetached(NavigationEntry unchangedOrDetachedNavigation)
         {
             if (unchangedOrDetachedNavigation == null) throw new ArgumentNullException(nameof(unchangedOrDetachedNavigation));
             TrackGraphWithVisitedNodesState(unchangedOrDetachedNavigation, EnsureUnchangedOrDetachedCallback);
         }
 
-        public void TrackGraphWithVisitedNodesState(
+        internal void TrackGraphWithVisitedNodesState(
             EntityEntry entry, Func<EntityEntryGraphNode<HashSet<EntityEntry>>, bool> callback)
         {
             if (entry == null) throw new ArgumentNullException(nameof(entry));
@@ -56,7 +56,7 @@ namespace YourCompany.Configuration.EFCore.ChangeTracking
             entry.Context.ChangeTracker.TrackGraph(entry, state: this, callback);
         }
 
-        public void TrackGraphWithVisitedNodesState(
+        internal void TrackGraphWithVisitedNodesState(
             NavigationEntry entry, Func<EntityEntryGraphNode<HashSet<EntityEntry>>, bool> callback)
         {
             if (entry == null) throw new ArgumentNullException(nameof(entry));

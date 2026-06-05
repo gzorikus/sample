@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace YourCompany.Configuration.EFCore.CollationAwareSorting
 {
-    public sealed partial class OrElseEqualityKeys : List<SortingKey>
+    internal sealed partial class OrElseEqualityKeys : List<SortingKey>
     {
         private bool _protectedFromChanges;
 
@@ -13,11 +13,11 @@ namespace YourCompany.Configuration.EFCore.CollationAwareSorting
 
         public SortingKeyTopology.ILastProperty PossibleSingleTopology { get; private set; }
 
-        public OrElseEqualityKeys() { }
-        public OrElseEqualityKeys(int capacity) : base(capacity) { }
-        public OrElseEqualityKeys(IEnumerable<SortingKey> collection) : base(collection) => RedetermineSingleTopology();
+        internal OrElseEqualityKeys() { }
+        internal OrElseEqualityKeys(int capacity) : base(capacity) { }
+        internal OrElseEqualityKeys(IEnumerable<SortingKey> collection) : base(collection) => RedetermineSingleTopology();
 
-        public void AddAndTryRetainSingleTopology(SortingKey item)
+        internal void AddAndTryRetainSingleTopology(SortingKey item)
         {
             if (_protectedFromChanges) throw new ApplicationException("_protectedFromChanges");
             if (item == null) throw new ArgumentNullException(nameof(item));
@@ -36,7 +36,7 @@ namespace YourCompany.Configuration.EFCore.CollationAwareSorting
             }
         }
 
-        public void RedetermineSingleTopology()
+        internal void RedetermineSingleTopology()
         {
             SortingKeyTopology.ILastProperty singleTopology = Count > 0 ? this[0] : null;
             for (int i = 0; i < Count; i++)
@@ -54,7 +54,7 @@ namespace YourCompany.Configuration.EFCore.CollationAwareSorting
             PossibleSingleTopology = singleTopology;
         }
 
-        public void ProtectFromChanges()
+        internal void ProtectFromChanges()
         {
             if (_protectedFromChanges) throw new ApplicationException("_protectedFromChanges");
             _protectedFromChanges = true;

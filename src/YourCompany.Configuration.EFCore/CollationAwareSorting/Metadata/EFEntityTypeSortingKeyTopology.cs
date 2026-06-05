@@ -13,7 +13,7 @@ namespace YourCompany.Configuration.EFCore.CollationAwareSorting.Metadata
         public IProperty Property { get; }
         SortingKeyTopology.ILastProperty SortingKeyTopology.ILastProperty.Prefix => Prefix;
         ILastProperty ILastProperty.Prefix => Prefix;
-        public EFEntityTypeSortingKeyTopology Prefix { get; }
+        internal EFEntityTypeSortingKeyTopology Prefix { get; }
         public int PrefixKeysCount { get; }
         bool SortingKeyTopology.ILastProperty.MultiplePropertyOwners => false;
         bool SortingKeyTopology.ILastProperty.UniquePropertyNames => true;

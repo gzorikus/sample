@@ -20,6 +20,7 @@
   <ItemGroup>
     <InternalsVisibleTo Include="YourCompany.Configuration.EFCore.PostgreSQL" />
     <InternalsVisibleTo Include="YourCompany.Configuration.EFCore.Sqlite" />
+    <InternalsVisibleTo Include="YourCompany.OLTP.RecordsManagement.Persistence.Linq.EFCore" />
   </ItemGroup>
 
 </Project>

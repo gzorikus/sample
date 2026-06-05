@@ -30,7 +30,11 @@ namespace YourCompany.Configuration.EFCore.CollationAwareSorting
             Type entityType, bool singleEntityReplacingQueriedSet)
             => this.EnsureCompatibleWithSingleEntityQueries(entityType, singleEntityReplacingQueriedSet);
 
-        public IOrderedQueryable<TEntity> GetNext<TEntity>(IQueryable<TEntity> queryable) where TEntity : class
+        IOrderedQueryable<TEntity> SortingKeyQueries.ISingleEntityFiltering.GetNext<TEntity>(IQueryable<TEntity> queryable)
+            where TEntity : class
+            => GetNext(queryable);
+
+        internal IOrderedQueryable<TEntity> GetNext<TEntity>(IQueryable<TEntity> queryable) where TEntity : class
         {
             if (queryable == null) throw new ArgumentNullException(nameof(queryable));
             if (PropertyName == null) throw new ApplicationException("PropertyName == null");
@@ -47,7 +51,7 @@ namespace YourCompany.Configuration.EFCore.CollationAwareSorting
             where TEntity : class
             => GetSingleEntityEqual(queryable);
 
-        public IOrderedQueryable<TEntity> GetSingleEntityEqual<TEntity>(IQueryable<TEntity> queryable)
+        internal IOrderedQueryable<TEntity> GetSingleEntityEqual<TEntity>(IQueryable<TEntity> queryable)
             where TEntity : class
         {
             if (queryable == null) throw new ArgumentNullException(nameof(queryable));
@@ -61,7 +65,7 @@ namespace YourCompany.Configuration.EFCore.CollationAwareSorting
             where TEntity : class
             => SingleEntitySort(queryable);
 
-        public IOrderedQueryable<TEntity> SingleEntitySort<TEntity>(IQueryable<TEntity> queryable)
+        internal IOrderedQueryable<TEntity> SingleEntitySort<TEntity>(IQueryable<TEntity> queryable)
             where TEntity : class
         {
             if (queryable == null) throw new ArgumentNullException(nameof(queryable));

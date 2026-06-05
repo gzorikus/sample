@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Metadata;
 
 namespace YourCompany.Configuration.EFCore.CollationAwareSorting.ChangeTracking
 {
-    public abstract partial class EntityEntryPropertiesCopyingVisitor
+    internal abstract partial class EntityEntryPropertiesCopyingVisitor
         : SortingKeyTopology.IPrefixFirstPropertiesVisitor
     {
         private bool _skipDefaultValues;

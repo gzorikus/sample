@@ -4,11 +4,11 @@ using System.Linq.Expressions;
 
 namespace YourCompany.Configuration.EFCore.ExpressionsCaching
 {
-    public static partial class EFPropertyExpressionsCache
+    internal static partial class EFPropertyExpressionsCache
     {
         private static readonly ConcurrentDictionary<Type, ParameterExpression> Parameters = new();
 
-        public static ParameterExpression GetPrevioslyCachedParameter(Type parameterType)
+        internal static ParameterExpression GetPrevioslyCachedParameter(Type parameterType)
         {
             if (parameterType == null) throw new ArgumentNullException(nameof(parameterType));
             if (!Parameters.TryGetValue(parameterType, out var previouslyCachedParameter))
@@ -17,9 +17,9 @@ namespace YourCompany.Configuration.EFCore.ExpressionsCaching
             return previouslyCachedParameter;
         }
 
-        public static partial class EFProperty<TProperty>
+        internal static partial class EFProperty<TProperty>
         {
-            public static Expression EntityParameter(ParameterExpression parameter, string propertyName)
+            internal static Expression EntityParameter(ParameterExpression parameter, string propertyName)
             {
                 if (parameter == null) throw new ArgumentNullException(nameof(parameter));
                 if (propertyName == null) throw new ArgumentNullException(nameof(propertyName));
@@ -35,9 +35,9 @@ namespace YourCompany.Configuration.EFCore.ExpressionsCaching
             }
         }
 
-        public static class FromParameter<T>
+        internal static class FromParameter<T>
         {
-            public static ParameterExpression Instance { get; }
+            internal static ParameterExpression Instance { get; }
 
             static FromParameter()
             {

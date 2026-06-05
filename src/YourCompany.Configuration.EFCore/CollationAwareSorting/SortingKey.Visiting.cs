@@ -5,9 +5,9 @@ namespace YourCompany.Configuration.EFCore.CollationAwareSorting
     public abstract partial class SortingKey : SortingKeyTopology.IPropertiesPrefixFirstVisit
     {
         public abstract int VisitPrefixFirst(SortingKeyTopology.IPrefixFirstPropertiesVisitor visitor);
-        public abstract int VisitPrefixFirst(IPrefixFirstPropertiesVisitor visitor);
+        internal abstract int VisitPrefixFirst(IPrefixFirstPropertiesVisitor visitor);
 
-        public interface IPrefixFirstPropertiesVisitor
+        internal interface IPrefixFirstPropertiesVisitor
         {
             ICollationAwareModelProvider ModelProvider { get; set; }
 

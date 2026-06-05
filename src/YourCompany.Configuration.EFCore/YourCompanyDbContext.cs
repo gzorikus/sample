@@ -23,16 +23,16 @@ namespace YourCompany.Configuration.EFCore
         protected static IReadOnlyList<YourCompanyDbContextConfigurator> Configurators
             => _loadedOnceConfigurators ?? throw new ApplicationException("_loadedOnceConfigurators == null");
 
-        public static IModel SingleRuntimeModelPerConfigurationType
+        internal static IModel SingleRuntimeModelPerConfigurationType
             => _singleRuntimeModelPerConfigurationType ?? throw new ApplicationException("_singleRuntimeModelPerConfigurationType == null");
 
-        public static ICollationAwareModelProvider SingleRuntimeCollationAwareSortingModelProviderPerConfigurationType
+        internal static ICollationAwareModelProvider SingleRuntimeCollationAwareSortingModelProviderPerConfigurationType
             => _singleRuntimeCollationAwareSortingModelProviderPerConfigurationType ?? throw new ApplicationException("_singleRuntimeCollationAwareSortingModelProviderPerConfigurationType == null");
 
         public TConfiguration Configuration { get; private set; }
         public DateTime ConfiguredUtcNow { get; private set; }
 
-        public YourCompanyDbContext(
+        internal YourCompanyDbContext(
             YourCompanyDbContextConfiguratorsLoadingContext configuratorsLoadingContext,
             IReadOnlyList<YourCompanyDbContextConfigurator> configurators)
         {

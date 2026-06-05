@@ -9,9 +9,9 @@ namespace YourCompany.Configuration.EFCore.CollationAwareSorting
         IComparer<string> GetCollationCompatibleStringComparer(string collationNameOrProviderDefault = null);
     }
 
-    public static class CollationCompatibleComparersProviderExtensions
+    internal static class CollationCompatibleComparersProviderExtensions
     {
-        public static ICollationCompatibleComparersProvider ToCollationCompatibleComparersProvider(
+        internal static ICollationCompatibleComparersProvider ToCollationCompatibleComparersProvider(
             this IReadOnlyList<YourCompanyDbContextConfigurator> configurators,
             YourCompanyDbContextConfiguratorsLoadingContext loadingContext)
             => new CollationCompatibleComparersProvider(configurators, loadingContext);

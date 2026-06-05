@@ -8,11 +8,11 @@ using YourCompany.OLTP.StateOwnership.Reflection.EFCore;
 
 namespace YourCompany.OLTP.RecordsManagement.Persistence.Linq.EFCore
 {
-    public abstract partial class YourCompanyDbContextLockingRecordDataReader<TConfiguration>
+    internal abstract partial class YourCompanyDbContextLockingRecordDataReader<TConfiguration>
     {
-        public abstract partial class SingleEntityQuery<TRecordData, TQueryableRecordData>
+        internal abstract partial class SingleEntityQuery<TRecordData, TQueryableRecordData>
         {
-            public abstract partial class ByIds
+            internal abstract partial class ByIds
             {
                 protected virtual async Task ResolvePrivateKeys(
                     Dictionary<SortingKey, int> indeciesByNaturalKey, CancellationToken cancellationToken)

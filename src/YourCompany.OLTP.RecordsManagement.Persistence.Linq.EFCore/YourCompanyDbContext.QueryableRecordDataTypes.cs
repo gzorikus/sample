@@ -11,7 +11,7 @@ namespace YourCompany.OLTP.RecordsManagement.Persistence.Linq.EFCore
     {
         private static IReadOnlyDictionary<Type, Type> _singleRuntimeModelQueryableRecordDataTypesPerConfigurationType;
 
-        public static IReadOnlyDictionary<Type, Type> SingleRuntimeModelQueryableRecordDataTypesPerConfigurationType
+        internal static IReadOnlyDictionary<Type, Type> SingleRuntimeModelQueryableRecordDataTypesPerConfigurationType
             => _singleRuntimeModelQueryableRecordDataTypesPerConfigurationType ?? throw new ApplicationException("_singleRuntimeModelQueryableRecordDataTypesPerConfigurationType == null");
 
         public Type GetQueryableRecordDataType(Type recordDataType)

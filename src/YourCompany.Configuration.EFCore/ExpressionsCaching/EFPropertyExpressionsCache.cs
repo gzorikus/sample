@@ -6,18 +6,18 @@ using YourCompany.Reflection;
 
 namespace YourCompany.Configuration.EFCore.ExpressionsCaching
 {
-    public static partial class EFPropertyExpressionsCache
+    internal static partial class EFPropertyExpressionsCache
     {
-        private static ConcurrentDictionary<EFPropertyKey, Expression> EFProperties { get; } = new();
+        internal static ConcurrentDictionary<EFPropertyKey, Expression> EFProperties { get; } = new();
 
-        private record struct EFPropertyKey
+        internal record struct EFPropertyKey
         {
             internal Expression CachedEntityExpression { get; set; }
             internal bool CachedEntityExpressionIsNullable { get; set; }
             internal string PropertyName { get; set; }
         }
 
-        public static partial class EFProperty<TProperty>
+        internal static partial class EFProperty<TProperty>
         {
             private static readonly Expression<Action> MethodExpression
                 = () => EF.Property<TProperty>(null, "dummy");

@@ -8,7 +8,7 @@ namespace YourCompany.OLTP.RecordsManagement.Persistence.Linq.EFCore
     {
         private Task _lock;
 
-        public async Task Lock(Task exclusive)
+        internal async Task Lock(Task exclusive)
         {
             if (exclusive == null) throw new ArgumentNullException(nameof(exclusive));
             while (true)

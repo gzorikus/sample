@@ -3,13 +3,13 @@ using Microsoft.EntityFrameworkCore.ChangeTracking;
 
 namespace YourCompany.Configuration.EFCore.CollationAwareSorting.ChangeTracking
 {
-    public abstract partial class EntityEntrySortingKeyCreatingVisitor
+    internal abstract partial class EntityEntrySortingKeyCreatingVisitor
     {
-        public class Generic<TEntity> : EntityEntrySortingKeyCreatingVisitor where TEntity : class
+        internal class Generic<TEntity> : EntityEntrySortingKeyCreatingVisitor where TEntity : class
         {
-            public EntityEntry<TEntity> PropertiesOwner { get; private set; }
+            internal EntityEntry<TEntity> PropertiesOwner { get; private set; }
 
-            public SortingKey CreateForSingleEntityQuery(
+            internal SortingKey CreateForSingleEntityQuery(
                 SortingKeyTopology.ILastProperty topology,
                 EntityEntry<TEntity> propertiesOwner,
                 SortingKey prefix = null,
@@ -29,7 +29,7 @@ namespace YourCompany.Configuration.EFCore.CollationAwareSorting.ChangeTracking
                 return sortingKey;
             }
 
-            public Generic<TEntity> UseForSingleEntityQuery(EntityEntry<TEntity> propertiesOwner, SortingKey prefix = null)
+            internal Generic<TEntity> UseForSingleEntityQuery(EntityEntry<TEntity> propertiesOwner, SortingKey prefix = null)
             {
                 PropertiesOwner = propertiesOwner ?? throw new ArgumentNullException(nameof(propertiesOwner));
                 if (prefix == null) UseForNewSortingKey();

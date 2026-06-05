@@ -4,13 +4,13 @@ using YourCompany.Configuration.EFCore.ChangeTracking;
 
 namespace YourCompany.Configuration.EFCore.CollationAwareSorting.ChangeTracking
 {
-    public abstract partial class EntityEntryPropertiesSettingVisitor
+    internal abstract partial class EntityEntryPropertiesSettingVisitor
     {
-        public class NonGeneric : EntityEntryPropertiesSettingVisitor
+        internal class NonGeneric : EntityEntryPropertiesSettingVisitor
         {
-            public EntityEntry PropertiesOwner { get; private set; }
+            internal EntityEntry PropertiesOwner { get; private set; }
 
-            public NonGeneric SetSingleEntityQueryValuesTo(SortingKey sortingKey, EntityEntry propertiesOwner)
+            internal NonGeneric SetSingleEntityQueryValuesTo(SortingKey sortingKey, EntityEntry propertiesOwner)
             {
                 if (sortingKey == null) throw new ArgumentNullException(nameof(sortingKey));
                 ResetVisitState();
@@ -19,7 +19,7 @@ namespace YourCompany.Configuration.EFCore.CollationAwareSorting.ChangeTracking
                 return this;
             }
 
-            public NonGeneric UseForSingleEntityQuery(EntityEntry propertiesOwner)
+            internal NonGeneric UseForSingleEntityQuery(EntityEntry propertiesOwner)
             {
                 PropertiesOwner = propertiesOwner ?? throw new ArgumentNullException(nameof(propertiesOwner));
                 UseForAllPropertiesSetting();

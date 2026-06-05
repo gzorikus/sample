@@ -12,7 +12,7 @@ using PrimaryKey = YourCompany.OLTP.RecordsManagement.Persistence
 
 namespace YourCompany.OLTP.RecordsManagement.Persistence.Linq.EFCore
 {
-    public class YourCompanyDbContextRecordsDataAccessAdapter<TConfiguration> : RecordsDataAccess.IStarting,
+    internal class YourCompanyDbContextRecordsDataAccessAdapter<TConfiguration> : RecordsDataAccess.IStarting,
         RecordsDataAccess.IAfterSortingByIds,
         RecordsDataAccess.IAfterSortingWithoutIds<PrimaryKey.AfterAlternateSorting>,
         RecordsDataAccess.IAfterSortingWithoutIds<PrimaryKey.WithoutExtraValues>,
@@ -28,7 +28,7 @@ namespace YourCompany.OLTP.RecordsManagement.Persistence.Linq.EFCore
         protected YourCompanyDbContext<TConfiguration> Context { get; }
         protected bool ContextCreator { get; }
 
-        public YourCompanyDbContextRecordsDataAccessAdapter(
+        internal YourCompanyDbContextRecordsDataAccessAdapter(
             Type recordDataType, YourCompanyDbContext<TConfiguration> context, bool contextCreator)
         {
             RecordDataType = recordDataType ?? throw new ArgumentNullException(nameof(recordDataType));
