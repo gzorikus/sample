@@ -1268,15 +1268,13 @@ Commit body is multiline and compliant to markdown formatting 💥
 
 <!-- ### Commit: 2|🧱: StructHelper END -->
 
-<!-- ### Commit: 2|🧱: AwaitTasksList
+### Commit: 2|🧱: AwaitTasksList
 
 <table><tbody><tr><td>
 
-X files changed, Y insertions(+), Z deletions(-)<br>
-<sub><sub>src/YourCompany.Module/</sub></sub><br>
-<kbd> +++++++ NNN |⁠ [File.cs                                                                                                        ](src/YourCompany.Configuration/EnvironmentConventions.cs)</kbd><br>
-
-Commit body is multiline and compliant to markdown formatting 💥
+1 file changed, 49 insertions(+)<br>
+<sub><sub>src/YourCompany.Threading/</sub></sub><br>
+<kbd> +++++++ 49  |⁠ [AwaitTasksList.cs                                                                                              ](src/YourCompany.Threading/AwaitTasksList.cs)</kbd><br>
 
 </td></tr></tbody></table>
 
@@ -1422,15 +1420,19 @@ Commit body is multiline and compliant to markdown formatting 💥
 
 <!-- ### Commit: 3|🏠: OLTP RecordTypesMap END -->
 
-<!-- ### Commit: 3|🏠: generic OLTP use cases
+### Commit: 3|🏠: generic OLTP use cases
 
 <table><tbody><tr><td>
 
-X files changed, Y insertions(+), Z deletions(-)<br>
-<sub><sub>src/YourCompany.Module/</sub></sub><br>
-<kbd> +++++++ NNN |⁠ [File.cs                                                                                                        ](src/YourCompany.Configuration/EnvironmentConventions.cs)</kbd><br>
+2 files changed, 212 insertions(+)<br>
+<sub><sub>src/YourCompany.OLTP.RecordsManagement.UseCases/</sub></sub><br>
+<kbd> +++++++ 167 |⁠ [RecordsBatchTransactionUseCases.RunningExtensions.cs                                                           ](src/YourCompany.OLTP.RecordsManagement.UseCases/RecordsBatchTransactionUseCases.RunningExtensions.cs)</kbd><br>
+<kbd>      ++ 45  |⁠ [RecordsBatchTransactionUseCases.cs                                                                             ](src/YourCompany.OLTP.RecordsManagement.UseCases/RecordsBatchTransactionUseCases.cs)</kbd><br>
 
-Commit body is multiline and compliant to markdown formatting 💥
+Easily reuse and combine authorizers, record property setters or  
+organize each transaction post processing and extend aggregate  
+boundaries (though still limited with module boundaries, we'll  
+improve this later).
 
 </td></tr></tbody></table>
 

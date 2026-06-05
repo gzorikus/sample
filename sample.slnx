@@ -23,7 +23,7 @@
     <!-- <Project Path="src/YourCompany.OLTP.RecordsManagement.Persistence/YourCompany.OLTP.RecordsManagement.Persistence.csproj" /> -->
     <!-- <Project Path="src/YourCompany.OLTP.RecordsManagement.Persistence.Linq/YourCompany.OLTP.RecordsManagement.Persistence.Linq.csproj" /> -->
     <!-- <Project Path="src/YourCompany.OLTP.RecordsManagement.Persistence.Linq.EFCore/YourCompany.OLTP.RecordsManagement.Persistence.Linq.EFCore.csproj" /> -->
-    <!-- <Project Path="src/YourCompany.OLTP.RecordsManagement.UseCases/YourCompany.OLTP.RecordsManagement.UseCases.csproj" /> -->
+    <Project Path="src/YourCompany.OLTP.RecordsManagement.UseCases/YourCompany.OLTP.RecordsManagement.UseCases.csproj" />
     <!-- <Project Path="src/YourCompany.OLTP.RecordsManagement.UseCases.Reflection/YourCompany.OLTP.RecordsManagement.UseCases.Reflection.csproj" /> -->
     <!-- <Project Path="src/YourCompany.OLTP.RecordsManagement.UseCases.Reflection.DI/YourCompany.OLTP.RecordsManagement.UseCases.Reflection.DI.csproj" /> -->
     <!-- <Project Path="src/YourCompany.OLTP.RecordsManagement.UseCases.TransactionalComposition/YourCompany.OLTP.RecordsManagement.UseCases.TransactionalComposition.csproj" /> -->
@@ -36,6 +36,6 @@
     <!-- <Project Path="src/YourCompany.OLTP.StateOwnership.TransactionalComposition.Reflection/YourCompany.OLTP.StateOwnership.TransactionalComposition.Reflection.csproj" /> -->
     <!-- <Project Path="src/YourCompany.Reflection/YourCompany.Reflection.csproj" /> -->
     <!-- <Project Path="src/YourCompany.Reflection.DI/YourCompany.Reflection.DI.csproj" /> -->
-    <!-- <Project Path="src/YourCompany.Threading/YourCompany.Threading.csproj" /> -->
+    <Project Path="src/YourCompany.Threading/YourCompany.Threading.csproj" />
   </Folder>
 </Solution>
