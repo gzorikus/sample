@@ -758,9 +758,9 @@ gitGraph
 
 %% Startup Iteration 1
 
-%% checkout "MERGED" %% BCC
+checkout "MERGED" %% BCC
 %% checkout "2|💾: basic pluggable EFCore" %% BCC
-%% branch "1|🧱: basic configurations covered" %% BCC
+branch "1|🧱: basic configurations covered" %% BCC
 %% commit type:REVERSE %% BCC>1
 %% commit type:REVERSE %% BCC>2
 %% commit type:REVERSE %% BCC>3
@@ -869,10 +869,10 @@ commit type:HIGHLIGHT tag:"1|🧱|configuration-entry-assembly-rotating-secrets-
 %% commit type:REVERSE %% OTILS 1>2
 %% commit type:REVERSE %% OTILS 1>3
 
-%% checkout MERGED %% THOOIT
+checkout MERGED %% THOOIT
 %% checkout "2|🏠: OLTP transaction is limited size" %% THOOIT
 %% checkout "3|🏠: OLTP RecordTypesMap" %% THOOIT
-%% branch "1|🏠: the heart of OLTP is transaction" %% THOOIT
+branch "1|🏠: the heart of OLTP is transaction" %% THOOIT
 %% merge "2|🏠: OLTP transaction is limited size" %% THOOIT
 %% merge "1|🏠: OLTP events producing" %% THOOIT
 %% merge "1|🏠: OLTP transactional composition" %% THOOIT
