@@ -30,7 +30,7 @@
     <Project Path="src/YourCompany.OLTP.StateOwnership/YourCompany.OLTP.StateOwnership.csproj" />
     <!-- <Project Path="src/YourCompany.OLTP.StateOwnership.EventsProducing/YourCompany.OLTP.StateOwnership.EventsProducing.csproj" /> -->
     <Project Path="src/YourCompany.OLTP.StateOwnership.Reflection/YourCompany.OLTP.StateOwnership.Reflection.csproj" />
-    <!-- <Project Path="src/YourCompany.OLTP.StateOwnership.Reflection.DI/YourCompany.OLTP.StateOwnership.Reflection.DI.csproj" /> -->
+    <Project Path="src/YourCompany.OLTP.StateOwnership.Reflection.DI/YourCompany.OLTP.StateOwnership.Reflection.DI.csproj" />
     <!-- <Project Path="src/YourCompany.OLTP.StateOwnership.Reflection.EFCore/YourCompany.OLTP.StateOwnership.Reflection.EFCore.csproj" /> -->
     <!-- <Project Path="src/YourCompany.OLTP.StateOwnership.TransactionalComposition/YourCompany.OLTP.StateOwnership.TransactionalComposition.csproj" /> -->
     <!-- <Project Path="src/YourCompany.OLTP.StateOwnership.TransactionalComposition.Reflection/YourCompany.OLTP.StateOwnership.TransactionalComposition.Reflection.csproj" /> -->

@@ -1610,15 +1610,16 @@ Commit body is multiline and compliant to markdown formatting 💥
 
 <!-- ### Commit: 5|🧱: OLTP switch to chassis END -->
 
-<!-- ### Commit: 5|🧱: OLTP DI ScopedRecordsProvider
+### Commit: 5|🧱: OLTP DI ScopedRecordsProvider
 
 <table><tbody><tr><td>
 
-X files changed, Y insertions(+), Z deletions(-)<br>
-<sub><sub>src/YourCompany.Module/</sub></sub><br>
-<kbd> +++++++ NNN |⁠ [File.cs                                                                                                        ](src/YourCompany.Configuration/EnvironmentConventions.cs)</kbd><br>
-
-Commit body is multiline and compliant to markdown formatting 💥
+4 files changed, 120 insertions(+)<br>
+<sub><sub>src/YourCompany.OLTP.StateOwnership.Reflection.DI/</sub></sub><br>
+<kbd> +++++++ 80  |⁠ [ScopedRecordsProvider.cs                                                                                       ](src/YourCompany.OLTP.StateOwnership.Reflection.DI/ScopedRecordsProvider.cs)</kbd><br>
+<kbd>      ++ 19  |⁠ [SingletonStateAccess.cs                                                                                        ](src/YourCompany.OLTP.StateOwnership.Reflection.DI/SingletonStateAccess.cs)</kbd><br>
+<kbd>       + 12  |⁠ [ICurrentStateAccess.cs                                                                                         ](src/YourCompany.OLTP.StateOwnership.Reflection.DI/ICurrentStateAccess.cs)</kbd><br>
+<kbd>       + 9   |⁠ [ICurrentStateAccessProvider.cs                                                                                 ](src/YourCompany.OLTP.StateOwnership.Reflection.DI/ICurrentStateAccessProvider.cs)</kbd><br>
 
 </td></tr></tbody></table>
 
