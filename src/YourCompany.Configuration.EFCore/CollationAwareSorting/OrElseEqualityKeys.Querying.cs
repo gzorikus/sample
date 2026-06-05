@@ -11,7 +11,7 @@ namespace YourCompany.Configuration.EFCore.CollationAwareSorting
 
         public IReadOnlyList<SortingKeyQueries.MultiEntityQuerySortingKeyPropertyOwnerIndex>
             EntitiesValueTuplePropertyOwnerIndecies
-        { get; set; }
+        { get; internal set; }
 
         IQueryable<TEntity> SortingKeyQueries.ISingleEntityEquality.GetEqual<TEntity>(IQueryable<TEntity> queryable)
             => PossibleSingleTopology != null
@@ -46,7 +46,7 @@ namespace YourCompany.Configuration.EFCore.CollationAwareSorting
             where TEntity : class
             => MultiEntityFilterOwnedPropertiesOnlyForEquality(queryable);
 
-        public IQueryable<TEntity> MultiEntityFilterOwnedPropertiesOnlyForEquality<TEntity>(
+        internal IQueryable<TEntity> MultiEntityFilterOwnedPropertiesOnlyForEquality<TEntity>(
             IQueryable<TEntity> queryable)
             where TEntity : class
         {

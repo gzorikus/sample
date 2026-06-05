@@ -6,11 +6,11 @@ using YourCompany.Reflection;
 
 namespace YourCompany.Configuration.EFCore.ExpressionsCaching
 {
-    public static partial class EFPropertyExpressionsCache
+    internal static partial class EFPropertyExpressionsCache
     {
         private static readonly ConcurrentDictionary<ValueTuplePropertyKey, MemberExpression> ValueTupleProperties = new();
 
-        public static MemberExpression GetPreviouslyCachedValueTupleProperty(
+        internal static MemberExpression GetPreviouslyCachedValueTupleProperty(
             Expression cachedValueTupleExpression, int valueIndex)
         {
             if (cachedValueTupleExpression == null) throw new ArgumentNullException(nameof(cachedValueTupleExpression));
@@ -23,9 +23,9 @@ namespace YourCompany.Configuration.EFCore.ExpressionsCaching
             return previouslyCachedProperyExpression;
         }
 
-        public static partial class EFProperty<TProperty>
+        internal static partial class EFProperty<TProperty>
         {
-            public static Expression EntitiesValueTupleParameter(
+            internal static Expression EntitiesValueTupleParameter(
                 ParameterExpression parameter, int valueIndex, string propertyName)
             {
                 if (parameter == null) throw new ArgumentNullException(nameof(parameter));
@@ -48,11 +48,11 @@ namespace YourCompany.Configuration.EFCore.ExpressionsCaching
             internal int ValueIndex { get; set; }
         }
 
-        public static partial class FromParameter<T>
+        internal static partial class FromParameter<T>
         {
-            public static class ValueTuple
+            internal static class ValueTuple
             {
-                public static IReadOnlyList<MemberExpression> PropertiesByValueIndex { get; }
+                internal static IReadOnlyList<MemberExpression> PropertiesByValueIndex { get; }
 
                 static ValueTuple()
                 {

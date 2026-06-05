@@ -76,7 +76,7 @@ namespace YourCompany.Configuration.EFCore.CollationAwareSorting
             where TEntity : class
             => MultiEntityFilterOwnedPropertiesOnlyForEquality(queryable);
 
-        public IQueryable<TEntity> MultiEntityFilterOwnedPropertiesOnlyForEquality<TEntity>(
+        internal IQueryable<TEntity> MultiEntityFilterOwnedPropertiesOnlyForEquality<TEntity>(
             IQueryable<TEntity> queryable)
             where TEntity : class
         {

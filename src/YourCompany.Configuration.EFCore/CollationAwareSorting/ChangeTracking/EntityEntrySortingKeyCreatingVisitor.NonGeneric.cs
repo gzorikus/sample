@@ -10,7 +10,7 @@ namespace YourCompany.Configuration.EFCore.CollationAwareSorting.ChangeTracking
         internal class NonGeneric : EntityEntrySortingKeyCreatingVisitor
         {
             internal EntityEntry PropertiesOwner { get; private set; }
-            public IReadOnlyList<EntityEntry> PropertyOwners { get; private set; }
+            internal IReadOnlyList<EntityEntry> PropertyOwners { get; private set; }
 
             internal SortingKey CreateForSingleEntityQuery(
                 SortingKeyTopology.ILastProperty topology,
@@ -34,7 +34,7 @@ namespace YourCompany.Configuration.EFCore.CollationAwareSorting.ChangeTracking
                 return sortingKey;
             }
 
-            public NonGeneric UseForSingleEntityQuery(EntityEntry propertiesOwner, SortingKey prefix = null)
+            internal NonGeneric UseForSingleEntityQuery(EntityEntry propertiesOwner, SortingKey prefix = null)
             {
                 PropertiesOwner = propertiesOwner ?? throw new ArgumentNullException(nameof(propertiesOwner));
                 PropertyOwners = null;
@@ -43,7 +43,7 @@ namespace YourCompany.Configuration.EFCore.CollationAwareSorting.ChangeTracking
                 return this;
             }
 
-            public SortingKey CreateForMultiEntityQuery(
+            internal SortingKey CreateForMultiEntityQuery(
                 SortingKeyTopology.ILastProperty topology,
                 IReadOnlyList<EntityEntry> propertyOwners,
                 SortingKey prefix = null)
@@ -53,7 +53,7 @@ namespace YourCompany.Configuration.EFCore.CollationAwareSorting.ChangeTracking
                 return Prefix ?? throw new ApplicationException("Prefix == null");
             }
 
-            public NonGeneric UseForMultiEntityQuery(IReadOnlyList<EntityEntry> propertyOwners, SortingKey prefix = null)
+            internal NonGeneric UseForMultiEntityQuery(IReadOnlyList<EntityEntry> propertyOwners, SortingKey prefix = null)
             {
                 PropertyOwners = propertyOwners ?? throw new ArgumentNullException(nameof(propertyOwners));
                 PropertiesOwner = null;

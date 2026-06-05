@@ -10,7 +10,7 @@ namespace YourCompany.Configuration.EFCore.CollationAwareSorting.ChangeTracking
         internal class NonGeneric : EntityEntryPropertiesSettingVisitor
         {
             internal EntityEntry PropertiesOwner { get; private set; }
-            public IReadOnlyList<EntityEntry> PropertyOwners { get; private set; }
+            internal IReadOnlyList<EntityEntry> PropertyOwners { get; private set; }
 
             internal NonGeneric SetSingleEntityQueryValuesTo(SortingKey sortingKey, EntityEntry propertiesOwner)
             {
@@ -29,7 +29,7 @@ namespace YourCompany.Configuration.EFCore.CollationAwareSorting.ChangeTracking
                 return this;
             }
 
-            public NonGeneric SetMultiEntityQueryValuesTo(SortingKey sortingKey, EntityEntry propertiesOwner)
+            internal NonGeneric SetMultiEntityQueryValuesTo(SortingKey sortingKey, EntityEntry propertiesOwner)
             {
                 if (sortingKey == null) throw new ArgumentNullException(nameof(sortingKey));
                 ResetVisitState();
@@ -38,7 +38,7 @@ namespace YourCompany.Configuration.EFCore.CollationAwareSorting.ChangeTracking
                 return this;
             }
 
-            public NonGeneric UseForMultiEntityQuery(EntityEntry propertiesOwner)
+            internal NonGeneric UseForMultiEntityQuery(EntityEntry propertiesOwner)
             {
                 PropertiesOwner = propertiesOwner ?? throw new ArgumentNullException(nameof(propertiesOwner));
                 PropertyOwners = null;
@@ -46,7 +46,7 @@ namespace YourCompany.Configuration.EFCore.CollationAwareSorting.ChangeTracking
                 return this;
             }
 
-            public NonGeneric SetMultiEntityQueryValuesTo(
+            internal NonGeneric SetMultiEntityQueryValuesTo(
                 SortingKey sortingKey, IReadOnlyList<EntityEntry> propertyOwners)
             {
                 if (sortingKey == null) throw new ArgumentNullException(nameof(sortingKey));
@@ -56,7 +56,7 @@ namespace YourCompany.Configuration.EFCore.CollationAwareSorting.ChangeTracking
                 return this;
             }
 
-            public NonGeneric UseForMultiEntityQuery(IReadOnlyList<EntityEntry> propertyOwners)
+            internal NonGeneric UseForMultiEntityQuery(IReadOnlyList<EntityEntry> propertyOwners)
             {
                 PropertyOwners = propertyOwners ?? throw new ArgumentNullException(nameof(propertyOwners));
                 PropertiesOwner = null;

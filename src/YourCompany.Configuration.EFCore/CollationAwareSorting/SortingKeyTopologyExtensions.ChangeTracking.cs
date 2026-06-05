@@ -20,7 +20,7 @@ namespace YourCompany.Configuration.EFCore.CollationAwareSorting
             this SortingKeyTopology.ILastProperty topology, IReadOnlyList<EntityEntry> propertyOwners)
             => new EntityEntrySortingKeyCreatingVisitor.NonGeneric().CreateForMultiEntityQuery(topology, propertyOwners);
 
-        public static bool TryGetSingleMatchingOwner(
+        internal static bool TryGetSingleMatchingOwner(
             this SortingKeyTopology.PropertiesOwner matchTo,
             IReadOnlyList<EntityEntry> propertyOwners,
             out EntityEntry singleEntry)

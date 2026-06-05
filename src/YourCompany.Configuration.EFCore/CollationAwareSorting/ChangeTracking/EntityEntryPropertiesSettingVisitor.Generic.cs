@@ -26,7 +26,7 @@ namespace YourCompany.Configuration.EFCore.CollationAwareSorting.ChangeTracking
                 return this;
             }
 
-            public Generic<TEntity> SetMultiEntityQueryValuesTo(
+            internal Generic<TEntity> SetMultiEntityQueryValuesTo(
                 SortingKey sortingKey, EntityEntry<TEntity> propertiesOwner)
             {
                 if (sortingKey == null) throw new ArgumentNullException(nameof(sortingKey));
@@ -36,7 +36,7 @@ namespace YourCompany.Configuration.EFCore.CollationAwareSorting.ChangeTracking
                 return this;
             }
 
-            public Generic<TEntity> UseForMultiEntityQuery(EntityEntry<TEntity> propertiesOwner)
+            internal Generic<TEntity> UseForMultiEntityQuery(EntityEntry<TEntity> propertiesOwner)
             {
                 PropertiesOwner = propertiesOwner ?? throw new ArgumentNullException(nameof(propertiesOwner));
                 UseForSingleOwnerMatchingPropertiesOnly();
