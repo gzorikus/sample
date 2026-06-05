@@ -1685,15 +1685,13 @@ Commit body is multiline and compliant to markdown formatting 💥
 
 <!-- ### Commit: 5|🧱: OLTP DI ScopedRecordsProvider END -->
 
-<!-- ### Commit: 5|🧱: OLTP DI ScopedUseCasesProvider
+### Commit: 5|🧱: OLTP DI ScopedUseCasesProvider
 
 <table><tbody><tr><td>
 
-X files changed, Y insertions(+), Z deletions(-)<br>
-<sub><sub>src/YourCompany.Module/</sub></sub><br>
-<kbd> +++++++ NNN |⁠ [File.cs                                                                                                        ](src/YourCompany.Configuration/EnvironmentConventions.cs)</kbd><br>
-
-Commit body is multiline and compliant to markdown formatting 💥
+1 file changed, 69 insertions(+)<br>
+<sub><sub>src/YourCompany.OLTP.RecordsManagement.UseCases.Reflection.DI/</sub></sub><br>
+<kbd> +++++++ 69  |⁠ [ScopedUseCasesProvider.cs                                                                                      ](src/YourCompany.OLTP.RecordsManagement.UseCases.Reflection.DI/ScopedUseCasesProvider.cs)</kbd><br>
 
 </td></tr></tbody></table>
 
