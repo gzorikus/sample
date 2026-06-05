@@ -204,7 +204,7 @@ All the entry point branches' heads are highlighted in the graph as ⏹️.
 ---
 config:
   gitGraph:
-    mainBranchName: "5|🧱: OLTP switch to chassis"
+    mainBranchName: "5|🧱: OLTP DI inheritance free repo"
     parallelCommits: true
     rotateCommitLabel: false
     showCommitLabel: false
@@ -272,21 +272,21 @@ gitGraph
 %% checkout "7|🧱: OLTP DI EFCore switch to chassis" %% ODIFR
 %% branch "5|🧱: OLTP DI inheritance free repo" %% ODIFR
 %% commit type:REVERSE %% ODIFR>1
-%% commit type:HIGHLIGHT tag:"5|🧱|oltp-di-combine-use-case-and-persistence-interfaces-without-inheritance|YourCompany.OLTP.RecordsManagement.DI" %% ODIFR
+commit type:HIGHLIGHT tag:"5|🧱|oltp-di-combine-use-case-and-persistence-interfaces-without-inheritance|YourCompany.OLTP.RecordsManagement.DI" %% ODIFR
 %% merge "5|🧱: OLTP record composition to chassis" type:HIGHLIGHT tag:"5|🧱|oltp-di-combine-use-case-and-persistence-interfaces-without-inheritance|YourCompany.OLTP.RecordsManagement.DI" %% ODIFR
 
-%% branch "5|🧱: OLTP DI ScopedUseCasesProvider" %% ODS
-%% commit type:NORMAL tag:"5|🧱|YourCompany.OLTP.RecordsManagement.UseCases.Reflection.DI" %% 5|🧱: OLTP DI ScopedUseCasesProvider
+branch "5|🧱: OLTP DI ScopedUseCasesProvider" %% ODS
+commit type:NORMAL tag:"5|🧱|YourCompany.OLTP.RecordsManagement.UseCases.Reflection.DI" %% 5|🧱: OLTP DI ScopedUseCasesProvider
 
-%% checkout "5|🧱: OLTP DI inheritance free repo" %% ODSRP
-%% branch "5|🧱: OLTP DI ScopedRecordsProvider" %% ODSRP
-%% commit type:NORMAL tag:"5|🧱|YourCompany.OLTP.StateOwnership.Reflection.DI" %% ODSRP
+checkout "5|🧱: OLTP DI inheritance free repo" %% ODSRP
+branch "5|🧱: OLTP DI ScopedRecordsProvider" %% ODSRP
+commit type:NORMAL tag:"5|🧱|YourCompany.OLTP.StateOwnership.Reflection.DI" %% ODSRP
 
-%% checkout "5|🧱: OLTP DI inheritance free repo" %% OSTC
-%% commit type:REVERSE %% OSTC<1
-%% commit type:REVERSE %% OSTC<2
-%% commit type:REVERSE %% OSTC<3
-%% branch "5|🧱: OLTP switch to chassis" %% OSTC
+checkout "5|🧱: OLTP DI inheritance free repo" %% OSTC
+commit type:REVERSE %% OSTC<1
+commit type:REVERSE %% OSTC<2
+commit type:REVERSE %% OSTC<3
+branch "5|🧱: OLTP switch to chassis" %% OSTC
 %% commit type:REVERSE %% OSTC>1
 commit type:HIGHLIGHT tag:"5|🧱|oltp-di-combine-use-case-and-persistence-interfaces-switch-to-chassis|YourCompany.OLTP.RecordsManagement|YourCompany.OLTP.RecordsManagement.DI|YourCompany.OLTP.RecordsManagement.Persistence|YourCompany.OLTP.RecordsManagement.UseCases|YourCompany.OLTP.StateOwnership" %% OSTC
 
@@ -481,8 +481,8 @@ merge "4|🧱: OLTP identities are unique keys" type:HIGHLIGHT tag:"3|🧱|oltp-
 %% commit type:REVERSE %% ORTCM>10
 %% commit type:NORMAL tag:"3|🏠|YourCompany.OLTP.StateOwnership.TransactionalComposition.Reflection" %% ORTCM
 
-%% checkout "5|🧱: OLTP DI ScopedUseCasesProvider" %% OUCTM
-%% commit type:REVERSE %% OUCTM<1
+checkout "5|🧱: OLTP DI ScopedUseCasesProvider" %% OUCTM
+commit type:REVERSE %% OUCTM<1
 %% commit type:REVERSE %% OUCTM<2
 %% commit type:REVERSE %% OUCTM<3
 %% commit type:REVERSE %% OUCTM<4
@@ -497,21 +497,21 @@ merge "4|🧱: OLTP identities are unique keys" type:HIGHLIGHT tag:"3|🧱|oltp-
 %% commit type:REVERSE %% OUCTM<13
 %% commit type:REVERSE %% OUCTM<14
 %% commit type:REVERSE %% OUCTM<15
-%% branch "3|🏠: OLTP UseCaseTypesMap" %% OUCTM
-%% commit type:REVERSE %% OUCTM>1
-%% commit type:REVERSE %% OUCTM>2
-%% commit type:REVERSE %% OUCTM>3
-%% commit type:REVERSE %% OUCTM>4
+branch "3|🏠: OLTP UseCaseTypesMap" %% OUCTM
+commit type:REVERSE %% OUCTM>1
+commit type:REVERSE %% OUCTM>2
+commit type:REVERSE %% OUCTM>3
+commit type:REVERSE %% OUCTM>4
 %% commit type:REVERSE %% OUCTM>5
 %% commit type:REVERSE %% OUCTM>6
 %% commit type:REVERSE %% OUCTM>7
-%% commit type:NORMAL tag:"3|🏠|YourCompany.OLTP.RecordsManagement.UseCases.Reflection" %% OUCTM
+commit type:NORMAL tag:"3|🏠|YourCompany.OLTP.RecordsManagement.UseCases.Reflection" %% OUCTM
 
 checkout "4|🏠: enumerate OLTP use cases" %% GOUC
 branch "3|🏠: generic OLTP use cases" %% GOUC
-commit type:REVERSE %% GOUC>1
-commit type:NORMAL tag:"3|🏠|YourCompany.OLTP.RecordsManagement.UseCases" %% GOUC
-%% merge "3|🏠: OLTP UseCaseTypesMap" type:NORMAL tag:"3|🏠|YourCompany.OLTP.RecordsManagement.UseCases" %% GOUC
+%% commit type:REVERSE %% GOUC>1
+%% commit type:NORMAL tag:"3|🏠|YourCompany.OLTP.RecordsManagement.UseCases" %% GOUC
+merge "3|🏠: OLTP UseCaseTypesMap" type:NORMAL tag:"3|🏠|YourCompany.OLTP.RecordsManagement.UseCases" %% GOUC
 
 %% checkout "4|💾: OLTP EFCore MetadataHelper" %% Startup Iteration 3
 %% commit type:REVERSE %% OEMH 3>1
@@ -530,15 +530,15 @@ commit type:NORMAL tag:"3|🏠|YourCompany.OLTP.RecordsManagement.UseCases" %% G
 %% commit type:REVERSE %% OEMH 3>14
 
 %% checkout "3|🏠: OLTP RecordTypesCompositionMap" %% ORTM
-%% checkout "5|🧱: OLTP DI ScopedRecordsProvider" %% ORTM
-%% branch "3|🏠: OLTP RecordTypesMap" %% ORTM
+checkout "5|🧱: OLTP DI ScopedRecordsProvider" %% ORTM
+branch "3|🏠: OLTP RecordTypesMap" %% ORTM
 %% merge "3|🏠: OLTP RecordTypesCompositionMap" %% ORTM
-%% commit type:REVERSE %% ORTM>1
-%% commit type:REVERSE %% ORTM>2
-%% commit type:REVERSE %% ORTM>3
-%% commit type:REVERSE %% ORTM>4
-%% commit type:REVERSE %% ORTM>5
-%% commit type:NORMAL tag:"3|🏠|YourCompany.OLTP.StateOwnership.Reflection" %% ORTM
+commit type:REVERSE %% ORTM>1
+commit type:REVERSE %% ORTM>2
+commit type:REVERSE %% ORTM>3
+commit type:REVERSE %% ORTM>4
+commit type:REVERSE %% ORTM>5
+commit type:NORMAL tag:"3|🏠|YourCompany.OLTP.StateOwnership.Reflection" %% ORTM
 %% merge "3|🏠: OLTP RecordTypesCompositionMap" type:NORMAL tag:"3|🏠|YourCompany.OLTP.StateOwnership.Reflection" %% ORTM
 %% merge "4|💾: OLTP EFCore MetadataHelper" type:NORMAL tag:"3|🏠|YourCompany.OLTP.StateOwnership.Reflection" %% ORTM
 
@@ -639,16 +639,16 @@ commit type:NORMAL tag:"3|🏠|YourCompany.OLTP.RecordsManagement.UseCases" %% G
 %% commit type:REVERSE %% TCM>8
 %% commit type:NORMAL tag:"2|🧱|YourCompany.Reflection" %% TCM
 
-%% checkout "3|🏠: OLTP UseCaseTypesMap" %% TAH
-%% commit type:REVERSE %% TAH<1
-%% commit type:REVERSE %% TAH<2
-%% branch "2|🧱: TypeAbstractionsHelper" %% TAH
+checkout "3|🏠: OLTP UseCaseTypesMap" %% TAH
+commit type:REVERSE %% TAH<1
+commit type:REVERSE %% TAH<2
+branch "2|🧱: TypeAbstractionsHelper" %% TAH
 %% commit type:REVERSE %% TAH>1
 %% commit type:REVERSE %% TAH>2
 %% commit type:REVERSE %% TAH>3
 %% commit type:REVERSE %% TAH>4
 %% commit type:REVERSE %% TAH>5
-%% commit type:NORMAL tag:"2|🧱|YourCompany.Reflection" %% TAH
+commit type:NORMAL tag:"2|🧱|YourCompany.Reflection" %% TAH
 %% merge "2|🧱: TypesCompositionMap" type:NORMAL tag:"2|🧱|YourCompany.Reflection" %% TAH
 
 %% checkout "4|💾: EFCore SortingKey reading" %% VTH
@@ -669,17 +669,17 @@ commit type:NORMAL tag:"3|🏠|YourCompany.OLTP.RecordsManagement.UseCases" %% G
 %% commit type:REVERSE %% VTH>9
 %% commit type:NORMAL tag:"2|🧱|YourCompany.Reflection" %% VTH
 
-%% checkout "5|🧱: OLTP DI ScopedRecordsProvider" %% DCH
-%% branch "2|🧱: DIConstructorHelper" %% DCH
-%% commit type:REVERSE %% DCH>1
-%% commit type:REVERSE %% DCH>2
-%% commit type:REVERSE %% DCH>3
-%% commit type:REVERSE %% DCH>4
-%% commit type:REVERSE %% DCH>5
-%% commit type:REVERSE %% DCH>6
-%% commit type:REVERSE %% DCH>7
-%% commit type:REVERSE %% DCH>8
-%% commit type:REVERSE %% DCH>9
+checkout "5|🧱: OLTP DI ScopedRecordsProvider" %% DCH
+branch "2|🧱: DIConstructorHelper" %% DCH
+commit type:REVERSE %% DCH>1
+commit type:REVERSE %% DCH>2
+commit type:REVERSE %% DCH>3
+commit type:REVERSE %% DCH>4
+commit type:REVERSE %% DCH>5
+commit type:REVERSE %% DCH>6
+commit type:REVERSE %% DCH>7
+commit type:REVERSE %% DCH>8
+commit type:REVERSE %% DCH>9
 %% commit type:REVERSE %% DCH>10
 %% commit type:REVERSE %% DCH>11
 %% commit type:REVERSE %% DCH>12
@@ -693,22 +693,22 @@ commit type:NORMAL tag:"3|🏠|YourCompany.OLTP.RecordsManagement.UseCases" %% G
 %% commit type:REVERSE %% DCH>20
 %% commit type:REVERSE %% DCH>21
 %% commit type:REVERSE %% DCH>22
-%% commit type:NORMAL tag:"2|🧱|YourCompany.Reflection.DI" %% DCH
+commit type:NORMAL tag:"2|🧱|YourCompany.Reflection.DI" %% DCH
 
 %% checkout "3|💾: EFPropertyExpressionsCache" %% Startup Iteration 2
 %% commit type:REVERSE %% EPEC 2>1
 
-%% checkout "2|🧱: TypeAbstractionsHelper" %% GMH
+checkout "2|🧱: TypeAbstractionsHelper" %% GMH
 %% checkout "4|💾: EFEntityEntryPropertiesCache" %% GMH
-%% branch "2|🧱: GetMemberHelper" %% GMH
+branch "2|🧱: GetMemberHelper" %% GMH
 %% merge "3|💾: EFPropertyExpressionsCache" %% GMH
-%% commit type:NORMAL tag:"2|🧱|YourCompany.Reflection" %% GMH
+commit type:NORMAL tag:"2|🧱|YourCompany.Reflection" %% GMH
 %% merge "2|🧱: DIConstructorHelper" type:NORMAL tag:"2|🧱|YourCompany.Reflection" %% GMH
 
 checkout "3|🏠: generic OLTP use cases" %% ATL
 branch "2|🧱: AwaitTasksList" %% ATL
-%% commit type:REVERSE %% ATL>1
-%% commit type:REVERSE %% ATL>2
+commit type:REVERSE %% ATL>1
+commit type:REVERSE %% ATL>2
 %% commit type:REVERSE %% ATL>3
 %% commit type:REVERSE %% ATL>4
 %% commit type:REVERSE %% ATL>5
@@ -717,9 +717,9 @@ commit type:NORMAL tag:"2|🧱|YourCompany.Threading" %% ATL
 checkout "4|🧱: OLTP identities are unique keys" %% SH
 branch "2|🧱: StructHelper" %% SH
 commit type:REVERSE %% SH>1
-%% commit type:REVERSE %% SH>2
-%% commit type:REVERSE %% SH>3
-%% commit type:REVERSE %% SH>4
+commit type:REVERSE %% SH>2
+commit type:REVERSE %% SH>3
+commit type:REVERSE %% SH>4
 %% commit type:REVERSE %% SH>5
 %% commit type:REVERSE %% SH>6
 %% commit type:REVERSE %% SH>7
@@ -738,9 +738,9 @@ commit type:NORMAL tag:"2|🧱|YourCompany.CompilerServices" %% SH
 
 checkout "3|🧱: OLTP transaction structure" %% Startup Iteration 2
 commit type:REVERSE %% OTS 2>1
-%% commit type:REVERSE %% OTS 2>2
-%% commit type:REVERSE %% OTS 2>3
-%% commit type:REVERSE %% OTS 2>4
+commit type:REVERSE %% OTS 2>2
+commit type:REVERSE %% OTS 2>3
+commit type:REVERSE %% OTS 2>4
 %% commit type:REVERSE %% OTS 2>5
 %% commit type:REVERSE %% OTS 2>6
 %% commit type:REVERSE %% OTS 2>7
@@ -871,14 +871,14 @@ merge "3|🧱: OLTP transaction structure" type:HIGHLIGHT tag:"2|🏠|oltp-ways-
 
 %% checkout MERGED %% THOOIT
 %% checkout "2|🏠: OLTP transaction is limited size" %% THOOIT
-%% checkout "3|🏠: OLTP RecordTypesMap" %% THOOIT
+checkout "3|🏠: OLTP RecordTypesMap" %% THOOIT
 branch "1|🏠: the heart of OLTP is transaction" %% THOOIT
 %% merge "2|🏠: OLTP transaction is limited size" %% THOOIT
 %% merge "1|🏠: OLTP events producing" %% THOOIT
 %% merge "1|🏠: OLTP transactional composition" %% THOOIT
 %% merge "N|🧱: wip switch to chassis" %% THOOIT
-commit type:HIGHLIGHT tag:"1|🏠|oltp-basic-object-model-the-rest-is-up-to-you|YourCompany.OLTP.StateOwnership" %% THOOIT
-%% merge "2|🏠: OLTP transaction is limited size" type:HIGHLIGHT tag:"1|🏠|oltp-basic-object-model-the-rest-is-up-to-you|YourCompany.OLTP.StateOwnership" %% THOOIT
+%% commit type:HIGHLIGHT tag:"1|🏠|oltp-basic-object-model-the-rest-is-up-to-you|YourCompany.OLTP.StateOwnership" %% THOOIT
+merge "2|🏠: OLTP transaction is limited size" type:HIGHLIGHT tag:"1|🏠|oltp-basic-object-model-the-rest-is-up-to-you|YourCompany.OLTP.StateOwnership" %% THOOIT
 ```
 
 ## Contact me
@@ -921,15 +921,32 @@ Cons: why it might be not enough for you
 
 <!-- ### Branch: oltp-di-combine-use-case-and-persistence-interfaces-with-record-types-composition END -->
 
-<!-- ### Branch: oltp-di-combine-use-case-and-persistence-interfaces-without-inheritance
+### Branch: oltp-di-combine-use-case-and-persistence-interfaces-without-inheritance
 
-> Files: ### | Lines: #####  
-Pros: why do you choose this entry point  
-Cons: why it might be not enough for you
+> Files: 82 | Lines: 7058  
+Pros: avoid inheriting per entity, contravariant use cases auto-injection, good starting point for adapters  
+Cons: still lacking major things like events producing, transactional composition (domain modularity), persistence
 
 | Log | Examples | Modules |
 |-|-|-|
-| [replace_with_each_included_commit_subject](#commit-with-lower-case-subject) | <kbd> [at‑least‑one‑example‑solution‑name](examples/at-least-one-example-solution-per-commit/README.md#commit-with-lower-case-subject) </kbd><br><kbd> [extra‑example‑solution‑name](examples/extra-example-solution-name/README.md#commit-with-lower-case-subject) </kbd> | <kbd>YourCompany.Framework.Assembly.Name1 (+diff lines)</kbd><br><kbd>YourCompany.Framework.Assembly.Name2 (-diff lines)</kbd><br><kbd>YourCompany.Framework.Assembly.NameN (0 lines)</kbd> |
+| [1\|⁠🏠: the heart of OLTP is transaction](#commit-1-the-heart-of-oltp-is-transaction) | <kbd> [TODO](examples/at-least-one-example-solution-per-commit/README.md#commit-1-the-heart-of-oltp-is-transaction) </kbd> | <kbd>YourCompany.OLTP.StateOwnership (+371 lines)</kbd> |
+| [2\|⁠🏠: OLTP transaction is limited size](#commit-2-oltp-transaction-is-limited-size) | <kbd> [TODO](examples/at-least-one-example-solution-per-commit/README.md#commit-2-oltp-transaction-is-limited-size) </kbd> | <kbd>YourCompany.OLTP.RecordsManagement (+1500 lines)</kbd> |
+| [2\|⁠🧱: StructHelper](#commit-2-structhelper) | <kbd> [TODO](examples/at-least-one-example-solution-per-commit/README.md#commit-2-structhelper) </kbd> | <kbd>YourCompany.CompilerServices (+18 lines)</kbd> |
+| [2\|⁠🧱: AwaitTasksList](#commit-2-awaittaskslist) | <kbd> [TODO](examples/at-least-one-example-solution-per-commit/README.md#commit-2-awaittaskslist) </kbd> | <kbd>YourCompany.Threading (+49 lines)</kbd> |
+| [2\|⁠🧱: GetMemberHelper](#commit-2-getmemberhelper) | <kbd> [TODO](examples/at-least-one-example-solution-per-commit/README.md#commit-2-getmemberhelper) </kbd> | <kbd>YourCompany.Reflection (+57 lines)</kbd> |
+| [2\|⁠🧱: DIConstructorHelper](#commit-2-diconstructorhelper) | <kbd> [TODO](examples/at-least-one-example-solution-per-commit/README.md#commit-2-diconstructorhelper) </kbd> | <kbd>YourCompany.Reflection.DI (+31 lines)</kbd> |
+| [2\|⁠🧱: TypeAbstractionsHelper](#commit-2-typeabstractionshelper) | <kbd> [TODO](examples/at-least-one-example-solution-per-commit/README.md#commit-2-typeabstractionshelper) </kbd> | <kbd>YourCompany.Reflection (+26 lines)</kbd> |
+| [3\|⁠🏠: OLTP RecordTypesMap](#commit-3-oltp-recordtypesmap) | <kbd> [TODO](examples/at-least-one-example-solution-per-commit/README.md#commit-3-oltp-recordtypesmap) </kbd> | <kbd>YourCompany.OLTP.StateOwnership.Reflection (+263 lines)</kbd> |
+| [3\|⁠🏠: generic OLTP use cases](#commit-3-generic-oltp-use-cases) | <kbd> [TODO](examples/at-least-one-example-solution-per-commit/README.md#commit-3-generic-oltp-use-cases) </kbd> | <kbd>YourCompany.OLTP.RecordsManagement.UseCases (+212 lines)</kbd> |
+| [3\|⁠🏠: OLTP UseCaseTypesMap](#commit-3-oltp-usecasetypesmap) | <kbd> [TODO](examples/at-least-one-example-solution-per-commit/README.md#commit-3-oltp-usecasetypesmap) </kbd> | <kbd>YourCompany.OLTP.RecordsManagement.UseCases.Reflection (+176 lines)</kbd> |
+| [3\|⁠🧱: OLTP transaction structure](#commit-3-oltp-transaction-structure) | <kbd> [TODO](examples/at-least-one-example-solution-per-commit/README.md#commit-3-oltp-transaction-structure) </kbd> | <kbd>YourCompany.OLTP.RecordsManagement (+1918 lines)</kbd> |
+| [4\|⁠🏠: enumerate OLTP use cases](#commit-4-enumerate-oltp-use-cases) | <kbd> [TODO](examples/at-least-one-example-solution-per-commit/README.md#commit-4-enumerate-oltp-use-cases) </kbd> | <kbd>YourCompany.OLTP.RecordsManagement.UseCases (+117 lines)</kbd> |
+| [4\|⁠🧱: OLTP identities are unique keys](#commit-4-oltp-identities-are-unique-keys) | <kbd> [TODO](examples/at-least-one-example-solution-per-commit/README.md#commit-4-oltp-identities-are-unique-keys) </kbd> | <kbd>YourCompany.OLTP.RecordsManagement.Persistence (+1642 lines)</kbd> |
+| [4\|⁠🧱: OLTP LINQ may be useful](#commit-4-oltp-linq-may-be-useful) | <kbd> [TODO](examples/at-least-one-example-solution-per-commit/README.md#commit-4-oltp-linq-may-be-useful) </kbd> | <kbd>YourCompany.OLTP.RecordsManagement.Persistence.Linq (+59 lines)</kbd> |
+| [5\|⁠🧱: OLTP switch to chassis](#commit-5-oltp-switch-to-chassis) | <kbd> [TODO](examples/at-least-one-example-solution-per-commit/README.md#commit-5-oltp-switch-to-chassis) </kbd> | <kbd>YourCompany.OLTP.RecordsManagement (+1 lines)</kbd><br><kbd>YourCompany.OLTP.RecordsManagement.DI (+122 lines)</kbd><br><kbd>YourCompany.OLTP.RecordsManagement.Persistence (-26 lines)</kbd><br><kbd>YourCompany.OLTP.RecordsManagement.UseCases (-117 lines)</kbd><br><kbd>YourCompany.OLTP.StateOwnership (+6 lines)</kbd> |
+| [5\|⁠🧱: OLTP DI ScopedRecordsProvider](#commit-5-oltp-di-scopedrecordsprovider) | <kbd> [TODO](examples/at-least-one-example-solution-per-commit/README.md#commit-5-oltp-di-scopedrecordsprovider) </kbd> | <kbd>YourCompany.OLTP.StateOwnership.Reflection.DI (+120 lines)</kbd> |
+| [5\|⁠🧱: OLTP DI ScopedUseCasesProvider](#commit-5-oltp-di-scopedusecasesprovider) | <kbd> [TODO](examples/at-least-one-example-solution-per-commit/README.md#commit-5-oltp-di-scopedusecasesprovider) </kbd> | <kbd>YourCompany.OLTP.RecordsManagement.UseCases.Reflection.DI (+69 lines)</kbd> |
+| [5\|⁠🧱: OLTP DI inheritance free repo](#commit-5-oltp-di-inheritance-free-repo) | <kbd> [TODO](examples/at-least-one-example-solution-per-commit/README.md#commit-5-oltp-di-inheritance-free-repo) </kbd> | <kbd>YourCompany.OLTP.RecordsManagement.DI (+444 lines)</kbd> |
 
 <!-- ### Branch: oltp-di-combine-use-case-and-persistence-interfaces-without-inheritance END -->
 
@@ -1893,15 +1910,37 @@ delegated manner.
 
 <!-- ### Commit: 5|🧱: OLTP DI ScopedUseCasesProvider END -->
 
-<!-- ### Commit: 5|🧱: OLTP DI inheritance free repo
+### Commit: 5|🧱: OLTP DI inheritance free repo
 
 <table><tbody><tr><td>
 
-X files changed, Y insertions(+), Z deletions(-)<br>
-<sub><sub>src/YourCompany.Module/</sub></sub><br>
-<kbd> +++++++ NNN |⁠ [File.cs                                                                                                        ](src/YourCompany.Configuration/EnvironmentConventions.cs)</kbd><br>
+8 files changed, 445 insertions(+), 1 deletion(-)<br>
+<sub><sub>src/YourCompany.OLTP.RecordsManagement.DI/</sub></sub><br>
+<kbd> +++++++ 164 |⁠ [RecordsBatchTransaction.CurrentStateAccess.cs                                                                  ](src/YourCompany.OLTP.RecordsManagement.DI/RecordsBatchTransaction.CurrentStateAccess.cs)</kbd><br>
+<kbd>     +++ 63  |⁠ [YourCompanyServiceCollectionExtensions.cs                                                                      ](src/YourCompany.OLTP.RecordsManagement.DI/YourCompanyServiceCollectionExtensions.cs)</kbd><br>
+<kbd>     +++ 62  |⁠ [ScopedRecordsBatchTransactionFactory.cs                                                                        ](src/YourCompany.OLTP.RecordsManagement.DI/ScopedRecordsBatchTransactionFactory.cs)</kbd><br>
+<kbd>     +++ 56  |⁠ [RecordsBatchTransaction.CurrentStateAccess.Provider.cs                                                         ](src/YourCompany.OLTP.RecordsManagement.DI/RecordsBatchTransaction.CurrentStateAccess.Provider.cs)</kbd><br>
+<kbd>      ++ 52  |⁠ [RecordsBatchTransaction.CurrentlyResolvedRecord.cs                                                             ](src/YourCompany.OLTP.RecordsManagement.DI/RecordsBatchTransaction.CurrentlyResolvedRecord.cs)</kbd><br>
+<kbd>      ++ 35  |⁠ [ScopedRepository.cs                                                                                            ](src/YourCompany.OLTP.RecordsManagement.DI/ScopedRepository.cs)</kbd><br>
+<kbd>       + 12  |⁠ [IRecordsDataAccessProvider.cs                                                                                  ](src/YourCompany.OLTP.RecordsManagement.DI/IRecordsDataAccessProvider.cs)</kbd><br>
+<kbd>      +‑ 2   |⁠ [RecordsBatchTransaction.cs                                                                                     ](src/YourCompany.OLTP.RecordsManagement.DI/RecordsBatchTransaction.cs)</kbd><br>
 
-Commit body is multiline and compliant to markdown formatting 💥
+You never need to implement it anymore since your record's  
+(aggregate's) object creation is covered. The only required piece  
+`IRecordsDataAccessProvider`. This entry point is good for putting  
+first adapters in place as well as organizing full fledged ACID  
+transaction based model with optional use case types:
+
+- `IAuthorizer`
+- `IChangesPreparer`
+- `IFinishingHandler`
+- `IExtraInterfacesProvider`
+
+Just call `AddYourCompanyDomainTypes` service collection extension and  
+you're all set. As of `RecordTypesMap` and `UseCaseTypesMap` you  
+simply put your types in your application startup. If the type accepts  
+`IStateAccess` or implements one of the supported use case types they  
+are registered as scoped and will be used by a resolved IRepository.
 
 </td></tr></tbody></table>
 

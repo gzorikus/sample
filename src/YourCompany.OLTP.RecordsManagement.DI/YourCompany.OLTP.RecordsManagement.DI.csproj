@@ -16,6 +16,8 @@
     <ProjectReference Include="..\YourCompany.OLTP.RecordsManagement\YourCompany.OLTP.RecordsManagement.csproj" />
     <ProjectReference Include="..\YourCompany.OLTP.RecordsManagement.Persistence\YourCompany.OLTP.RecordsManagement.Persistence.csproj" />
     <ProjectReference Include="..\YourCompany.OLTP.RecordsManagement.UseCases\YourCompany.OLTP.RecordsManagement.UseCases.csproj" />
+    <ProjectReference Include="..\YourCompany.OLTP.RecordsManagement.UseCases.Reflection.DI\YourCompany.OLTP.RecordsManagement.UseCases.Reflection.DI.csproj" />
+    <ProjectReference Include="..\YourCompany.OLTP.StateOwnership.Reflection.DI\YourCompany.OLTP.StateOwnership.Reflection.DI.csproj" />
   </ItemGroup>
 
 </Project>

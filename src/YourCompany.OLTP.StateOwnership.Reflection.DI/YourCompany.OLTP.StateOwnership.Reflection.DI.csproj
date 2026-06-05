@@ -17,4 +17,8 @@
     <ProjectReference Include="..\YourCompany.Reflection.DI\YourCompany.Reflection.DI.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <InternalsVisibleTo Include="YourCompany.OLTP.RecordsManagement.DI" />
+  </ItemGroup>
+
 </Project>

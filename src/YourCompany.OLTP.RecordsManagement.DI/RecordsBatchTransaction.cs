@@ -12,7 +12,7 @@ namespace YourCompany.OLTP.RecordsManagement.DI
         where TRecord : class
         where TRecordData : class
     {
-        protected RecordsBatchTransaction(RecordsDataAccess.IStarting recordsDataAccess) : base(recordsDataAccess) { }
+        private RecordsBatchTransaction(RecordsDataAccess.IStarting recordsDataAccess) : base(recordsDataAccess) { }
 
         protected override RecordsBatchTransactionCallback.ExtraInterfaceProvidersList CollectExtraInterfaceProviders()
         {

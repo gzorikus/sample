@@ -16,4 +16,8 @@
     <ProjectReference Include="..\YourCompany.OLTP.RecordsManagement.UseCases.Reflection\YourCompany.OLTP.RecordsManagement.UseCases.Reflection.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <InternalsVisibleTo Include="YourCompany.OLTP.RecordsManagement.DI" />
+  </ItemGroup>
+
 </Project>
