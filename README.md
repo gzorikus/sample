@@ -1335,15 +1335,13 @@ Commit body is multiline and compliant to markdown formatting 💥
 
 <!-- ### Commit: 2|🧱: ValueTupleHelper END -->
 
-<!-- ### Commit: 2|🧱: TypeAbstractionsHelper
+### Commit: 2|🧱: TypeAbstractionsHelper
 
 <table><tbody><tr><td>
 
-X files changed, Y insertions(+), Z deletions(-)<br>
-<sub><sub>src/YourCompany.Module/</sub></sub><br>
-<kbd> +++++++ NNN |⁠ [File.cs                                                                                                        ](src/YourCompany.Configuration/EnvironmentConventions.cs)</kbd><br>
-
-Commit body is multiline and compliant to markdown formatting 💥
+1 file changed, 26 insertions(+)<br>
+<sub><sub>src/YourCompany.Reflection/</sub></sub><br>
+<kbd> +++++++ 26  |⁠ [TypeAbstractionsHelper.cs                                                                                      ](src/YourCompany.Reflection/TypeAbstractionsHelper.cs)</kbd><br>
 
 </td></tr></tbody></table>
 
@@ -1452,15 +1450,14 @@ improve this later).
 
 <!-- ### Commit: 3|🏠: generic OLTP use cases END -->
 
-<!-- ### Commit: 3|🏠: OLTP UseCaseTypesMap
+### Commit: 3|🏠: OLTP UseCaseTypesMap
 
 <table><tbody><tr><td>
 
-X files changed, Y insertions(+), Z deletions(-)<br>
-<sub><sub>src/YourCompany.Module/</sub></sub><br>
-<kbd> +++++++ NNN |⁠ [File.cs                                                                                                        ](src/YourCompany.Configuration/EnvironmentConventions.cs)</kbd><br>
-
-Commit body is multiline and compliant to markdown formatting 💥
+2 files changed, 176 insertions(+)<br>
+<sub><sub>src/YourCompany.OLTP.RecordsManagement.UseCases.Reflection/</sub></sub><br>
+<kbd> +++++++ 89  |⁠ [UseCaseTypeInfo.cs                                                                                             ](src/YourCompany.OLTP.RecordsManagement.UseCases.Reflection/UseCaseTypeInfo.cs)</kbd><br>
+<kbd>  ++++++ 87  |⁠ [UseCaseTypesMap.cs                                                                                             ](src/YourCompany.OLTP.RecordsManagement.UseCases.Reflection/UseCaseTypesMap.cs)</kbd><br>
 
 </td></tr></tbody></table>
 
@@ -1884,15 +1881,13 @@ delegated manner.
 
 <!-- ### Commit: 5|🧱: OLTP DI ScopedRecordsProvider END -->
 
-<!-- ### Commit: 5|🧱: OLTP DI ScopedUseCasesProvider
+### Commit: 5|🧱: OLTP DI ScopedUseCasesProvider
 
 <table><tbody><tr><td>
 
-X files changed, Y insertions(+), Z deletions(-)<br>
-<sub><sub>src/YourCompany.Module/</sub></sub><br>
-<kbd> +++++++ NNN |⁠ [File.cs                                                                                                        ](src/YourCompany.Configuration/EnvironmentConventions.cs)</kbd><br>
-
-Commit body is multiline and compliant to markdown formatting 💥
+1 file changed, 69 insertions(+)<br>
+<sub><sub>src/YourCompany.OLTP.RecordsManagement.UseCases.Reflection.DI/</sub></sub><br>
+<kbd> +++++++ 69  |⁠ [ScopedUseCasesProvider.cs                                                                                      ](src/YourCompany.OLTP.RecordsManagement.UseCases.Reflection.DI/ScopedUseCasesProvider.cs)</kbd><br>
 
 </td></tr></tbody></table>
 
