@@ -1523,15 +1523,24 @@ Commit body is multiline and compliant to markdown formatting 💥
 
 <!-- ### Commit: 4|🧱: OLTP LINQ may be useful END -->
 
-<!-- ### Commit: 4|💾: EFCore SortingKey reading
+### Commit: 4|💾: EFCore SortingKey reading
 
 <table><tbody><tr><td>
 
-X files changed, Y insertions(+), Z deletions(-)<br>
-<sub><sub>src/YourCompany.Module/</sub></sub><br>
-<kbd> +++++++ NNN |⁠ [File.cs                                                                                                        ](src/YourCompany.Configuration/EnvironmentConventions.cs)</kbd><br>
-
-Commit body is multiline and compliant to markdown formatting 💥
+10 files changed, 790 insertions(+), 1 deletion(-)<br>
+<sub><sub>src/YourCompany.Configuration.EFCore/CollationAwareSorting/ExpressionsCaching/</sub></sub><br>
+<kbd> +++++++ 176 |⁠ [SortingKeyQueriesCache.ForQuery.ForTopology.cs                                                                 ](src/YourCompany.Configuration.EFCore/CollationAwareSorting/ExpressionsCaching/SortingKeyQueriesCache.ForQuery.ForTopology.cs)</kbd><br>
+<kbd>  ++++++ 171 |⁠ [SortingKeyQueriesCache.ForQuery.ForTopology.TopologyVisitor.cs                                                 ](src/YourCompany.Configuration.EFCore/CollationAwareSorting/ExpressionsCaching/SortingKeyQueriesCache.ForQuery.ForTopology.TopologyVisitor.cs)</kbd><br>
+<kbd>     +++ 86  |⁠ [SortingKeyQueriesCache.ForQuery.cs                                                                             ](src/YourCompany.Configuration.EFCore/CollationAwareSorting/ExpressionsCaching/SortingKeyQueriesCache.ForQuery.cs)</kbd><br>
+<kbd>      ++ 58  |⁠ [SortingKeyQueriesCache.ForQuery.ForTopology.TopologyVisitor.SingleEFProperty.cs                                ](src/YourCompany.Configuration.EFCore/CollationAwareSorting/ExpressionsCaching/SortingKeyQueriesCache.ForQuery.ForTopology.TopologyVisitor.SingleEFProperty.cs)</kbd><br>
+<kbd>      ++ 56  |⁠ [SortingKeyQueriesCache.ForQuery.ForTopology.TopologyVisitor.MultiEFProperties.ForEntity.cs                     ](src/YourCompany.Configuration.EFCore/CollationAwareSorting/ExpressionsCaching/SortingKeyQueriesCache.ForQuery.ForTopology.TopologyVisitor.MultiEFProperties.ForEntity.cs)</kbd><br>
+<kbd>      ++ 51  |⁠ [SortingKeyQueriesCache.ForQuery.ForTopology.TopologyVisitor.MultiEFProperties.cs                               ](src/YourCompany.Configuration.EFCore/CollationAwareSorting/ExpressionsCaching/SortingKeyQueriesCache.ForQuery.ForTopology.TopologyVisitor.MultiEFProperties.cs)</kbd><br>
+<sub><sub>src/YourCompany.Configuration.EFCore/</sub></sub><br>
+<kbd>   +++++ 132 |⁠ [YourCompanyDbContext.SingleEntityQueries.cs                                                                    ](src/YourCompany.Configuration.EFCore/YourCompanyDbContext.SingleEntityQueries.cs)</kbd><br>
+<sub><sub>src/YourCompany.Configuration.EFCore/CollationAwareSorting/</sub></sub><br>
+<kbd>      ++ 51  |⁠ [SortingKeyQueries.SingleEntityExtensions.cs                                                                    ](src/YourCompany.Configuration.EFCore/CollationAwareSorting/SortingKeyQueries.SingleEntityExtensions.cs)</kbd><br>
+<kbd>       + 8   |⁠ [SortingKeyExtraValuePair.cs                                                                                    ](src/YourCompany.Configuration.EFCore/CollationAwareSorting/SortingKeyExtraValuePair.cs)</kbd><br>
+<kbd>      +‑ 2   |⁠ [SortingKeyQueries.cs                                                                                           ](src/YourCompany.Configuration.EFCore/CollationAwareSorting/SortingKeyQueries.cs)</kbd><br>
 
 </td></tr></tbody></table>
 
