@@ -1,0 +1,28 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net8.0</TargetFramework>
+    <UserSecretsId>373b3c1d-0da0-435d-8a9b-da0e01b31cf8</UserSecretsId>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\..\src\YourCompany.Configuration.EFCore.PostgreSQL\YourCompany.Configuration.EFCore.PostgreSQL.csproj" />
+    <ProjectReference Include="..\..\..\..\src\YourCompany.Configuration.EFCore.Sqlite\YourCompany.Configuration.EFCore.Sqlite.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\YourCompany.EFCore\YourCompany.EFCore.csproj" />
+    <ProjectReference Include="..\YourCompany.EFCore.PostgreSQL.CustomConfigurationMigrations\YourCompany.EFCore.PostgreSQL.CustomConfigurationMigrations.csproj" />
+    <ProjectReference Include="..\YourCompany.EFCore.PostgreSQL.YourCompanyDbContextConfigurationMigrations\YourCompany.EFCore.PostgreSQL.YourCompanyDbContextConfigurationMigrations.csproj" />
+    <ProjectReference Include="..\YourCompany.EFCore.Sqlite.CustomConfigurationMigrations\YourCompany.EFCore.Sqlite.CustomConfigurationMigrations.csproj" />
+    <ProjectReference Include="..\YourCompany.EFCore.Sqlite.YourCompanyDbContextConfigurationMigrations\YourCompany.EFCore.Sqlite.YourCompanyDbContextConfigurationMigrations.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="appsettings.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+</Project>

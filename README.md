@@ -204,7 +204,7 @@ All the entry point branches' heads are highlighted in the graph as ⏹️.
 ---
 config:
   gitGraph:
-    mainBranchName: "5|🧱: OLTP DI inheritance free repo"
+    mainBranchName: "MERGED"
     parallelCommits: true
     rotateCommitLabel: false
     showCommitLabel: false
@@ -758,14 +758,14 @@ merge "3|🧱: OLTP transaction structure" type:HIGHLIGHT tag:"2|🏠|oltp-ways-
 
 %% Startup Iteration 1
 
-%% checkout "MERGED" %% BCC
+checkout "MERGED" %% BCC
 %% checkout "2|💾: basic pluggable EFCore" %% BCC
-%% branch "1|🧱: basic configurations covered" %% BCC
-%% commit type:REVERSE %% BCC>1
-%% commit type:REVERSE %% BCC>2
-%% commit type:REVERSE %% BCC>3
-%% commit type:REVERSE %% BCC>4
-%% commit type:HIGHLIGHT tag:"1|🧱|configuration-entry-assembly-rotating-secrets-scaling-plugins|YourCompany.Configuration" %% BCC
+branch "1|🧱: basic configurations covered" %% BCC
+commit type:REVERSE %% BCC>1
+commit type:REVERSE %% BCC>2
+commit type:REVERSE %% BCC>3
+commit type:REVERSE %% BCC>4
+commit type:HIGHLIGHT tag:"1|🧱|configuration-entry-assembly-rotating-secrets-scaling-plugins|YourCompany.Configuration" %% BCC
 
 %% checkout "3|🏠: OLTP RecordTypesCompositionMap" %% OTC
 %% commit type:REVERSE %% OTC<1
@@ -870,7 +870,7 @@ merge "3|🧱: OLTP transaction structure" type:HIGHLIGHT tag:"2|🏠|oltp-ways-
 %% commit type:REVERSE %% OTILS 1>3
 
 %% checkout MERGED %% THOOIT
-%% checkout "2|🏠: OLTP transaction is limited size" %% THOOIT
+checkout "2|🏠: OLTP transaction is limited size" %% THOOIT
 checkout "3|🏠: OLTP RecordTypesMap" %% THOOIT
 branch "1|🏠: the heart of OLTP is transaction" %% THOOIT
 %% merge "2|🏠: OLTP transaction is limited size" %% THOOIT
@@ -1044,15 +1044,15 @@ Cons: repositories implemented per record type are too big
 
 <!-- ### Branch: oltp-ways-to-access-size-limited-record-batch END -->
 
-<!-- ### Branch: configuration-entry-assembly-rotating-secrets-scaling-plugins
+### Branch: configuration-entry-assembly-rotating-secrets-scaling-plugins
 
-> Files: ### | Lines: #####  
-Pros: why do you choose this entry point  
-Cons: why it might be not enough for you
+> Files: 10 | Lines: 637  
+Pros: not tied to typical component types, the most common  
+Cons: you may find another set of conventions more suitable
 
 | Log | Examples | Modules |
 |-|-|-|
-| [replace_with_each_included_commit_subject](#commit-with-lower-case-subject) | <kbd> [at‑least‑one‑example‑solution‑name](examples/at-least-one-example-solution-per-commit/README.md#commit-with-lower-case-subject) </kbd><br><kbd> [extra‑example‑solution‑name](examples/extra-example-solution-name/README.md#commit-with-lower-case-subject) </kbd> | <kbd>YourCompany.Framework.Assembly.Name1 (+diff lines)</kbd><br><kbd>YourCompany.Framework.Assembly.Name2 (-diff lines)</kbd><br><kbd>YourCompany.Framework.Assembly.NameN (0 lines)</kbd> |
+| [1\|⁠🧱: basic configurations covered](#commit-1-basic-configurations-covered) | <kbd> [TODO](examples/at-least-one-example-solution-per-commit/README.md#commit-1-basic-configurations-covered) </kbd> | <kbd>YourCompany.Configuration (+637 lines)</kbd> |
 
 <!-- ### Branch: configuration-entry-assembly-rotating-secrets-scaling-plugins END -->
 
@@ -1204,15 +1204,44 @@ Commit body is multiline and compliant to markdown formatting 💥
 
 <!-- ### Commit: 1|🏠: OLTP transactional composition END -->
 
-<!-- ### Commit: 1|🧱: basic configurations covered
+### Commit: 1|🧱: basic configurations covered
 
 <table><tbody><tr><td>
 
-X files changed, Y insertions(+), Z deletions(-)<br>
-<sub><sub>src/YourCompany.Module/</sub></sub><br>
-<kbd> +++++++ NNN |⁠ [File.cs                                                                                                        ](src/YourCompany.Configuration/EnvironmentConventions.cs)</kbd><br>
+10 files changed, 637 insertions(+)<br>
+<sub><sub>src/YourCompany.Configuration/</sub></sub><br>
+<kbd> +++++++ 182 |⁠ [EnvironmentConventions.cs                                                                                      ](src/YourCompany.Configuration/EnvironmentConventions.cs)</kbd><br>
+<kbd>   +++++ 122 |⁠ [YourCompanyPluginsLoader.cs                                                                                    ](src/YourCompany.Configuration/YourCompanyPluginsLoader.cs)</kbd><br>
+<kbd>   +++++ 122 |⁠ [ConfigurationExtensions.cs                                                                                     ](src/YourCompany.Configuration/ConfigurationExtensions.cs)</kbd><br>
+<kbd>     +++ 75  |⁠ [YourCompanyAssemblyLoadContext.cs                                                                              ](src/YourCompany.Configuration/YourCompanyAssemblyLoadContext.cs)</kbd><br>
+<kbd>      ++ 31  |⁠ [AssemblyExtensions.cs                                                                                          ](src/YourCompany.Configuration/AssemblyExtensions.cs)</kbd><br>
+<kbd>       + 29  |⁠ [GitHelper.cs                                                                                                   ](src/YourCompany.Configuration/GitHelper.cs)</kbd><br>
+<kbd>       + 11  |⁠ [YourCompanyPluginsLoadingContext.cs                                                                            ](src/YourCompany.Configuration/YourCompanyPluginsLoadingContext.cs)</kbd><br>
+<kbd>       + 9   |⁠ [YourCompanyPluginLoadingConfiguration.cs                                                                       ](src/YourCompany.Configuration/YourCompanyPluginLoadingConfiguration.cs)</kbd><br>
+<sub><sub>src/YourCompany.Configuration/KeyFileToBase64/</sub></sub><br>
+<kbd>      ++ 41  |⁠ [KeyFileToBase64ConfigurationProvider.cs                                                                        ](src/YourCompany.Configuration/KeyFileToBase64/KeyFileToBase64ConfigurationProvider.cs)</kbd><br>
+<kbd>       + 15  |⁠ [KeyFileToBase64ConfigurationSource.cs                                                                          ](src/YourCompany.Configuration/KeyFileToBase64/KeyFileToBase64ConfigurationSource.cs)</kbd><br>
 
-Commit body is multiline and compliant to markdown formatting 💥
+⚠️ make sure your application entry project (one per solution) has  
+reference to Microsoft.Extensions.Configuration.UserSecrets package  
+and sets unique `UserSecretsId` beneath the `TargetFramework` ⚠️ that  
+serves as a marker to find an entry assembly which is a main convention.
+
+`EnvironmentConventions` contains constants explaining the basics.  
+As of unusual features is `GetYourCompanyInfraObjectNamesPrefix`  
+`IConfiguration` extension method which allows to "switch environment  
+without switching infrastructure". This might be useful to either  
+utilize integrated infrastructure's own scaling abilities  
+(e.g. namespaces/topics) or simply organize zero-configuration start  
+for your developers letting to share the same testing environment that  
+comes out very handy sometimes.
+
+As of plugins - one decision point is being "collectible". It's not  
+that relevant nowadays, since we work in containerized environments  
+and therefore we skip using it. For simplicity it's enough to use  
+single loading context per extension point, where it loads those of  
+assemblies required only which are not reachable down through the  
+entry assembly's dependencies.
 
 </td></tr></tbody></table>
 
@@ -1338,15 +1367,14 @@ transaction. Such key identity is sometimes called a "cursor".
 
 <!-- ### Commit: 2|🧱: DIConstructorHelper END -->
 
-<!-- ### Commit: 2|🧱: ValueTupleHelper
+### Commit: 2|🧱: ValueTupleHelper
 
 <table><tbody><tr><td>
 
-X files changed, Y insertions(+), Z deletions(-)<br>
-<sub><sub>src/YourCompany.Module/</sub></sub><br>
-<kbd> +++++++ NNN |⁠ [File.cs                                                                                                        ](src/YourCompany.Configuration/EnvironmentConventions.cs)</kbd><br>
-
-Commit body is multiline and compliant to markdown formatting 💥
+2 files changed, 143 insertions(+)<br>
+<sub><sub>src/YourCompany.Reflection/</sub></sub><br>
+<kbd> +++++++ 113 |⁠ [ValueTupleHelper.Expressions.cs                                                                                ](src/YourCompany.Reflection/ValueTupleHelper.Expressions.cs)</kbd><br>
+<kbd>      ++ 30  |⁠ [ValueTupleHelper.cs                                                                                            ](src/YourCompany.Reflection/ValueTupleHelper.cs)</kbd><br>
 
 </td></tr></tbody></table>
 
@@ -1378,43 +1406,72 @@ Commit body is multiline and compliant to markdown formatting 💥
 
 <!-- ### Commit: 2|🧱: TypesCompositionMap END -->
 
-<!-- ### Commit: 2|💾: basic pluggable EFCore
+### Commit: 2|💾: basic pluggable EFCore
 
 <table><tbody><tr><td>
 
-X files changed, Y insertions(+), Z deletions(-)<br>
-<sub><sub>src/YourCompany.Module/</sub></sub><br>
-<kbd> +++++++ NNN |⁠ [File.cs                                                                                                        ](src/YourCompany.Configuration/EnvironmentConventions.cs)</kbd><br>
+11 files changed, 681 insertions(+)<br>
+<sub><sub>src/YourCompany.Configuration.EFCore/</sub></sub><br>
+<kbd> +++++++ 145 |⁠ [YourCompanyDbContext.DbObjectsPrefixing.cs                                                                     ](src/YourCompany.Configuration.EFCore/YourCompanyDbContext.DbObjectsPrefixing.cs)</kbd><br>
+<kbd>   +++++ 117 |⁠ [YourCompanyDbContext.cs                                                                                        ](src/YourCompany.Configuration.EFCore/YourCompanyDbContext.cs)</kbd><br>
+<kbd>    ++++ 81  |⁠ [YourCompanyDbContextFactory.cs                                                                                 ](src/YourCompany.Configuration.EFCore/YourCompanyDbContextFactory.cs)</kbd><br>
+<kbd>      ++ 34  |⁠ [YourCompanyDbContextConfiguratorsLoadingContext.cs                                                             ](src/YourCompany.Configuration.EFCore/YourCompanyDbContextConfiguratorsLoadingContext.cs)</kbd><br>
+<kbd>       + 22  |⁠ [YourCompanyDbContextConfigurator.cs                                                                            ](src/YourCompany.Configuration.EFCore/YourCompanyDbContextConfigurator.cs)</kbd><br>
+<kbd>       + 13  |⁠ [ConfigurationExtensions.cs                                                                                     ](src/YourCompany.Configuration.EFCore/ConfigurationExtensions.cs)</kbd><br>
+<kbd>       + 11  |⁠ [YourCompanyDbContextConfiguration.cs                                                                           ](src/YourCompany.Configuration.EFCore/YourCompanyDbContextConfiguration.cs)</kbd><br>
+<kbd>       + 6   |⁠ [YourCompanyDbContextFactoryLoadingConfiguration.cs                                                             ](src/YourCompany.Configuration.EFCore/YourCompanyDbContextFactoryLoadingConfiguration.cs)</kbd><br>
+<sub><sub>src/YourCompany.Configuration.EFCore.PostgreSQL/</sub></sub><br>
+<kbd>   +++++ 115 |⁠ [PrefixedObjectNamesShortener.cs                                                                                ](src/YourCompany.Configuration.EFCore.PostgreSQL/PrefixedObjectNamesShortener.cs)</kbd><br>
+<kbd>     +++ 66  |⁠ [NpgsqlDbContextConfigurator.cs                                                                                 ](src/YourCompany.Configuration.EFCore.PostgreSQL/NpgsqlDbContextConfigurator.cs)</kbd><br>
+<sub><sub>src/YourCompany.Configuration.EFCore.Sqlite/</sub></sub><br>
+<kbd>     +++ 71  |⁠ [SqliteDbContextConfigurator.cs                                                                                 ](src/YourCompany.Configuration.EFCore.Sqlite/SqliteDbContextConfigurator.cs)</kbd><br>
 
-Commit body is multiline and compliant to markdown formatting 💥
+Firstly it supports both `RunTime` and `DesignTime` factories which  
+are usually troublesome to combine. See detailed in the example how to  
+make your migrations target this shared `YourCompanyDbContext`.
+
+As of `YourCompanyDbContext` it accepts `TConfiguration` what allows  
+you to have multiple configurations and models respectively but  
+its both uncommon and not encouraged in practice (i.e. separate apps).
+
+Also there is `ConfiguredUtcNow` which is useful in testing. And ofc  
+we support `GetYourCompanyInfraObjectNamesPrefix` by prefixing DB  
+objects within the connection string configured schema.
+
+For demo provider plugins we've chosen PostgreSQL and Sqlite.
 
 </td></tr></tbody></table>
 
 <!-- ### Commit: 2|💾: basic pluggable EFCore END -->
 
-<!-- ### Commit: 2|💾: EFCore pessimistic locking
+### Commit: 2|💾: EFCore pessimistic locking
 
 <table><tbody><tr><td>
 
-X files changed, Y insertions(+), Z deletions(-)<br>
-<sub><sub>src/YourCompany.Module/</sub></sub><br>
-<kbd> +++++++ NNN |⁠ [File.cs                                                                                                        ](src/YourCompany.Configuration/EnvironmentConventions.cs)</kbd><br>
-
-Commit body is multiline and compliant to markdown formatting 💥
+7 files changed, 328 insertions(+)<br>
+<sub><sub>src/YourCompany.Configuration.EFCore/PessimisticLocking/</sub></sub><br>
+<kbd> +++++++ 117 |⁠ [ProviderSpecificPessimisticLockingUpdateInterceptor.cs                                                         ](src/YourCompany.Configuration.EFCore/PessimisticLocking/ProviderSpecificPessimisticLockingUpdateInterceptor.cs)</kbd><br>
+<kbd>    ++++ 60  |⁠ [PessimisticLockingUpdateInterceptionContext.cs                                                                 ](src/YourCompany.Configuration.EFCore/PessimisticLocking/PessimisticLockingUpdateInterceptionContext.cs)</kbd><br>
+<sub><sub>src/YourCompany.Configuration.EFCore.PostgreSQL/</sub></sub><br>
+<kbd>     +++ 58  |⁠ [NpgsqlPessimisticLockingUpdateInterceptor.cs                                                                   ](src/YourCompany.Configuration.EFCore.PostgreSQL/NpgsqlPessimisticLockingUpdateInterceptor.cs)</kbd><br>
+<kbd>       + 1   |⁠ [NpgsqlDbContextConfigurator.cs                                                                                 ](src/YourCompany.Configuration.EFCore.PostgreSQL/NpgsqlDbContextConfigurator.cs)</kbd><br>
+<sub><sub>src/YourCompany.Configuration.EFCore.Sqlite/</sub></sub><br>
+<kbd>     +++ 46  |⁠ [SqlitePessimisticLockingUpdateInterceptor.cs                                                                   ](src/YourCompany.Configuration.EFCore.Sqlite/SqlitePessimisticLockingUpdateInterceptor.cs)</kbd><br>
+<kbd>       + 1   |⁠ [SqliteDbContextConfigurator.cs                                                                                 ](src/YourCompany.Configuration.EFCore.Sqlite/SqliteDbContextConfigurator.cs)</kbd><br>
+<sub><sub>src/YourCompany.Configuration.EFCore/</sub></sub><br>
+<kbd>     +++ 45  |⁠ [YourCompanyDbContext.PessimisticLocking.cs                                                                     ](src/YourCompany.Configuration.EFCore/YourCompanyDbContext.PessimisticLocking.cs)</kbd><br>
 
 </td></tr></tbody></table>
 
 <!-- ### Commit: 2|💾: EFCore pessimistic locking END -->
 
-<!-- ### Commit: 2|💾: EFChangeTrackerTrackGraphStrategy
+### Commit: 2|💾: EFChangeTrackerTrackGraphStrategy
 
 <table><tbody><tr><td>
 
-X files changed, Y insertions(+), Z deletions(-)<br>
-<sub><sub>src/YourCompany.Module/</sub></sub><br>
-<kbd> +++++++ NNN |⁠ [File.cs                                                                                                        ](src/YourCompany.Configuration/EnvironmentConventions.cs)</kbd><br>
-
-Commit body is multiline and compliant to markdown formatting 💥
+1 file changed, 106 insertions(+)<br>
+<sub><sub>src/YourCompany.Configuration.EFCore/ChangeTracking/</sub></sub><br>
+<kbd> +++++++ 106 |⁠ [EFChangeTrackerTrackGraphStrategy.cs                                                                           ](src/YourCompany.Configuration.EFCore/ChangeTracking/EFChangeTrackerTrackGraphStrategy.cs)</kbd><br>
 
 </td></tr></tbody></table>
 
@@ -1551,29 +1608,75 @@ persistence related concerns.
 
 <!-- ### Commit: 3|🧱: OLTP transaction structure END -->
 
-<!-- ### Commit: 3|💾: EFPropertyExpressionsCache
+### Commit: 3|💾: EFPropertyExpressionsCache
 
 <table><tbody><tr><td>
 
-X files changed, Y insertions(+), Z deletions(-)<br>
-<sub><sub>src/YourCompany.Module/</sub></sub><br>
-<kbd> +++++++ NNN |⁠ [File.cs                                                                                                        ](src/YourCompany.Configuration/EnvironmentConventions.cs)</kbd><br>
-
-Commit body is multiline and compliant to markdown formatting 💥
+2 files changed, 87 insertions(+)<br>
+<sub><sub>src/YourCompany.Configuration.EFCore/ExpressionsCaching/</sub></sub><br>
+<kbd> +++++++ 50  |⁠ [EFPropertyExpressionsCache.FromParameter.cs                                                                    ](src/YourCompany.Configuration.EFCore/ExpressionsCaching/EFPropertyExpressionsCache.FromParameter.cs)</kbd><br>
+<kbd>   +++++ 37  |⁠ [EFPropertyExpressionsCache.cs                                                                                  ](src/YourCompany.Configuration.EFCore/ExpressionsCaching/EFPropertyExpressionsCache.cs)</kbd><br>
 
 </td></tr></tbody></table>
 
 <!-- ### Commit: 3|💾: EFPropertyExpressionsCache END -->
 
-<!-- ### Commit: 3|💾: EFCore first-class SortingKey
+### Commit: 3|💾: EFCore first-class SortingKey
 
 <table><tbody><tr><td>
 
-X files changed, Y insertions(+), Z deletions(-)<br>
-<sub><sub>src/YourCompany.Module/</sub></sub><br>
-<kbd> +++++++ NNN |⁠ [File.cs                                                                                                        ](src/YourCompany.Configuration/EnvironmentConventions.cs)</kbd><br>
+36 files changed, 2464 insertions(+), 2 deletions(-)<br>
+<sub><sub>src/YourCompany.Configuration.EFCore/CollationAwareSorting/</sub></sub><br>
+<kbd> +++++++ 177 |⁠ [SortingKeyPropertiesVisitor.cs                                                                                 ](src/YourCompany.Configuration.EFCore/CollationAwareSorting/SortingKeyPropertiesVisitor.cs)</kbd><br>
+<kbd>  ++++++ 176 |⁠ [SortingKeyPredicatesBuilder.cs                                                                                 ](src/YourCompany.Configuration.EFCore/CollationAwareSorting/SortingKeyPredicatesBuilder.cs)</kbd><br>
+<kbd>  ++++++ 160 |⁠ [SortingKey.ValueHolding.ConvertedFrom.cs                                                                       ](src/YourCompany.Configuration.EFCore/CollationAwareSorting/SortingKey.ValueHolding.ConvertedFrom.cs)</kbd><br>
+<kbd>  ++++++ 155 |⁠ [SortingKey.ValueHolding.cs                                                                                     ](src/YourCompany.Configuration.EFCore/CollationAwareSorting/SortingKey.ValueHolding.cs)</kbd><br>
+<kbd>   +++++ 139 |⁠ [ICollationAwareModelProvider.cs                                                                                ](src/YourCompany.Configuration.EFCore/CollationAwareSorting/ICollationAwareModelProvider.cs)</kbd><br>
+<kbd>    ++++ 104 |⁠ [SortingKeyBuilder.OrElse.ComparableValue.cs                                                                    ](src/YourCompany.Configuration.EFCore/CollationAwareSorting/SortingKeyBuilder.OrElse.ComparableValue.cs)</kbd><br>
+<kbd>    ++++ 100 |⁠ [SortingKey.Building.cs                                                                                         ](src/YourCompany.Configuration.EFCore/CollationAwareSorting/SortingKey.Building.cs)</kbd><br>
+<kbd>    ++++ 95  |⁠ [SortingKeyTopology.PropertiesOwner.cs                                                                          ](src/YourCompany.Configuration.EFCore/CollationAwareSorting/SortingKeyTopology.PropertiesOwner.cs)</kbd><br>
+<kbd>    ++++ 94  |⁠ [SortingKeyBuilder.ComparableValue.cs                                                                           ](src/YourCompany.Configuration.EFCore/CollationAwareSorting/SortingKeyBuilder.ComparableValue.cs)</kbd><br>
+<kbd>    ++++ 94  |⁠ [SortingKey.ToString.cs                                                                                         ](src/YourCompany.Configuration.EFCore/CollationAwareSorting/SortingKey.ToString.cs)</kbd><br>
+<kbd>     +++ 86  |⁠ [SortingKey.Querying.cs                                                                                         ](src/YourCompany.Configuration.EFCore/CollationAwareSorting/SortingKey.Querying.cs)</kbd><br>
+<kbd>     +++ 76  |⁠ [OrElseEqualityKeys.Querying.cs                                                                                 ](src/YourCompany.Configuration.EFCore/CollationAwareSorting/OrElseEqualityKeys.Querying.cs)</kbd><br>
+<kbd>     +++ 73  |⁠ [ICollationCompatibleComparersProvider.cs                                                                       ](src/YourCompany.Configuration.EFCore/CollationAwareSorting/ICollationCompatibleComparersProvider.cs)</kbd><br>
+<kbd>     +++ 69  |⁠ [SortingKey.Comparison.cs                                                                                       ](src/YourCompany.Configuration.EFCore/CollationAwareSorting/SortingKey.Comparison.cs)</kbd><br>
+<kbd>     +++ 69  |⁠ [SortingKeyPredicatesBuilder.SingleEntityQuery.cs                                                               ](src/YourCompany.Configuration.EFCore/CollationAwareSorting/SortingKeyPredicatesBuilder.SingleEntityQuery.cs)</kbd><br>
+<kbd>     +++ 66  |⁠ [SortingKey.cs                                                                                                  ](src/YourCompany.Configuration.EFCore/CollationAwareSorting/SortingKey.cs)</kbd><br>
+<kbd>     +++ 63  |⁠ [OrElseEqualityKeys.cs                                                                                          ](src/YourCompany.Configuration.EFCore/CollationAwareSorting/OrElseEqualityKeys.cs)</kbd><br>
+<kbd>     +++ 60  |⁠ [SortingKeyTopologyExtensions.cs                                                                                ](src/YourCompany.Configuration.EFCore/CollationAwareSorting/SortingKeyTopologyExtensions.cs)</kbd><br>
+<kbd>      ++ 50  |⁠ [SortingKeyQueries.cs                                                                                           ](src/YourCompany.Configuration.EFCore/CollationAwareSorting/SortingKeyQueries.cs)</kbd><br>
+<kbd>      ++ 47  |⁠ [SortingKeyTopology.Comparer.cs                                                                                 ](src/YourCompany.Configuration.EFCore/CollationAwareSorting/SortingKeyTopology.Comparer.cs)</kbd><br>
+<kbd>      ++ 44  |⁠ [OrElseEqualityKeys.ToString.cs                                                                                 ](src/YourCompany.Configuration.EFCore/CollationAwareSorting/OrElseEqualityKeys.ToString.cs)</kbd><br>
+<kbd>      ++ 40  |⁠ [SortingKeyTopology.cs                                                                                          ](src/YourCompany.Configuration.EFCore/CollationAwareSorting/SortingKeyTopology.cs)</kbd><br>
+<kbd>      ++ 35  |⁠ [SortingKeyBuilder.cs                                                                                           ](src/YourCompany.Configuration.EFCore/CollationAwareSorting/SortingKeyBuilder.cs)</kbd><br>
+<kbd>      ++ 32  |⁠ [SortingKeyBuilder.OrElse.cs                                                                                    ](src/YourCompany.Configuration.EFCore/CollationAwareSorting/SortingKeyBuilder.OrElse.cs)</kbd><br>
+<kbd>       + 21  |⁠ [SortingKey.Visiting.cs                                                                                         ](src/YourCompany.Configuration.EFCore/CollationAwareSorting/SortingKey.Visiting.cs)</kbd><br>
+<sub><sub>src/YourCompany.Configuration.EFCore/CollationAwareSorting/Metadata/</sub></sub><br>
+<kbd>   +++++ 123 |⁠ [CollationAwareSortingSingleModelProvider.cs                                                                    ](src/YourCompany.Configuration.EFCore/CollationAwareSorting/Metadata/CollationAwareSortingSingleModelProvider.cs)</kbd><br>
+<kbd>       + 18  |⁠ [ModelExtensions.cs                                                                                             ](src/YourCompany.Configuration.EFCore/CollationAwareSorting/Metadata/ModelExtensions.cs)</kbd><br>
+<sub><sub>src/YourCompany.Configuration.EFCore/</sub></sub><br>
+<kbd>     +++ 80  |⁠ [YourCompanyDbContext.SingleEntityQueries.cs                                                                    ](src/YourCompany.Configuration.EFCore/YourCompanyDbContext.SingleEntityQueries.cs)</kbd><br>
+<kbd>       + 19  |⁠ [YourCompanyDbContext.cs                                                                                        ](src/YourCompany.Configuration.EFCore/YourCompanyDbContext.cs)</kbd><br>
+<kbd>       + 12  |⁠ [YourCompanyDbContextConfiguratorsLoadingContext.cs                                                             ](src/YourCompany.Configuration.EFCore/YourCompanyDbContextConfiguratorsLoadingContext.cs)</kbd><br>
+<kbd>       + 9   |⁠ [YourCompanyDbContextConfigurator.cs                                                                            ](src/YourCompany.Configuration.EFCore/YourCompanyDbContextConfigurator.cs)</kbd><br>
+<kbd>       + 2   |⁠ [YourCompanyDbContextFactory.cs                                                                                 ](src/YourCompany.Configuration.EFCore/YourCompanyDbContextFactory.cs)</kbd><br>
+<sub><sub>src/YourCompany.Configuration.EFCore.PostgreSQL/</sub></sub><br>
+<kbd>      ++ 33  |⁠ [NpgsqlDbContextConfigurator.CollationAwareSorting.cs                                                           ](src/YourCompany.Configuration.EFCore.PostgreSQL/NpgsqlDbContextConfigurator.CollationAwareSorting.cs)</kbd><br>
+<kbd>      +‑ 6   |⁠ [NpgsqlDbContextConfigurator.cs                                                                                 ](src/YourCompany.Configuration.EFCore.PostgreSQL/NpgsqlDbContextConfigurator.cs)</kbd><br>
+<sub><sub>src/YourCompany.Configuration.EFCore.Sqlite/</sub></sub><br>
+<kbd>      ++ 33  |⁠ [SqliteDbContextConfigurator.CollationAwareSorting.cs                                                           ](src/YourCompany.Configuration.EFCore.Sqlite/SqliteDbContextConfigurator.CollationAwareSorting.cs)</kbd><br>
+<kbd>      +‑ 6   |⁠ [SqliteDbContextConfigurator.cs                                                                                 ](src/YourCompany.Configuration.EFCore.Sqlite/SqliteDbContextConfigurator.cs)</kbd><br>
 
-Commit body is multiline and compliant to markdown formatting 💥
+This one is very missing out-of-the-box in EFCore. This replaces the  
+need to manually compose `OrderBy` `ThenBy` expressions allowing  
+comprehensive approaches to be implemented upon from query building  
+and keyset pagination to advanced change tracking operations.
+
+Another covered problem is database strings collation having no analog  
+out-of-the-box neither in .NET nor in EFCore. In such circumstances  
+it is proper to delegate the missing logic to database provider  
+plugins which is exactly what was done.
 
 </td></tr></tbody></table>
 
@@ -1715,85 +1818,109 @@ specifications applying logic can be further decomposed.
 
 <!-- ### Commit: 4|🧱: OLTP LINQ may be useful END -->
 
-<!-- ### Commit: 4|💾: EFCore SortingKey reading
+### Commit: 4|💾: EFCore SortingKey reading
 
 <table><tbody><tr><td>
 
-X files changed, Y insertions(+), Z deletions(-)<br>
-<sub><sub>src/YourCompany.Module/</sub></sub><br>
-<kbd> +++++++ NNN |⁠ [File.cs                                                                                                        ](src/YourCompany.Configuration/EnvironmentConventions.cs)</kbd><br>
-
-Commit body is multiline and compliant to markdown formatting 💥
+10 files changed, 790 insertions(+), 1 deletion(-)<br>
+<sub><sub>src/YourCompany.Configuration.EFCore/CollationAwareSorting/ExpressionsCaching/</sub></sub><br>
+<kbd> +++++++ 176 |⁠ [SortingKeyQueriesCache.ForQuery.ForTopology.cs                                                                 ](src/YourCompany.Configuration.EFCore/CollationAwareSorting/ExpressionsCaching/SortingKeyQueriesCache.ForQuery.ForTopology.cs)</kbd><br>
+<kbd>  ++++++ 171 |⁠ [SortingKeyQueriesCache.ForQuery.ForTopology.TopologyVisitor.cs                                                 ](src/YourCompany.Configuration.EFCore/CollationAwareSorting/ExpressionsCaching/SortingKeyQueriesCache.ForQuery.ForTopology.TopologyVisitor.cs)</kbd><br>
+<kbd>     +++ 86  |⁠ [SortingKeyQueriesCache.ForQuery.cs                                                                             ](src/YourCompany.Configuration.EFCore/CollationAwareSorting/ExpressionsCaching/SortingKeyQueriesCache.ForQuery.cs)</kbd><br>
+<kbd>      ++ 58  |⁠ [SortingKeyQueriesCache.ForQuery.ForTopology.TopologyVisitor.SingleEFProperty.cs                                ](src/YourCompany.Configuration.EFCore/CollationAwareSorting/ExpressionsCaching/SortingKeyQueriesCache.ForQuery.ForTopology.TopologyVisitor.SingleEFProperty.cs)</kbd><br>
+<kbd>      ++ 56  |⁠ [SortingKeyQueriesCache.ForQuery.ForTopology.TopologyVisitor.MultiEFProperties.ForEntity.cs                     ](src/YourCompany.Configuration.EFCore/CollationAwareSorting/ExpressionsCaching/SortingKeyQueriesCache.ForQuery.ForTopology.TopologyVisitor.MultiEFProperties.ForEntity.cs)</kbd><br>
+<kbd>      ++ 51  |⁠ [SortingKeyQueriesCache.ForQuery.ForTopology.TopologyVisitor.MultiEFProperties.cs                               ](src/YourCompany.Configuration.EFCore/CollationAwareSorting/ExpressionsCaching/SortingKeyQueriesCache.ForQuery.ForTopology.TopologyVisitor.MultiEFProperties.cs)</kbd><br>
+<sub><sub>src/YourCompany.Configuration.EFCore/</sub></sub><br>
+<kbd>   +++++ 132 |⁠ [YourCompanyDbContext.SingleEntityQueries.cs                                                                    ](src/YourCompany.Configuration.EFCore/YourCompanyDbContext.SingleEntityQueries.cs)</kbd><br>
+<sub><sub>src/YourCompany.Configuration.EFCore/CollationAwareSorting/</sub></sub><br>
+<kbd>      ++ 51  |⁠ [SortingKeyQueries.SingleEntityExtensions.cs                                                                    ](src/YourCompany.Configuration.EFCore/CollationAwareSorting/SortingKeyQueries.SingleEntityExtensions.cs)</kbd><br>
+<kbd>       + 8   |⁠ [SortingKeyExtraValuePair.cs                                                                                    ](src/YourCompany.Configuration.EFCore/CollationAwareSorting/SortingKeyExtraValuePair.cs)</kbd><br>
+<kbd>      +‑ 2   |⁠ [SortingKeyQueries.cs                                                                                           ](src/YourCompany.Configuration.EFCore/CollationAwareSorting/SortingKeyQueries.cs)</kbd><br>
 
 </td></tr></tbody></table>
 
 <!-- ### Commit: 4|💾: EFCore SortingKey reading END -->
 
-<!-- ### Commit: 4|💾: EFEntityEntryPropertiesCache
+### Commit: 4|💾: EFEntityEntryPropertiesCache
 
 <table><tbody><tr><td>
 
-X files changed, Y insertions(+), Z deletions(-)<br>
-<sub><sub>src/YourCompany.Module/</sub></sub><br>
-<kbd> +++++++ NNN |⁠ [File.cs                                                                                                        ](src/YourCompany.Configuration/EnvironmentConventions.cs)</kbd><br>
-
-Commit body is multiline and compliant to markdown formatting 💥
+1 file changed, 63 insertions(+)<br>
+<sub><sub>src/YourCompany.Configuration.EFCore/ChangeTracking/</sub></sub><br>
+<kbd> +++++++ 63  |⁠ [EFEntityEntryPropertiesCache.cs                                                                                ](src/YourCompany.Configuration.EFCore/ChangeTracking/EFEntityEntryPropertiesCache.cs)</kbd><br>
 
 </td></tr></tbody></table>
 
 <!-- ### Commit: 4|💾: EFEntityEntryPropertiesCache END -->
 
-<!-- ### Commit: 4|💾: EFCore SortingKey ⇆ EntityEntry
+### Commit: 4|💾: EFCore SortingKey ⇆ EntityEntry
 
 <table><tbody><tr><td>
 
-X files changed, Y insertions(+), Z deletions(-)<br>
-<sub><sub>src/YourCompany.Module/</sub></sub><br>
-<kbd> +++++++ NNN |⁠ [File.cs                                                                                                        ](src/YourCompany.Configuration/EnvironmentConventions.cs)</kbd><br>
-
-Commit body is multiline and compliant to markdown formatting 💥
+11 files changed, 764 insertions(+), 1 deletion(-)<br>
+<sub><sub>src/YourCompany.Configuration.EFCore/CollationAwareSorting/ChangeTracking/</sub></sub><br>
+<kbd> +++++++ 127 |⁠ [EntityEntryPropertiesCopyingVisitor.cs                                                                         ](src/YourCompany.Configuration.EFCore/CollationAwareSorting/ChangeTracking/EntityEntryPropertiesCopyingVisitor.cs)</kbd><br>
+<kbd>  ++++++ 116 |⁠ [EntityEntryPropertiesCopyingVisitor.NonGeneric.cs                                                              ](src/YourCompany.Configuration.EFCore/CollationAwareSorting/ChangeTracking/EntityEntryPropertiesCopyingVisitor.NonGeneric.cs)</kbd><br>
+<kbd>  ++++++ 110 |⁠ [EntityEntrySortingKeyCreatingVisitor.cs                                                                        ](src/YourCompany.Configuration.EFCore/CollationAwareSorting/ChangeTracking/EntityEntrySortingKeyCreatingVisitor.cs)</kbd><br>
+<kbd>   +++++ 105 |⁠ [EntityEntryPropertiesCopyingVisitor.Generic.cs                                                                 ](src/YourCompany.Configuration.EFCore/CollationAwareSorting/ChangeTracking/EntityEntryPropertiesCopyingVisitor.Generic.cs)</kbd><br>
+<kbd>    ++++ 64  |⁠ [EntityEntrySortingKeyCreatingVisitor.NonGeneric.cs                                                             ](src/YourCompany.Configuration.EFCore/CollationAwareSorting/ChangeTracking/EntityEntrySortingKeyCreatingVisitor.NonGeneric.cs)</kbd><br>
+<kbd>     +++ 61  |⁠ [EntityEntryPropertiesSettingVisitor.NonGeneric.cs                                                              ](src/YourCompany.Configuration.EFCore/CollationAwareSorting/ChangeTracking/EntityEntryPropertiesSettingVisitor.NonGeneric.cs)</kbd><br>
+<kbd>     +++ 60  |⁠ [EntityEntryPropertiesSettingVisitor.Generic.cs                                                                 ](src/YourCompany.Configuration.EFCore/CollationAwareSorting/ChangeTracking/EntityEntryPropertiesSettingVisitor.Generic.cs)</kbd><br>
+<kbd>     +++ 55  |⁠ [EntityEntrySortingKeyCreatingVisitor.Generic.cs                                                                ](src/YourCompany.Configuration.EFCore/CollationAwareSorting/ChangeTracking/EntityEntrySortingKeyCreatingVisitor.Generic.cs)</kbd><br>
+<kbd>     +++ 48  |⁠ [EntityEntryPropertiesSettingVisitor.cs                                                                         ](src/YourCompany.Configuration.EFCore/CollationAwareSorting/ChangeTracking/EntityEntryPropertiesSettingVisitor.cs)</kbd><br>
+<sub><sub>src/YourCompany.Configuration.EFCore/CollationAwareSorting/</sub></sub><br>
+<kbd>       + 17  |⁠ [SortingKeyTopologyExtensions.ChangeTracking.cs                                                                 ](src/YourCompany.Configuration.EFCore/CollationAwareSorting/SortingKeyTopologyExtensions.ChangeTracking.cs)</kbd><br>
+<kbd>      +‑ 2   |⁠ [SortingKeyTopologyExtensions.cs                                                                                ](src/YourCompany.Configuration.EFCore/CollationAwareSorting/SortingKeyTopologyExtensions.cs)</kbd><br>
 
 </td></tr></tbody></table>
 
 <!-- ### Commit: 4|💾: EFCore SortingKey ⇆ EntityEntry END -->
 
-<!-- ### Commit: 4|💾: OLTP EFCore MetadataHelper
+### Commit: 4|💾: OLTP EFCore MetadataHelper
 
 <table><tbody><tr><td>
 
-X files changed, Y insertions(+), Z deletions(-)<br>
-<sub><sub>src/YourCompany.Module/</sub></sub><br>
-<kbd> +++++++ NNN |⁠ [File.cs                                                                                                        ](src/YourCompany.Configuration/EnvironmentConventions.cs)</kbd><br>
-
-Commit body is multiline and compliant to markdown formatting 💥
+1 file changed, 45 insertions(+)<br>
+<sub><sub>src/YourCompany.OLTP.StateOwnership.Reflection.EFCore/</sub></sub><br>
+<kbd> +++++++ 45  |⁠ [MetadataHelper.cs                                                                                              ](src/YourCompany.OLTP.StateOwnership.Reflection.EFCore/MetadataHelper.cs)</kbd><br>
 
 </td></tr></tbody></table>
 
 <!-- ### Commit: 4|💾: OLTP EFCore MetadataHelper END -->
 
-<!-- ### Commit: 4|💾: OLTP EFCore ID generation
+### Commit: 4|💾: OLTP EFCore ID generation
 
 <table><tbody><tr><td>
 
-X files changed, Y insertions(+), Z deletions(-)<br>
-<sub><sub>src/YourCompany.Module/</sub></sub><br>
-<kbd> +++++++ NNN |⁠ [File.cs                                                                                                        ](src/YourCompany.Configuration/EnvironmentConventions.cs)</kbd><br>
-
-Commit body is multiline and compliant to markdown formatting 💥
+4 files changed, 112 insertions(+), 1 deletion(-)<br>
+<sub><sub>src/YourCompany.OLTP.StateOwnership.Reflection.EFCore/</sub></sub><br>
+<kbd> +++++++ 79  |⁠ [MetadataHelper.DelegatedPrimaryKeyGeneration.cs                                                                ](src/YourCompany.OLTP.StateOwnership.Reflection.EFCore/MetadataHelper.DelegatedPrimaryKeyGeneration.cs)</kbd><br>
+<kbd>      ++ 21  |⁠ [RecordDataQueries.cs                                                                                           ](src/YourCompany.OLTP.StateOwnership.Reflection.EFCore/RecordDataQueries.cs)</kbd><br>
+<kbd>       + 11  |⁠ [DelegatedPrimaryKeyGenerationTable.cs                                                                          ](src/YourCompany.OLTP.StateOwnership.Reflection.EFCore/DelegatedPrimaryKeyGenerationTable.cs)</kbd><br>
+<kbd>      +‑ 2   |⁠ [MetadataHelper.cs                                                                                              ](src/YourCompany.OLTP.StateOwnership.Reflection.EFCore/MetadataHelper.cs)</kbd><br>
 
 </td></tr></tbody></table>
 
 <!-- ### Commit: 4|💾: OLTP EFCore ID generation END -->
 
-<!-- ### Commit: 4|💾: EFEntityTypeSortingKeyTopology
+### Commit: 4|💾: EFEntityTypeSortingKeyTopology
 
 <table><tbody><tr><td>
 
-X files changed, Y insertions(+), Z deletions(-)<br>
-<sub><sub>src/YourCompany.Module/</sub></sub><br>
-<kbd> +++++++ NNN |⁠ [File.cs                                                                                                        ](src/YourCompany.Configuration/EnvironmentConventions.cs)</kbd><br>
+7 files changed, 347 insertions(+)<br>
+<sub><sub>src/YourCompany.Configuration.EFCore/CollationAwareSorting/Metadata/</sub></sub><br>
+<kbd> +++++++ 90  |⁠ [EFEntityTypeSortingKeyTopology.Visiting.cs                                                                     ](src/YourCompany.Configuration.EFCore/CollationAwareSorting/Metadata/EFEntityTypeSortingKeyTopology.Visiting.cs)</kbd><br>
+<kbd>  ++++++ 83  |⁠ [EFEntityTypeSortingKeyTopology.PrefixFirstPropertiesVisitCache.cs                                              ](src/YourCompany.Configuration.EFCore/CollationAwareSorting/Metadata/EFEntityTypeSortingKeyTopology.PrefixFirstPropertiesVisitCache.cs)</kbd><br>
+<kbd>  ++++++ 77  |⁠ [EFEntityTypeSortingKeyTopology.cs                                                                              ](src/YourCompany.Configuration.EFCore/CollationAwareSorting/Metadata/EFEntityTypeSortingKeyTopology.cs)</kbd><br>
+<kbd>       + 11  |⁠ [CollationAwareSortingSingleModelProvider.cs                                                                    ](src/YourCompany.Configuration.EFCore/CollationAwareSorting/Metadata/CollationAwareSortingSingleModelProvider.cs)</kbd><br>
+<kbd>       + 4   |⁠ [ModelExtensions.cs                                                                                             ](src/YourCompany.Configuration.EFCore/CollationAwareSorting/Metadata/ModelExtensions.cs)</kbd><br>
+<sub><sub>src/YourCompany.Configuration.EFCore/CollationAwareSorting/</sub></sub><br>
+<kbd>  ++++++ 80  |⁠ [SortingKeyTopology.PrefixFirstPropertiesVisitCache.cs                                                          ](src/YourCompany.Configuration.EFCore/CollationAwareSorting/SortingKeyTopology.PrefixFirstPropertiesVisitCache.cs)</kbd><br>
+<kbd>       + 2   |⁠ [ICollationAwareModelProvider.cs                                                                                ](src/YourCompany.Configuration.EFCore/CollationAwareSorting/ICollationAwareModelProvider.cs)</kbd><br>
 
-Commit body is multiline and compliant to markdown formatting 💥
+An edge case of the topology is all the entity properties.  
+Using previously introduced visiting abilities it will allow to  
+optimally implement some missing operations in EF.
 
 </td></tr></tbody></table>
 
@@ -1974,29 +2101,107 @@ Commit body is multiline and compliant to markdown formatting 💥
 
 <!-- ### Commit: 5|🧱: OLTP DI mixed repository END -->
 
-<!-- ### Commit: 5|💾: OLTP EFCore readonly
+### Commit: 5|💾: OLTP EFCore readonly
 
 <table><tbody><tr><td>
 
-X files changed, Y insertions(+), Z deletions(-)<br>
-<sub><sub>src/YourCompany.Module/</sub></sub><br>
-<kbd> +++++++ NNN |⁠ [File.cs                                                                                                        ](src/YourCompany.Configuration/EnvironmentConventions.cs)</kbd><br>
+21 files changed, 2256 insertions(+)<br>
+<sub><sub>src/YourCompany.OLTP.RecordsManagement.Persistence.Linq.EFCore/</sub></sub><br>
+<kbd> +++++++ 219 |⁠ [YourCompanyDbContextLockingRecordDataReader.cs                                                                 ](src/YourCompany.OLTP.RecordsManagement.Persistence.Linq.EFCore/YourCompanyDbContextLockingRecordDataReader.cs)</kbd><br>
+<kbd>  ++++++ 194 |⁠ [YourCompanyDbContextLockingRecordDataReader.SingleEntityQuery.WithoutIds.After.cs                              ](src/YourCompany.OLTP.RecordsManagement.Persistence.Linq.EFCore/YourCompanyDbContextLockingRecordDataReader.SingleEntityQuery.WithoutIds.After.cs)</kbd><br>
+<kbd>  ++++++ 184 |⁠ [YourCompanyDbContextLockingRecordDataReader.FactoriesCache.cs                                                  ](src/YourCompany.OLTP.RecordsManagement.Persistence.Linq.EFCore/YourCompanyDbContextLockingRecordDataReader.FactoriesCache.cs)</kbd><br>
+<kbd>   +++++ 182 |⁠ [YourCompanyDbContextRecordsDataAccessAdapter.cs                                                                ](src/YourCompany.OLTP.RecordsManagement.Persistence.Linq.EFCore/YourCompanyDbContextRecordsDataAccessAdapter.cs)</kbd><br>
+<kbd>   +++++ 177 |⁠ [YourCompanyDbContextFactory.cs                                                                                 ](src/YourCompany.OLTP.RecordsManagement.Persistence.Linq.EFCore/YourCompanyDbContextFactory.cs)</kbd><br>
+<kbd>   +++++ 166 |⁠ [YourCompanyDbContext.DelegatedPrimaryKeys.cs                                                                   ](src/YourCompany.OLTP.RecordsManagement.Persistence.Linq.EFCore/YourCompanyDbContext.DelegatedPrimaryKeys.cs)</kbd><br>
+<kbd>   +++++ 164 |⁠ [YourCompanyDbContextLockingRecordDataReader.SingleEntityQuery.ByIds.cs                                         ](src/YourCompany.OLTP.RecordsManagement.Persistence.Linq.EFCore/YourCompanyDbContextLockingRecordDataReader.SingleEntityQuery.ByIds.cs)</kbd><br>
+<kbd>    ++++ 143 |⁠ [YourCompanyDbContextLockingRecordDataReader.SingleEntityQuery.WithoutIds.cs                                    ](src/YourCompany.OLTP.RecordsManagement.Persistence.Linq.EFCore/YourCompanyDbContextLockingRecordDataReader.SingleEntityQuery.WithoutIds.cs)</kbd><br>
+<kbd>    ++++ 128 |⁠ [YourCompanyDbContextLockingRecordDataReader.SingleEntityQuery.ByIds.ResolvePrivateKeys.FromNatural.cs          ](src/YourCompany.OLTP.RecordsManagement.Persistence.Linq.EFCore/YourCompanyDbContextLockingRecordDataReader.SingleEntityQuery.ByIds.ResolvePrivateKeys.FromNatural.cs)</kbd><br>
+<kbd>    ++++ 116 |⁠ [YourCompanyDbContextLockingRecordDataReader.SingleEntityQuery.cs                                               ](src/YourCompany.OLTP.RecordsManagement.Persistence.Linq.EFCore/YourCompanyDbContextLockingRecordDataReader.SingleEntityQuery.cs)</kbd><br>
+<kbd>    ++++ 116 |⁠ [YourCompanyDbContextLockingRecordDataReader.SingleEntityQuery.ByIds.ResolvePrivateKeys.FromPublic.cs           ](src/YourCompany.OLTP.RecordsManagement.Persistence.Linq.EFCore/YourCompanyDbContextLockingRecordDataReader.SingleEntityQuery.ByIds.ResolvePrivateKeys.FromPublic.cs)</kbd><br>
+<kbd>     +++ 94  |⁠ [YourCompanyDbContextLockingRecordDataReader.SingleEntityQuery.ByIds.ResolvePrivateKeys.cs                      ](src/YourCompany.OLTP.RecordsManagement.Persistence.Linq.EFCore/YourCompanyDbContextLockingRecordDataReader.SingleEntityQuery.ByIds.ResolvePrivateKeys.cs)</kbd><br>
+<kbd>     +++ 92  |⁠ [YourCompanyDbContextLockingRecordDataReader.SingleEntityQuery.WithoutIds.NoSorting.cs                          ](src/YourCompany.OLTP.RecordsManagement.Persistence.Linq.EFCore/YourCompanyDbContextLockingRecordDataReader.SingleEntityQuery.WithoutIds.NoSorting.cs)</kbd><br>
+<kbd>      ++ 64  |⁠ [YourCompanyDbContext.cs                                                                                        ](src/YourCompany.OLTP.RecordsManagement.Persistence.Linq.EFCore/YourCompanyDbContext.cs)</kbd><br>
+<kbd>      ++ 54  |⁠ [YourCompanyDbContext.QueryableRecordDataTypes.cs                                                               ](src/YourCompany.OLTP.RecordsManagement.Persistence.Linq.EFCore/YourCompanyDbContext.QueryableRecordDataTypes.cs)</kbd><br>
+<kbd>       + 31  |⁠ [YourCompanyDbContext.DbContextLocking.cs                                                                       ](src/YourCompany.OLTP.RecordsManagement.Persistence.Linq.EFCore/YourCompanyDbContext.DbContextLocking.cs)</kbd><br>
+<kbd>       + 21  |⁠ [YourCompanyDbContextConfiguratorsLoadingContext.cs                                                             ](src/YourCompany.OLTP.RecordsManagement.Persistence.Linq.EFCore/YourCompanyDbContextConfiguratorsLoadingContext.cs)</kbd><br>
+<kbd>       + 16  |⁠ [YourCompanyDbContextConfiguration.cs                                                                           ](src/YourCompany.OLTP.RecordsManagement.Persistence.Linq.EFCore/YourCompanyDbContextConfiguration.cs)</kbd><br>
+<kbd>       + 14  |⁠ [YourCompanyDbContextConfigurator.cs                                                                            ](src/YourCompany.OLTP.RecordsManagement.Persistence.Linq.EFCore/YourCompanyDbContextConfigurator.cs)</kbd><br>
+<kbd>       + 7   |⁠ [YourCompanyDbContextFactoryLoadingConfiguration.cs                                                             ](src/YourCompany.OLTP.RecordsManagement.Persistence.Linq.EFCore/YourCompanyDbContextFactoryLoadingConfiguration.cs)</kbd><br>
+<sub><sub>src/YourCompany.OLTP.RecordsManagement.Persistence.Linq.EFCore/CollationAwareSorting/</sub></sub><br>
+<kbd>     +++ 74  |⁠ [CollationAwareSortingUniqueKeyAdapter.cs                                                                       ](src/YourCompany.OLTP.RecordsManagement.Persistence.Linq.EFCore/CollationAwareSorting/CollationAwareSortingUniqueKeyAdapter.cs)</kbd><br>
 
-Commit body is multiline and compliant to markdown formatting 💥
+This is a basic `ReadOnly` implementation of the records data access  
+adapter. At the core is a semi-closed hierarchy of  
+`YourCompanyDbContextLockingRecordDataReader` whose goal is to  
+encapsulate differences of accessing by ids and without. Later we'll  
+also introduce one for record data modifying part.
+
+Here we also introduce `DbContext` locking contrary to the popular  
+belief that its strictly single threaded. It **is** actually, and  
+wherever you find logic decomposed, you'd see either  
+"scoped" `DbContext` injected at several "handlers" limiting parallel  
+processing completely or the "Unit-of-Work" limiting modularity  
+completely. But we'll do it different, allowing `DbContext` to be  
+locked by one of parallel conflicting tasks so that when it's one  
+turn it can benefit of the `Local` view (local caching of previously  
+accessed data, i.e. locked in the same transaction when previously  
+modified) and the same time not bounding processing to a single  
+`DbContext` instance as it's made when "scoped" (since we solely  
+use DbContext factories).
 
 </td></tr></tbody></table>
 
 <!-- ### Commit: 5|💾: OLTP EFCore readonly END -->
 
-<!-- ### Commit: 6|💾: OLTP EFCore finalized
+### Commit: 6|💾: OLTP EFCore finalized
 
 <table><tbody><tr><td>
 
-X files changed, Y insertions(+), Z deletions(-)<br>
-<sub><sub>src/YourCompany.Module/</sub></sub><br>
-<kbd> +++++++ NNN |⁠ [File.cs                                                                                                        ](src/YourCompany.Configuration/EnvironmentConventions.cs)</kbd><br>
+19 files changed, 1146 insertions(+), 38 deletions(-)<br>
+<sub><sub>src/YourCompany.OLTP.RecordsManagement.Persistence.Linq.EFCore/</sub></sub><br>
+<kbd>  ++++++ 174 |⁠ [YourCompanyDbContextLockingRecordDataReader.SingleEntityQuery.ReadBeforeModifying.Finishing.cs                 ](src/YourCompany.OLTP.RecordsManagement.Persistence.Linq.EFCore/YourCompanyDbContextLockingRecordDataReader.SingleEntityQuery.ReadBeforeModifying.Finishing.cs)</kbd><br>
+<kbd>  ++++++ 162 |⁠ [YourCompanyDbContextLockingRecordDataReader.SingleEntityQuery.ReadBeforeModifying.cs                           ](src/YourCompany.OLTP.RecordsManagement.Persistence.Linq.EFCore/YourCompanyDbContextLockingRecordDataReader.SingleEntityQuery.ReadBeforeModifying.cs)</kbd><br>
+<kbd>   +++++ 157 |⁠ [YourCompanyDbContextLockingRecordDataReader.SingleEntityQuery.ReadBeforeModifying.Modifying.cs                 ](src/YourCompany.OLTP.RecordsManagement.Persistence.Linq.EFCore/YourCompanyDbContextLockingRecordDataReader.SingleEntityQuery.ReadBeforeModifying.Modifying.cs)</kbd><br>
+<kbd>   ++++‑ 135 |⁠ [YourCompanyDbContextRecordsDataAccessAdapter.cs                                                                ](src/YourCompany.OLTP.RecordsManagement.Persistence.Linq.EFCore/YourCompanyDbContextRecordsDataAccessAdapter.cs)</kbd><br>
+<kbd>    ++++ 104 |⁠ [YourCompanyDbContext.PessimisticLocking.cs                                                                     ](src/YourCompany.OLTP.RecordsManagement.Persistence.Linq.EFCore/YourCompanyDbContext.PessimisticLocking.cs)</kbd><br>
+<kbd>    +++‑ 97  |⁠ [YourCompanyDbContext.DelegatedPrimaryKeys.cs                                                                   ](src/YourCompany.OLTP.RecordsManagement.Persistence.Linq.EFCore/YourCompanyDbContext.DelegatedPrimaryKeys.cs)</kbd><br>
+<kbd>     ++‑ 77  |⁠ [YourCompanyDbContextLockingRecordDataReader.cs                                                                 ](src/YourCompany.OLTP.RecordsManagement.Persistence.Linq.EFCore/YourCompanyDbContextLockingRecordDataReader.cs)</kbd><br>
+<kbd>      +‑ 18  |⁠ [YourCompanyDbContextLockingRecordDataReader.SingleEntityQuery.cs                                               ](src/YourCompany.OLTP.RecordsManagement.Persistence.Linq.EFCore/YourCompanyDbContextLockingRecordDataReader.SingleEntityQuery.cs)</kbd><br>
+<kbd>       + 10  |⁠ [YourCompanyDbContextConfiguration.cs                                                                           ](src/YourCompany.OLTP.RecordsManagement.Persistence.Linq.EFCore/YourCompanyDbContextConfiguration.cs)</kbd><br>
+<kbd>       + 6   |⁠ [YourCompanyDbContextLockingRecordDataReader.SingleEntityQuery.ByIds.cs                                         ](src/YourCompany.OLTP.RecordsManagement.Persistence.Linq.EFCore/YourCompanyDbContextLockingRecordDataReader.SingleEntityQuery.ByIds.cs)</kbd><br>
+<kbd>      +‑ 4   |⁠ [YourCompanyDbContextLockingRecordDataReader.SingleEntityQuery.ByIds.ResolvePrivateKeys.FromNatural.cs          ](src/YourCompany.OLTP.RecordsManagement.Persistence.Linq.EFCore/YourCompanyDbContextLockingRecordDataReader.SingleEntityQuery.ByIds.ResolvePrivateKeys.FromNatural.cs)</kbd><br>
+<kbd>      +‑ 4   |⁠ [YourCompanyDbContextLockingRecordDataReader.SingleEntityQuery.ByIds.ResolvePrivateKeys.cs                      ](src/YourCompany.OLTP.RecordsManagement.Persistence.Linq.EFCore/YourCompanyDbContextLockingRecordDataReader.SingleEntityQuery.ByIds.ResolvePrivateKeys.cs)</kbd><br>
+<kbd>      +‑ 4   |⁠ [YourCompanyDbContextLockingRecordDataReader.SingleEntityQuery.ByIds.ResolvePrivateKeys.FromPublic.cs           ](src/YourCompany.OLTP.RecordsManagement.Persistence.Linq.EFCore/YourCompanyDbContextLockingRecordDataReader.SingleEntityQuery.ByIds.ResolvePrivateKeys.FromPublic.cs)</kbd><br>
+<kbd>      +‑ 2   |⁠ [YourCompanyDbContextLockingRecordDataReader.SingleEntityQuery.WithoutIds.After.cs                              ](src/YourCompany.OLTP.RecordsManagement.Persistence.Linq.EFCore/YourCompanyDbContextLockingRecordDataReader.SingleEntityQuery.WithoutIds.After.cs)</kbd><br>
+<kbd>      +‑ 2   |⁠ [YourCompanyDbContextLockingRecordDataReader.SingleEntityQuery.WithoutIds.NoSorting.cs                          ](src/YourCompany.OLTP.RecordsManagement.Persistence.Linq.EFCore/YourCompanyDbContextLockingRecordDataReader.SingleEntityQuery.WithoutIds.NoSorting.cs)</kbd><br>
+<kbd>      +‑ 2   |⁠ [YourCompanyDbContextLockingRecordDataReader.SingleEntityQuery.WithoutIds.cs                                    ](src/YourCompany.OLTP.RecordsManagement.Persistence.Linq.EFCore/YourCompanyDbContextLockingRecordDataReader.SingleEntityQuery.WithoutIds.cs)</kbd><br>
+<kbd>       + 1   |⁠ [YourCompanyDbContext.QueryableRecordDataTypes.cs                                                               ](src/YourCompany.OLTP.RecordsManagement.Persistence.Linq.EFCore/YourCompanyDbContext.QueryableRecordDataTypes.cs)</kbd><br>
+<sub><sub>src/YourCompany.OLTP.RecordsManagement.Persistence.Linq.EFCore/CollationAwareSorting/</sub></sub><br>
+<kbd> +++++++ 191 |⁠ [EntityEntryModifyingVisitor.cs                                                                                 ](src/YourCompany.OLTP.RecordsManagement.Persistence.Linq.EFCore/CollationAwareSorting/EntityEntryModifyingVisitor.cs)</kbd><br>
+<kbd>      ++ 34  |⁠ [EntityEntryModifyingPair.cs                                                                                    ](src/YourCompany.OLTP.RecordsManagement.Persistence.Linq.EFCore/CollationAwareSorting/EntityEntryModifyingPair.cs)</kbd><br>
 
-Commit body is multiline and compliant to markdown formatting 💥
+This is a modifying finalization for the previously implemented record  
+data access adapter, adding an extra inheritor to the semi-closed  
+hierarchy of `YourCompanyDbContextLockingRecordDataReader` whose  
+responsibility is now slightly extended.
+
+Worth mentioning that by extending its responsibility we're actually  
+following the EFCore's ideology of **two DbCommand per one logical  
+transaction** (i.e. read first and then change and save). This  
+ideology may cost a lot in practice of high loaded apps and EFCore is  
+often avoided for that reason. Why we still implement this? 🤔 To show  
+**what layer it really belongs to** in the system as well as still  
+benefit the change tracking capabilities to utilize it as smart ORM  
+rather map changes to the "UPDATE setters" ourselves (btw, `linq2db`  
+is a perfect candidate for the latter).
+
+Furthermore, to not keep silent about this, we're switching to the  
+pessimistic locking right away 😲 and by doing this we denote one of  
+the major OLTP rules - **the transaction have to be fast and small**.  
+We're not going to allow "to read first and then make sizeless logic"  
+on the contrary we're deliberately bound by a **single repository call  
+UoW** that at its worst allows to put extra transactional logic  
+within its use case strategies, i.e. time and context bound.
 
 </td></tr></tbody></table>
 
