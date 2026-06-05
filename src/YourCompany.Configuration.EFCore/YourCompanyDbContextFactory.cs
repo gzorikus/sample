@@ -2,6 +2,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Design;
 using Microsoft.Extensions.Configuration;
+using YourCompany.Configuration.EFCore.CollationAwareSorting;
 
 namespace YourCompany.Configuration.EFCore
 {
@@ -46,6 +47,7 @@ namespace YourCompany.Configuration.EFCore
             base.LoadOnce(loadingContext);
             loadingContext.LoadingConfigurationType = typeof(TLoadingConfiguration);
             loadingContext.DbContextConfigurationType = typeof(TDbContextConfiguration);
+            loadingContext.CollationCompatibleComparersProvider = Plugins.ToCollationCompatibleComparersProvider(loadingContext);
         }
 
         protected override IConfigurationSection GetLoadingConfigurationSection(IConfigurationSection fromYourCompanySection)

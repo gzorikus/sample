@@ -4,6 +4,8 @@ using System.Threading;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.Extensions.Configuration;
+using YourCompany.Configuration.EFCore.CollationAwareSorting;
+using YourCompany.Configuration.EFCore.CollationAwareSorting.Metadata;
 
 namespace YourCompany.Configuration.EFCore
 {
@@ -13,6 +15,7 @@ namespace YourCompany.Configuration.EFCore
         private static YourCompanyDbContextConfiguratorsLoadingContext _loadedOnceConfiguratorsLoadingContext;
         private static IReadOnlyList<YourCompanyDbContextConfigurator> _loadedOnceConfigurators;
         private static IModel _singleRuntimeModelPerConfigurationType;
+        private static ICollationAwareModelProvider _singleRuntimeCollationAwareSortingModelProviderPerConfigurationType;
 
         protected static YourCompanyDbContextConfiguratorsLoadingContext ConfiguratorsLoadingContext
             => _loadedOnceConfiguratorsLoadingContext ?? throw new ApplicationException("_loadedOnceConfiguratorsLoadingContext == null");
@@ -22,6 +25,9 @@ namespace YourCompany.Configuration.EFCore
 
         public static IModel SingleRuntimeModelPerConfigurationType
             => _singleRuntimeModelPerConfigurationType ?? throw new ApplicationException("_singleRuntimeModelPerConfigurationType == null");
+
+        public static ICollationAwareModelProvider SingleRuntimeCollationAwareSortingModelProviderPerConfigurationType
+            => _singleRuntimeCollationAwareSortingModelProviderPerConfigurationType ?? throw new ApplicationException("_singleRuntimeCollationAwareSortingModelProviderPerConfigurationType == null");
 
         public TConfiguration Configuration { get; private set; }
         public DateTime ConfiguredUtcNow { get; private set; }
@@ -59,6 +65,7 @@ namespace YourCompany.Configuration.EFCore
                 OnModelCreating(modelBuilder, Configurators[i]);
 
             OnModelCreatingAfterConfigurators(modelBuilder);
+            AfterModelFinalized(modelBuilder.FinalizeModel());
         }
 
         protected virtual void OnModelCreating(ModelBuilder modelBuilder, YourCompanyDbContextConfigurator configurator)
@@ -74,6 +81,18 @@ namespace YourCompany.Configuration.EFCore
             string objectNamesPrefix = ConfiguratorsLoadingContext.Configuration.GetYourCompanyInfraObjectNamesPrefix();
             if (!string.IsNullOrEmpty(objectNamesPrefix))
                 PrefixDbObjects(SanitizeObjectNamesPrefix(objectNamesPrefix), modelBuilder);
+        }
+
+        protected virtual void AfterModelFinalized(IModel model)
+        {
+            if (model == null) throw new ArgumentNullException(nameof(model));
+            if (!ConfiguratorsLoadingContext.IsDesignTime)
+            {
+                var modelProvider = new CollationAwareSortingSingleModelProvider(
+                    model, ConfiguratorsLoadingContext.CollationCompatibleComparersProvider);
+                if (Interlocked.CompareExchange(ref _singleRuntimeCollationAwareSortingModelProviderPerConfigurationType, modelProvider, null) != null)
+                    throw new ApplicationException("Interlocked.CompareExchange(ref _singleRuntimeCollationAwareSortingModelProviderPerConfigurationType, modelProvider, null) != null");
+            }
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)

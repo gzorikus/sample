@@ -9,7 +9,7 @@ using Migrations = Microsoft.EntityFrameworkCore.Migrations;
 
 namespace YourCompany.Configuration.EFCore.PostgreSQL
 {
-    internal sealed class NpgsqlDbContextConfigurator : YourCompanyDbContextConfigurator
+    internal sealed partial class NpgsqlDbContextConfigurator : YourCompanyDbContextConfigurator
     {
         // Why not just separate directories within the same assembly? Heh, bcs the tool's --output-dir doesn't work as you'd expect!
         // When you deal with generic db context type ending up in several migration tracks (assembly subfolders) the tool
@@ -20,6 +20,10 @@ namespace YourCompany.Configuration.EFCore.PostgreSQL
             = $"{EnvironmentConventions.YourCompanyAssemblyPrefix}{nameof(EFCore)}.{nameof(PostgreSQL)}.{{0}}{nameof(Migrations)}";
 
         private PrefixedObjectNamesShortener _prefixedObjectNamesShortener;
+
+        public override void OnModelCreating(
+            YourCompanyDbContextConfiguratorsLoadingContext context, ModelBuilder modelBuilder)
+            => modelBuilder.UseCollation(AssumeOSConsistentLibcBinaryDefaultCollation);
 
         internal override string SanitizeObjectNamesPrefix(
             YourCompanyDbContextConfiguratorsLoadingContext context, string objectNamesPrefix)

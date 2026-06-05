@@ -10,7 +10,7 @@ using Migrations = Microsoft.EntityFrameworkCore.Migrations;
 
 namespace YourCompany.Configuration.EFCore.Sqlite
 {
-    internal sealed class SqliteDbContextConfigurator : YourCompanyDbContextConfigurator
+    internal sealed partial class SqliteDbContextConfigurator : YourCompanyDbContextConfigurator
     {
         // Why not just separate directories within the same assembly? Heh, bcs the tool's --output-dir doesn't work as you'd expect!
         // When you deal with generic db context type ending up in several migration tracks (assembly subfolders) the tool
@@ -24,6 +24,10 @@ namespace YourCompany.Configuration.EFCore.Sqlite
 
         private static readonly Regex SanitizeAsciiOnlyObjectNamesPrefixRegex = new(
             pattern: @"\W", RegexOptions.Compiled | RegexOptions.ECMAScript);
+
+        public override void OnModelCreating(
+            YourCompanyDbContextConfiguratorsLoadingContext context, ModelBuilder modelBuilder)
+            => modelBuilder.UseCollation(AssumeUnchangedDefaultCollation);
 
         internal override string SanitizeObjectNamesPrefix(
             YourCompanyDbContextConfiguratorsLoadingContext context, string objectNamesPrefix)

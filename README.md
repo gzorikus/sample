@@ -1407,15 +1407,62 @@ Commit body is multiline and compliant to markdown formatting 💥
 
 <!-- ### Commit: 3|💾: EFPropertyExpressionsCache END -->
 
-<!-- ### Commit: 3|💾: EFCore first-class SortingKey
+### Commit: 3|💾: EFCore first-class SortingKey
 
 <table><tbody><tr><td>
 
-X files changed, Y insertions(+), Z deletions(-)<br>
-<sub><sub>src/YourCompany.Module/</sub></sub><br>
-<kbd> +++++++ NNN |⁠ [File.cs                                                                                                        ](src/YourCompany.Configuration/EnvironmentConventions.cs)</kbd><br>
+36 files changed, 2464 insertions(+), 2 deletions(-)<br>
+<sub><sub>src/YourCompany.Configuration.EFCore/CollationAwareSorting/</sub></sub><br>
+<kbd> +++++++ 177 |⁠ [SortingKeyPropertiesVisitor.cs                                                                                 ](src/YourCompany.Configuration.EFCore/CollationAwareSorting/SortingKeyPropertiesVisitor.cs)</kbd><br>
+<kbd>  ++++++ 176 |⁠ [SortingKeyPredicatesBuilder.cs                                                                                 ](src/YourCompany.Configuration.EFCore/CollationAwareSorting/SortingKeyPredicatesBuilder.cs)</kbd><br>
+<kbd>  ++++++ 160 |⁠ [SortingKey.ValueHolding.ConvertedFrom.cs                                                                       ](src/YourCompany.Configuration.EFCore/CollationAwareSorting/SortingKey.ValueHolding.ConvertedFrom.cs)</kbd><br>
+<kbd>  ++++++ 155 |⁠ [SortingKey.ValueHolding.cs                                                                                     ](src/YourCompany.Configuration.EFCore/CollationAwareSorting/SortingKey.ValueHolding.cs)</kbd><br>
+<kbd>   +++++ 139 |⁠ [ICollationAwareModelProvider.cs                                                                                ](src/YourCompany.Configuration.EFCore/CollationAwareSorting/ICollationAwareModelProvider.cs)</kbd><br>
+<kbd>    ++++ 104 |⁠ [SortingKeyBuilder.OrElse.ComparableValue.cs                                                                    ](src/YourCompany.Configuration.EFCore/CollationAwareSorting/SortingKeyBuilder.OrElse.ComparableValue.cs)</kbd><br>
+<kbd>    ++++ 100 |⁠ [SortingKey.Building.cs                                                                                         ](src/YourCompany.Configuration.EFCore/CollationAwareSorting/SortingKey.Building.cs)</kbd><br>
+<kbd>    ++++ 95  |⁠ [SortingKeyTopology.PropertiesOwner.cs                                                                          ](src/YourCompany.Configuration.EFCore/CollationAwareSorting/SortingKeyTopology.PropertiesOwner.cs)</kbd><br>
+<kbd>    ++++ 94  |⁠ [SortingKeyBuilder.ComparableValue.cs                                                                           ](src/YourCompany.Configuration.EFCore/CollationAwareSorting/SortingKeyBuilder.ComparableValue.cs)</kbd><br>
+<kbd>    ++++ 94  |⁠ [SortingKey.ToString.cs                                                                                         ](src/YourCompany.Configuration.EFCore/CollationAwareSorting/SortingKey.ToString.cs)</kbd><br>
+<kbd>     +++ 86  |⁠ [SortingKey.Querying.cs                                                                                         ](src/YourCompany.Configuration.EFCore/CollationAwareSorting/SortingKey.Querying.cs)</kbd><br>
+<kbd>     +++ 76  |⁠ [OrElseEqualityKeys.Querying.cs                                                                                 ](src/YourCompany.Configuration.EFCore/CollationAwareSorting/OrElseEqualityKeys.Querying.cs)</kbd><br>
+<kbd>     +++ 73  |⁠ [ICollationCompatibleComparersProvider.cs                                                                       ](src/YourCompany.Configuration.EFCore/CollationAwareSorting/ICollationCompatibleComparersProvider.cs)</kbd><br>
+<kbd>     +++ 69  |⁠ [SortingKey.Comparison.cs                                                                                       ](src/YourCompany.Configuration.EFCore/CollationAwareSorting/SortingKey.Comparison.cs)</kbd><br>
+<kbd>     +++ 69  |⁠ [SortingKeyPredicatesBuilder.SingleEntityQuery.cs                                                               ](src/YourCompany.Configuration.EFCore/CollationAwareSorting/SortingKeyPredicatesBuilder.SingleEntityQuery.cs)</kbd><br>
+<kbd>     +++ 66  |⁠ [SortingKey.cs                                                                                                  ](src/YourCompany.Configuration.EFCore/CollationAwareSorting/SortingKey.cs)</kbd><br>
+<kbd>     +++ 63  |⁠ [OrElseEqualityKeys.cs                                                                                          ](src/YourCompany.Configuration.EFCore/CollationAwareSorting/OrElseEqualityKeys.cs)</kbd><br>
+<kbd>     +++ 60  |⁠ [SortingKeyTopologyExtensions.cs                                                                                ](src/YourCompany.Configuration.EFCore/CollationAwareSorting/SortingKeyTopologyExtensions.cs)</kbd><br>
+<kbd>      ++ 50  |⁠ [SortingKeyQueries.cs                                                                                           ](src/YourCompany.Configuration.EFCore/CollationAwareSorting/SortingKeyQueries.cs)</kbd><br>
+<kbd>      ++ 47  |⁠ [SortingKeyTopology.Comparer.cs                                                                                 ](src/YourCompany.Configuration.EFCore/CollationAwareSorting/SortingKeyTopology.Comparer.cs)</kbd><br>
+<kbd>      ++ 44  |⁠ [OrElseEqualityKeys.ToString.cs                                                                                 ](src/YourCompany.Configuration.EFCore/CollationAwareSorting/OrElseEqualityKeys.ToString.cs)</kbd><br>
+<kbd>      ++ 40  |⁠ [SortingKeyTopology.cs                                                                                          ](src/YourCompany.Configuration.EFCore/CollationAwareSorting/SortingKeyTopology.cs)</kbd><br>
+<kbd>      ++ 35  |⁠ [SortingKeyBuilder.cs                                                                                           ](src/YourCompany.Configuration.EFCore/CollationAwareSorting/SortingKeyBuilder.cs)</kbd><br>
+<kbd>      ++ 32  |⁠ [SortingKeyBuilder.OrElse.cs                                                                                    ](src/YourCompany.Configuration.EFCore/CollationAwareSorting/SortingKeyBuilder.OrElse.cs)</kbd><br>
+<kbd>       + 21  |⁠ [SortingKey.Visiting.cs                                                                                         ](src/YourCompany.Configuration.EFCore/CollationAwareSorting/SortingKey.Visiting.cs)</kbd><br>
+<sub><sub>src/YourCompany.Configuration.EFCore/CollationAwareSorting/Metadata/</sub></sub><br>
+<kbd>   +++++ 123 |⁠ [CollationAwareSortingSingleModelProvider.cs                                                                    ](src/YourCompany.Configuration.EFCore/CollationAwareSorting/Metadata/CollationAwareSortingSingleModelProvider.cs)</kbd><br>
+<kbd>       + 18  |⁠ [ModelExtensions.cs                                                                                             ](src/YourCompany.Configuration.EFCore/CollationAwareSorting/Metadata/ModelExtensions.cs)</kbd><br>
+<sub><sub>src/YourCompany.Configuration.EFCore/</sub></sub><br>
+<kbd>     +++ 80  |⁠ [YourCompanyDbContext.SingleEntityQueries.cs                                                                    ](src/YourCompany.Configuration.EFCore/YourCompanyDbContext.SingleEntityQueries.cs)</kbd><br>
+<kbd>       + 19  |⁠ [YourCompanyDbContext.cs                                                                                        ](src/YourCompany.Configuration.EFCore/YourCompanyDbContext.cs)</kbd><br>
+<kbd>       + 12  |⁠ [YourCompanyDbContextConfiguratorsLoadingContext.cs                                                             ](src/YourCompany.Configuration.EFCore/YourCompanyDbContextConfiguratorsLoadingContext.cs)</kbd><br>
+<kbd>       + 9   |⁠ [YourCompanyDbContextConfigurator.cs                                                                            ](src/YourCompany.Configuration.EFCore/YourCompanyDbContextConfigurator.cs)</kbd><br>
+<kbd>       + 2   |⁠ [YourCompanyDbContextFactory.cs                                                                                 ](src/YourCompany.Configuration.EFCore/YourCompanyDbContextFactory.cs)</kbd><br>
+<sub><sub>src/YourCompany.Configuration.EFCore.PostgreSQL/</sub></sub><br>
+<kbd>      ++ 33  |⁠ [NpgsqlDbContextConfigurator.CollationAwareSorting.cs                                                           ](src/YourCompany.Configuration.EFCore.PostgreSQL/NpgsqlDbContextConfigurator.CollationAwareSorting.cs)</kbd><br>
+<kbd>      +‑ 6   |⁠ [NpgsqlDbContextConfigurator.cs                                                                                 ](src/YourCompany.Configuration.EFCore.PostgreSQL/NpgsqlDbContextConfigurator.cs)</kbd><br>
+<sub><sub>src/YourCompany.Configuration.EFCore.Sqlite/</sub></sub><br>
+<kbd>      ++ 33  |⁠ [SqliteDbContextConfigurator.CollationAwareSorting.cs                                                           ](src/YourCompany.Configuration.EFCore.Sqlite/SqliteDbContextConfigurator.CollationAwareSorting.cs)</kbd><br>
+<kbd>      +‑ 6   |⁠ [SqliteDbContextConfigurator.cs                                                                                 ](src/YourCompany.Configuration.EFCore.Sqlite/SqliteDbContextConfigurator.cs)</kbd><br>
 
-Commit body is multiline and compliant to markdown formatting 💥
+This one is very missing out-of-the-box in EFCore. This replaces the  
+need to manually compose `OrderBy` `ThenBy` expressions allowing  
+comprehensive approaches to be implemented upon from query building  
+and keyset pagination to advanced change tracking operations.
+
+Another covered problem is database strings collation having no analog  
+out-of-the-box neither in .NET nor in EFCore. In such circumstances  
+it is proper to delegate the missing logic to database provider  
+plugins which is exactly what was done.
 
 </td></tr></tbody></table>
 

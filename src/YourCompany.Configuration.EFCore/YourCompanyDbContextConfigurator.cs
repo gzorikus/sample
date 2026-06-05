@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 
 namespace YourCompany.Configuration.EFCore
@@ -18,5 +19,13 @@ namespace YourCompany.Configuration.EFCore
         public virtual void OnConfiguring(
             YourCompanyDbContextConfiguratorsLoadingContext context, DbContextOptionsBuilder optionsBuilder)
         { }
+
+        internal virtual IEqualityComparer<string> GetCollationCompatibleStringEqualityComparer(
+            YourCompanyDbContextConfiguratorsLoadingContext context, string collationNameOrProviderDefault = null)
+            => null;
+
+        internal virtual IComparer<string> GetCollationCompatibleStringComparer(
+            YourCompanyDbContextConfiguratorsLoadingContext context, string collationNameOrProviderDefault = null)
+            => null;
     }
 }

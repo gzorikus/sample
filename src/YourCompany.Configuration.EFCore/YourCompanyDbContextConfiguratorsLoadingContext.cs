@@ -1,4 +1,5 @@
 using System;
+using YourCompany.Configuration.EFCore.CollationAwareSorting;
 
 namespace YourCompany.Configuration.EFCore
 {
@@ -6,6 +7,7 @@ namespace YourCompany.Configuration.EFCore
     {
         private Type _loadingConfigurationType;
         private Type _dbContextConfigurationType;
+        private ICollationCompatibleComparersProvider _collationCompatibleComparersProvider;
 
         public bool IsDesignTime => RuntimeArgs != null;
 
@@ -28,6 +30,16 @@ namespace YourCompany.Configuration.EFCore
             {
                 if (_dbContextConfigurationType != null) throw new ApplicationException("_dbContextConfigurationType != null");
                 _dbContextConfigurationType = value ?? throw new ApplicationException("DbContextConfigurationType = null");
+            }
+        }
+
+        public ICollationCompatibleComparersProvider CollationCompatibleComparersProvider
+        {
+            get => _collationCompatibleComparersProvider ?? throw new ApplicationException("_collationCompatibleComparersProvider == null");
+            internal set
+            {
+                if (_collationCompatibleComparersProvider != null) throw new ApplicationException("_collationCompatibleComparersProvider != null");
+                _collationCompatibleComparersProvider = value ?? throw new ApplicationException("CollationCompatibleComparersProvider = null");
             }
         }
     }
