@@ -1560,15 +1560,14 @@ Commit body is multiline and compliant to markdown formatting 💥
 
 <!-- ### Commit: 4|💾: EFEntityTypeSortingKeyTopology END -->
 
-<!-- ### Commit: 4|💾: cache EFProperty from ValueTuple
+### Commit: 4|💾: cache EFProperty from ValueTuple
 
 <table><tbody><tr><td>
 
-X files changed, Y insertions(+), Z deletions(-)<br>
-<sub><sub>src/YourCompany.Module/</sub></sub><br>
-<kbd> +++++++ NNN |⁠ [File.cs                                                                                                        ](src/YourCompany.Configuration/EnvironmentConventions.cs)</kbd><br>
-
-Commit body is multiline and compliant to markdown formatting 💥
+2 files changed, 78 insertions(+), 1 deletion(-)<br>
+<sub><sub>src/YourCompany.Configuration.EFCore/ExpressionsCaching/</sub></sub><br>
+<kbd> +++++++ 74  |⁠ [EFPropertyExpressionsCache.FromParameter.ValueTuple.cs                                                         ](src/YourCompany.Configuration.EFCore/ExpressionsCaching/EFPropertyExpressionsCache.FromParameter.ValueTuple.cs)</kbd><br>
+<kbd>      +‑ 5   |⁠ [EFPropertyExpressionsCache.FromParameter.cs                                                                    ](src/YourCompany.Configuration.EFCore/ExpressionsCaching/EFPropertyExpressionsCache.FromParameter.cs)</kbd><br>
 
 </td></tr></tbody></table>
 
