@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Metadata;
 
 namespace YourCompany.Configuration.EFCore.CollationAwareSorting
 {
-    public static class SortingKeyTopologyExtensions
+    public static partial class SortingKeyTopologyExtensions
     {
         public static void EnsureCompatibleWithSingleEntityQueries(
             this SortingKeyTopology.ILastProperty topology,
