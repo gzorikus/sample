@@ -204,7 +204,7 @@ All the entry point branches' heads are highlighted in the graph as ⏹️.
 ---
 config:
   gitGraph:
-    mainBranchName: "4|🧱: OLTP LINQ may be useful"
+    mainBranchName: "MERGED"
     parallelCommits: true
     rotateCommitLabel: false
     showCommitLabel: false
@@ -407,7 +407,7 @@ commit type:NORMAL tag:"4|🧱|YourCompany.OLTP.RecordsManagement.Persistence" %
 %% checkout "4|🏠: OLTP use cases by record type" %% EOUC
 %% checkout "5|🧱: OLTP switch to chassis" %% EOUC
 %% branch "4|🏠: enumerate OLTP use cases" %% EOUC
-%% commit type:HIGHLIGHT tag:"4|🏠|oltp-segregate-use-cases-repository-is-for-persistence|YourCompany.OLTP.RecordsManagement.UseCases" %% EOUC
+commit type:HIGHLIGHT tag:"4|🏠|oltp-segregate-use-cases-repository-is-for-persistence|YourCompany.OLTP.RecordsManagement.UseCases" %% EOUC
 %% merge "4|🏠: OLTP use cases by record type" type:HIGHLIGHT tag:"4|🏠|oltp-segregate-use-cases-repository-is-for-persistence|YourCompany.OLTP.RecordsManagement.UseCases" %% EOUC
 
 %% Startup Iteration 3
@@ -453,7 +453,7 @@ commit type:NORMAL tag:"4|🧱|YourCompany.OLTP.RecordsManagement.Persistence" %
 %% checkout "4|🧱: OLTP identities are unique keys" %% Startup Iteration 3
 %% commit type:REVERSE %% OIAUK 3>1
 
-%% checkout "4|🏠: enumerate OLTP use cases" %% OTS
+checkout "4|🏠: enumerate OLTP use cases" %% OTS
 checkout "4|🧱: OLTP identities are unique keys" %% OTS
 branch "3|🧱: OLTP transaction structure" %% OTS
 %% merge "4|🧱: OLTP identities are unique keys" %% OTS
@@ -507,10 +507,10 @@ commit type:HIGHLIGHT tag:"3|🧱|oltp-typical-transaction-structure-repository-
 %% commit type:REVERSE %% OUCTM>7
 %% commit type:NORMAL tag:"3|🏠|YourCompany.OLTP.RecordsManagement.UseCases.Reflection" %% OUCTM
 
-%% checkout "4|🏠: enumerate OLTP use cases" %% GOUC
-%% branch "3|🏠: generic OLTP use cases" %% GOUC
+checkout "4|🏠: enumerate OLTP use cases" %% GOUC
+branch "3|🏠: generic OLTP use cases" %% GOUC
 %% commit type:REVERSE %% GOUC>1
-%% commit type:NORMAL tag:"3|🏠|YourCompany.OLTP.RecordsManagement.UseCases" %% GOUC
+commit type:NORMAL tag:"3|🏠|YourCompany.OLTP.RecordsManagement.UseCases" %% GOUC
 %% merge "3|🏠: OLTP UseCaseTypesMap" type:NORMAL tag:"3|🏠|YourCompany.OLTP.RecordsManagement.UseCases" %% GOUC
 
 %% checkout "4|💾: OLTP EFCore MetadataHelper" %% Startup Iteration 3
@@ -705,14 +705,14 @@ commit type:HIGHLIGHT tag:"3|🧱|oltp-typical-transaction-structure-repository-
 %% commit type:NORMAL tag:"2|🧱|YourCompany.Reflection" %% GMH
 %% merge "2|🧱: DIConstructorHelper" type:NORMAL tag:"2|🧱|YourCompany.Reflection" %% GMH
 
-%% checkout "3|🏠: generic OLTP use cases" %% ATL
-%% branch "2|🧱: AwaitTasksList" %% ATL
+checkout "3|🏠: generic OLTP use cases" %% ATL
+branch "2|🧱: AwaitTasksList" %% ATL
 %% commit type:REVERSE %% ATL>1
 %% commit type:REVERSE %% ATL>2
 %% commit type:REVERSE %% ATL>3
 %% commit type:REVERSE %% ATL>4
 %% commit type:REVERSE %% ATL>5
-%% commit type:NORMAL tag:"2|🧱|YourCompany.Threading" %% ATL
+commit type:NORMAL tag:"2|🧱|YourCompany.Threading" %% ATL
 
 checkout "4|🧱: OLTP identities are unique keys" %% SH
 branch "2|🧱: StructHelper" %% SH
@@ -736,8 +736,8 @@ commit type:REVERSE %% SH>1
 %% commit type:REVERSE %% SH>18
 commit type:NORMAL tag:"2|🧱|YourCompany.CompilerServices" %% SH
 
-%% checkout "3|🧱: OLTP transaction structure" %% Startup Iteration 2
-%% commit type:REVERSE %% OTS 2>1
+checkout "3|🧱: OLTP transaction structure" %% Startup Iteration 2
+commit type:REVERSE %% OTS 2>1
 %% commit type:REVERSE %% OTS 2>2
 %% commit type:REVERSE %% OTS 2>3
 %% commit type:REVERSE %% OTS 2>4
@@ -750,11 +750,11 @@ commit type:NORMAL tag:"2|🧱|YourCompany.CompilerServices" %% SH
 %% commit type:REVERSE %% OTS 2>11
 %% commit type:REVERSE %% OTS 2>12
 
-%% checkout "3|🏠: generic OLTP use cases" %% OTILS
+checkout "3|🏠: generic OLTP use cases" %% OTILS
 checkout "3|🧱: OLTP transaction structure" %% OTILS
 branch "2|🏠: OLTP transaction is limited size" %% OTILS
-commit type:HIGHLIGHT tag:"2|🏠|oltp-ways-to-access-size-limited-record-batch|YourCompany.OLTP.RecordsManagement" %% OTILS
-%% merge "3|🧱: OLTP transaction structure" type:HIGHLIGHT tag:"2|🏠|oltp-ways-to-access-size-limited-record-batch|YourCompany.OLTP.RecordsManagement" %% OTILS
+%% commit type:HIGHLIGHT tag:"2|🏠|oltp-ways-to-access-size-limited-record-batch|YourCompany.OLTP.RecordsManagement" %% OTILS
+merge "3|🧱: OLTP transaction structure" type:HIGHLIGHT tag:"2|🏠|oltp-ways-to-access-size-limited-record-batch|YourCompany.OLTP.RecordsManagement" %% OTILS
 
 %% Startup Iteration 1
 
@@ -974,15 +974,20 @@ Cons: may be not enough organized if you need to reuse some use cases
 
 <!-- ### Branch: oltp-segregate-persistence-repository-is-for-use-cases END -->
 
-<!-- ### Branch: oltp-segregate-use-cases-repository-is-for-persistence
+### Branch: oltp-segregate-use-cases-repository-is-for-persistence
 
-> Files: ### | Lines: #####  
-Pros: why do you choose this entry point  
-Cons: why it might be not enough for you
+> Files: 47 | Lines: 4167  
+Pros: reuse authorizers, externalize records batch configuration, customize state access  
+Cons: still a lot of methods for persistence and complex records batch state
 
 | Log | Examples | Modules |
 |-|-|-|
-| [replace_with_each_included_commit_subject](#commit-with-lower-case-subject) | <kbd> [at‑least‑one‑example‑solution‑name](examples/at-least-one-example-solution-per-commit/README.md#commit-with-lower-case-subject) </kbd><br><kbd> [extra‑example‑solution‑name](examples/extra-example-solution-name/README.md#commit-with-lower-case-subject) </kbd> | <kbd>YourCompany.Framework.Assembly.Name1 (+diff lines)</kbd><br><kbd>YourCompany.Framework.Assembly.Name2 (-diff lines)</kbd><br><kbd>YourCompany.Framework.Assembly.NameN (0 lines)</kbd> |
+| [1\|⁠🏠: the heart of OLTP is transaction](#commit-1-the-heart-of-oltp-is-transaction) | <kbd> [TODO](examples/at-least-one-example-solution-per-commit/README.md#commit-1-the-heart-of-oltp-is-transaction) </kbd> | <kbd>YourCompany.OLTP.StateOwnership (+371 lines)</kbd> |
+| [2\|⁠🏠: OLTP transaction is limited size](#commit-2-oltp-transaction-is-limited-size) | <kbd> [TODO](examples/at-least-one-example-solution-per-commit/README.md#commit-2-oltp-transaction-is-limited-size) </kbd> | <kbd>YourCompany.OLTP.RecordsManagement (+1500 lines)</kbd> |
+| [2\|⁠🧱: AwaitTasksList](#commit-2-awaittaskslist) | <kbd> [TODO](examples/at-least-one-example-solution-per-commit/README.md#commit-2-awaittaskslist) </kbd> | <kbd>YourCompany.Threading (+49 lines)</kbd> |
+| [3\|⁠🏠: generic OLTP use cases](#commit-3-generic-oltp-use-cases) | <kbd> [TODO](examples/at-least-one-example-solution-per-commit/README.md#commit-3-generic-oltp-use-cases) </kbd> | <kbd>YourCompany.OLTP.RecordsManagement.UseCases (+212 lines)</kbd> |
+| [3\|⁠🧱: OLTP transaction structure](#commit-3-oltp-transaction-structure) | <kbd> [TODO](examples/at-least-one-example-solution-per-commit/README.md#commit-3-oltp-transaction-structure) </kbd> | <kbd>YourCompany.OLTP.RecordsManagement (+1918 lines)</kbd> |
+| [4\|⁠🏠: enumerate OLTP use cases](#commit-4-enumerate-oltp-use-cases) | <kbd> [TODO](examples/at-least-one-example-solution-per-commit/README.md#commit-4-enumerate-oltp-use-cases) </kbd> | <kbd>YourCompany.OLTP.RecordsManagement.UseCases (+117 lines)</kbd> |
 
 <!-- ### Branch: oltp-segregate-use-cases-repository-is-for-persistence END -->
 
@@ -1271,15 +1276,13 @@ transaction. Such key identity is sometimes called a "cursor".
 
 <!-- ### Commit: 2|🧱: StructHelper END -->
 
-<!-- ### Commit: 2|🧱: AwaitTasksList
+### Commit: 2|🧱: AwaitTasksList
 
 <table><tbody><tr><td>
 
-X files changed, Y insertions(+), Z deletions(-)<br>
-<sub><sub>src/YourCompany.Module/</sub></sub><br>
-<kbd> +++++++ NNN |⁠ [File.cs                                                                                                        ](src/YourCompany.Configuration/EnvironmentConventions.cs)</kbd><br>
-
-Commit body is multiline and compliant to markdown formatting 💥
+1 file changed, 49 insertions(+)<br>
+<sub><sub>src/YourCompany.Threading/</sub></sub><br>
+<kbd> +++++++ 49  |⁠ [AwaitTasksList.cs                                                                                              ](src/YourCompany.Threading/AwaitTasksList.cs)</kbd><br>
 
 </td></tr></tbody></table>
 
@@ -1425,15 +1428,19 @@ Commit body is multiline and compliant to markdown formatting 💥
 
 <!-- ### Commit: 3|🏠: OLTP RecordTypesMap END -->
 
-<!-- ### Commit: 3|🏠: generic OLTP use cases
+### Commit: 3|🏠: generic OLTP use cases
 
 <table><tbody><tr><td>
 
-X files changed, Y insertions(+), Z deletions(-)<br>
-<sub><sub>src/YourCompany.Module/</sub></sub><br>
-<kbd> +++++++ NNN |⁠ [File.cs                                                                                                        ](src/YourCompany.Configuration/EnvironmentConventions.cs)</kbd><br>
+2 files changed, 212 insertions(+)<br>
+<sub><sub>src/YourCompany.OLTP.RecordsManagement.UseCases/</sub></sub><br>
+<kbd> +++++++ 167 |⁠ [RecordsBatchTransactionUseCases.RunningExtensions.cs                                                           ](src/YourCompany.OLTP.RecordsManagement.UseCases/RecordsBatchTransactionUseCases.RunningExtensions.cs)</kbd><br>
+<kbd>      ++ 45  |⁠ [RecordsBatchTransactionUseCases.cs                                                                             ](src/YourCompany.OLTP.RecordsManagement.UseCases/RecordsBatchTransactionUseCases.cs)</kbd><br>
 
-Commit body is multiline and compliant to markdown formatting 💥
+Easily reuse and combine authorizers, record property setters or  
+organize each transaction post processing and extend aggregate  
+boundaries (though still limited with module boundaries, we'll  
+improve this later).
 
 </td></tr></tbody></table>
 
@@ -1552,15 +1559,46 @@ Commit body is multiline and compliant to markdown formatting 💥
 
 <!-- ### Commit: 3|💾: EFCore first-class SortingKey END -->
 
-<!-- ### Commit: 4|🏠: enumerate OLTP use cases
+### Commit: 4|🏠: enumerate OLTP use cases
 
 <table><tbody><tr><td>
 
-X files changed, Y insertions(+), Z deletions(-)<br>
-<sub><sub>src/YourCompany.Module/</sub></sub><br>
-<kbd> +++++++ NNN |⁠ [File.cs                                                                                                        ](src/YourCompany.Configuration/EnvironmentConventions.cs)</kbd><br>
+2 files changed, 117 insertions(+)<br>
+<sub><sub>src/YourCompany.OLTP.RecordsManagement.UseCases/</sub></sub><br>
+<kbd> +++++++ 64  |⁠ [RecordsBatchTransaction.UseCasesParallelRun.cs                                                                 ](src/YourCompany.OLTP.RecordsManagement.UseCases/RecordsBatchTransaction.UseCasesParallelRun.cs)</kbd><br>
+<kbd>   +++++ 53  |⁠ [RecordsBatchTransaction.cs                                                                                     ](src/YourCompany.OLTP.RecordsManagement.UseCases/RecordsBatchTransaction.cs)</kbd><br>
 
-Commit body is multiline and compliant to markdown formatting 💥
+We've segregated use case related concerns into several interfaces.
+
+The set of methods to override is slightly reduced for  
+`RecordsBatchTransaction` implementors:
+
+1. `MaxRecordsInBatch`
+2. `HandleSpecifiedIdentities`
+3. `HandleSortingAfterId`
+4. `HandleReadOnlyRecordsIncludingBeforeRead`
+5. `HandleEachRecordSpecificationBeforeReadWithoutIds`
+6. `HandleEachRecordModifyingSpecificationBeforeRead`
+7. `ReadWithHandledEachRecordSpecifications`
+8. `GetReadRecordIdentity`
+9. `ValidateAssignedIdentityReplacementAfterReadByIds`
+10. `BuildRecord`
+11. `CreateRecordDataForSettingChangedProperties`
+12. `HandleSpecifiedRecordModifyingSpecificationBeforePersist`
+13. `PersistChanges`
+14. `GetLockedRecordDataWithoutChanges`
+15. `FinishRecordsDataAccess`
+16. `GetRecordDataAfterAccess`
+
+If your concern is reducing the number of methods and/or simplifying  
+persistence logic consider the alternative entry point branch  
+`oltp-segregate-persistence-repository-is-for-use-cases` where the  
+persistent logic is bridged into a state-sequenced set of  
+interfaces, making it much more streamlined to implement persistence.
+
+> To make both approaches work together we'll next introduce a DI  
+facade which will allow to avoid inheriting `RecordsBatchTransaction`  
+completely.
 
 </td></tr></tbody></table>
 
