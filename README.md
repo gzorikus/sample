@@ -1479,15 +1479,17 @@ Commit body is multiline and compliant to markdown formatting 💥
 
 <!-- ### Commit: 3|🏠: OLTP UseCaseTypesMap END -->
 
-<!-- ### Commit: 3|🏠: OLTP RecordTypesCompositionMap
+### Commit: 3|🏠: OLTP RecordTypesCompositionMap
 
 <table><tbody><tr><td>
 
-X files changed, Y insertions(+), Z deletions(-)<br>
-<sub><sub>src/YourCompany.Module/</sub></sub><br>
-<kbd> +++++++ NNN |⁠ [File.cs                                                                                                        ](src/YourCompany.Configuration/EnvironmentConventions.cs)</kbd><br>
-
-Commit body is multiline and compliant to markdown formatting 💥
+5 files changed, 260 insertions(+)<br>
+<sub><sub>src/YourCompany.OLTP.StateOwnership.TransactionalComposition.Reflection/</sub></sub><br>
+<kbd> +++++++ 81  |⁠ [ComposableRecordTypesProvider.cs                                                                               ](src/YourCompany.OLTP.StateOwnership.TransactionalComposition.Reflection/ComposableRecordTypesProvider.cs)</kbd><br>
+<kbd>   +++++ 62  |⁠ [ComposableRecordTypeInfo.cs                                                                                    ](src/YourCompany.OLTP.StateOwnership.TransactionalComposition.Reflection/ComposableRecordTypeInfo.cs)</kbd><br>
+<kbd>    ++++ 49  |⁠ [RecordTypesCompositionMap.cs                                                                                   ](src/YourCompany.OLTP.StateOwnership.TransactionalComposition.Reflection/RecordTypesCompositionMap.cs)</kbd><br>
+<kbd>     +++ 35  |⁠ [RecordCompositionException.cs                                                                                  ](src/YourCompany.OLTP.StateOwnership.TransactionalComposition.Reflection/RecordCompositionException.cs)</kbd><br>
+<kbd>     +++ 33  |⁠ [RecordCompositionToConstructionWrapperException.cs                                                             ](src/YourCompany.OLTP.StateOwnership.TransactionalComposition.Reflection/RecordCompositionToConstructionWrapperException.cs)</kbd><br>
 
 </td></tr></tbody></table>
 
