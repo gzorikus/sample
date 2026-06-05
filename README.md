@@ -1419,29 +1419,34 @@ For demo provider plugins we've chosen PostgreSQL and Sqlite.
 
 <!-- ### Commit: 2|💾: basic pluggable EFCore END -->
 
-<!-- ### Commit: 2|💾: EFCore pessimistic locking
+### Commit: 2|💾: EFCore pessimistic locking
 
 <table><tbody><tr><td>
 
-X files changed, Y insertions(+), Z deletions(-)<br>
-<sub><sub>src/YourCompany.Module/</sub></sub><br>
-<kbd> +++++++ NNN |⁠ [File.cs                                                                                                        ](src/YourCompany.Configuration/EnvironmentConventions.cs)</kbd><br>
-
-Commit body is multiline and compliant to markdown formatting 💥
+7 files changed, 328 insertions(+)<br>
+<sub><sub>src/YourCompany.Configuration.EFCore/PessimisticLocking/</sub></sub><br>
+<kbd> +++++++ 117 |⁠ [ProviderSpecificPessimisticLockingUpdateInterceptor.cs                                                         ](src/YourCompany.Configuration.EFCore/PessimisticLocking/ProviderSpecificPessimisticLockingUpdateInterceptor.cs)</kbd><br>
+<kbd>    ++++ 60  |⁠ [PessimisticLockingUpdateInterceptionContext.cs                                                                 ](src/YourCompany.Configuration.EFCore/PessimisticLocking/PessimisticLockingUpdateInterceptionContext.cs)</kbd><br>
+<sub><sub>src/YourCompany.Configuration.EFCore.PostgreSQL/</sub></sub><br>
+<kbd>     +++ 58  |⁠ [NpgsqlPessimisticLockingUpdateInterceptor.cs                                                                   ](src/YourCompany.Configuration.EFCore.PostgreSQL/NpgsqlPessimisticLockingUpdateInterceptor.cs)</kbd><br>
+<kbd>       + 1   |⁠ [NpgsqlDbContextConfigurator.cs                                                                                 ](src/YourCompany.Configuration.EFCore.PostgreSQL/NpgsqlDbContextConfigurator.cs)</kbd><br>
+<sub><sub>src/YourCompany.Configuration.EFCore.Sqlite/</sub></sub><br>
+<kbd>     +++ 46  |⁠ [SqlitePessimisticLockingUpdateInterceptor.cs                                                                   ](src/YourCompany.Configuration.EFCore.Sqlite/SqlitePessimisticLockingUpdateInterceptor.cs)</kbd><br>
+<kbd>       + 1   |⁠ [SqliteDbContextConfigurator.cs                                                                                 ](src/YourCompany.Configuration.EFCore.Sqlite/SqliteDbContextConfigurator.cs)</kbd><br>
+<sub><sub>src/YourCompany.Configuration.EFCore/</sub></sub><br>
+<kbd>     +++ 45  |⁠ [YourCompanyDbContext.PessimisticLocking.cs                                                                     ](src/YourCompany.Configuration.EFCore/YourCompanyDbContext.PessimisticLocking.cs)</kbd><br>
 
 </td></tr></tbody></table>
 
 <!-- ### Commit: 2|💾: EFCore pessimistic locking END -->
 
-<!-- ### Commit: 2|💾: EFChangeTrackerTrackGraphStrategy
+### Commit: 2|💾: EFChangeTrackerTrackGraphStrategy
 
 <table><tbody><tr><td>
 
-X files changed, Y insertions(+), Z deletions(-)<br>
-<sub><sub>src/YourCompany.Module/</sub></sub><br>
-<kbd> +++++++ NNN |⁠ [File.cs                                                                                                        ](src/YourCompany.Configuration/EnvironmentConventions.cs)</kbd><br>
-
-Commit body is multiline and compliant to markdown formatting 💥
+1 file changed, 106 insertions(+)<br>
+<sub><sub>src/YourCompany.Configuration.EFCore/ChangeTracking/</sub></sub><br>
+<kbd> +++++++ 106 |⁠ [EFChangeTrackerTrackGraphStrategy.cs                                                                           ](src/YourCompany.Configuration.EFCore/ChangeTracking/EFChangeTrackerTrackGraphStrategy.cs)</kbd><br>
 
 </td></tr></tbody></table>
 
@@ -1839,15 +1844,24 @@ specifications applying logic can be further decomposed.
 
 <!-- ### Commit: 4|💾: OLTP EFCore ID generation END -->
 
-<!-- ### Commit: 4|💾: EFEntityTypeSortingKeyTopology
+### Commit: 4|💾: EFEntityTypeSortingKeyTopology
 
 <table><tbody><tr><td>
 
-X files changed, Y insertions(+), Z deletions(-)<br>
-<sub><sub>src/YourCompany.Module/</sub></sub><br>
-<kbd> +++++++ NNN |⁠ [File.cs                                                                                                        ](src/YourCompany.Configuration/EnvironmentConventions.cs)</kbd><br>
+7 files changed, 347 insertions(+)<br>
+<sub><sub>src/YourCompany.Configuration.EFCore/CollationAwareSorting/Metadata/</sub></sub><br>
+<kbd> +++++++ 90  |⁠ [EFEntityTypeSortingKeyTopology.Visiting.cs                                                                     ](src/YourCompany.Configuration.EFCore/CollationAwareSorting/Metadata/EFEntityTypeSortingKeyTopology.Visiting.cs)</kbd><br>
+<kbd>  ++++++ 83  |⁠ [EFEntityTypeSortingKeyTopology.PrefixFirstPropertiesVisitCache.cs                                              ](src/YourCompany.Configuration.EFCore/CollationAwareSorting/Metadata/EFEntityTypeSortingKeyTopology.PrefixFirstPropertiesVisitCache.cs)</kbd><br>
+<kbd>  ++++++ 77  |⁠ [EFEntityTypeSortingKeyTopology.cs                                                                              ](src/YourCompany.Configuration.EFCore/CollationAwareSorting/Metadata/EFEntityTypeSortingKeyTopology.cs)</kbd><br>
+<kbd>       + 11  |⁠ [CollationAwareSortingSingleModelProvider.cs                                                                    ](src/YourCompany.Configuration.EFCore/CollationAwareSorting/Metadata/CollationAwareSortingSingleModelProvider.cs)</kbd><br>
+<kbd>       + 4   |⁠ [ModelExtensions.cs                                                                                             ](src/YourCompany.Configuration.EFCore/CollationAwareSorting/Metadata/ModelExtensions.cs)</kbd><br>
+<sub><sub>src/YourCompany.Configuration.EFCore/CollationAwareSorting/</sub></sub><br>
+<kbd>  ++++++ 80  |⁠ [SortingKeyTopology.PrefixFirstPropertiesVisitCache.cs                                                          ](src/YourCompany.Configuration.EFCore/CollationAwareSorting/SortingKeyTopology.PrefixFirstPropertiesVisitCache.cs)</kbd><br>
+<kbd>       + 2   |⁠ [ICollationAwareModelProvider.cs                                                                                ](src/YourCompany.Configuration.EFCore/CollationAwareSorting/ICollationAwareModelProvider.cs)</kbd><br>
 
-Commit body is multiline and compliant to markdown formatting 💥
+An edge case of the topology is all the entity properties.  
+Using previously introduced visiting abilities it will allow to  
+optimally implement some missing operations in EF.
 
 </td></tr></tbody></table>
 

@@ -11,12 +11,17 @@ namespace YourCompany.Configuration.EFCore.CollationAwareSorting.Metadata
     {
         private readonly IModel _model;
         private readonly ICollationCompatibleComparersProvider _comparersProvider;
+        private readonly ConcurrentDictionary<IEntityType, EFEntityTypeSortingKeyTopology> _entityTypeTopologies;
+        private readonly Func<IEntityType, EFEntityTypeSortingKeyTopology> _entityTypeTopologiesCreateItemNonExclusiveStrategy;
 
         internal CollationAwareSortingSingleModelProvider(
             IModel model, ICollationCompatibleComparersProvider comparersProvider)
         {
             _model = model ?? throw new ArgumentNullException(nameof(model));
             _comparersProvider = comparersProvider ?? throw new ArgumentNullException(nameof(comparersProvider));
+            _entityTypeTopologies = new();
+            _entityTypeTopologiesCreateItemNonExclusiveStrategy
+                = entityType => new EFEntityTypeSortingKeyTopology(this, entityType);
         }
 
         public string GetEntityTableName(SortingKeyTopology.PropertiesOwner propertiesOwner)
@@ -24,6 +29,12 @@ namespace YourCompany.Configuration.EFCore.CollationAwareSorting.Metadata
             if (propertiesOwner == default) throw new ArgumentNullException(nameof(propertiesOwner));
             var entityTypeInfo = _model.FindEntityType(propertiesOwner) ?? throw new ApplicationException("entityTypeInfo == null");
             return entityTypeInfo.GetTableName() ?? throw new ApplicationException("tableName == null");
+        }
+
+        public EFEntityTypeSortingKeyTopology.ILastProperty GetEntityTypeTopology(SortingKeyTopology.PropertiesOwner propertiesOwner)
+        {
+            var entityType = _model.FindEntityType(propertiesOwner);
+            return _entityTypeTopologies.GetOrAdd(entityType, _entityTypeTopologiesCreateItemNonExclusiveStrategy);
         }
 
         public Type GetPropertyValueType(SortingKeyTopology.PropertiesOwner propertyOwner, string propertyName)

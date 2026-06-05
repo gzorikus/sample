@@ -65,6 +65,7 @@ namespace YourCompany.Configuration.EFCore.PostgreSQL
                     .MigrationsHistoryTable(
                         tableName: SanitizeObjectNamesPrefix(context, objectNamesPrefix) + HistoryRepository.DefaultTableName,
                         schema: csb.SearchPath)); // setting schema as a workaround (not used from connection string) see https://github.com/npgsql/efcore.pg/issues/2878#issuecomment-2369464947
+            optionsBuilder.AddInterceptors(NpgsqlPessimisticLockingUpdateInterceptor.Default);
         }
     }
 }

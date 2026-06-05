@@ -14,5 +14,9 @@ namespace YourCompany.Configuration.EFCore.CollationAwareSorting.Metadata
                 throw new ApplicationException("!propertiesOwner.Match(entityType)");
             return entityType ?? throw new ApplicationException("entityType == null");
         }
+
+        public static SortingKeyTopology.ILastProperty GetEntityTypeTopology(
+            this ICollationAwareModelProvider modelProvider, IEntityType entityType)
+            => modelProvider.GetEntityTypeTopology(SortingKeyTopology.PropertiesOwner.From(entityType));
     }
 }
