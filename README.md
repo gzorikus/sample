@@ -204,15 +204,15 @@ All the entry point branches' heads are highlighted in the graph as ⏹️.
 ---
 config:
   gitGraph:
-    mainBranchName: "N|🧱: OLTP EFCore multi-entity chassis"
+    mainBranchName: "N|🧱: wip switch to chassis"
     parallelCommits: true
     rotateCommitLabel: false
     showCommitLabel: false
 ---
 gitGraph
 
-%% commit type:HIGHLIGHT tag:"N|🧱|wip-full-solution" %% OEMEC
-%% branch "N|🧱: OLTP EFCore multi-entity chassis" %% OEMEC
+commit type:HIGHLIGHT tag:"N|🧱|wip-full-solution" %% OEMEC
+branch "N|🧱: OLTP EFCore multi-entity chassis" %% OEMEC
 commit type:HIGHLIGHT tag:"N|🧱|wip-oltp-di-efcore-handle-specifications-only-the-rest-is-covered-with-record-types-composition|YourCompany.Configuration.EFCore" %% OEMEC
 
 %% Startup Iteration 7
@@ -463,7 +463,7 @@ commit type:REVERSE %% OTS>3
 commit type:REVERSE %% OTS>4
 commit type:REVERSE %% OTS>5
 commit type:REVERSE %% OTS>6
-%% commit type:REVERSE %% OTS>7
+commit type:REVERSE %% OTS>7
 commit type:HIGHLIGHT tag:"3|🧱|oltp-typical-transaction-structure-repository-is-up-to-you|YourCompany.OLTP.RecordsManagement" %% OTS
 %% merge "4|🧱: OLTP identities are unique keys" type:HIGHLIGHT tag:"3|🧱|oltp-typical-transaction-structure-repository-is-up-to-you|YourCompany.OLTP.RecordsManagement" %% OTS
 
@@ -544,42 +544,42 @@ merge "4|💾: OLTP EFCore MetadataHelper" type:NORMAL tag:"3|🏠|YourCompany.O
 
 %% Startup Iteration 2
 
-%% checkout "N|🧱: wip switch to chassis" %% EHMR
-%% branch "2|💾: EFCore hosting migration run" %% EHMR
-%% commit type:REVERSE %% EHMR>1
-%% commit type:REVERSE %% EHMR>2
-%% commit type:REVERSE %% EHMR>3
-%% commit type:REVERSE %% EHMR>4
-%% commit type:REVERSE %% EHMR>5
-%% commit type:REVERSE %% EHMR>6
-%% commit type:REVERSE %% EHMR>7
-%% commit type:REVERSE %% EHMR>8
-%% commit type:REVERSE %% EHMR>9
-%% commit type:REVERSE %% EHMR>10
-%% commit type:REVERSE %% EHMR>11
-%% commit type:REVERSE %% EHMR>12
-%% commit type:REVERSE %% EHMR>13
-%% commit type:REVERSE %% EHMR>14
-%% commit type:REVERSE %% EHMR>15
-%% commit type:REVERSE %% EHMR>16
-%% commit type:REVERSE %% EHMR>17
-%% commit type:REVERSE %% EHMR>18
-%% commit type:REVERSE %% EHMR>19
-%% commit type:REVERSE %% EHMR>20
-%% commit type:REVERSE %% EHMR>21
-%% commit type:REVERSE %% EHMR>22
-%% commit type:REVERSE %% EHMR>23
-%% commit type:REVERSE %% EHMR>24
-%% commit type:REVERSE %% EHMR>25
-%% commit type:REVERSE %% EHMR>26
-%% commit type:REVERSE %% EHMR>27
-%% commit type:REVERSE %% EHMR>28
-%% commit type:REVERSE %% EHMR>29
-%% commit type:REVERSE %% EHMR>30
-%% commit type:REVERSE %% EHMR>31
-%% commit type:REVERSE %% EHMR>32
-%% commit type:REVERSE %% EHMR>33
-%% commit type:NORMAL tag:"2|💾|YourCompany.Configuration.EFCore.Hosting" %% EHMR
+checkout "N|🧱: wip switch to chassis" %% EHMR
+branch "2|💾: EFCore hosting migration run" %% EHMR
+commit type:REVERSE %% EHMR>1
+commit type:REVERSE %% EHMR>2
+commit type:REVERSE %% EHMR>3
+commit type:REVERSE %% EHMR>4
+commit type:REVERSE %% EHMR>5
+commit type:REVERSE %% EHMR>6
+commit type:REVERSE %% EHMR>7
+commit type:REVERSE %% EHMR>8
+commit type:REVERSE %% EHMR>9
+commit type:REVERSE %% EHMR>10
+commit type:REVERSE %% EHMR>11
+commit type:REVERSE %% EHMR>12
+commit type:REVERSE %% EHMR>13
+commit type:REVERSE %% EHMR>14
+commit type:REVERSE %% EHMR>15
+commit type:REVERSE %% EHMR>16
+commit type:REVERSE %% EHMR>17
+commit type:REVERSE %% EHMR>18
+commit type:REVERSE %% EHMR>19
+commit type:REVERSE %% EHMR>20
+commit type:REVERSE %% EHMR>21
+commit type:REVERSE %% EHMR>22
+commit type:REVERSE %% EHMR>23
+commit type:REVERSE %% EHMR>24
+commit type:REVERSE %% EHMR>25
+commit type:REVERSE %% EHMR>26
+commit type:REVERSE %% EHMR>27
+commit type:REVERSE %% EHMR>28
+commit type:REVERSE %% EHMR>29
+commit type:REVERSE %% EHMR>30
+commit type:REVERSE %% EHMR>31
+commit type:REVERSE %% EHMR>32
+commit type:REVERSE %% EHMR>33
+commit type:NORMAL tag:"2|💾|YourCompany.Configuration.EFCore.Hosting" %% EHMR
 
 checkout "6|💾: OLTP EFCore finalized" %% ECTTGS
 commit type:REVERSE %% ECTTGS<1
@@ -623,9 +623,9 @@ commit type:REVERSE %% ECTTGS BPE>1
 checkout "2|💾: basic pluggable EFCore" %% BPE
 merge "3|💾: EFPropertyExpressionsCache" %% BPE
 merge "2|💾: EFCore pessimistic locking" %% BPE
-%% merge "2|💾: EFChangeTrackerTrackGraphStrategy" %% BPE
-merge "2|💾: EFChangeTrackerTrackGraphStrategy" type:NORMAL tag:"2|💾|YourCompany.Configuration.EFCore|YourCompany.Configuration.EFCore.PostgreSQL|YourCompany.Configuration.EFCore.Sqlite" %% BPE
-%% merge "2|💾: EFCore hosting migration run" type:NORMAL tag:"2|💾|YourCompany.Configuration.EFCore|YourCompany.Configuration.EFCore.PostgreSQL|YourCompany.Configuration.EFCore.Sqlite" %% BPE
+merge "2|💾: EFChangeTrackerTrackGraphStrategy" %% BPE
+%% merge "2|💾: EFChangeTrackerTrackGraphStrategy" type:NORMAL tag:"2|💾|YourCompany.Configuration.EFCore|YourCompany.Configuration.EFCore.PostgreSQL|YourCompany.Configuration.EFCore.Sqlite" %% BPE
+merge "2|💾: EFCore hosting migration run" type:NORMAL tag:"2|💾|YourCompany.Configuration.EFCore|YourCompany.Configuration.EFCore.PostgreSQL|YourCompany.Configuration.EFCore.Sqlite" %% BPE
 
 checkout "3|🏠: OLTP RecordTypesCompositionMap" %% TCM
 branch "2|🧱: TypesCompositionMap" %% TCM
@@ -801,11 +801,11 @@ commit type:REVERSE %% OTC>9
 commit type:REVERSE %% OTC>10
 commit type:REVERSE %% OTC>11
 commit type:REVERSE %% OTC>12
-%% commit type:REVERSE %% OTC>13
-%% commit type:REVERSE %% OTC>14
+commit type:REVERSE %% OTC>13
+commit type:REVERSE %% OTC>14
 commit type:NORMAL tag:"1|🏠|YourCompany.OLTP.StateOwnership.TransactionalComposition" %% OTC
 
-%% checkout "N|🧱: wip switch to chassis" %% OEP
+checkout "N|🧱: wip switch to chassis" %% OEP
 %% commit type:REVERSE %% OEP<1
 %% commit type:REVERSE %% OEP<2
 %% commit type:REVERSE %% OEP<3
@@ -825,56 +825,56 @@ commit type:NORMAL tag:"1|🏠|YourCompany.OLTP.StateOwnership.TransactionalComp
 %% commit type:REVERSE %% OEP<17
 %% commit type:REVERSE %% OEP<18
 %% commit type:REVERSE %% OEP<19
-%% branch "1|🏠: OLTP events producing" %% OEP
-%% commit type:REVERSE %% OEP>1
-%% commit type:REVERSE %% OEP>2
-%% commit type:REVERSE %% OEP>3
-%% commit type:REVERSE %% OEP>4
-%% commit type:REVERSE %% OEP>5
-%% commit type:REVERSE %% OEP>6
-%% commit type:REVERSE %% OEP>7
-%% commit type:REVERSE %% OEP>8
-%% commit type:REVERSE %% OEP>9
-%% commit type:REVERSE %% OEP>10
-%% commit type:REVERSE %% OEP>11
-%% commit type:REVERSE %% OEP>12
-%% commit type:REVERSE %% OEP>13
-%% commit type:REVERSE %% OEP>14
-%% commit type:REVERSE %% OEP>15
-%% commit type:REVERSE %% OEP>16
-%% commit type:REVERSE %% OEP>17
-%% commit type:REVERSE %% OEP>18
-%% commit type:REVERSE %% OEP>19
-%% commit type:REVERSE %% OEP>20
-%% commit type:REVERSE %% OEP>21
-%% commit type:REVERSE %% OEP>22
-%% commit type:REVERSE %% OEP>23
-%% commit type:REVERSE %% OEP>24
-%% commit type:REVERSE %% OEP>25
-%% commit type:REVERSE %% OEP>26
-%% commit type:REVERSE %% OEP>27
-%% commit type:REVERSE %% OEP>28
-%% commit type:REVERSE %% OEP>29
-%% commit type:REVERSE %% OEP>30
-%% commit type:REVERSE %% OEP>31
-%% commit type:REVERSE %% OEP>32
-%% commit type:REVERSE %% OEP>33
-%% commit type:REVERSE %% OEP>34
-%% commit type:REVERSE %% OEP>35
-%% commit type:REVERSE %% OEP>36
-%% commit type:NORMAL tag:"1|🏠|YourCompany.OLTP.StateOwnership.EventsProducing" %% OEP
+branch "1|🏠: OLTP events producing" %% OEP
+commit type:REVERSE %% OEP>1
+commit type:REVERSE %% OEP>2
+commit type:REVERSE %% OEP>3
+commit type:REVERSE %% OEP>4
+commit type:REVERSE %% OEP>5
+commit type:REVERSE %% OEP>6
+commit type:REVERSE %% OEP>7
+commit type:REVERSE %% OEP>8
+commit type:REVERSE %% OEP>9
+commit type:REVERSE %% OEP>10
+commit type:REVERSE %% OEP>11
+commit type:REVERSE %% OEP>12
+commit type:REVERSE %% OEP>13
+commit type:REVERSE %% OEP>14
+commit type:REVERSE %% OEP>15
+commit type:REVERSE %% OEP>16
+commit type:REVERSE %% OEP>17
+commit type:REVERSE %% OEP>18
+commit type:REVERSE %% OEP>19
+commit type:REVERSE %% OEP>20
+commit type:REVERSE %% OEP>21
+commit type:REVERSE %% OEP>22
+commit type:REVERSE %% OEP>23
+commit type:REVERSE %% OEP>24
+commit type:REVERSE %% OEP>25
+commit type:REVERSE %% OEP>26
+commit type:REVERSE %% OEP>27
+commit type:REVERSE %% OEP>28
+commit type:REVERSE %% OEP>29
+commit type:REVERSE %% OEP>30
+commit type:REVERSE %% OEP>31
+commit type:REVERSE %% OEP>32
+commit type:REVERSE %% OEP>33
+commit type:REVERSE %% OEP>34
+commit type:REVERSE %% OEP>35
+commit type:REVERSE %% OEP>36
+commit type:NORMAL tag:"1|🏠|YourCompany.OLTP.StateOwnership.EventsProducing" %% OEP
 
 checkout "2|🏠: OLTP transaction is limited size" %% Startup Iteration 1
 commit type:REVERSE %% OTILS 1>1
 commit type:REVERSE %% OTILS 1>2
-%% commit type:REVERSE %% OTILS 1>3
+commit type:REVERSE %% OTILS 1>3
 
 %% checkout MERGED %% THOOIT
 checkout "2|🏠: OLTP transaction is limited size" %% THOOIT
 checkout "3|🏠: OLTP RecordTypesMap" %% THOOIT
 branch "1|🏠: the heart of OLTP is transaction" %% THOOIT
 %% merge "2|🏠: OLTP transaction is limited size" %% THOOIT
-%% merge "1|🏠: OLTP events producing" %% THOOIT
+merge "1|🏠: OLTP events producing" %% THOOIT
 merge "1|🏠: OLTP transactional composition" %% THOOIT
 %% merge "N|🧱: wip switch to chassis" %% THOOIT
 %% commit type:HIGHLIGHT tag:"1|🏠|oltp-basic-object-model-the-rest-is-up-to-you|YourCompany.OLTP.StateOwnership" %% THOOIT
@@ -2659,15 +2659,13 @@ earlier commit.
 
 <!-- ### Commit: N|🧱: OLTP EFCore multi-entity chassis END -->
 
-<!-- ### Commit: N|🧱: wip switch to chassis
+### Commit: N|🧱: wip switch to chassis
 
 <table><tbody><tr><td>
 
-X files changed, Y insertions(+), Z deletions(-)<br>
-<sub><sub>src/YourCompany.Module/</sub></sub><br>
-<kbd> +++++++ NNN |⁠ [File.cs                                                                                                        ](src/YourCompany.Configuration/EnvironmentConventions.cs)</kbd><br>
-
-Commit body is multiline and compliant to markdown formatting 💥
+1 file changed, 1 insertion(+), 1 deletion(-)<br>
+<sub><sub>src/YourCompany.OLTP.StateOwnership.EventsProducing/</sub></sub><br>
+<kbd>      +‑ 2   |⁠ [EventProducingTransactionCallback.cs                                                                           ](src/YourCompany.OLTP.StateOwnership.EventsProducing/EventProducingTransactionCallback.cs)</kbd><br>
 
 </td></tr></tbody></table>
 

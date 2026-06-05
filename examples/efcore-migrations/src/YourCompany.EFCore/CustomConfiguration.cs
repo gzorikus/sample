@@ -1,5 +1,5 @@
-using YourCompany.OLTP.RecordsManagement.DI.EFCore;
 using YourCompany.Configuration.EFCore.Hosting;
+using YourCompany.OLTP.RecordsManagement.DI.EFCore;
 
 namespace YourCompany.EFCore
 {

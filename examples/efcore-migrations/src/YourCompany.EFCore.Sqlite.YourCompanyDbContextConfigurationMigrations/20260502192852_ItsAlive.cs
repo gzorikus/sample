@@ -11,11 +11,7 @@ namespace YourCompany.EFCore.Sqlite.YourCompanyDbContextConfigurationMigrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-<<<<<<< HEAD
-                name: "examples_oltp_di_efcore_handle_specifications_only_the_rest_is_covered_Entity",
-=======
-                name: "examples_configuration_efcore_hosting_migration_run_Entity",
->>>>>>> refs/rewritten/2-persistman--efcore-hosting-migration-run
+                name: "examples_wip_full_solution_Entity",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "INTEGER", nullable: false)
@@ -27,19 +23,11 @@ namespace YourCompany.EFCore.Sqlite.YourCompanyDbContextConfigurationMigrations
                 },
                 constraints: table =>
                 {
-<<<<<<< HEAD
-                    table.PrimaryKey("examples_oltp_di_efcore_handle_specifications_only_the_rest_is_covered_PK_Entity", x => x.Id);
+                    table.PrimaryKey("examples_wip_full_solution_PK_Entity", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
-                name: "examples_oltp_di_efcore_handle_specifications_only_the_rest_is_covered_ReusableEntity",
-=======
-                    table.PrimaryKey("examples_configuration_efcore_hosting_migration_run_PK_Entity", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "examples_configuration_efcore_hosting_migration_run_ReusableEntity",
->>>>>>> refs/rewritten/2-persistman--efcore-hosting-migration-run
+                name: "examples_wip_full_solution_ReusableEntity",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "INTEGER", nullable: false)
@@ -48,19 +36,11 @@ namespace YourCompany.EFCore.Sqlite.YourCompanyDbContextConfigurationMigrations
                 },
                 constraints: table =>
                 {
-<<<<<<< HEAD
-                    table.PrimaryKey("examples_oltp_di_efcore_handle_specifications_only_the_rest_is_covered_PK_ReusableEntity", x => x.Id);
+                    table.PrimaryKey("examples_wip_full_solution_PK_ReusableEntity", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
-                name: "examples_oltp_di_efcore_handle_specifications_only_the_rest_is_covered_EntityMixin",
-=======
-                    table.PrimaryKey("examples_configuration_efcore_hosting_migration_run_PK_ReusableEntity", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "examples_configuration_efcore_hosting_migration_run_EntityMixin",
->>>>>>> refs/rewritten/2-persistman--efcore-hosting-migration-run
+                name: "examples_wip_full_solution_EntityMixin",
                 columns: table => new
                 {
                     EntityId = table.Column<int>(type: "INTEGER", nullable: false),
@@ -71,29 +51,17 @@ namespace YourCompany.EFCore.Sqlite.YourCompanyDbContextConfigurationMigrations
                 },
                 constraints: table =>
                 {
-<<<<<<< HEAD
-                    table.PrimaryKey("examples_oltp_di_efcore_handle_specifications_only_the_rest_is_covered_PK_EntityMixin", x => x.EntityId);
+                    table.PrimaryKey("examples_wip_full_solution_PK_EntityMixin", x => x.EntityId);
                     table.ForeignKey(
-                        name: "examples_oltp_di_efcore_handle_specifications_only_the_rest_is_covered_FK_EntityMixin_Entity_EntityId",
+                        name: "examples_wip_full_solution_FK_EntityMixin_Entity_EntityId",
                         column: x => x.EntityId,
-                        principalTable: "examples_oltp_di_efcore_handle_specifications_only_the_rest_is_covered_Entity",
-=======
-                    table.PrimaryKey("examples_configuration_efcore_hosting_migration_run_PK_EntityMixin", x => x.EntityId);
-                    table.ForeignKey(
-                        name: "examples_configuration_efcore_hosting_migration_run_FK_EntityMixin_Entity_EntityId",
-                        column: x => x.EntityId,
-                        principalTable: "examples_configuration_efcore_hosting_migration_run_Entity",
->>>>>>> refs/rewritten/2-persistman--efcore-hosting-migration-run
+                        principalTable: "examples_wip_full_solution_Entity",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
-<<<<<<< HEAD
-                name: "examples_oltp_di_efcore_handle_specifications_only_the_rest_is_covered_EntityOwnedCollection",
-=======
-                name: "examples_configuration_efcore_hosting_migration_run_EntityOwnedCollection",
->>>>>>> refs/rewritten/2-persistman--efcore-hosting-migration-run
+                name: "examples_wip_full_solution_EntityOwnedCollection",
                 columns: table => new
                 {
                     Id = table.Column<long>(type: "INTEGER", nullable: false)
@@ -106,29 +74,17 @@ namespace YourCompany.EFCore.Sqlite.YourCompanyDbContextConfigurationMigrations
                 },
                 constraints: table =>
                 {
-<<<<<<< HEAD
-                    table.PrimaryKey("examples_oltp_di_efcore_handle_specifications_only_the_rest_is_covered_PK_EntityOwnedCollection", x => x.Id);
+                    table.PrimaryKey("examples_wip_full_solution_PK_EntityOwnedCollection", x => x.Id);
                     table.ForeignKey(
-                        name: "examples_oltp_di_efcore_handle_specifications_only_the_rest_is_covered_FK_EntityOwnedCollection_Entity_EntityId",
+                        name: "examples_wip_full_solution_FK_EntityOwnedCollection_Entity_EntityId",
                         column: x => x.EntityId,
-                        principalTable: "examples_oltp_di_efcore_handle_specifications_only_the_rest_is_covered_Entity",
-=======
-                    table.PrimaryKey("examples_configuration_efcore_hosting_migration_run_PK_EntityOwnedCollection", x => x.Id);
-                    table.ForeignKey(
-                        name: "examples_configuration_efcore_hosting_migration_run_FK_EntityOwnedCollection_Entity_EntityId",
-                        column: x => x.EntityId,
-                        principalTable: "examples_configuration_efcore_hosting_migration_run_Entity",
->>>>>>> refs/rewritten/2-persistman--efcore-hosting-migration-run
+                        principalTable: "examples_wip_full_solution_Entity",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
-<<<<<<< HEAD
-                name: "examples_oltp_di_efcore_handle_specifications_only_the_rest_is_covered_EntityLinkToReusableEntity",
-=======
-                name: "examples_configuration_efcore_hosting_migration_run_EntityLinkToReusableEntity",
->>>>>>> refs/rewritten/2-persistman--efcore-hosting-migration-run
+                name: "examples_wip_full_solution_EntityLinkToReusableEntity",
                 columns: table => new
                 {
                     EntityId = table.Column<int>(type: "INTEGER", nullable: false),
@@ -136,53 +92,29 @@ namespace YourCompany.EFCore.Sqlite.YourCompanyDbContextConfigurationMigrations
                 },
                 constraints: table =>
                 {
-<<<<<<< HEAD
-                    table.PrimaryKey("examples_oltp_di_efcore_handle_specifications_only_the_rest_is_covered_PK_EntityLinkToReusableEntity", x => x.EntityId);
+                    table.PrimaryKey("examples_wip_full_solution_PK_EntityLinkToReusableEntity", x => x.EntityId);
                     table.ForeignKey(
-                        name: "examples_oltp_di_efcore_handle_specifications_only_the_rest_is_covered_FK_EntityLinkToReusableEntity_Entity_EntityId",
+                        name: "examples_wip_full_solution_FK_EntityLinkToReusableEntity_Entity_EntityId",
                         column: x => x.EntityId,
-                        principalTable: "examples_oltp_di_efcore_handle_specifications_only_the_rest_is_covered_Entity",
+                        principalTable: "examples_wip_full_solution_Entity",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "examples_oltp_di_efcore_handle_specifications_only_the_rest_is_covered_FK_EntityLinkToReusableEntity_ReusableEntity_ReusableEntityId",
+                        name: "examples_wip_full_solution_FK_EntityLinkToReusableEntity_ReusableEntity_ReusableEntityId",
                         column: x => x.ReusableEntityId,
-                        principalTable: "examples_oltp_di_efcore_handle_specifications_only_the_rest_is_covered_ReusableEntity",
-=======
-                    table.PrimaryKey("examples_configuration_efcore_hosting_migration_run_PK_EntityLinkToReusableEntity", x => x.EntityId);
-                    table.ForeignKey(
-                        name: "examples_configuration_efcore_hosting_migration_run_FK_EntityLinkToReusableEntity_Entity_EntityId",
-                        column: x => x.EntityId,
-                        principalTable: "examples_configuration_efcore_hosting_migration_run_Entity",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "examples_configuration_efcore_hosting_migration_run_FK_EntityLinkToReusableEntity_ReusableEntity_ReusableEntityId",
-                        column: x => x.ReusableEntityId,
-                        principalTable: "examples_configuration_efcore_hosting_migration_run_ReusableEntity",
->>>>>>> refs/rewritten/2-persistman--efcore-hosting-migration-run
+                        principalTable: "examples_wip_full_solution_ReusableEntity",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
-<<<<<<< HEAD
-                name: "examples_oltp_di_efcore_handle_specifications_only_the_rest_is_covered_IX_EntityLinkToReusableEntity_ReusableEntityId",
-                table: "examples_oltp_di_efcore_handle_specifications_only_the_rest_is_covered_EntityLinkToReusableEntity",
+                name: "examples_wip_full_solution_IX_EntityLinkToReusableEntity_ReusableEntityId",
+                table: "examples_wip_full_solution_EntityLinkToReusableEntity",
                 column: "ReusableEntityId");
 
             migrationBuilder.CreateIndex(
-                name: "examples_oltp_di_efcore_handle_specifications_only_the_rest_is_covered_IX_EntityOwnedCollection_EntityId",
-                table: "examples_oltp_di_efcore_handle_specifications_only_the_rest_is_covered_EntityOwnedCollection",
-=======
-                name: "examples_configuration_efcore_hosting_migration_run_IX_EntityLinkToReusableEntity_ReusableEntityId",
-                table: "examples_configuration_efcore_hosting_migration_run_EntityLinkToReusableEntity",
-                column: "ReusableEntityId");
-
-            migrationBuilder.CreateIndex(
-                name: "examples_configuration_efcore_hosting_migration_run_IX_EntityOwnedCollection_EntityId",
-                table: "examples_configuration_efcore_hosting_migration_run_EntityOwnedCollection",
->>>>>>> refs/rewritten/2-persistman--efcore-hosting-migration-run
+                name: "examples_wip_full_solution_IX_EntityOwnedCollection_EntityId",
+                table: "examples_wip_full_solution_EntityOwnedCollection",
                 column: "EntityId");
         }
 
@@ -190,35 +122,19 @@ namespace YourCompany.EFCore.Sqlite.YourCompanyDbContextConfigurationMigrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-<<<<<<< HEAD
-                name: "examples_oltp_di_efcore_handle_specifications_only_the_rest_is_covered_EntityLinkToReusableEntity");
+                name: "examples_wip_full_solution_EntityLinkToReusableEntity");
 
             migrationBuilder.DropTable(
-                name: "examples_oltp_di_efcore_handle_specifications_only_the_rest_is_covered_EntityMixin");
+                name: "examples_wip_full_solution_EntityMixin");
 
             migrationBuilder.DropTable(
-                name: "examples_oltp_di_efcore_handle_specifications_only_the_rest_is_covered_EntityOwnedCollection");
+                name: "examples_wip_full_solution_EntityOwnedCollection");
 
             migrationBuilder.DropTable(
-                name: "examples_oltp_di_efcore_handle_specifications_only_the_rest_is_covered_ReusableEntity");
+                name: "examples_wip_full_solution_ReusableEntity");
 
             migrationBuilder.DropTable(
-                name: "examples_oltp_di_efcore_handle_specifications_only_the_rest_is_covered_Entity");
-=======
-                name: "examples_configuration_efcore_hosting_migration_run_EntityLinkToReusableEntity");
-
-            migrationBuilder.DropTable(
-                name: "examples_configuration_efcore_hosting_migration_run_EntityMixin");
-
-            migrationBuilder.DropTable(
-                name: "examples_configuration_efcore_hosting_migration_run_EntityOwnedCollection");
-
-            migrationBuilder.DropTable(
-                name: "examples_configuration_efcore_hosting_migration_run_ReusableEntity");
-
-            migrationBuilder.DropTable(
-                name: "examples_configuration_efcore_hosting_migration_run_Entity");
->>>>>>> refs/rewritten/2-persistman--efcore-hosting-migration-run
+                name: "examples_wip_full_solution_Entity");
         }
     }
 }

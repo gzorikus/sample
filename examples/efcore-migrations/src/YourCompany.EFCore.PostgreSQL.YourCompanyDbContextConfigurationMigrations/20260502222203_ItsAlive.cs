@@ -12,11 +12,7 @@ namespace YourCompany.EFCore.PostgreSQL.YourCompanyDbContextConfigurationMigrati
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-<<<<<<< HEAD
-                name: "eodehsotric_Entity",
-=======
-                name: "e_con_e_h_m_r_Entity",
->>>>>>> refs/rewritten/2-persistman--efcore-hosting-migration-run
+                name: "exam_w_f_solu_Entity",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "integer", nullable: false)
@@ -28,19 +24,11 @@ namespace YourCompany.EFCore.PostgreSQL.YourCompanyDbContextConfigurationMigrati
                 },
                 constraints: table =>
                 {
-<<<<<<< HEAD
-                    table.PrimaryKey("eodehsotric_PK_Entity", x => x.Id);
+                    table.PrimaryKey("exam_w_f_solu_PK_Entity", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
-                name: "eodehsotric_ReusableEntity",
-=======
-                    table.PrimaryKey("e_con_e_h_m_r_PK_Entity", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "e_con_e_h_m_r_ReusableEntity",
->>>>>>> refs/rewritten/2-persistman--efcore-hosting-migration-run
+                name: "exam_w_f_solu_ReusableEntity",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "integer", nullable: false)
@@ -49,19 +37,11 @@ namespace YourCompany.EFCore.PostgreSQL.YourCompanyDbContextConfigurationMigrati
                 },
                 constraints: table =>
                 {
-<<<<<<< HEAD
-                    table.PrimaryKey("eodehsotric_PK_ReusableEntity", x => x.Id);
+                    table.PrimaryKey("exam_w_f_solu_PK_ReusableEntity", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
-                name: "eodehsotric_EntityMixin",
-=======
-                    table.PrimaryKey("e_con_e_h_m_r_PK_ReusableEntity", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "e_con_e_h_m_r_EntityMixin",
->>>>>>> refs/rewritten/2-persistman--efcore-hosting-migration-run
+                name: "exam_w_f_solu_EntityMixin",
                 columns: table => new
                 {
                     EntityId = table.Column<int>(type: "integer", nullable: false),
@@ -72,29 +52,17 @@ namespace YourCompany.EFCore.PostgreSQL.YourCompanyDbContextConfigurationMigrati
                 },
                 constraints: table =>
                 {
-<<<<<<< HEAD
-                    table.PrimaryKey("eodehsotric_PK_EntityMixin", x => x.EntityId);
+                    table.PrimaryKey("exam_w_f_solu_PK_EntityMixin", x => x.EntityId);
                     table.ForeignKey(
-                        name: "eodehsotric_FK_EntityMixin_Entity_EntityId",
+                        name: "exam_w_f_solu_FK_EntityMixin_Entity_EntityId",
                         column: x => x.EntityId,
-                        principalTable: "eodehsotric_Entity",
-=======
-                    table.PrimaryKey("e_con_e_h_m_r_PK_EntityMixin", x => x.EntityId);
-                    table.ForeignKey(
-                        name: "e_con_e_h_m_r_FK_EntityMixin_Entity_EntityId",
-                        column: x => x.EntityId,
-                        principalTable: "e_con_e_h_m_r_Entity",
->>>>>>> refs/rewritten/2-persistman--efcore-hosting-migration-run
+                        principalTable: "exam_w_f_solu_Entity",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
-<<<<<<< HEAD
-                name: "eodehsotric_EntityOwnedCollection",
-=======
-                name: "e_con_e_h_m_r_EntityOwnedCollection",
->>>>>>> refs/rewritten/2-persistman--efcore-hosting-migration-run
+                name: "exam_w_f_solu_EntityOwnedCollection",
                 columns: table => new
                 {
                     Id = table.Column<long>(type: "bigint", nullable: false)
@@ -107,29 +75,17 @@ namespace YourCompany.EFCore.PostgreSQL.YourCompanyDbContextConfigurationMigrati
                 },
                 constraints: table =>
                 {
-<<<<<<< HEAD
-                    table.PrimaryKey("eodehsotric_PK_EntityOwnedCollection", x => x.Id);
+                    table.PrimaryKey("exam_w_f_solu_PK_EntityOwnedCollection", x => x.Id);
                     table.ForeignKey(
-                        name: "eodehsotric_FK_EntityOwnedCollection_Entity_EntityId",
+                        name: "exam_w_f_solu_FK_EntityOwnedCollection_Entity_EntityId",
                         column: x => x.EntityId,
-                        principalTable: "eodehsotric_Entity",
-=======
-                    table.PrimaryKey("e_con_e_h_m_r_PK_EntityOwnedCollection", x => x.Id);
-                    table.ForeignKey(
-                        name: "e_con_e_h_m_r_FK_EntityOwnedCollection_Entity_EntityId",
-                        column: x => x.EntityId,
-                        principalTable: "e_con_e_h_m_r_Entity",
->>>>>>> refs/rewritten/2-persistman--efcore-hosting-migration-run
+                        principalTable: "exam_w_f_solu_Entity",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
-<<<<<<< HEAD
-                name: "eodehsotric_EntityLinkToReusableEntity",
-=======
-                name: "e_con_e_h_m_r_EntityLinkToReusableEntity",
->>>>>>> refs/rewritten/2-persistman--efcore-hosting-migration-run
+                name: "exam_w_f_solu_EntityLinkToReusableEntity",
                 columns: table => new
                 {
                     EntityId = table.Column<int>(type: "integer", nullable: false),
@@ -137,53 +93,29 @@ namespace YourCompany.EFCore.PostgreSQL.YourCompanyDbContextConfigurationMigrati
                 },
                 constraints: table =>
                 {
-<<<<<<< HEAD
-                    table.PrimaryKey("eodehsotric_PK_EntityLinkToReusableEntity", x => x.EntityId);
+                    table.PrimaryKey("exam_w_f_solu_PK_EntityLinkToReusableEntity", x => x.EntityId);
                     table.ForeignKey(
-                        name: "eodehsotric_FK_EntityLinkToReusableEntity_Entity_EntityId",
+                        name: "exam_w_f_solu_FK_EntityLinkToReusableEntity_Entity_EntityId",
                         column: x => x.EntityId,
-                        principalTable: "eodehsotric_Entity",
+                        principalTable: "exam_w_f_solu_Entity",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "eodehsotric_FK_EntityLinkToReusableEntity_ReusableEntiCB4546B",
+                        name: "exam_w_f_solu_FK_EntityLinkToReusableEntity_ReusableEntiCB4546B",
                         column: x => x.ReusableEntityId,
-                        principalTable: "eodehsotric_ReusableEntity",
-=======
-                    table.PrimaryKey("e_con_e_h_m_r_PK_EntityLinkToReusableEntity", x => x.EntityId);
-                    table.ForeignKey(
-                        name: "e_con_e_h_m_r_FK_EntityLinkToReusableEntity_Entity_EntityId",
-                        column: x => x.EntityId,
-                        principalTable: "e_con_e_h_m_r_Entity",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "e_con_e_h_m_r_FK_EntityLinkToReusableEntity_ReusableEntiCB4546B",
-                        column: x => x.ReusableEntityId,
-                        principalTable: "e_con_e_h_m_r_ReusableEntity",
->>>>>>> refs/rewritten/2-persistman--efcore-hosting-migration-run
+                        principalTable: "exam_w_f_solu_ReusableEntity",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
-<<<<<<< HEAD
-                name: "eodehsotric_IX_EntityLinkToReusableEntity_ReusableEntityId",
-                table: "eodehsotric_EntityLinkToReusableEntity",
+                name: "exam_w_f_solu_IX_EntityLinkToReusableEntity_ReusableEntityId",
+                table: "exam_w_f_solu_EntityLinkToReusableEntity",
                 column: "ReusableEntityId");
 
             migrationBuilder.CreateIndex(
-                name: "eodehsotric_IX_EntityOwnedCollection_EntityId",
-                table: "eodehsotric_EntityOwnedCollection",
-=======
-                name: "e_con_e_h_m_r_IX_EntityLinkToReusableEntity_ReusableEntityId",
-                table: "e_con_e_h_m_r_EntityLinkToReusableEntity",
-                column: "ReusableEntityId");
-
-            migrationBuilder.CreateIndex(
-                name: "e_con_e_h_m_r_IX_EntityOwnedCollection_EntityId",
-                table: "e_con_e_h_m_r_EntityOwnedCollection",
->>>>>>> refs/rewritten/2-persistman--efcore-hosting-migration-run
+                name: "exam_w_f_solu_IX_EntityOwnedCollection_EntityId",
+                table: "exam_w_f_solu_EntityOwnedCollection",
                 column: "EntityId");
         }
 
@@ -191,35 +123,19 @@ namespace YourCompany.EFCore.PostgreSQL.YourCompanyDbContextConfigurationMigrati
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-<<<<<<< HEAD
-                name: "eodehsotric_EntityLinkToReusableEntity");
+                name: "exam_w_f_solu_EntityLinkToReusableEntity");
 
             migrationBuilder.DropTable(
-                name: "eodehsotric_EntityMixin");
+                name: "exam_w_f_solu_EntityMixin");
 
             migrationBuilder.DropTable(
-                name: "eodehsotric_EntityOwnedCollection");
+                name: "exam_w_f_solu_EntityOwnedCollection");
 
             migrationBuilder.DropTable(
-                name: "eodehsotric_ReusableEntity");
+                name: "exam_w_f_solu_ReusableEntity");
 
             migrationBuilder.DropTable(
-                name: "eodehsotric_Entity");
-=======
-                name: "e_con_e_h_m_r_EntityLinkToReusableEntity");
-
-            migrationBuilder.DropTable(
-                name: "e_con_e_h_m_r_EntityMixin");
-
-            migrationBuilder.DropTable(
-                name: "e_con_e_h_m_r_EntityOwnedCollection");
-
-            migrationBuilder.DropTable(
-                name: "e_con_e_h_m_r_ReusableEntity");
-
-            migrationBuilder.DropTable(
-                name: "e_con_e_h_m_r_Entity");
->>>>>>> refs/rewritten/2-persistman--efcore-hosting-migration-run
+                name: "exam_w_f_solu_Entity");
         }
     }
 }

@@ -1,14 +1,9 @@
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
-<<<<<<< HEAD
-using Microsoft.Extensions.DependencyInjection;
-=======
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using YourCompany.Configuration.EFCore;
 using YourCompany.Configuration.EFCore.Hosting;
->>>>>>> refs/rewritten/2-persistman--efcore-hosting-migration-run
 using YourCompany.EFCore;
 using YourCompany.EFCore.NeverPretendingToBeYourDomainModel;
 using YourCompany.OLTP.RecordsManagement.Persistence.Linq.EFCore;
@@ -19,23 +14,15 @@ internal static class Program
 {
     public static async Task Main(string[] args)
     {
-<<<<<<< HEAD
-        var services = new ServiceCollection();
-        services.AddYourCompanyEFCoreScopedDbContextFactory<CustomConfiguration>();
-        services.AddYourCompanyEFCoreScopedDbContextFactoryLoadedDomainTypes<CustomConfiguration>();
-        var provider = services.BuildServiceProvider();
-        var factory = provider.GetRequiredService<IDbContextFactory<YourCompanyDbContext<CustomConfiguration>>>();
-=======
         var builder = Host.CreateApplicationBuilder(args);
         builder.Configuration.AddYourCompanyConfiguration();
-        builder.Services.AddSingleton<
-            IDbContextFactory<YourCompanyDbContext<CustomConfiguration>>,
-            YourCompanyDbContextFactory<YourCompanyDbContextFactoryLoadingConfiguration, CustomConfiguration>.RunTime>();
+        builder.Services.AddYourCompanyEFCoreScopedDbContextFactory<CustomConfiguration>();
+        builder.Services.AddYourCompanyEFCoreScopedDbContextFactoryLoadedDomainTypes<CustomConfiguration>();
         builder.Services.AddHostedService<ScopedYourCompanyDbContextMigrationsRunner<CustomConfiguration>>();
->>>>>>> refs/rewritten/2-persistman--efcore-hosting-migration-run
 
         using var host = builder.Build();
-        var factory = host.Services.GetRequiredService<IDbContextFactory<YourCompanyDbContext<CustomConfiguration>>>();
+        await using var scope = host.Services.CreateAsyncScope();
+        var factory = scope.ServiceProvider.GetRequiredService<IDbContextFactory<YourCompanyDbContext<CustomConfiguration>>>();
 
         await host.StartAsync();
 

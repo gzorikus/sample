@@ -24,7 +24,7 @@ namespace YourCompany.OLTP.StateOwnership.EventsProducing
             }
         }
 
-        public interface IProducingSenderExtraInterface
+        internal interface IProducingSenderExtraInterface
         {
             void Produce<TEvent>(TEvent @event);
             void Produce<TEvent>(TEvent @event, TimeSpan? delayFor);

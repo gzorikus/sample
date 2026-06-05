@@ -7,6 +7,7 @@
   <ItemGroup>
     <InternalsVisibleTo Include="YourCompany.OLTP.RecordsManagement" />
     <InternalsVisibleTo Include="YourCompany.OLTP.RecordsManagement.DI" />
+    <InternalsVisibleTo Include="YourCompany.OLTP.StateOwnership.EventsProducing" />
     <InternalsVisibleTo Include="YourCompany.OLTP.StateOwnership.TransactionalComposition" />
   </ItemGroup>
 
