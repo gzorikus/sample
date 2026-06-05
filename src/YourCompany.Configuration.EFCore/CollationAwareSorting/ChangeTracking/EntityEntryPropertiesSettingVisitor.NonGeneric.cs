@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 using YourCompany.Configuration.EFCore.ChangeTracking;
 
@@ -9,6 +10,7 @@ namespace YourCompany.Configuration.EFCore.CollationAwareSorting.ChangeTracking
         internal class NonGeneric : EntityEntryPropertiesSettingVisitor
         {
             internal EntityEntry PropertiesOwner { get; private set; }
+            public IReadOnlyList<EntityEntry> PropertyOwners { get; private set; }
 
             internal NonGeneric SetSingleEntityQueryValuesTo(SortingKey sortingKey, EntityEntry propertiesOwner)
             {
@@ -22,6 +24,42 @@ namespace YourCompany.Configuration.EFCore.CollationAwareSorting.ChangeTracking
             internal NonGeneric UseForSingleEntityQuery(EntityEntry propertiesOwner)
             {
                 PropertiesOwner = propertiesOwner ?? throw new ArgumentNullException(nameof(propertiesOwner));
+                PropertyOwners = null;
+                UseForAllPropertiesSetting();
+                return this;
+            }
+
+            public NonGeneric SetMultiEntityQueryValuesTo(SortingKey sortingKey, EntityEntry propertiesOwner)
+            {
+                if (sortingKey == null) throw new ArgumentNullException(nameof(sortingKey));
+                ResetVisitState();
+                SetNextSortingKey(sortingKey);
+                sortingKey.VisitPrefixFirst(UseForMultiEntityQuery(propertiesOwner));
+                return this;
+            }
+
+            public NonGeneric UseForMultiEntityQuery(EntityEntry propertiesOwner)
+            {
+                PropertiesOwner = propertiesOwner ?? throw new ArgumentNullException(nameof(propertiesOwner));
+                PropertyOwners = null;
+                UseForSingleOwnerMatchingPropertiesOnly();
+                return this;
+            }
+
+            public NonGeneric SetMultiEntityQueryValuesTo(
+                SortingKey sortingKey, IReadOnlyList<EntityEntry> propertyOwners)
+            {
+                if (sortingKey == null) throw new ArgumentNullException(nameof(sortingKey));
+                ResetVisitState();
+                SetNextSortingKey(sortingKey);
+                sortingKey.VisitPrefixFirst(UseForMultiEntityQuery(propertyOwners));
+                return this;
+            }
+
+            public NonGeneric UseForMultiEntityQuery(IReadOnlyList<EntityEntry> propertyOwners)
+            {
+                PropertyOwners = propertyOwners ?? throw new ArgumentNullException(nameof(propertyOwners));
+                PropertiesOwner = null;
                 UseForAllPropertiesSetting();
                 return this;
             }
@@ -37,7 +75,25 @@ namespace YourCompany.Configuration.EFCore.CollationAwareSorting.ChangeTracking
 
             protected override void SetValue<TProperty>(
                 SortingKeyTopology.PropertiesOwner propertyOwner, string propertyName, TProperty value)
-                => SetValue(propertyOwner, propertyName, value, PropertiesOwner);
+            {
+                if (PropertiesOwner != null)
+                {
+                    if (PropertyOwners != null) throw new ApplicationException("PropertiesOwner != null && PropertyOwners != null");
+                    SetValue(propertyOwner, propertyName, value, PropertiesOwner);
+                }
+                else if (PropertyOwners != null)
+                {
+                    if (_setOnlyMatchingToSingleOwner) throw new ApplicationException("_setOnlyMatchingToSingleOwner");
+                    if (!propertyOwner.TryGetSingleMatchingOwner(PropertyOwners, out var entry))
+                        throw new ApplicationException("!propertyOwner.TryGetSingleMatchingOwner(PropertyOwners, out var entry)");
+
+                    SetValue(propertyOwner, propertyName, value, entry);
+                }
+                else
+                {
+                    throw new ApplicationException("PropertiesOwner == null && PropertyOwners == null");
+                }
+            }
 
             private void SetValue<TProperty>(
                 SortingKeyTopology.PropertiesOwner propertyOwner,

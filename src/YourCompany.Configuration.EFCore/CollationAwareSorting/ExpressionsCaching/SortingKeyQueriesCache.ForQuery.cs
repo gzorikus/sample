@@ -5,6 +5,7 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Threading;
 using System.Threading.Tasks;
+using YourCompany.Configuration.EFCore.ExpressionsCaching;
 
 namespace YourCompany.Configuration.EFCore.CollationAwareSorting.ExpressionsCaching
 {
@@ -15,12 +16,28 @@ namespace YourCompany.Configuration.EFCore.CollationAwareSorting.ExpressionsCach
             internal SortingKeyTopology.ILastProperty SingleTopology { get; init; }
             internal string SingleEntityReplacingQueriedSetName { get; init; }
 
+            internal IReadOnlyList<SortingKeyQueries.MultiEntityQuerySortingKeyPropertyOwnerIndex>
+                MultiEntityValueTuplePropertyOwnerIndecies
+            { get; init; }
+
             public override bool Equals(object obj) => obj is TopologyCacheKey other && Equals(other);
 
             public bool Equals(TopologyCacheKey other)
             {
                 if (!SortingKeyTopology.Comparer.Instance.Equals(SingleTopology, other.SingleTopology)) return false;
                 if (SingleEntityReplacingQueriedSetName != other.SingleEntityReplacingQueriedSetName) return false;
+
+                int? ownersCount = MultiEntityValueTuplePropertyOwnerIndecies?.Count;
+                int? otherOwnersCount = other.MultiEntityValueTuplePropertyOwnerIndecies?.Count;
+                if (ownersCount != otherOwnersCount) return false;
+
+                if (!ownersCount.HasValue) return true;
+
+                for (int i = 0; i < ownersCount.Value; i++)
+                    if (!MultiEntityValueTuplePropertyOwnerIndecies[i]
+                        .EqualsForQueriesCacheKeyOnly(other.MultiEntityValueTuplePropertyOwnerIndecies[i]))
+                        return false;
+
                 return true;
             }
 
@@ -29,6 +46,14 @@ namespace YourCompany.Configuration.EFCore.CollationAwareSorting.ExpressionsCach
                 var hash = new HashCode();
                 hash.Add(SingleTopology, SortingKeyTopology.Comparer.Instance);
                 hash.Add(SingleEntityReplacingQueriedSetName);
+
+                if (MultiEntityValueTuplePropertyOwnerIndecies != null)
+                {
+                    hash.Add(MultiEntityValueTuplePropertyOwnerIndecies.Count);
+                    for (int i = 0; i < MultiEntityValueTuplePropertyOwnerIndecies.Count; i++)
+                        hash.Add(MultiEntityValueTuplePropertyOwnerIndecies[i]);
+                }
+
                 return hash.ToHashCode();
             }
         }
@@ -47,6 +72,9 @@ namespace YourCompany.Configuration.EFCore.CollationAwareSorting.ExpressionsCach
             {
                 if (query == null) throw new ArgumentNullException(nameof(query));
                 if (queryable == null) throw new ArgumentNullException(nameof(queryable));
+
+                if (EFPropertyExpressionsCache.FromParameter<T>.ValueTuple.PropertiesByValueIndex != null)
+                    throw new ApplicationException("EFPropertyExpressionsCache.FromParameter<T>.ValueTuple.PropertiesByValueIndex != null");
 
                 var cacheKey = new TopologyCacheKey
                 {
@@ -70,6 +98,9 @@ namespace YourCompany.Configuration.EFCore.CollationAwareSorting.ExpressionsCach
                 if (queryable == null) throw new ArgumentNullException(nameof(queryable));
                 if (extraValueSelector == null) throw new ArgumentNullException(nameof(extraValueSelector));
 
+                if (EFPropertyExpressionsCache.FromParameter<T>.ValueTuple.PropertiesByValueIndex != null)
+                    throw new ApplicationException("EFPropertyExpressionsCache.FromParameter<T>.ValueTuple.PropertiesByValueIndex != null");
+
                 var cacheKey = new TopologyCacheKey
                 {
                     SingleTopology = query.PossibleSingleTopology ?? throw new ApplicationException("query.PossibleSingleTopology == null"),
@@ -80,6 +111,79 @@ namespace YourCompany.Configuration.EFCore.CollationAwareSorting.ExpressionsCach
                 return Topologies
                     .GetOrAdd(cacheKey, CreateTopologiesItemNonExclusiveStrategy)
                     .GetKeysFrom(queryable, extraValueSelector, cancellationToken);
+            }
+
+            internal static Task<List<SortingKey>> GetSingleTopologyMultiEntityKeysFrom(
+                SortingKeyQueries.IMultiTopologyMultiEntityQuery query,
+                IQueryable<T> queryable,
+                CancellationToken cancellationToken)
+            {
+                if (query == null) throw new ArgumentNullException(nameof(query));
+                if (queryable == null) throw new ArgumentNullException(nameof(queryable));
+
+                if (EFPropertyExpressionsCache.FromParameter<T>.ValueTuple.PropertiesByValueIndex == null)
+                    throw new ApplicationException("EFPropertyExpressionsCache.FromParameter<T>.ValueTuple.PropertiesByValueIndex == null");
+
+                var cacheKey = new TopologyCacheKey
+                {
+                    SingleTopology = query.PossibleSingleTopology ?? throw new ApplicationException("query.PossibleSingleTopology == null"),
+                    MultiEntityValueTuplePropertyOwnerIndecies
+                        = query.EntitiesValueTuplePropertyOwnerIndecies
+                            ?? throw new ApplicationException("query.EntitiesValueTuplePropertyOwnerIndecies == null")
+                };
+
+                return Topologies
+                    .GetOrAdd(cacheKey, CreateTopologiesItemNonExclusiveStrategy)
+                    .GetKeysFrom(queryable, cancellationToken);
+            }
+
+            internal static Task<List<SortingKeyExtraValuePair<TExtraValue>>>
+                GetSingleTopologyMultiEntityKeysFrom<TExtraValue>(
+                    SortingKeyQueries.IMultiTopologyMultiEntityQuery query,
+                    IQueryable<T> queryable,
+                    Expression<Func<T, TExtraValue>> extraValueSelector,
+                    CancellationToken cancellationToken)
+            {
+                if (query == null) throw new ArgumentNullException(nameof(query));
+                if (queryable == null) throw new ArgumentNullException(nameof(queryable));
+                if (extraValueSelector == null) throw new ArgumentNullException(nameof(extraValueSelector));
+
+                if (EFPropertyExpressionsCache.FromParameter<T>.ValueTuple.PropertiesByValueIndex == null)
+                    throw new ApplicationException("EFPropertyExpressionsCache.FromParameter<T>.ValueTuple.PropertiesByValueIndex == null");
+
+                var cacheKey = new TopologyCacheKey
+                {
+                    SingleTopology = query.PossibleSingleTopology ?? throw new ApplicationException("query.PossibleSingleTopology == null"),
+                    MultiEntityValueTuplePropertyOwnerIndecies
+                        = query.EntitiesValueTuplePropertyOwnerIndecies
+                            ?? throw new ApplicationException("query.EntitiesValueTuplePropertyOwnerIndecies == null")
+                };
+
+                return Topologies
+                    .GetOrAdd(cacheKey, CreateTopologiesItemNonExclusiveStrategy)
+                    .GetKeysFrom(queryable, extraValueSelector, cancellationToken);
+            }
+
+            internal static IOrderedQueryable<T> SingleTopologyMultiEntitySort(
+                SortingKeyQueries.IMultiTopologyMultiEntityQuery query, IQueryable<T> queryable)
+            {
+                if (query == null) throw new ArgumentNullException(nameof(query));
+                if (queryable == null) throw new ArgumentNullException(nameof(queryable));
+
+                if (EFPropertyExpressionsCache.FromParameter<T>.ValueTuple.PropertiesByValueIndex == null)
+                    throw new ApplicationException("EFPropertyExpressionsCache.FromParameter<T>.ValueTuple.PropertiesByValueIndex == null");
+
+                var cacheKey = new TopologyCacheKey
+                {
+                    SingleTopology = query.PossibleSingleTopology ?? throw new ApplicationException("query.PossibleSingleTopology == null"),
+                    MultiEntityValueTuplePropertyOwnerIndecies
+                        = query.EntitiesValueTuplePropertyOwnerIndecies
+                            ?? throw new ApplicationException("query.EntitiesValueTuplePropertyOwnerIndecies == null")
+                };
+
+                return Topologies
+                    .GetOrAdd(cacheKey, CreateTopologiesItemNonExclusiveStrategy)
+                    .MultiEntitySort(queryable);
             }
         }
     }

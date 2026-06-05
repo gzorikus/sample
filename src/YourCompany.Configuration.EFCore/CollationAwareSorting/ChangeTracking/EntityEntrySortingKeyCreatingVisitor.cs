@@ -105,6 +105,8 @@ namespace YourCompany.Configuration.EFCore.CollationAwareSorting.ChangeTracking
             key.EnsureNoUnexpectedQueryOptionsAfterCreation();
             LastSortingKeyReplacingQueriedSetName = key.ReplaceQueriedSetName;
             key.ReplaceQueriedSetName = null;
+            if (key.EntitiesValueTuplePropertyOwnerIndecies != null)
+                throw new ApplicationException("key.EntitiesValueTuplePropertyOwnerIndecies != null");
         }
     }
 }

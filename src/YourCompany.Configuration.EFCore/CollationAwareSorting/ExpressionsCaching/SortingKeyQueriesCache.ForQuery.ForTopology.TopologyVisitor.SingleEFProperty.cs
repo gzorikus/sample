@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using System.Linq.Expressions;
 using YourCompany.Configuration.EFCore.ExpressionsCaching;
 
@@ -23,6 +24,9 @@ namespace YourCompany.Configuration.EFCore.CollationAwareSorting.ExpressionsCach
                             if (singleTopology == null) throw new ArgumentNullException(nameof(singleTopology));
                             if (_singleTopologyPropertiesCount != 1) throw new ApplicationException("_singleTopologyPropertiesCount != 1");
 
+                            if (EFPropertyExpressionsCache.FromParameter<T>.ValueTuple.PropertiesByValueIndex != null)
+                                throw new ApplicationException("EFPropertyExpressionsCache.FromParameter<T>.ValueTuple.PropertiesByValueIndex != null");
+
                             singleTopology.VisitPrefixFirst(this);
                             if (_visitedPropertiesTotal != 1) throw new ApplicationException("_visitedPropertiesTotal != 1");
 
@@ -30,6 +34,9 @@ namespace YourCompany.Configuration.EFCore.CollationAwareSorting.ExpressionsCach
 
                             _replaceQueriedSetName = replaceQueriedSetName;
                         }
+
+                        internal override Func<IQueryable<T>, IOrderedQueryable<T>> CompileMultiEntitySortStrategy()
+                            => throw new NotSupportedException(nameof(SingleEFProperty));
 
                         protected override void CollectSelectValuesExpressionVisit<TProperty>(
                             SortingKeyTopology.ILastProperty property)
@@ -48,6 +55,8 @@ namespace YourCompany.Configuration.EFCore.CollationAwareSorting.ExpressionsCach
 
                         protected override void ConfigureCreatedSortingKeyQueryOptions(SortingKey sortingKey)
                         {
+                            if (sortingKey.EntitiesValueTuplePropertyOwnerIndecies != null)
+                                throw new ApplicationException("sortingKey.EntitiesValueTuplePropertyOwnerIndecies != null");
                             sortingKey.ReplaceQueriedSetName = _replaceQueriedSetName ?? sortingKey.ReplaceQueriedSetName;
                         }
                     }

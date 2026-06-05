@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 
 namespace YourCompany.Configuration.EFCore.CollationAwareSorting
 {
@@ -41,10 +42,29 @@ namespace YourCompany.Configuration.EFCore.CollationAwareSorting
                 {
                     if (OrElse._keys == null) throw new ApplicationException("OrElse._keys == null");
                     if (OrElse._keys.ReplaceQueriedSetName != null) throw new ApplicationException("OrElse._keys.ReplaceQueriedSetName != null");
+                    if (OrElse._keys.EntitiesValueTuplePropertyOwnerIndecies != null) throw new ApplicationException("OrElse._keys.EntitiesValueTuplePropertyOwnerIndecies != null");
                     OrElse._keys.AddAndTryRetainSingleTopology(KeyBuilder.CreateIntermediatePropertySortingKey());
                     OrElse._keys.ProtectFromChanges();
                     OrElse._keys.ReplaceQueriedSetName = replacingQueriedSetName;
                     OrElse._keys.EnsureCompatibleWithSingleEntityQueries();
+                    return OrElse._keys;
+                }
+
+                public SortingKeyQueries.IMultiTopologyMultiEntityQuery ForMultiEntityEquality(
+                    IReadOnlyList<SortingKeyQueries.MultiEntityQuerySortingKeyPropertyOwnerIndex>
+                        entitiesValueTuplePropertyOwnerIndecies)
+                {
+                    if (entitiesValueTuplePropertyOwnerIndecies == null)
+                        throw new ApplicationException("entitiesValueTuplePropertyOwnerIndecies == null");
+                    if (entitiesValueTuplePropertyOwnerIndecies.Count == 0)
+                        throw new ApplicationException("entitiesValueTuplePropertyOwnerIndecies.Count == 0");
+
+                    if (OrElse._keys == null) throw new ApplicationException("OrElse._keys == null");
+                    if (OrElse._keys.ReplaceQueriedSetName != null) throw new ApplicationException("OrElse._keys.ReplaceQueriedSetName != null");
+                    if (OrElse._keys.EntitiesValueTuplePropertyOwnerIndecies != null) throw new ApplicationException("OrElse._keys.EntitiesValueTuplePropertyOwnerIndecies != null");
+                    OrElse._keys.AddAndTryRetainSingleTopology(KeyBuilder.CreateIntermediatePropertySortingKey());
+                    OrElse._keys.ProtectFromChanges();
+                    OrElse._keys.EntitiesValueTuplePropertyOwnerIndecies = entitiesValueTuplePropertyOwnerIndecies;
                     return OrElse._keys;
                 }
 
@@ -79,6 +99,7 @@ namespace YourCompany.Configuration.EFCore.CollationAwareSorting
                     if (owner == default) throw new ArgumentNullException(nameof(owner));
                     if (OrElse._keys == null) throw new ApplicationException("OrElse._keys == null");
                     if (OrElse._keys.ReplaceQueriedSetName != null) throw new ApplicationException("OrElse._keys.ReplaceQueriedSetName != null");
+                    if (OrElse._keys.EntitiesValueTuplePropertyOwnerIndecies != null) throw new ApplicationException("OrElse._keys.EntitiesValueTuplePropertyOwnerIndecies != null");
                     var newBuilder = new SortingKeyBuilder<TAddValue>(
                         KeyBuilder.KeyBuilder._modelProvider, owner, name, value, descending)
                     {
@@ -93,6 +114,7 @@ namespace YourCompany.Configuration.EFCore.CollationAwareSorting
                     if (owner == default) throw new ArgumentNullException(nameof(owner));
                     if (OrElse._keys == null) throw new ApplicationException("OrElse._keys == null");
                     if (OrElse._keys.ReplaceQueriedSetName != null) throw new ApplicationException("OrElse._keys.ReplaceQueriedSetName != null");
+                    if (OrElse._keys.EntitiesValueTuplePropertyOwnerIndecies != null) throw new ApplicationException("OrElse._keys.EntitiesValueTuplePropertyOwnerIndecies != null");
                     var newBuilder = new SortingKeyBuilder<TAddValue>(
                         KeyBuilder.KeyBuilder._modelProvider, owner, name, value, descending);
                     OrElse._keys.AddAndTryRetainSingleTopology(KeyBuilder.CreateIntermediatePropertySortingKey());

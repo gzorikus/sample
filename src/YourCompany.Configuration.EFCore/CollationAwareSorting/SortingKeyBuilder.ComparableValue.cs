@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 
 namespace YourCompany.Configuration.EFCore.CollationAwareSorting
 {
@@ -46,8 +47,24 @@ namespace YourCompany.Configuration.EFCore.CollationAwareSorting
             {
                 var sortingKey = CreateSortingKey();
                 sortingKey.ReplaceQueriedSetName = replacingQueriedSetName ?? sortingKey.ReplaceQueriedSetName;
+                sortingKey.EntitiesValueTuplePropertyOwnerIndecies = null;
                 sortingKey.EnsureCompatibleWithSingleEntityQueries(
                     singleEntityReplacingQueriedSet: sortingKey.ReplaceQueriedSetName != null);
+                return sortingKey;
+            }
+
+            public SortingKey.ValueHolding<TProviderValue> ForMultiEntityQueries(
+                IReadOnlyList<SortingKeyQueries.MultiEntityQuerySortingKeyPropertyOwnerIndex>
+                    entitiesValueTuplePropertyOwnerIndecies)
+            {
+                if (entitiesValueTuplePropertyOwnerIndecies == null)
+                    throw new ArgumentNullException(nameof(entitiesValueTuplePropertyOwnerIndecies));
+                if (entitiesValueTuplePropertyOwnerIndecies.Count == 0)
+                    throw new ApplicationException("entitiesValueTuplePropertyOwnerIndecies.Count == 0");
+
+                var sortingKey = CreateSortingKey();
+                sortingKey.ReplaceQueriedSetName = null;
+                sortingKey.EntitiesValueTuplePropertyOwnerIndecies = entitiesValueTuplePropertyOwnerIndecies;
                 return sortingKey;
             }
 
@@ -63,6 +80,7 @@ namespace YourCompany.Configuration.EFCore.CollationAwareSorting
             {
                 var sortingKey = CreateSortingKey();
                 sortingKey.ReplaceQueriedSetName = null;
+                sortingKey.EntitiesValueTuplePropertyOwnerIndecies = null;
                 return sortingKey;
             }
 

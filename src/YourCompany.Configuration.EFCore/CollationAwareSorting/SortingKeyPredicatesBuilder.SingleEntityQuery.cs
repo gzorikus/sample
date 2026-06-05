@@ -43,8 +43,13 @@ namespace YourCompany.Configuration.EFCore.CollationAwareSorting
         internal SortingKeyPredicatesBuilder UseForSingleEntity<TEntity>(bool replacingQueriedSet)
             where TEntity : class
         {
+            if (EFPropertyExpressionsCache.FromParameter<TEntity>.ValueTuple.PropertiesByValueIndex != null)
+                throw new ApplicationException("EFPropertyExpressionsCache.FromParameter<TEntity>.ValueTuple.PropertiesByValueIndex != null");
+
             Parameter = EFPropertyExpressionsCache.FromParameter<TEntity>.Instance;
             SingleEntityReplacingQueriedSet = replacingQueriedSet;
+            MultiEntityValueTuplePropertyOwnersCount = -1;
+            MultiEntityValueTuplePropertyOwnerIndecies = null;
             ResetVisitState();
             return this;
         }
@@ -61,6 +66,7 @@ namespace YourCompany.Configuration.EFCore.CollationAwareSorting
             if (propertyName == null) throw new ArgumentNullException(nameof(propertyName));
             if (Parameter == null) throw new ApplicationException("Parameter == null");
             if (CurrentSortingKeyProperty == null) throw new ApplicationException("CurrentSortingKeyProperty == null");
+            if (MultiEntityValueTuplePropertyOwnerIndecies != null) throw new ApplicationException("MultiEntityValueTuplePropertyOwnerIndecies != null");
             return !ResultingPredicateCanBeNull || CurrentSortingKeyProperty.PropertyOwner.Match(Parameter.Type)
                 ? EFPropertyExpressionsCache.EFProperty<TProperty>.EntityParameter(Parameter, propertyName)
                 : null;

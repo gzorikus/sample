@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Concurrent;
 using System.Linq.Expressions;
+using YourCompany.Reflection;
 
 namespace YourCompany.Configuration.EFCore.ExpressionsCaching
 {
@@ -23,6 +24,8 @@ namespace YourCompany.Configuration.EFCore.ExpressionsCaching
             {
                 if (parameter == null) throw new ArgumentNullException(nameof(parameter));
                 if (propertyName == null) throw new ArgumentNullException(nameof(propertyName));
+                if (ValueTupleHelper.CheckIsValueTuple(parameter.Type))
+                    throw new ApplicationException("ValueTupleHelper.CheckIsValueTuple(parameter.Type)");
 
                 var key = new EFPropertyKey
                 {
@@ -35,7 +38,7 @@ namespace YourCompany.Configuration.EFCore.ExpressionsCaching
             }
         }
 
-        internal static class FromParameter<T>
+        internal static partial class FromParameter<T>
         {
             internal static ParameterExpression Instance { get; }
 

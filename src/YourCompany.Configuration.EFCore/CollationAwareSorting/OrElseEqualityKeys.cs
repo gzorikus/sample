@@ -22,6 +22,7 @@ namespace YourCompany.Configuration.EFCore.CollationAwareSorting
             if (_protectedFromChanges) throw new ApplicationException("_protectedFromChanges");
             if (item == null) throw new ArgumentNullException(nameof(item));
             if (item.ReplaceQueriedSetName != null) throw new ApplicationException("item.ReplaceQueriedSetName != null");
+            if (item.EntitiesValueTuplePropertyOwnerIndecies != null) throw new ApplicationException("item.EntitiesValueTuplePropertyOwnerIndecies != null");
 
             Add(item);
             if (Count == 1)
@@ -43,6 +44,7 @@ namespace YourCompany.Configuration.EFCore.CollationAwareSorting
             {
                 var item = this[i] ?? throw new ApplicationException("this[i] == null");
                 if (item.ReplaceQueriedSetName != null) throw new ApplicationException("item.ReplaceQueriedSetName != null");
+                if (item.EntitiesValueTuplePropertyOwnerIndecies != null) throw new ApplicationException("item.EntitiesValueTuplePropertyOwnerIndecies != null");
 
                 if (singleTopology != null)
                 {

@@ -1,11 +1,17 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace YourCompany.Configuration.EFCore.CollationAwareSorting
 {
-    internal sealed partial class OrElseEqualityKeys : SortingKeyQueries.ISingleEntityEquality
+    internal sealed partial class OrElseEqualityKeys : SortingKeyQueries.ISingleEntityEquality,
+        SortingKeyQueries.IMultiTopologyMultiEntityQuery
     {
         public string ReplaceQueriedSetName { get; internal set; }
+
+        public IReadOnlyList<SortingKeyQueries.MultiEntityQuerySortingKeyPropertyOwnerIndex>
+            EntitiesValueTuplePropertyOwnerIndecies
+        { get; set; }
 
         IQueryable<TEntity> SortingKeyQueries.ISingleEntityEquality.GetEqual<TEntity>(IQueryable<TEntity> queryable)
             => PossibleSingleTopology != null
@@ -33,6 +39,21 @@ namespace YourCompany.Configuration.EFCore.CollationAwareSorting
             return queryable.Where(
                 this[0].PredicatesBuilder.GetEqualPredicate<TEntity>(
                     this, replacingQueriedSet: ReplaceQueriedSetName != null));
+        }
+
+        IQueryable<TEntity> SortingKeyQueries.IMultiEntityQuery.FilterOwnedPropertiesOnlyForEquality<TEntity>(
+            IQueryable<TEntity> queryable)
+            where TEntity : class
+            => MultiEntityFilterOwnedPropertiesOnlyForEquality(queryable);
+
+        public IQueryable<TEntity> MultiEntityFilterOwnedPropertiesOnlyForEquality<TEntity>(
+            IQueryable<TEntity> queryable)
+            where TEntity : class
+        {
+            if (queryable == null) throw new ArgumentNullException(nameof(queryable));
+            if (Count == 0) throw new ApplicationException("Count == 0");
+            var predicate = this[0].PredicatesBuilder.GetEqualPredicateAllowingPartialMatch<TEntity>(this);
+            return predicate != null ? queryable.Where(predicate) : queryable;
         }
 
         void SortingKeyQueries.ISingleEntityEquality.EnsureCompatibleWithSingleEntityEqualityQueries(
