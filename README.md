@@ -1434,15 +1434,14 @@ improve this later).
 
 <!-- ### Commit: 3|🏠: generic OLTP use cases END -->
 
-<!-- ### Commit: 3|🏠: OLTP UseCaseTypesMap
+### Commit: 3|🏠: OLTP UseCaseTypesMap
 
 <table><tbody><tr><td>
 
-X files changed, Y insertions(+), Z deletions(-)<br>
-<sub><sub>src/YourCompany.Module/</sub></sub><br>
-<kbd> +++++++ NNN |⁠ [File.cs                                                                                                        ](src/YourCompany.Configuration/EnvironmentConventions.cs)</kbd><br>
-
-Commit body is multiline and compliant to markdown formatting 💥
+2 files changed, 176 insertions(+)<br>
+<sub><sub>src/YourCompany.OLTP.RecordsManagement.UseCases.Reflection/</sub></sub><br>
+<kbd> +++++++ 89  |⁠ [UseCaseTypeInfo.cs                                                                                             ](src/YourCompany.OLTP.RecordsManagement.UseCases.Reflection/UseCaseTypeInfo.cs)</kbd><br>
+<kbd>  ++++++ 87  |⁠ [UseCaseTypesMap.cs                                                                                             ](src/YourCompany.OLTP.RecordsManagement.UseCases.Reflection/UseCaseTypesMap.cs)</kbd><br>
 
 </td></tr></tbody></table>
 
