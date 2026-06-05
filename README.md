@@ -1151,15 +1151,55 @@ Commit body is multiline and compliant to markdown formatting 💥
 
 <!-- ### Commit: 1|🏠: OLTP events producing END -->
 
-<!-- ### Commit: 1|🏠: OLTP transactional composition
+### Commit: 1|🏠: OLTP transactional composition
 
 <table><tbody><tr><td>
 
-X files changed, Y insertions(+), Z deletions(-)<br>
-<sub><sub>src/YourCompany.Module/</sub></sub><br>
-<kbd> +++++++ NNN |⁠ [File.cs                                                                                                        ](src/YourCompany.Configuration/EnvironmentConventions.cs)</kbd><br>
+1 file changed, 20 insertions(+)<br>
+<sub><sub>src/YourCompany.OLTP.StateOwnership.TransactionalComposition/</sub></sub><br>
+<kbd> +++++++ 20  |⁠ [TransactionalCompositionTransactionCallback.cs                                                                 ](src/YourCompany.OLTP.StateOwnership.TransactionalComposition/TransactionalCompositionTransactionCallback.cs)</kbd><br>
 
-Commit body is multiline and compliant to markdown formatting 💥
+When it comes to building your aggregates for modelling the domain  
+over a long period of time you often encounters them to be cluttered  
+with logic and data serving still the same purpose the model exists  
+but in different points of time and in different data volumes required.
+
+The nowadays approach that comes in mind right away is "microservices"  
+where you just need to split any concerns into separate apps. Sounds  
+like a silver bullet? 😁 Hold on...
+
+Before deciding to sell your soul to the devil, ask yourself:  
+
+- whether the service I extract is going to bring the value solely, and;
+- whether it's worth to lose the ACID guarantees for the sake of hype.
+
+Long story short (again), even if you go down that road, your best  
+bet is to prepare the code first before integrating it with the  
+extracted service, i.e. to let the integration be served still... with  
+a separated local module...
+
+Now let's take it serious as a rule of thumb: "whenever we find a  
+**subdomain** we first put it into a **separate assembly**". Do you  
+see much difference in where the assembly is located, in the local  
+code base or external? You might not yet, so no need to rush.
+
+Give it a chance to stay and retain the ACID guarantees while  
+utilizing the full-fledged modularity of your framework. For that we  
+just need to introduce the way aggregates could communicate each other  
+within the transaction 😲
+
+Since we've already delegated the state access away from our model  
+we have a way to identify which classes belong to the subset of those  
+aggregates. I.e. the ones getting `IStateAccess` in the constructor.  
+> Please note this once again in contrast to the ORM's approach where  
+you pass dozens of ctor parameters to obtaining the required state 🙈
+
+So our ctor is not so busy now, right? Why not to "ask it" to simply  
+accept other aggregates as dependencies, huh? Do you feel how it  
+smells like the sweet origins of OOP? 😁 Do you see how the language's  
+natural semantics are going to be put at the core of making clusters   
+of such aggregates "describing a single entity yet" 🤔 Hopefuly from  
+now on we're on the same page 🤞
 
 </td></tr></tbody></table>
 
