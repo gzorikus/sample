@@ -1347,15 +1347,16 @@ Commit body is multiline and compliant to markdown formatting 💥
 
 <!-- ### Commit: 2|💾: EFCore hosting migration run END -->
 
-<!-- ### Commit: 3|🏠: OLTP RecordTypesMap
+### Commit: 3|🏠: OLTP RecordTypesMap
 
 <table><tbody><tr><td>
 
-X files changed, Y insertions(+), Z deletions(-)<br>
-<sub><sub>src/YourCompany.Module/</sub></sub><br>
-<kbd> +++++++ NNN |⁠ [File.cs                                                                                                        ](src/YourCompany.Configuration/EnvironmentConventions.cs)</kbd><br>
-
-Commit body is multiline and compliant to markdown formatting 💥
+4 files changed, 263 insertions(+)<br>
+<sub><sub>src/YourCompany.OLTP.StateOwnership.Reflection/</sub></sub><br>
+<kbd> +++++++ 97  |⁠ [RecordConstructionHelper.cs                                                                                    ](src/YourCompany.OLTP.StateOwnership.Reflection/RecordConstructionHelper.cs)</kbd><br>
+<kbd>   +++++ 74  |⁠ [RecordTypeInfo.cs                                                                                              ](src/YourCompany.OLTP.StateOwnership.Reflection/RecordTypeInfo.cs)</kbd><br>
+<kbd>    ++++ 56  |⁠ [RecordConstructionException.cs                                                                                 ](src/YourCompany.OLTP.StateOwnership.Reflection/RecordConstructionException.cs)</kbd><br>
+<kbd>     +++ 36  |⁠ [RecordTypesMap.cs                                                                                              ](src/YourCompany.OLTP.StateOwnership.Reflection/RecordTypesMap.cs)</kbd><br>
 
 </td></tr></tbody></table>
 
