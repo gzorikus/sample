@@ -386,7 +386,7 @@ gitGraph
 %% merge "7|💾: EFCore multi-entity sorting" type:NORMAL tag:"4|💾|YourCompany.Configuration.EFCore" %% ESKR
 
 %% checkout "5|🧱: OLTP switch to chassis" %% OLMBU
-%% branch "4|🧱: OLTP LINQ may be useful" %% OLMBU
+branch "4|🧱: OLTP LINQ may be useful" %% OLMBU
 commit type:HIGHLIGHT tag:"4|🧱|oltp-segregate-persistence-repository-is-for-use-cases|YourCompany.OLTP.RecordsManagement.Persistence.Linq" %% OLMBU
 %% merge "5|💾: OLTP EFCore readonly" type:HIGHLIGHT tag:"4|🧱|oltp-segregate-persistence-repository-is-for-use-cases|YourCompany.OLTP.RecordsManagement.Persistence.Linq" %% OLMBU
 
@@ -761,10 +761,10 @@ commit type:HIGHLIGHT tag:"2|🏠|oltp-ways-to-access-size-limited-record-batch|
 checkout "MERGED" %% BCC
 %% checkout "2|💾: basic pluggable EFCore" %% BCC
 branch "1|🧱: basic configurations covered" %% BCC
-%% commit type:REVERSE %% BCC>1
-%% commit type:REVERSE %% BCC>2
-%% commit type:REVERSE %% BCC>3
-%% commit type:REVERSE %% BCC>4
+commit type:REVERSE %% BCC>1
+commit type:REVERSE %% BCC>2
+commit type:REVERSE %% BCC>3
+commit type:REVERSE %% BCC>4
 commit type:HIGHLIGHT tag:"1|🧱|configuration-entry-assembly-rotating-secrets-scaling-plugins|YourCompany.Configuration" %% BCC
 
 %% checkout "3|🏠: OLTP RecordTypesCompositionMap" %% OTC
@@ -869,8 +869,8 @@ commit type:HIGHLIGHT tag:"1|🧱|configuration-entry-assembly-rotating-secrets-
 %% commit type:REVERSE %% OTILS 1>2
 %% commit type:REVERSE %% OTILS 1>3
 
-checkout MERGED %% THOOIT
-%% checkout "2|🏠: OLTP transaction is limited size" %% THOOIT
+%% checkout MERGED %% THOOIT
+checkout "2|🏠: OLTP transaction is limited size" %% THOOIT
 %% checkout "3|🏠: OLTP RecordTypesMap" %% THOOIT
 branch "1|🏠: the heart of OLTP is transaction" %% THOOIT
 %% merge "2|🏠: OLTP transaction is limited size" %% THOOIT
@@ -1951,15 +1951,53 @@ Commit body is multiline and compliant to markdown formatting 💥
 
 <!-- ### Commit: 5|🧱: OLTP DI mixed repository END -->
 
-<!-- ### Commit: 5|💾: OLTP EFCore readonly
+### Commit: 5|💾: OLTP EFCore readonly
 
 <table><tbody><tr><td>
 
-X files changed, Y insertions(+), Z deletions(-)<br>
-<sub><sub>src/YourCompany.Module/</sub></sub><br>
-<kbd> +++++++ NNN |⁠ [File.cs                                                                                                        ](src/YourCompany.Configuration/EnvironmentConventions.cs)</kbd><br>
+21 files changed, 2256 insertions(+)<br>
+<sub><sub>src/YourCompany.OLTP.RecordsManagement.Persistence.Linq.EFCore/</sub></sub><br>
+<kbd> +++++++ 219 |⁠ [YourCompanyDbContextLockingRecordDataReader.cs                                                                 ](src/YourCompany.OLTP.RecordsManagement.Persistence.Linq.EFCore/YourCompanyDbContextLockingRecordDataReader.cs)</kbd><br>
+<kbd>  ++++++ 194 |⁠ [YourCompanyDbContextLockingRecordDataReader.SingleEntityQuery.WithoutIds.After.cs                              ](src/YourCompany.OLTP.RecordsManagement.Persistence.Linq.EFCore/YourCompanyDbContextLockingRecordDataReader.SingleEntityQuery.WithoutIds.After.cs)</kbd><br>
+<kbd>  ++++++ 184 |⁠ [YourCompanyDbContextLockingRecordDataReader.FactoriesCache.cs                                                  ](src/YourCompany.OLTP.RecordsManagement.Persistence.Linq.EFCore/YourCompanyDbContextLockingRecordDataReader.FactoriesCache.cs)</kbd><br>
+<kbd>   +++++ 182 |⁠ [YourCompanyDbContextRecordsDataAccessAdapter.cs                                                                ](src/YourCompany.OLTP.RecordsManagement.Persistence.Linq.EFCore/YourCompanyDbContextRecordsDataAccessAdapter.cs)</kbd><br>
+<kbd>   +++++ 177 |⁠ [YourCompanyDbContextFactory.cs                                                                                 ](src/YourCompany.OLTP.RecordsManagement.Persistence.Linq.EFCore/YourCompanyDbContextFactory.cs)</kbd><br>
+<kbd>   +++++ 166 |⁠ [YourCompanyDbContext.DelegatedPrimaryKeys.cs                                                                   ](src/YourCompany.OLTP.RecordsManagement.Persistence.Linq.EFCore/YourCompanyDbContext.DelegatedPrimaryKeys.cs)</kbd><br>
+<kbd>   +++++ 164 |⁠ [YourCompanyDbContextLockingRecordDataReader.SingleEntityQuery.ByIds.cs                                         ](src/YourCompany.OLTP.RecordsManagement.Persistence.Linq.EFCore/YourCompanyDbContextLockingRecordDataReader.SingleEntityQuery.ByIds.cs)</kbd><br>
+<kbd>    ++++ 143 |⁠ [YourCompanyDbContextLockingRecordDataReader.SingleEntityQuery.WithoutIds.cs                                    ](src/YourCompany.OLTP.RecordsManagement.Persistence.Linq.EFCore/YourCompanyDbContextLockingRecordDataReader.SingleEntityQuery.WithoutIds.cs)</kbd><br>
+<kbd>    ++++ 128 |⁠ [YourCompanyDbContextLockingRecordDataReader.SingleEntityQuery.ByIds.ResolvePrivateKeys.FromNatural.cs          ](src/YourCompany.OLTP.RecordsManagement.Persistence.Linq.EFCore/YourCompanyDbContextLockingRecordDataReader.SingleEntityQuery.ByIds.ResolvePrivateKeys.FromNatural.cs)</kbd><br>
+<kbd>    ++++ 116 |⁠ [YourCompanyDbContextLockingRecordDataReader.SingleEntityQuery.cs                                               ](src/YourCompany.OLTP.RecordsManagement.Persistence.Linq.EFCore/YourCompanyDbContextLockingRecordDataReader.SingleEntityQuery.cs)</kbd><br>
+<kbd>    ++++ 116 |⁠ [YourCompanyDbContextLockingRecordDataReader.SingleEntityQuery.ByIds.ResolvePrivateKeys.FromPublic.cs           ](src/YourCompany.OLTP.RecordsManagement.Persistence.Linq.EFCore/YourCompanyDbContextLockingRecordDataReader.SingleEntityQuery.ByIds.ResolvePrivateKeys.FromPublic.cs)</kbd><br>
+<kbd>     +++ 94  |⁠ [YourCompanyDbContextLockingRecordDataReader.SingleEntityQuery.ByIds.ResolvePrivateKeys.cs                      ](src/YourCompany.OLTP.RecordsManagement.Persistence.Linq.EFCore/YourCompanyDbContextLockingRecordDataReader.SingleEntityQuery.ByIds.ResolvePrivateKeys.cs)</kbd><br>
+<kbd>     +++ 92  |⁠ [YourCompanyDbContextLockingRecordDataReader.SingleEntityQuery.WithoutIds.NoSorting.cs                          ](src/YourCompany.OLTP.RecordsManagement.Persistence.Linq.EFCore/YourCompanyDbContextLockingRecordDataReader.SingleEntityQuery.WithoutIds.NoSorting.cs)</kbd><br>
+<kbd>      ++ 64  |⁠ [YourCompanyDbContext.cs                                                                                        ](src/YourCompany.OLTP.RecordsManagement.Persistence.Linq.EFCore/YourCompanyDbContext.cs)</kbd><br>
+<kbd>      ++ 54  |⁠ [YourCompanyDbContext.QueryableRecordDataTypes.cs                                                               ](src/YourCompany.OLTP.RecordsManagement.Persistence.Linq.EFCore/YourCompanyDbContext.QueryableRecordDataTypes.cs)</kbd><br>
+<kbd>       + 31  |⁠ [YourCompanyDbContext.DbContextLocking.cs                                                                       ](src/YourCompany.OLTP.RecordsManagement.Persistence.Linq.EFCore/YourCompanyDbContext.DbContextLocking.cs)</kbd><br>
+<kbd>       + 21  |⁠ [YourCompanyDbContextConfiguratorsLoadingContext.cs                                                             ](src/YourCompany.OLTP.RecordsManagement.Persistence.Linq.EFCore/YourCompanyDbContextConfiguratorsLoadingContext.cs)</kbd><br>
+<kbd>       + 16  |⁠ [YourCompanyDbContextConfiguration.cs                                                                           ](src/YourCompany.OLTP.RecordsManagement.Persistence.Linq.EFCore/YourCompanyDbContextConfiguration.cs)</kbd><br>
+<kbd>       + 14  |⁠ [YourCompanyDbContextConfigurator.cs                                                                            ](src/YourCompany.OLTP.RecordsManagement.Persistence.Linq.EFCore/YourCompanyDbContextConfigurator.cs)</kbd><br>
+<kbd>       + 7   |⁠ [YourCompanyDbContextFactoryLoadingConfiguration.cs                                                             ](src/YourCompany.OLTP.RecordsManagement.Persistence.Linq.EFCore/YourCompanyDbContextFactoryLoadingConfiguration.cs)</kbd><br>
+<sub><sub>src/YourCompany.OLTP.RecordsManagement.Persistence.Linq.EFCore/CollationAwareSorting/</sub></sub><br>
+<kbd>     +++ 74  |⁠ [CollationAwareSortingUniqueKeyAdapter.cs                                                                       ](src/YourCompany.OLTP.RecordsManagement.Persistence.Linq.EFCore/CollationAwareSorting/CollationAwareSortingUniqueKeyAdapter.cs)</kbd><br>
 
-Commit body is multiline and compliant to markdown formatting 💥
+This is a basic `ReadOnly` implementation of the records data access  
+adapter. At the core is a semi-closed hierarchy of  
+`YourCompanyDbContextLockingRecordDataReader` whose goal is to  
+encapsulate differences of accessing by ids and without. Later we'll  
+also introduce one for record data modifying part.
+
+Here we also introduce `DbContext` locking contrary to the popular  
+belief that its strictly single threaded. It **is** actually, and  
+wherever you find logic decomposed, you'd see either  
+"scoped" `DbContext` injected at several "handlers" limiting parallel  
+processing completely or the "Unit-of-Work" limiting modularity  
+completely. But we'll do it different, allowing `DbContext` to be  
+locked by one of parallel conflicting tasks so that when it's one  
+turn it can benefit of the `Local` view (local caching of previously  
+accessed data, i.e. locked in the same transaction when previously  
+modified) and the same time not bounding processing to a single  
+`DbContext` instance as it's made when "scoped" (since we solely  
+use DbContext factories).
 
 </td></tr></tbody></table>
 
