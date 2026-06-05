@@ -1246,15 +1246,39 @@ Commit body is multiline and compliant to markdown formatting 💥
 
 <!-- ### Commit: 2|🧱: TypesCompositionMap END -->
 
-<!-- ### Commit: 2|💾: basic pluggable EFCore
+### Commit: 2|💾: basic pluggable EFCore
 
 <table><tbody><tr><td>
 
-X files changed, Y insertions(+), Z deletions(-)<br>
-<sub><sub>src/YourCompany.Module/</sub></sub><br>
-<kbd> +++++++ NNN |⁠ [File.cs                                                                                                        ](src/YourCompany.Configuration/EnvironmentConventions.cs)</kbd><br>
+11 files changed, 681 insertions(+)<br>
+<sub><sub>src/YourCompany.Configuration.EFCore/</sub></sub><br>
+<kbd> +++++++ 145 |⁠ [YourCompanyDbContext.DbObjectsPrefixing.cs                                                                     ](src/YourCompany.Configuration.EFCore/YourCompanyDbContext.DbObjectsPrefixing.cs)</kbd><br>
+<kbd>   +++++ 117 |⁠ [YourCompanyDbContext.cs                                                                                        ](src/YourCompany.Configuration.EFCore/YourCompanyDbContext.cs)</kbd><br>
+<kbd>    ++++ 81  |⁠ [YourCompanyDbContextFactory.cs                                                                                 ](src/YourCompany.Configuration.EFCore/YourCompanyDbContextFactory.cs)</kbd><br>
+<kbd>      ++ 34  |⁠ [YourCompanyDbContextConfiguratorsLoadingContext.cs                                                             ](src/YourCompany.Configuration.EFCore/YourCompanyDbContextConfiguratorsLoadingContext.cs)</kbd><br>
+<kbd>       + 22  |⁠ [YourCompanyDbContextConfigurator.cs                                                                            ](src/YourCompany.Configuration.EFCore/YourCompanyDbContextConfigurator.cs)</kbd><br>
+<kbd>       + 13  |⁠ [ConfigurationExtensions.cs                                                                                     ](src/YourCompany.Configuration.EFCore/ConfigurationExtensions.cs)</kbd><br>
+<kbd>       + 11  |⁠ [YourCompanyDbContextConfiguration.cs                                                                           ](src/YourCompany.Configuration.EFCore/YourCompanyDbContextConfiguration.cs)</kbd><br>
+<kbd>       + 6   |⁠ [YourCompanyDbContextFactoryLoadingConfiguration.cs                                                             ](src/YourCompany.Configuration.EFCore/YourCompanyDbContextFactoryLoadingConfiguration.cs)</kbd><br>
+<sub><sub>src/YourCompany.Configuration.EFCore.PostgreSQL/</sub></sub><br>
+<kbd>   +++++ 115 |⁠ [PrefixedObjectNamesShortener.cs                                                                                ](src/YourCompany.Configuration.EFCore.PostgreSQL/PrefixedObjectNamesShortener.cs)</kbd><br>
+<kbd>     +++ 66  |⁠ [NpgsqlDbContextConfigurator.cs                                                                                 ](src/YourCompany.Configuration.EFCore.PostgreSQL/NpgsqlDbContextConfigurator.cs)</kbd><br>
+<sub><sub>src/YourCompany.Configuration.EFCore.Sqlite/</sub></sub><br>
+<kbd>     +++ 71  |⁠ [SqliteDbContextConfigurator.cs                                                                                 ](src/YourCompany.Configuration.EFCore.Sqlite/SqliteDbContextConfigurator.cs)</kbd><br>
 
-Commit body is multiline and compliant to markdown formatting 💥
+Firstly it supports both `RunTime` and `DesignTime` factories which  
+are usually troublesome to combine. See detailed in the example how to  
+make your migrations target this shared `YourCompanyDbContext`.
+
+As of `YourCompanyDbContext` it accepts `TConfiguration` what allows  
+you to have multiple configurations and models respectively but  
+its both uncommon and not encouraged in practice (i.e. separate apps).
+
+Also there is `ConfiguredUtcNow` which is useful in testing. And ofc  
+we support `GetYourCompanyInfraObjectNamesPrefix` by prefixing DB  
+objects within the connection string configured schema.
+
+For demo provider plugins we've chosen PostgreSQL and Sqlite.
 
 </td></tr></tbody></table>
 
