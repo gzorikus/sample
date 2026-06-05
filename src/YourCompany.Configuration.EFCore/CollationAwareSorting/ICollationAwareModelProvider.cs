@@ -1,11 +1,13 @@
 using System;
 using System.Collections.Generic;
+using YourCompany.Configuration.EFCore.CollationAwareSorting.Metadata;
 
 namespace YourCompany.Configuration.EFCore.CollationAwareSorting
 {
     public interface ICollationAwareModelProvider
     {
         string GetEntityTableName(SortingKeyTopology.PropertiesOwner propertiesOwner);
+        EFEntityTypeSortingKeyTopology.ILastProperty GetEntityTypeTopology(SortingKeyTopology.PropertiesOwner propertiesOwner);
         Type GetPropertyValueType(SortingKeyTopology.PropertiesOwner propertyOwner, string propertyName);
         Type GetPropertyProviderValueTypeIfDiffers(SortingKeyTopology.PropertiesOwner propertyOwner, string propertyName);
 

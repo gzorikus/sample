@@ -1594,15 +1594,24 @@ Commit body is multiline and compliant to markdown formatting 💥
 
 <!-- ### Commit: 4|💾: OLTP EFCore ID generation END -->
 
-<!-- ### Commit: 4|💾: EFEntityTypeSortingKeyTopology
+### Commit: 4|💾: EFEntityTypeSortingKeyTopology
 
 <table><tbody><tr><td>
 
-X files changed, Y insertions(+), Z deletions(-)<br>
-<sub><sub>src/YourCompany.Module/</sub></sub><br>
-<kbd> +++++++ NNN |⁠ [File.cs                                                                                                        ](src/YourCompany.Configuration/EnvironmentConventions.cs)</kbd><br>
+7 files changed, 347 insertions(+)<br>
+<sub><sub>src/YourCompany.Configuration.EFCore/CollationAwareSorting/Metadata/</sub></sub><br>
+<kbd> +++++++ 90  |⁠ [EFEntityTypeSortingKeyTopology.Visiting.cs                                                                     ](src/YourCompany.Configuration.EFCore/CollationAwareSorting/Metadata/EFEntityTypeSortingKeyTopology.Visiting.cs)</kbd><br>
+<kbd>  ++++++ 83  |⁠ [EFEntityTypeSortingKeyTopology.PrefixFirstPropertiesVisitCache.cs                                              ](src/YourCompany.Configuration.EFCore/CollationAwareSorting/Metadata/EFEntityTypeSortingKeyTopology.PrefixFirstPropertiesVisitCache.cs)</kbd><br>
+<kbd>  ++++++ 77  |⁠ [EFEntityTypeSortingKeyTopology.cs                                                                              ](src/YourCompany.Configuration.EFCore/CollationAwareSorting/Metadata/EFEntityTypeSortingKeyTopology.cs)</kbd><br>
+<kbd>       + 11  |⁠ [CollationAwareSortingSingleModelProvider.cs                                                                    ](src/YourCompany.Configuration.EFCore/CollationAwareSorting/Metadata/CollationAwareSortingSingleModelProvider.cs)</kbd><br>
+<kbd>       + 4   |⁠ [ModelExtensions.cs                                                                                             ](src/YourCompany.Configuration.EFCore/CollationAwareSorting/Metadata/ModelExtensions.cs)</kbd><br>
+<sub><sub>src/YourCompany.Configuration.EFCore/CollationAwareSorting/</sub></sub><br>
+<kbd>  ++++++ 80  |⁠ [SortingKeyTopology.PrefixFirstPropertiesVisitCache.cs                                                          ](src/YourCompany.Configuration.EFCore/CollationAwareSorting/SortingKeyTopology.PrefixFirstPropertiesVisitCache.cs)</kbd><br>
+<kbd>       + 2   |⁠ [ICollationAwareModelProvider.cs                                                                                ](src/YourCompany.Configuration.EFCore/CollationAwareSorting/ICollationAwareModelProvider.cs)</kbd><br>
 
-Commit body is multiline and compliant to markdown formatting 💥
+An edge case of the topology is all the entity properties.  
+Using previously introduced visiting abilities it will allow to  
+optimally implement some missing operations in EF.
 
 </td></tr></tbody></table>
 
