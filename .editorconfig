@@ -1,0 +1,66 @@
+root = true
+
+[*.cs, *.csproj, *.md, *.slnx]
+end_of_line = lf
+
+[*.cs]
+csharp_indent_case_contents_when_block = false
+
+# Set severity for all analyzers that are enabled by default (https://docs.microsoft.com/en-us/visualstudio/code-quality/use-roslyn-analyzers?view=vs-2022#set-rule-severity-of-multiple-analyzer-rules-at-once-in-an-editorconfig-file)
+#dotnet_analyzer_diagnostic.category-roslynator.severity = default|none|silent|suggestion|warning|error
+dotnet_analyzer_diagnostic.category-roslynator.severity = warning
+
+# Enable/disable all analyzers by default.
+# NOTE: This option can be used only in .roslynatorconfig file
+#roslynator_analyzers.enabled_by_default = true|false
+
+# Set severity for a specific analyzer
+#dotnet_diagnostic.<ANALYZER_ID>.severity = default|none|silent|suggestion|warning|error
+dotnet_diagnostic.ca1859.severity = silent # Change type of variable 'x' from 'A' to 'B' for improved performance
+dotnet_diagnostic.ca2219.severity = silent # Do not raise an exception from within a finally clause
+dotnet_diagnostic.ide0001.severity = warning # Name can be simplified
+dotnet_diagnostic.ide0002.severity = warning # Name can be simplified
+dotnet_diagnostic.ide0003.severity = warning # Name can be simplified
+dotnet_diagnostic.ide0005.severity = warning # Using directive is unnecessary
+dotnet_diagnostic.ide0016.severity = silent # Null check can be simplified
+dotnet_diagnostic.ide0019.severity = silent # Use pattern matching
+dotnet_diagnostic.ide0028.severity = silent # Collection initialization can be simplified
+dotnet_diagnostic.ide0041.severity = none # Null check can be simplified
+dotnet_diagnostic.ide0056.severity = silent # Indexing can be simplified
+dotnet_diagnostic.rcs1001.severity = silent # Add braces (when expression spans over multiple lines)
+dotnet_diagnostic.rcs1006.severity = silent # Merge 'else' with nested 'if'
+dotnet_diagnostic.rcs1021.severity = silent # Use expression-bodied lambda
+dotnet_diagnostic.rcs1037.severity = none # Remove trailing white-space
+dotnet_diagnostic.rcs1123.severity = none # Add parentheses when necessary
+dotnet_diagnostic.rcs1124.severity = none # Inline local variable
+dotnet_diagnostic.rcs1146.severity = none # Use conditional access
+dotnet_diagnostic.rcs1158.severity = none # Static member in generic type should use a type parameter
+dotnet_diagnostic.rcs1161.severity = silent # Enum should declare explicit values
+dotnet_diagnostic.rcs1179.severity = silent # Unnecessary assignment
+dotnet_diagnostic.rcs1181.severity = silent # Convert comment to documentation comment
+dotnet_diagnostic.rcs1186.severity = silent # Use Regex instance instead of static method
+dotnet_diagnostic.rcs1194.severity = silent # Implement exception constructors
+dotnet_diagnostic.rcs1199.severity = silent # Unnecessary null check
+dotnet_diagnostic.rcs1201.severity = silent # Use method chaining
+dotnet_diagnostic.rcs1217.severity = none # Convert interpolated string to concatenation
+dotnet_diagnostic.rcs1221.severity = silent # Use pattern matching instead of combination of 'as' operator and null check
+dotnet_diagnostic.rcs1224.severity = silent # Make method an extension method
+dotnet_diagnostic.rcs1227.severity = silent # Validate arguments correctly
+dotnet_diagnostic.rcs1238.severity = silent # Avoid nested ?: operators
+dotnet_diagnostic.rcs1241.severity = silent # Implement non-generic counterpart
+dotnet_diagnostic.rcs1251.severity = none # Remove unnecessary braces
+dotnet_diagnostic.rcs1266.severity = none # Use raw string literal
+
+# Enable/disable all refactorings
+roslynator_refactorings.enabled = true
+
+# Enable/disable specific refactoring
+#roslynator_refactoring.<REFACTORING_NAME>.enabled = true|false
+
+# Enable/disable all compiler diagnostic fixes
+roslynator_compiler_diagnostic_fixes.enabled = true
+
+# Enable/disable specific compiler diagnostic fix
+#roslynator_compiler_diagnostic_fix.<COMPILER_DIAGNOSTIC_ID>.enabled = true|false
+
+roslynator_prefix_field_identifier_with_underscore = true

@@ -1,0 +1,15 @@
+{
+    "files.exclude": {
+        ".github": true,
+        ".vs": true,
+        ".vscode": true,
+        "**/bin": true,
+        "**/obj": true
+    },
+    "editor.rulers": [
+        120, 160
+    ],
+    "files.associations": {
+        "appsettings.json*": "jsonc"
+    },
+}

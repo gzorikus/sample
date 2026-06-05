@@ -1,0 +1,7 @@
+# apply with git config --local include.path ../.gitconfig
+
+[commit]
+	cleanup = verbatim # to prevent commit body lines trimming for the sake of markdown complience
+
+[alias]
+    interactiverebasebeforebreak = !powershell -ExecutionPolicy Bypass -File ./scripts/CommitLogsToReadmeMd.ps1
