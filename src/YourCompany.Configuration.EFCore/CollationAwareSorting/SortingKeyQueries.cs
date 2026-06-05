@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace YourCompany.Configuration.EFCore.CollationAwareSorting
 {
-    public static class SortingKeyQueries
+    public static partial class SortingKeyQueries
     {
         public interface ISingleEntityFiltering : ISingleEntitySorting, ISingleEntityEquality
         {
