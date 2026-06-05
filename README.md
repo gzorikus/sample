@@ -204,7 +204,7 @@ All the entry point branches' heads are highlighted in the graph as ⏹️.
 ---
 config:
   gitGraph:
-    mainBranchName: "0|🧱: welcome aboard"
+    mainBranchName: "1|🧱: basic configurations covered"
     parallelCommits: true
     rotateCommitLabel: false
     showCommitLabel: false
@@ -765,7 +765,7 @@ gitGraph
 %% commit type:REVERSE %% BCC>2
 %% commit type:REVERSE %% BCC>3
 %% commit type:REVERSE %% BCC>4
-%% commit type:HIGHLIGHT tag:"1|🧱|configuration-entry-assembly-rotating-secrets-scaling-plugins|YourCompany.Configuration" %% BCC
+commit type:HIGHLIGHT tag:"1|🧱|configuration-entry-assembly-rotating-secrets-scaling-plugins|YourCompany.Configuration" %% BCC
 
 %% checkout "3|🏠: OLTP RecordTypesCompositionMap" %% OTC
 %% commit type:REVERSE %% OTC<1
@@ -1005,15 +1005,15 @@ Cons: why it might be not enough for you
 
 <!-- ### Branch: oltp-ways-to-access-size-limited-record-batch END -->
 
-<!-- ### Branch: configuration-entry-assembly-rotating-secrets-scaling-plugins
+### Branch: configuration-entry-assembly-rotating-secrets-scaling-plugins
 
-> Files: ### | Lines: #####  
-Pros: why do you choose this entry point  
-Cons: why it might be not enough for you
+> Files: 10 | Lines: 637  
+Pros: not tied to typical component types, the most common  
+Cons: you may find another set of conventions more suitable
 
 | Log | Examples | Modules |
 |-|-|-|
-| [replace_with_each_included_commit_subject](#commit-with-lower-case-subject) | <kbd> [at‑least‑one‑example‑solution‑name](examples/at-least-one-example-solution-per-commit/README.md#commit-with-lower-case-subject) </kbd><br><kbd> [extra‑example‑solution‑name](examples/extra-example-solution-name/README.md#commit-with-lower-case-subject) </kbd> | <kbd>YourCompany.Framework.Assembly.Name1 (+diff lines)</kbd><br><kbd>YourCompany.Framework.Assembly.Name2 (-diff lines)</kbd><br><kbd>YourCompany.Framework.Assembly.NameN (0 lines)</kbd> |
+| [1\|⁠🧱: basic configurations covered](#commit-1-basic-configurations-covered) | <kbd> [TODO](examples/at-least-one-example-solution-per-commit/README.md#commit-1-basic-configurations-covered) </kbd> | <kbd>YourCompany.Configuration (+637 lines)</kbd> |
 
 <!-- ### Branch: configuration-entry-assembly-rotating-secrets-scaling-plugins END -->
 
@@ -1091,15 +1091,44 @@ Commit body is multiline and compliant to markdown formatting 💥
 
 <!-- ### Commit: 1|🏠: OLTP transactional composition END -->
 
-<!-- ### Commit: 1|🧱: basic configurations covered
+### Commit: 1|🧱: basic configurations covered
 
 <table><tbody><tr><td>
 
-X files changed, Y insertions(+), Z deletions(-)<br>
-<sub><sub>src/YourCompany.Module/</sub></sub><br>
-<kbd> +++++++ NNN |⁠ [File.cs                                                                                                        ](src/YourCompany.Configuration/EnvironmentConventions.cs)</kbd><br>
+10 files changed, 637 insertions(+)<br>
+<sub><sub>src/YourCompany.Configuration/</sub></sub><br>
+<kbd> +++++++ 182 |⁠ [EnvironmentConventions.cs                                                                                      ](src/YourCompany.Configuration/EnvironmentConventions.cs)</kbd><br>
+<kbd>   +++++ 122 |⁠ [YourCompanyPluginsLoader.cs                                                                                    ](src/YourCompany.Configuration/YourCompanyPluginsLoader.cs)</kbd><br>
+<kbd>   +++++ 122 |⁠ [ConfigurationExtensions.cs                                                                                     ](src/YourCompany.Configuration/ConfigurationExtensions.cs)</kbd><br>
+<kbd>     +++ 75  |⁠ [YourCompanyAssemblyLoadContext.cs                                                                              ](src/YourCompany.Configuration/YourCompanyAssemblyLoadContext.cs)</kbd><br>
+<kbd>      ++ 31  |⁠ [AssemblyExtensions.cs                                                                                          ](src/YourCompany.Configuration/AssemblyExtensions.cs)</kbd><br>
+<kbd>       + 29  |⁠ [GitHelper.cs                                                                                                   ](src/YourCompany.Configuration/GitHelper.cs)</kbd><br>
+<kbd>       + 11  |⁠ [YourCompanyPluginsLoadingContext.cs                                                                            ](src/YourCompany.Configuration/YourCompanyPluginsLoadingContext.cs)</kbd><br>
+<kbd>       + 9   |⁠ [YourCompanyPluginLoadingConfiguration.cs                                                                       ](src/YourCompany.Configuration/YourCompanyPluginLoadingConfiguration.cs)</kbd><br>
+<sub><sub>src/YourCompany.Configuration/KeyFileToBase64/</sub></sub><br>
+<kbd>      ++ 41  |⁠ [KeyFileToBase64ConfigurationProvider.cs                                                                        ](src/YourCompany.Configuration/KeyFileToBase64/KeyFileToBase64ConfigurationProvider.cs)</kbd><br>
+<kbd>       + 15  |⁠ [KeyFileToBase64ConfigurationSource.cs                                                                          ](src/YourCompany.Configuration/KeyFileToBase64/KeyFileToBase64ConfigurationSource.cs)</kbd><br>
 
-Commit body is multiline and compliant to markdown formatting 💥
+⚠️ make sure your application entry project (one per solution) has  
+reference to Microsoft.Extensions.Configuration.UserSecrets package  
+and sets unique `UserSecretsId` beneath the `TargetFramework` ⚠️ that  
+serves as a marker to find an entry assembly which is a main convention.
+
+`EnvironmentConventions` contains constants explaining the basics.  
+As of unusual features is `GetYourCompanyInfraObjectNamesPrefix`  
+`IConfiguration` extension method which allows to "switch environment  
+without switching infrastructure". This might be useful to either  
+utilize integrated infrastructure's own scaling abilities  
+(e.g. namespaces/topics) or simply organize zero-configuration start  
+for your developers letting to share the same testing environment that  
+comes out very handy sometimes.
+
+As of plugins - one decision point is being "collectible". It's not  
+that relevant nowadays, since we work in containerized environments  
+and therefore we skip using it. For simplicity it's enough to use  
+single loading context per extension point, where it loads those of  
+assemblies required only which are not reachable down through the  
+entry assembly's dependencies.
 
 </td></tr></tbody></table>
 

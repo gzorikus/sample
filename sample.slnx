@@ -11,7 +11,7 @@
   </Folder>
   <Folder Name="/src/">
     <!-- <Project Path="src/YourCompany.CompilerServices/YourCompany.CompilerServices.csproj" /> -->
-    <!-- <Project Path="src/YourCompany.Configuration/YourCompany.Configuration.csproj" /> -->
+    <Project Path="src/YourCompany.Configuration/YourCompany.Configuration.csproj" />
     <!-- <Project Path="src/YourCompany.Configuration.EFCore/YourCompany.Configuration.EFCore.csproj" /> -->
     <!-- <Project Path="src/YourCompany.Configuration.EFCore.Hosting/YourCompany.Configuration.EFCore.Hosting.csproj" /> -->
     <!-- <Project Path="src/YourCompany.Configuration.EFCore.PostgreSQL/YourCompany.Configuration.EFCore.PostgreSQL.csproj" /> -->
