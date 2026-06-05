@@ -1254,15 +1254,13 @@ transaction. Such key identity is sometimes called a "cursor".
 
 <!-- ### Commit: 2|🏠: OLTP transaction is limited size END -->
 
-<!-- ### Commit: 2|🧱: StructHelper
+### Commit: 2|🧱: StructHelper
 
 <table><tbody><tr><td>
 
-X files changed, Y insertions(+), Z deletions(-)<br>
-<sub><sub>src/YourCompany.Module/</sub></sub><br>
-<kbd> +++++++ NNN |⁠ [File.cs                                                                                                        ](src/YourCompany.Configuration/EnvironmentConventions.cs)</kbd><br>
-
-Commit body is multiline and compliant to markdown formatting 💥
+1 file changed, 18 insertions(+)<br>
+<sub><sub>src/YourCompany.CompilerServices/</sub></sub><br>
+<kbd> +++++++ 18  |⁠ [StructHelper.cs                                                                                                ](src/YourCompany.CompilerServices/StructHelper.cs)</kbd><br>
 
 </td></tr></tbody></table>
 
