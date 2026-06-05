@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\YourCompany.CompilerServices\YourCompany.CompilerServices.csproj" />
+    <ProjectReference Include="..\YourCompany.OLTP.RecordsManagement\YourCompany.OLTP.RecordsManagement.csproj" />
+  </ItemGroup>
+
+</Project>

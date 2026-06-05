@@ -204,7 +204,7 @@ All the entry point branches' heads are highlighted in the graph as ⏹️.
 ---
 config:
   gitGraph:
-    mainBranchName: "3|🧱: OLTP transaction structure"
+    mainBranchName: "4|🧱: OLTP identities are unique keys"
     parallelCommits: true
     rotateCommitLabel: false
     showCommitLabel: false
@@ -392,7 +392,7 @@ gitGraph
 
 %% branch "4|🧱: OLTP identities are unique keys" %% OIAUK
 %% commit type:REVERSE %% OIAUK>1
-%% commit type:HIGHLIGHT tag:"4|🧱|oltp-segregate-persistence-repository-is-for-use-cases|YourCompany.OLTP.RecordsManagement.Persistence" %% OIAUK
+commit type:HIGHLIGHT tag:"4|🧱|oltp-segregate-persistence-repository-is-for-use-cases|YourCompany.OLTP.RecordsManagement.Persistence" %% OIAUK
 %% commit type:NORMAL tag:"4|🧱|YourCompany.OLTP.RecordsManagement.Persistence" %% OIAUK
 
 %% checkout "5|🧱: OLTP record composition to chassis" %% OUCBRT
@@ -454,8 +454,8 @@ gitGraph
 %% commit type:REVERSE %% OIAUK 3>1
 
 %% checkout "4|🏠: enumerate OLTP use cases" %% OTS
-%% checkout "4|🧱: OLTP identities are unique keys" %% OTS
-%% branch "3|🧱: OLTP transaction structure" %% OTS
+checkout "4|🧱: OLTP identities are unique keys" %% OTS
+branch "3|🧱: OLTP transaction structure" %% OTS
 %% merge "4|🧱: OLTP identities are unique keys" %% OTS
 %% commit type:REVERSE %% OTS>1
 %% commit type:REVERSE %% OTS>2
@@ -714,9 +714,9 @@ commit type:HIGHLIGHT tag:"3|🧱|oltp-typical-transaction-structure-repository-
 %% commit type:REVERSE %% ATL>5
 %% commit type:NORMAL tag:"2|🧱|YourCompany.Threading" %% ATL
 
-%% checkout "4|🧱: OLTP identities are unique keys" %% SH
-%% branch "2|🧱: StructHelper" %% SH
-%% commit type:REVERSE %% SH>1
+checkout "4|🧱: OLTP identities are unique keys" %% SH
+branch "2|🧱: StructHelper" %% SH
+commit type:REVERSE %% SH>1
 %% commit type:REVERSE %% SH>2
 %% commit type:REVERSE %% SH>3
 %% commit type:REVERSE %% SH>4
@@ -734,7 +734,7 @@ commit type:HIGHLIGHT tag:"3|🧱|oltp-typical-transaction-structure-repository-
 %% commit type:REVERSE %% SH>16
 %% commit type:REVERSE %% SH>17
 %% commit type:REVERSE %% SH>18
-%% commit type:NORMAL tag:"2|🧱|YourCompany.CompilerServices" %% SH
+commit type:NORMAL tag:"2|🧱|YourCompany.CompilerServices" %% SH
 
 %% checkout "3|🧱: OLTP transaction structure" %% Startup Iteration 2
 %% commit type:REVERSE %% OTS 2>1
@@ -751,7 +751,7 @@ commit type:HIGHLIGHT tag:"3|🧱|oltp-typical-transaction-structure-repository-
 %% commit type:REVERSE %% OTS 2>12
 
 %% checkout "3|🏠: generic OLTP use cases" %% OTILS
-%% checkout "3|🧱: OLTP transaction structure" %% OTILS
+checkout "3|🧱: OLTP transaction structure" %% OTILS
 branch "2|🏠: OLTP transaction is limited size" %% OTILS
 commit type:HIGHLIGHT tag:"2|🏠|oltp-ways-to-access-size-limited-record-batch|YourCompany.OLTP.RecordsManagement" %% OTILS
 %% merge "3|🧱: OLTP transaction structure" type:HIGHLIGHT tag:"2|🏠|oltp-ways-to-access-size-limited-record-batch|YourCompany.OLTP.RecordsManagement" %% OTILS
@@ -957,15 +957,19 @@ Cons: why it might be not enough for you
 
 <!-- ### Branch: oltp-di-combine-use-case-and-persistence-interfaces-switch-to-chassis END -->
 
-<!-- ### Branch: oltp-segregate-persistence-repository-is-for-use-cases
+### Branch: oltp-segregate-persistence-repository-is-for-use-cases
 
-> Files: ### | Lines: #####  
-Pros: why do you choose this entry point  
-Cons: why it might be not enough for you
+> Files: 54 | Lines: 5449  
+Pros: clarified identities and streamlined persistence implementation  
+Cons: may be not enough organized if you need to reuse some use cases
 
 | Log | Examples | Modules |
 |-|-|-|
-| [replace_with_each_included_commit_subject](#commit-with-lower-case-subject) | <kbd> [at‑least‑one‑example‑solution‑name](examples/at-least-one-example-solution-per-commit/README.md#commit-with-lower-case-subject) </kbd><br><kbd> [extra‑example‑solution‑name](examples/extra-example-solution-name/README.md#commit-with-lower-case-subject) </kbd> | <kbd>YourCompany.Framework.Assembly.Name1 (+diff lines)</kbd><br><kbd>YourCompany.Framework.Assembly.Name2 (-diff lines)</kbd><br><kbd>YourCompany.Framework.Assembly.NameN (0 lines)</kbd> |
+| [1\|⁠🏠: the heart of OLTP is transaction](#commit-1-the-heart-of-oltp-is-transaction) | <kbd> [TODO](examples/at-least-one-example-solution-per-commit/README.md#commit-1-the-heart-of-oltp-is-transaction) </kbd> | <kbd>YourCompany.OLTP.StateOwnership (+371 lines)</kbd> |
+| [2\|⁠🏠: OLTP transaction is limited size](#commit-2-oltp-transaction-is-limited-size) | <kbd> [TODO](examples/at-least-one-example-solution-per-commit/README.md#commit-2-oltp-transaction-is-limited-size) </kbd> | <kbd>YourCompany.OLTP.RecordsManagement (+1500 lines)</kbd> |
+| [2\|⁠🧱: StructHelper](#commit-2-structhelper) | <kbd> [TODO](examples/at-least-one-example-solution-per-commit/README.md#commit-2-structhelper) </kbd> | <kbd>YourCompany.CompilerServices (+18 lines)</kbd> |
+| [3\|⁠🧱: OLTP transaction structure](#commit-3-oltp-transaction-structure) | <kbd> [TODO](examples/at-least-one-example-solution-per-commit/README.md#commit-3-oltp-transaction-structure) </kbd> | <kbd>YourCompany.OLTP.RecordsManagement (+1918 lines)</kbd> |
+| [4\|⁠🧱: OLTP identities are unique keys](#commit-4-oltp-identities-are-unique-keys) | <kbd> [TODO](examples/at-least-one-example-solution-per-commit/README.md#commit-4-oltp-identities-are-unique-keys) </kbd> | <kbd>YourCompany.OLTP.RecordsManagement.Persistence (+1642 lines)</kbd> |
 
 <!-- ### Branch: oltp-segregate-persistence-repository-is-for-use-cases END -->
 
@@ -1575,15 +1579,60 @@ Commit body is multiline and compliant to markdown formatting 💥
 
 <!-- ### Commit: 4|🏠: OLTP use cases by record type END -->
 
-<!-- ### Commit: 4|🧱: OLTP identities are unique keys
+### Commit: 4|🧱: OLTP identities are unique keys
 
 <table><tbody><tr><td>
 
-X files changed, Y insertions(+), Z deletions(-)<br>
-<sub><sub>src/YourCompany.Module/</sub></sub><br>
-<kbd> +++++++ NNN |⁠ [File.cs                                                                                                        ](src/YourCompany.Configuration/EnvironmentConventions.cs)</kbd><br>
+11 files changed, 1642 insertions(+)<br>
+<sub><sub>src/YourCompany.OLTP.RecordsManagement.Persistence/</sub></sub><br>
+<kbd> +++++++ 257 |⁠ [RecordsDataAccess.Proxy.cs                                                                                     ](src/YourCompany.OLTP.RecordsManagement.Persistence/RecordsDataAccess.Proxy.cs)</kbd><br>
+<kbd>  ++++++ 238 |⁠ [RecordsDataAccess.State.FinishingChain.cs                                                                      ](src/YourCompany.OLTP.RecordsManagement.Persistence/RecordsDataAccess.State.FinishingChain.cs)</kbd><br>
+<kbd>  ++++++ 227 |⁠ [RecordsBatchTransactionDataBridge.cs                                                                           ](src/YourCompany.OLTP.RecordsManagement.Persistence/RecordsBatchTransactionDataBridge.cs)</kbd><br>
+<kbd>  ++++++ 225 |⁠ [RecordsDataAccess.State.cs                                                                                     ](src/YourCompany.OLTP.RecordsManagement.Persistence/RecordsDataAccess.State.cs)</kbd><br>
+<kbd>    ++++ 171 |⁠ [UniqueKey.Primary.cs                                                                                           ](src/YourCompany.OLTP.RecordsManagement.Persistence/UniqueKey.Primary.cs)</kbd><br>
+<kbd>    ++++ 157 |⁠ [RecordsDataAccess.State.ReadIdentity.cs                                                                        ](src/YourCompany.OLTP.RecordsManagement.Persistence/RecordsDataAccess.State.ReadIdentity.cs)</kbd><br>
+<kbd>    ++++ 130 |⁠ [RecordsDataAccess.cs                                                                                           ](src/YourCompany.OLTP.RecordsManagement.Persistence/RecordsDataAccess.cs)</kbd><br>
+<kbd>      ++ 85  |⁠ [RecordsDataAccess.State.AfterSorting.cs                                                                        ](src/YourCompany.OLTP.RecordsManagement.Persistence/RecordsDataAccess.State.AfterSorting.cs)</kbd><br>
+<kbd>      ++ 61  |⁠ [UniqueKey.Alternate.cs                                                                                         ](src/YourCompany.OLTP.RecordsManagement.Persistence/UniqueKey.Alternate.cs)</kbd><br>
+<kbd>      ++ 50  |⁠ [UniqueKey.cs                                                                                                   ](src/YourCompany.OLTP.RecordsManagement.Persistence/UniqueKey.cs)</kbd><br>
+<kbd>       + 41  |⁠ [UniqueKeyExtensions.cs                                                                                         ](src/YourCompany.OLTP.RecordsManagement.Persistence/UniqueKeyExtensions.cs)</kbd><br>
 
-Commit body is multiline and compliant to markdown formatting 💥
+These might be primary, natural, or... prefixed. Remember afterId?  
+Keyset pagination? When we sort by some data columns we could  
+not necessarily use unique tuples, but rather just add a primary key  
+still allowing to utilize keyset pagination. Either way the query  
+result is expected to expose the so called "cursor" having the same  
+structure as the key parameter (afterId).
+
+The mistake № 2 is to expose generated sequential ids, store,  
+serialize it outside the original storage, its btw a security concern 👻
+
+The mistake № 3 is to violate aggregate boundaries by putting extra  
+foreign keys between aggregates still using those sequential ids.
+
+UniqueKey semi-closed hierarchy takes into account all of these  
+and implements the major rules of identity lifecycle, such as  
+separating public and private PK as well as using predetermined  
+optimal PK types, i.e. `long` to be tolerant to continuous insertion  
+errors and `Guid` to be easily serializable and unified in a future  
+API surface.
+
+As for `RecordsBatchTransaction`, or more precisely  
+`RecordsBatchTransactionDataBridge` bridging the state-sequenced set  
+of data access interfaces, you still need to implement several  
+required methods:
+
+1. `Authorize`
+2. `BuildRecord`
+3. `PrepareRecordsBatchChanges`
+4. `HandleResultingRecordsBatch`
+
+These might be still not desired. You may find more useful the  
+oltp-segregate-use-cases-repository-is-for-persistence branch.
+
+> To make both approaches work together we'll next introduce a DI  
+facade which will allow to avoid inheriting `RecordsBatchTransaction`  
+completely.
 
 </td></tr></tbody></table>
 

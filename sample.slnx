@@ -20,7 +20,7 @@
     <!-- <Project Path="src/YourCompany.OLTP.RecordsManagement.DI/YourCompany.OLTP.RecordsManagement.DI.csproj" /> -->
     <!-- <Project Path="src/YourCompany.OLTP.RecordsManagement.DI.EFCore/YourCompany.OLTP.RecordsManagement.DI.EFCore.csproj" /> -->
     <!-- <Project Path="src/YourCompany.OLTP.RecordsManagement.DI.TransactionalComposition/YourCompany.OLTP.RecordsManagement.DI.TransactionalComposition.csproj" /> -->
-    <!-- <Project Path="src/YourCompany.OLTP.RecordsManagement.Persistence/YourCompany.OLTP.RecordsManagement.Persistence.csproj" /> -->
+    <Project Path="src/YourCompany.OLTP.RecordsManagement.Persistence/YourCompany.OLTP.RecordsManagement.Persistence.csproj" />
     <!-- <Project Path="src/YourCompany.OLTP.RecordsManagement.Persistence.Linq/YourCompany.OLTP.RecordsManagement.Persistence.Linq.csproj" /> -->
     <!-- <Project Path="src/YourCompany.OLTP.RecordsManagement.Persistence.Linq.EFCore/YourCompany.OLTP.RecordsManagement.Persistence.Linq.EFCore.csproj" /> -->
     <!-- <Project Path="src/YourCompany.OLTP.RecordsManagement.UseCases/YourCompany.OLTP.RecordsManagement.UseCases.csproj" /> -->
