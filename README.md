@@ -1159,15 +1159,55 @@ Commit body is multiline and compliant to markdown formatting 💥
 
 <!-- ### Commit: 1|🏠: OLTP events producing END -->
 
-<!-- ### Commit: 1|🏠: OLTP transactional composition
+### Commit: 1|🏠: OLTP transactional composition
 
 <table><tbody><tr><td>
 
-X files changed, Y insertions(+), Z deletions(-)<br>
-<sub><sub>src/YourCompany.Module/</sub></sub><br>
-<kbd> +++++++ NNN |⁠ [File.cs                                                                                                        ](src/YourCompany.Configuration/EnvironmentConventions.cs)</kbd><br>
+1 file changed, 20 insertions(+)<br>
+<sub><sub>src/YourCompany.OLTP.StateOwnership.TransactionalComposition/</sub></sub><br>
+<kbd> +++++++ 20  |⁠ [TransactionalCompositionTransactionCallback.cs                                                                 ](src/YourCompany.OLTP.StateOwnership.TransactionalComposition/TransactionalCompositionTransactionCallback.cs)</kbd><br>
 
-Commit body is multiline and compliant to markdown formatting 💥
+When it comes to building your aggregates for modelling the domain  
+over a long period of time you often encounters them to be cluttered  
+with logic and data serving still the same purpose the model exists  
+but in different points of time and in different data volumes required.
+
+The nowadays approach that comes in mind right away is "microservices"  
+where you just need to split any concerns into separate apps. Sounds  
+like a silver bullet? 😁 Hold on...
+
+Before deciding to sell your soul to the devil, ask yourself:  
+
+- whether the service I extract is going to bring the value solely, and;
+- whether it's worth to lose the ACID guarantees for the sake of hype.
+
+Long story short (again), even if you go down that road, your best  
+bet is to prepare the code first before integrating it with the  
+extracted service, i.e. to let the integration be served still... with  
+a separated local module...
+
+Now let's take it serious as a rule of thumb: "whenever we find a  
+**subdomain** we first put it into a **separate assembly**". Do you  
+see much difference in where the assembly is located, in the local  
+code base or external? You might not yet, so no need to rush.
+
+Give it a chance to stay and retain the ACID guarantees while  
+utilizing the full-fledged modularity of your framework. For that we  
+just need to introduce the way aggregates could communicate each other  
+within the transaction 😲
+
+Since we've already delegated the state access away from our model  
+we have a way to identify which classes belong to the subset of those  
+aggregates. I.e. the ones getting `IStateAccess` in the constructor.  
+> Please note this once again in contrast to the ORM's approach where  
+you pass dozens of ctor parameters to obtaining the required state 🙈
+
+So our ctor is not so busy now, right? Why not to "ask it" to simply  
+accept other aggregates as dependencies, huh? Do you feel how it  
+smells like the sweet origins of OOP? 😁 Do you see how the language's  
+natural semantics are going to be put at the core of making clusters   
+of such aggregates "describing a single entity yet" 🤔 Hopefuly from  
+now on we're on the same page 🤞
 
 </td></tr></tbody></table>
 
@@ -1327,29 +1367,78 @@ Commit body is multiline and compliant to markdown formatting 💥
 
 <!-- ### Commit: 2|🧱: ValueTupleHelper END -->
 
-<!-- ### Commit: 2|🧱: TypeAbstractionsHelper
+### Commit: 2|🧱: TypeAbstractionsHelper
 
 <table><tbody><tr><td>
 
-X files changed, Y insertions(+), Z deletions(-)<br>
-<sub><sub>src/YourCompany.Module/</sub></sub><br>
-<kbd> +++++++ NNN |⁠ [File.cs                                                                                                        ](src/YourCompany.Configuration/EnvironmentConventions.cs)</kbd><br>
-
-Commit body is multiline and compliant to markdown formatting 💥
+1 file changed, 26 insertions(+)<br>
+<sub><sub>src/YourCompany.Reflection/</sub></sub><br>
+<kbd> +++++++ 26  |⁠ [TypeAbstractionsHelper.cs                                                                                      ](src/YourCompany.Reflection/TypeAbstractionsHelper.cs)</kbd><br>
 
 </td></tr></tbody></table>
 
 <!-- ### Commit: 2|🧱: TypeAbstractionsHelper END -->
 
-<!-- ### Commit: 2|🧱: TypesCompositionMap
+### Commit: 2|🧱: TypesCompositionMap
 
 <table><tbody><tr><td>
 
-X files changed, Y insertions(+), Z deletions(-)<br>
-<sub><sub>src/YourCompany.Module/</sub></sub><br>
-<kbd> +++++++ NNN |⁠ [File.cs                                                                                                        ](src/YourCompany.Configuration/EnvironmentConventions.cs)</kbd><br>
+16 files changed, 1050 insertions(+)<br>
+<sub><sub>src/YourCompany.Reflection/Composition/</sub></sub><br>
+<kbd> +++++++ 141 |⁠ [ComposableTypeInfo.ConstructionLimitations.cs                                                                  ](src/YourCompany.Reflection/Composition/ComposableTypeInfo.ConstructionLimitations.cs)</kbd><br>
+<kbd>  ++++++ 139 |⁠ [ComposableTypeInfo.Dependencies.cs                                                                             ](src/YourCompany.Reflection/Composition/ComposableTypeInfo.Dependencies.cs)</kbd><br>
+<kbd>  ++++++ 133 |⁠ [ComposableTypeInfo.cs                                                                                          ](src/YourCompany.Reflection/Composition/ComposableTypeInfo.cs)</kbd><br>
+<kbd>   +++++ 113 |⁠ [CompositionException.Composite.cs                                                                              ](src/YourCompany.Reflection/Composition/CompositionException.Composite.cs)</kbd><br>
+<kbd>   +++++ 104 |⁠ [ComposableTypeInfo.Dependencies.Mixins.Determined.cs                                                           ](src/YourCompany.Reflection/Composition/ComposableTypeInfo.Dependencies.Mixins.Determined.cs)</kbd><br>
+<kbd>    ++++ 82  |⁠ [ComposableTypeInfo.Dependencies.Mixins.CrossCutting.cs                                                         ](src/YourCompany.Reflection/Composition/ComposableTypeInfo.Dependencies.Mixins.CrossCutting.cs)</kbd><br>
+<kbd>    ++++ 72  |⁠ [TypesCompositionMap.cs                                                                                         ](src/YourCompany.Reflection/Composition/TypesCompositionMap.cs)</kbd><br>
+<kbd>      ++ 41  |⁠ [ComposableTypeInfo.Dependencies.ImplementedAbstractions.cs                                                     ](src/YourCompany.Reflection/Composition/ComposableTypeInfo.Dependencies.ImplementedAbstractions.cs)</kbd><br>
+<kbd>      ++ 39  |⁠ [CompositionException.DependenciesLoopDetected.cs                                                               ](src/YourCompany.Reflection/Composition/CompositionException.DependenciesLoopDetected.cs)</kbd><br>
+<kbd>      ++ 36  |⁠ [ComposableTypeInfo.Dependencies.Mixins.cs                                                                      ](src/YourCompany.Reflection/Composition/ComposableTypeInfo.Dependencies.Mixins.cs)</kbd><br>
+<kbd>      ++ 31  |⁠ [CompositionException.AbstractDependencyWithMultipleImplementationsPerApplicableRootMustBeEnumerable.cs         ](src/YourCompany.Reflection/Composition/CompositionException.AbstractDependencyWithMultipleImplementationsPerApplicableRootMustBeEnumerable.cs)</kbd><br>
+<kbd>      ++ 30  |⁠ [CompositionException.CrossCuttingMixinMustOnlyDependOnOtherCrossCutting.cs                                     ](src/YourCompany.Reflection/Composition/CompositionException.CrossCuttingMixinMustOnlyDependOnOtherCrossCutting.cs)</kbd><br>
+<kbd>      ++ 29  |⁠ [CompositionException.ProvidedComposableBaseTypesMustBeAbstract.cs                                              ](src/YourCompany.Reflection/Composition/CompositionException.ProvidedComposableBaseTypesMustBeAbstract.cs)</kbd><br>
+<kbd>      ++ 24  |⁠ [CompositionException.cs                                                                                        ](src/YourCompany.Reflection/Composition/CompositionException.cs)</kbd><br>
+<kbd>      ++ 24  |⁠ [ComposableTypesProvider.cs                                                                                     ](src/YourCompany.Reflection/Composition/ComposableTypesProvider.cs)</kbd><br>
+<kbd>       + 12  |⁠ [CompositionException.MixinMustHaveApplicableRoots.cs                                                           ](src/YourCompany.Reflection/Composition/CompositionException.MixinMustHaveApplicableRoots.cs)</kbd><br>
 
-Commit body is multiline and compliant to markdown formatting 💥
+While not as widespreadly known paradigm as others,  
+**Subject-Oriented-Programming** still managed to leave a positive  
+mark on the industry history, and its echoes are found not only in its  
+overshadowed AOP paradigm but also in several programming languages  
+in the limited form of "mixins" or "traits".
+
+Long story short (though higly recommend introducing yourself to this)  
+and as absurds as it sounds... True modularity sometimes is impossible  
+for one and very simple reason - you can't simply cut of your class  
+into smaller pieces without having to glue them back together elsewhere.
+
+When you come into this problem you have few options, patterns like  
+"bridge", or loosing strong typing benefits by wrapping such pieces  
+into kind of "memento" (dictionary, or alike, e.g. underlying form of  
+mixing in JS) and some other language and runtime abilities like  
+stateful extensions in C# utilizing "weak references", etc...
+
+As practice shows SOP is way more complex than OOP in a way presented,  
+i.e. as a paradigm, and the aforementioned ways of "mixing" too.  
+But what's interesting, and what we actually often miss is how  
+natural it sounds when you try building some descriptive model with it  
+rather trying to far-fetch it into an arbitrary procedural processing.
+
+Later we'll see this paradigm evolving into the practice while being  
+adopted into your framework for more focused goals. For now let's just  
+keep in mind that it's all about composition. And now we're organizing  
+the map serving as a basement for your framework to collect and  
+determine relationships between the pieces.
+
+Implementation hint: at `ComposableTypesProvider` you can see that  
+objects' construction is abstracted away meaning that the exact way  
+of instantiation will be taken over by another module in the framework.
+
+Also worth mentioning the cross cutting mixins that the provider is  
+responsible to denote for. These are the closest to AOP aspects,  
+but are not requiring to declare the "extensions point" explicitly to  
+be applicable for composition.
 
 </td></tr></tbody></table>
 
@@ -1411,15 +1500,16 @@ Commit body is multiline and compliant to markdown formatting 💥
 
 <!-- ### Commit: 2|💾: EFCore hosting migration run END -->
 
-<!-- ### Commit: 3|🏠: OLTP RecordTypesMap
+### Commit: 3|🏠: OLTP RecordTypesMap
 
 <table><tbody><tr><td>
 
-X files changed, Y insertions(+), Z deletions(-)<br>
-<sub><sub>src/YourCompany.Module/</sub></sub><br>
-<kbd> +++++++ NNN |⁠ [File.cs                                                                                                        ](src/YourCompany.Configuration/EnvironmentConventions.cs)</kbd><br>
-
-Commit body is multiline and compliant to markdown formatting 💥
+4 files changed, 263 insertions(+)<br>
+<sub><sub>src/YourCompany.OLTP.StateOwnership.Reflection/</sub></sub><br>
+<kbd> +++++++ 97  |⁠ [RecordConstructionHelper.cs                                                                                    ](src/YourCompany.OLTP.StateOwnership.Reflection/RecordConstructionHelper.cs)</kbd><br>
+<kbd>   +++++ 74  |⁠ [RecordTypeInfo.cs                                                                                              ](src/YourCompany.OLTP.StateOwnership.Reflection/RecordTypeInfo.cs)</kbd><br>
+<kbd>    ++++ 56  |⁠ [RecordConstructionException.cs                                                                                 ](src/YourCompany.OLTP.StateOwnership.Reflection/RecordConstructionException.cs)</kbd><br>
+<kbd>     +++ 36  |⁠ [RecordTypesMap.cs                                                                                              ](src/YourCompany.OLTP.StateOwnership.Reflection/RecordTypesMap.cs)</kbd><br>
 
 </td></tr></tbody></table>
 
@@ -1457,15 +1547,17 @@ Commit body is multiline and compliant to markdown formatting 💥
 
 <!-- ### Commit: 3|🏠: OLTP UseCaseTypesMap END -->
 
-<!-- ### Commit: 3|🏠: OLTP RecordTypesCompositionMap
+### Commit: 3|🏠: OLTP RecordTypesCompositionMap
 
 <table><tbody><tr><td>
 
-X files changed, Y insertions(+), Z deletions(-)<br>
-<sub><sub>src/YourCompany.Module/</sub></sub><br>
-<kbd> +++++++ NNN |⁠ [File.cs                                                                                                        ](src/YourCompany.Configuration/EnvironmentConventions.cs)</kbd><br>
-
-Commit body is multiline and compliant to markdown formatting 💥
+5 files changed, 260 insertions(+)<br>
+<sub><sub>src/YourCompany.OLTP.StateOwnership.TransactionalComposition.Reflection/</sub></sub><br>
+<kbd> +++++++ 81  |⁠ [ComposableRecordTypesProvider.cs                                                                               ](src/YourCompany.OLTP.StateOwnership.TransactionalComposition.Reflection/ComposableRecordTypesProvider.cs)</kbd><br>
+<kbd>   +++++ 62  |⁠ [ComposableRecordTypeInfo.cs                                                                                    ](src/YourCompany.OLTP.StateOwnership.TransactionalComposition.Reflection/ComposableRecordTypeInfo.cs)</kbd><br>
+<kbd>    ++++ 49  |⁠ [RecordTypesCompositionMap.cs                                                                                   ](src/YourCompany.OLTP.StateOwnership.TransactionalComposition.Reflection/RecordTypesCompositionMap.cs)</kbd><br>
+<kbd>     +++ 35  |⁠ [RecordCompositionException.cs                                                                                  ](src/YourCompany.OLTP.StateOwnership.TransactionalComposition.Reflection/RecordCompositionException.cs)</kbd><br>
+<kbd>     +++ 33  |⁠ [RecordCompositionToConstructionWrapperException.cs                                                             ](src/YourCompany.OLTP.StateOwnership.TransactionalComposition.Reflection/RecordCompositionToConstructionWrapperException.cs)</kbd><br>
 
 </td></tr></tbody></table>
 
