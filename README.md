@@ -204,7 +204,7 @@ All the entry point branches' heads are highlighted in the graph as ⏹️.
 ---
 config:
   gitGraph:
-    mainBranchName: "0|🧱: welcome aboard"
+    mainBranchName: "1|🏠: the heart of OLTP is transaction"
     parallelCommits: true
     rotateCommitLabel: false
     showCommitLabel: false
@@ -877,7 +877,7 @@ gitGraph
 %% merge "1|🏠: OLTP events producing" %% THOOIT
 %% merge "1|🏠: OLTP transactional composition" %% THOOIT
 %% merge "N|🧱: wip switch to chassis" %% THOOIT
-%% commit type:HIGHLIGHT tag:"1|🏠|oltp-basic-object-model-the-rest-is-up-to-you|YourCompany.OLTP.StateOwnership" %% THOOIT
+commit type:HIGHLIGHT tag:"1|🏠|oltp-basic-object-model-the-rest-is-up-to-you|YourCompany.OLTP.StateOwnership" %% THOOIT
 %% merge "2|🏠: OLTP transaction is limited size" type:HIGHLIGHT tag:"1|🏠|oltp-basic-object-model-the-rest-is-up-to-you|YourCompany.OLTP.StateOwnership" %% THOOIT
 ```
 
@@ -1017,15 +1017,15 @@ Cons: why it might be not enough for you
 
 <!-- ### Branch: configuration-entry-assembly-rotating-secrets-scaling-plugins END -->
 
-<!-- ### Branch: oltp-basic-object-model-the-rest-is-up-to-you
+### Branch: oltp-basic-object-model-the-rest-is-up-to-you
 
-> Files: ### | Lines: #####  
-Pros: why do you choose this entry point  
-Cons: why it might be not enough for you
+> Files: 6 | Lines: 371  
+Pros: isolate your model from anything unrelated to your domain  
+Cons: too much boilerplate code being copied for each use case
 
 | Log | Examples | Modules |
 |-|-|-|
-| [replace_with_each_included_commit_subject](#commit-with-lower-case-subject) | <kbd> [at‑least‑one‑example‑solution‑name](examples/at-least-one-example-solution-per-commit/README.md#commit-with-lower-case-subject) </kbd><br><kbd> [extra‑example‑solution‑name](examples/extra-example-solution-name/README.md#commit-with-lower-case-subject) </kbd> | <kbd>YourCompany.Framework.Assembly.Name1 (+diff lines)</kbd><br><kbd>YourCompany.Framework.Assembly.Name2 (-diff lines)</kbd><br><kbd>YourCompany.Framework.Assembly.NameN (0 lines)</kbd> |
+| [1\|⁠🏠: the heart of OLTP is transaction](#commit-1-the-heart-of-oltp-is-transaction) | <kbd> [TODO](examples/at-least-one-example-solution-per-commit/README.md#commit-1-the-heart-of-oltp-is-transaction) </kbd> | <kbd>YourCompany.OLTP.StateOwnership (+371 lines)</kbd> |
 
 <!-- ### Branch: oltp-basic-object-model-the-rest-is-up-to-you END -->
 
@@ -1049,15 +1049,89 @@ on break when rebasing is in progress and then paste the table.
 
 > 👇 Replaced or appended in ordered manner by the [script](scripts/CommitLogsToReadmeMd.ps1).
 
-<!-- ### Commit: 1|🏠: the heart of OLTP is transaction
+### Commit: 1|🏠: the heart of OLTP is transaction
 
 <table><tbody><tr><td>
 
-X files changed, Y insertions(+), Z deletions(-)<br>
-<sub><sub>src/YourCompany.Module/</sub></sub><br>
-<kbd> +++++++ NNN |⁠ [File.cs                                                                                                        ](src/YourCompany.Configuration/EnvironmentConventions.cs)</kbd><br>
+6 files changed, 371 insertions(+)<br>
+<sub><sub>src/YourCompany.OLTP.StateOwnership/</sub></sub><br>
+<kbd> +++++++ 177 |⁠ [Identity.cs                                                                                                    ](src/YourCompany.OLTP.StateOwnership/Identity.cs)</kbd><br>
+<kbd>    ++++ 109 |⁠ [IState.cs                                                                                                      ](src/YourCompany.OLTP.StateOwnership/IState.cs)</kbd><br>
+<kbd>      ++ 54  |⁠ [TransactionCallback.cs                                                                                         ](src/YourCompany.OLTP.StateOwnership/TransactionCallback.cs)</kbd><br>
+<kbd>       + 14  |⁠ [IStateModifying.cs                                                                                             ](src/YourCompany.OLTP.StateOwnership/IStateModifying.cs)</kbd><br>
+<kbd>       + 10  |⁠ [IStateAccess.cs                                                                                                ](src/YourCompany.OLTP.StateOwnership/IStateAccess.cs)</kbd><br>
+<kbd>       + 7   |⁠ [ISpecification.cs                                                                                              ](src/YourCompany.OLTP.StateOwnership/ISpecification.cs)</kbd><br>
 
-Commit body is multiline and compliant to markdown formatting 💥
+One atomic action. Heard about DDD "Aggregates"? These are classes  
+that represent one transaction per object lifecycle.
+
+Typical transactions modeled consist of one or many modifying actions.  
+While overused in practice read-only actions is an edge case (giving  
+no relevancy guarantees of the data once accessed).
+
+The mistake № 1 is to model aggregates over abilities and limitations  
+of an ORM framework directly. To solve this we're going to delegate  
+transactional guarantees from a model (or "services" 🙈) to a  
+dedicated state access interface. Respectively the model itself  
+abstracts its record data into a separate interface in a manner we're  
+going to support (that's why we say we own the framework).
+
+The model accepts its record data's `IStateAccess` via constructor and  
+claims its `IState` either read-only or by providing a callback used  
+later to assert the modeled data transition from one state to another.  
+Once the access is complete the result is placed to `DataAfterAccess`.
+
+In transition `IStateModifying` provides extra data representations:
+
+1. `SettingDataProperties` - represents properties to replace  
+persisted values with new non-default-only values (and skip the rest).  
+When the aggregate exposes a corresponding record data property  
+defined with a setter, the latter sets the value precisely into the  
+record data instance behind this state property.  
+    > this simplest form of mapping replaces the need for numbers of  
+    ~~DTOs-per-"command"~~ as well as for redundant contracts with  
+    persistence layer for majority of cases but comes at a cost of the  
+    record data's interface to be mutable (defining property setters).  
+    With this approach you ensure encapsulation by either means of  
+    InternalsVisibleTo or by adding init only checks. Otherwise this  
+    state property can be omitted.
+2. `LockedRecordData` - provides access to the unchanged record data  
+state with relevancy guarantee, i.e. remaining locked in the database.  
+During the first callback it is always `null` letting to assert only  
+replacing values and/or modifying specifications before accessing DB  
+(💡 you can inherit specifications from `EventArgs` to decompose this  
+assertion logic with extra callbacks). Once the data is locked against  
+other transactions there will be one or more callbacks with  
+`LockedRecordData` **not** `null` denoting the only legal and  
+completely safe moment to assert **existing data invariants** 😲  
+At last it becomes `null` again in the last and only callback,  
+denoting the end of data access by this aggregate instance.
+
+As mentioned above we expanded ISpecification purpose to become  
+an instruction for a persistence logic behind IStateModifying to  
+perform a transition from the current state to be matching the desired  
+(See `ChangeDataToMatch` vs `MatchBeforeDataChanging` methods).  
+You can learn more about the original read-only concept in any DDD book.
+
+Finally, still keeping the DDD book open, what is an **entity**?  
+To be more precise how the aggregate of your model corresponds  
+to a modeled entity? It is the **identity** responsible for this.  
+What is it, really? **No matter**. Even if it does matter and you need  
+to perform some actions in your model with it - you should utilize  
+domain services concept delegating the details away to the factories.
+
+Precisely, digging more into the concept of entity, how do you  
+"create" it? Factories? Not really. At least you don't need to build  
+the whole record state by the factory, but rather you'd demand  
+an identity for an "existed externally" entity to be registered 😲  
+**Created or updated** - it **doesn't matter** for the model.  It will  
+handle not yet "created" entity's record data as simple as a regular  
+`LockedRecordData` instance with all properties unset 😲
+
+Down the road we'll see how identities are represented and managed  
+within OLTP records management, as well opening a brand new way of  
+parameterizing your transactions. For now lets just keep in mind that  
+identity structure is not a domain concern.
 
 </td></tr></tbody></table>
 

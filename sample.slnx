@@ -27,7 +27,7 @@
     <!-- <Project Path="src/YourCompany.OLTP.RecordsManagement.UseCases.Reflection/YourCompany.OLTP.RecordsManagement.UseCases.Reflection.csproj" /> -->
     <!-- <Project Path="src/YourCompany.OLTP.RecordsManagement.UseCases.Reflection.DI/YourCompany.OLTP.RecordsManagement.UseCases.Reflection.DI.csproj" /> -->
     <!-- <Project Path="src/YourCompany.OLTP.RecordsManagement.UseCases.TransactionalComposition/YourCompany.OLTP.RecordsManagement.UseCases.TransactionalComposition.csproj" /> -->
-    <!-- <Project Path="src/YourCompany.OLTP.StateOwnership/YourCompany.OLTP.StateOwnership.csproj" /> -->
+    <Project Path="src/YourCompany.OLTP.StateOwnership/YourCompany.OLTP.StateOwnership.csproj" />
     <!-- <Project Path="src/YourCompany.OLTP.StateOwnership.EventsProducing/YourCompany.OLTP.StateOwnership.EventsProducing.csproj" /> -->
     <!-- <Project Path="src/YourCompany.OLTP.StateOwnership.Reflection/YourCompany.OLTP.StateOwnership.Reflection.csproj" /> -->
     <!-- <Project Path="src/YourCompany.OLTP.StateOwnership.Reflection.DI/YourCompany.OLTP.StateOwnership.Reflection.DI.csproj" /> -->
