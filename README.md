@@ -1305,15 +1305,13 @@ For demo provider plugins we've chosen PostgreSQL and Sqlite.
 
 <!-- ### Commit: 2|💾: EFCore pessimistic locking END -->
 
-<!-- ### Commit: 2|💾: EFChangeTrackerTrackGraphStrategy
+### Commit: 2|💾: EFChangeTrackerTrackGraphStrategy
 
 <table><tbody><tr><td>
 
-X files changed, Y insertions(+), Z deletions(-)<br>
-<sub><sub>src/YourCompany.Module/</sub></sub><br>
-<kbd> +++++++ NNN |⁠ [File.cs                                                                                                        ](src/YourCompany.Configuration/EnvironmentConventions.cs)</kbd><br>
-
-Commit body is multiline and compliant to markdown formatting 💥
+1 file changed, 106 insertions(+)<br>
+<sub><sub>src/YourCompany.Configuration.EFCore/ChangeTracking/</sub></sub><br>
+<kbd> +++++++ 106 |⁠ [EFChangeTrackerTrackGraphStrategy.cs                                                                           ](src/YourCompany.Configuration.EFCore/ChangeTracking/EFChangeTrackerTrackGraphStrategy.cs)</kbd><br>
 
 </td></tr></tbody></table>
 
