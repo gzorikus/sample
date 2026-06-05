@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Metadata;
 
 namespace YourCompany.OLTP.StateOwnership.Reflection.EFCore
 {
-    public static class MetadataHelper
+    public static partial class MetadataHelper
     {
         public static IReadOnlyDictionary<Type, Type> CollectRecordDataTypeImplementations(
             this RecordTypesMap recordTypesMap, string reserveObjectNamesPrefix, IReadOnlyModel model)

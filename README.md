@@ -1556,15 +1556,16 @@ Commit body is multiline and compliant to markdown formatting 💥
 
 <!-- ### Commit: 4|💾: OLTP EFCore MetadataHelper END -->
 
-<!-- ### Commit: 4|💾: OLTP EFCore ID generation
+### Commit: 4|💾: OLTP EFCore ID generation
 
 <table><tbody><tr><td>
 
-X files changed, Y insertions(+), Z deletions(-)<br>
-<sub><sub>src/YourCompany.Module/</sub></sub><br>
-<kbd> +++++++ NNN |⁠ [File.cs                                                                                                        ](src/YourCompany.Configuration/EnvironmentConventions.cs)</kbd><br>
-
-Commit body is multiline and compliant to markdown formatting 💥
+4 files changed, 112 insertions(+), 1 deletion(-)<br>
+<sub><sub>src/YourCompany.OLTP.StateOwnership.Reflection.EFCore/</sub></sub><br>
+<kbd> +++++++ 79  |⁠ [MetadataHelper.DelegatedPrimaryKeyGeneration.cs                                                                ](src/YourCompany.OLTP.StateOwnership.Reflection.EFCore/MetadataHelper.DelegatedPrimaryKeyGeneration.cs)</kbd><br>
+<kbd>      ++ 21  |⁠ [RecordDataQueries.cs                                                                                           ](src/YourCompany.OLTP.StateOwnership.Reflection.EFCore/RecordDataQueries.cs)</kbd><br>
+<kbd>       + 11  |⁠ [DelegatedPrimaryKeyGenerationTable.cs                                                                          ](src/YourCompany.OLTP.StateOwnership.Reflection.EFCore/DelegatedPrimaryKeyGenerationTable.cs)</kbd><br>
+<kbd>      +‑ 2   |⁠ [MetadataHelper.cs                                                                                              ](src/YourCompany.OLTP.StateOwnership.Reflection.EFCore/MetadataHelper.cs)</kbd><br>
 
 </td></tr></tbody></table>
 
