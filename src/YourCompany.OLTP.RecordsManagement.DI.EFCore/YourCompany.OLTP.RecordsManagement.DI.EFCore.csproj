@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFrameworks>net6.0;net8.0</TargetFrameworks>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\YourCompany.OLTP.RecordsManagement.DI\YourCompany.OLTP.RecordsManagement.DI.csproj" />
+    <ProjectReference Include="..\YourCompany.OLTP.RecordsManagement.Persistence.Linq.EFCore\YourCompany.OLTP.RecordsManagement.Persistence.Linq.EFCore.csproj" />
+  </ItemGroup>
+
+</Project>

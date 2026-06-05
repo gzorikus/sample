@@ -34,6 +34,8 @@ namespace YourCompany.OLTP.RecordsManagement.Persistence.Linq.EFCore
             RecordDataType = recordDataType ?? throw new ArgumentNullException(nameof(recordDataType));
             Context = context ?? throw new ArgumentNullException(nameof(context));
             ContextCreator = contextCreator;
+            if (context.CreatedForRecordDataType == null) throw new ApplicationException("context.CreatedForRecordDataType == null");
+            if (contextCreator && context.CreatedForRecordDataType != recordDataType) throw new ApplicationException("contextCreator && context.CreatedForRecordDataType != recordDataType");
         }
 
         public int MaxRecordsInBatch

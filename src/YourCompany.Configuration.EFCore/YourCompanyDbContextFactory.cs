@@ -62,7 +62,7 @@ namespace YourCompany.Configuration.EFCore
             internal RunTime()
             {
                 LoadOnce();
-                if (LoadingContext.IsDesignTime) throw new ApplicationException("LoadingContext.IsDesignTime");
+                // 💩 (see ScopedYourCompanyDbContextFactory) due to DI integration and statical nature of plugins we have to avoid this assertion (LoadingContext == null): if (LoadingContext.IsDesignTime) throw new ApplicationException("LoadingContext.IsDesignTime");
             }
 
             YourCompanyDbContext<TDbContextConfiguration>

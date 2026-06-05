@@ -10,4 +10,8 @@
     <ProjectReference Include="..\YourCompany.OLTP.StateOwnership.Reflection.EFCore\YourCompany.OLTP.StateOwnership.Reflection.EFCore.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <InternalsVisibleTo Include="YourCompany.OLTP.RecordsManagement.DI.EFCore" />
+  </ItemGroup>
+
 </Project>

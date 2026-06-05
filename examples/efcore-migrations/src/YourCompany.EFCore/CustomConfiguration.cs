@@ -1,4 +1,4 @@
-using YourCompany.Configuration.EFCore;
+using YourCompany.OLTP.RecordsManagement.DI.EFCore;
 
 namespace YourCompany.EFCore
 {

@@ -62,19 +62,19 @@ Among the options there are 2 `YourCompanyDbContext` configurations:
 [EFCoreCustomConfigurationDesignTimeFactory](src/YourCompany.ConsoleProgram/EFCoreCustomConfigurationDesignTimeFactory.cs)
 strictly at the entry assembly, i.e. specified in "--startup-project" below);
 * `YourCompanyDbContextConfiguration` - the default design time factory is used for this (see
-[DefaultDesignTimeForMigrations](../../src/YourCompany.Configuration.EFCore/YourCompanyDbContextFactory.cs))  
+[DefaultDesignTimeForMigrations](../../src/YourCompany.OLTP.RecordsManagement.Persistence.Linq.EFCore/YourCompanyDbContextFactory.cs))  
 when you don't need to extend
-[YourCompanyDbContextConfiguration](../../src/YourCompany.Configuration.EFCore/YourCompanyDbContextConfiguration.cs) with any extra options.
+[YourCompanyDbContextConfiguration](../../src/YourCompany.OLTP.RecordsManagement.Persistence.Linq.EFCore/YourCompanyDbContextConfiguration.cs) with any extra options.
 
 #### Kickstart for the first time
 
 **There is a trick** needed when you're going to ever reuse your DbContext (in case you aren't into inheriting it per each project what  
 we actually discourage here). By default EF Tools are only looking for contexts (and
-[`*DesignTime*`](../../src/YourCompany.Configuration.EFCore/YourCompanyDbContextFactory.cs) factories) at  
+[`*DesignTime*`](../../src/YourCompany.OLTP.RecordsManagement.Persistence.Linq.EFCore/YourCompanyDbContextFactory.cs) factories) at  
 "--startup-project" or "--project", but the reusable context is defined at your framework level and can't be seen.
 
 For `CustomConfiguration` not only EF Tools are incapable to discover contexts in referenced assemblies it's also incapable to match  
-an apropriate [`*DesignTime*`](../../src/YourCompany.Configuration.EFCore/YourCompanyDbContextFactory.cs) factory with open generics.
+an apropriate [`*DesignTime*`](../../src/YourCompany.OLTP.RecordsManagement.Persistence.Linq.EFCore/YourCompanyDbContextFactory.cs) factory with open generics.
 That's why we defined
 [EFCoreCustomConfigurationDesignTimeFactory](src/YourCompany.ConsoleProgram/EFCoreCustomConfigurationDesignTimeFactory.cs) inheritor  
 and since it's located in "--startup-project" EF Tools is able to see the context with less effort:
@@ -87,7 +87,7 @@ dotnet ef dbcontext list `
     --override YOURCOMPANY_ENVIRONMENT='Development' `
     --override YOURCOMPANY_INFRA_OBJECT_NAMES_PREFIX='examples-' `
     --override YOURCOMPANY_INFRA_OBJECT_NAMES_PREFIX_DEVENV_USE_CURRENT_GIT_BRANCH_FROM_REPO_PATH=.
-# YourCompany.Configuration.EFCore.YourCompanyDbContext`1[[YourCompany.EFCore.CustomConfiguration, YourCompany.EFCore, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]
+# YourCompany.OLTP.RecordsManagement.Persistence.Linq.EFCore.YourCompanyDbContext`1[[YourCompany.EFCore.CustomConfiguration, YourCompany.EFCore, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]
 ```
 
 > Briefly about "--override" arguments, this is for demonstrating how your developers can share the same environment.  
@@ -110,7 +110,7 @@ dotnet ef dbcontext list `
     --override YOURCOMPANY_ENVIRONMENT='Development' `
     --override YOURCOMPANY_INFRA_OBJECT_NAMES_PREFIX='examples-' `
     --override YOURCOMPANY_INFRA_OBJECT_NAMES_PREFIX_DEVENV_USE_CURRENT_GIT_BRANCH_FROM_REPO_PATH=.
-# YourCompany.Configuration.EFCore.YourCompanyDbContext`1[[YourCompany.EFCore.CustomConfiguration, YourCompany.EFCore, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]
+# YourCompany.OLTP.RecordsManagement.Persistence.Linq.EFCore.YourCompanyDbContext`1[[YourCompany.EFCore.CustomConfiguration, YourCompany.EFCore, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]
 # YourCompany.EFCore.Sqlite.YourCompanyDbContextConfigurationMigrations.KickStartDbContext
 ```
 
@@ -147,9 +147,9 @@ strange behavior from EF Tools regarding the `*ModelSnapshot`.
 After doing that trick you'll see the referenced context in the `dbcontext list` command's output:
 
 ```powershell
-# YourCompany.Configuration.EFCore.YourCompanyDbContext`1[[YourCompany.EFCore.CustomConfiguration, YourCompany.EFCore, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]
+# YourCompany.OLTP.RecordsManagement.Persistence.Linq.EFCore.YourCompanyDbContext`1[[YourCompany.EFCore.CustomConfiguration, YourCompany.EFCore, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]
 # YourCompany.EFCore.Sqlite.Migrations.YourCompanyDbContextConfiguration.KickStartDbContext
-# YourCompany.Configuration.EFCore.YourCompanyDbContext`1[[YourCompany.Configuration.EFCore.YourCompanyDbContextConfiguration, YourCompany.Configuration.EFCore, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]
+# YourCompany.OLTP.RecordsManagement.Persistence.Linq.EFCore.YourCompanyDbContext`1[[YourCompany.OLTP.RecordsManagement.Persistence.Linq.EFCore.YourCompanyDbContextConfiguration, YourCompany.OLTP.RecordsManagement.Persistence.Linq.EFCore, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]
 ```
 
 Now any of these contexts can be specified to further manage corresponding migrations.
@@ -160,7 +160,7 @@ For **default** context configuration:
 
 ```powershell
 dotnet ef migrations add 'ItsAlive' -o '.' `
-    -c 'YourCompany.Configuration.EFCore.YourCompanyDbContext`1[[YourCompany.Configuration.EFCore.YourCompanyDbContextConfiguration, YourCompany.Configuration.EFCore, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]' `
+    -c 'YourCompany.OLTP.RecordsManagement.Persistence.Linq.EFCore.YourCompanyDbContext`1[[YourCompany.OLTP.RecordsManagement.Persistence.Linq.EFCore.YourCompanyDbContextConfiguration, YourCompany.OLTP.RecordsManagement.Persistence.Linq.EFCore, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]' `
     --startup-project 'examples/efcore-migrations/src/YourCompany.ConsoleProgram/YourCompany.ConsoleProgram.csproj' `
     --project 'examples/efcore-migrations/src/YourCompany.EFCore.Sqlite.YourCompanyDbContextConfigurationMigrations/YourCompany.EFCore.Sqlite.YourCompanyDbContextConfigurationMigrations.csproj' `
     -- `
@@ -173,7 +173,7 @@ For **custom** context configuration:
 
 ```powershell
 dotnet ef migrations add 'ItsAlive' -o '.' `
-    -c 'YourCompany.Configuration.EFCore.YourCompanyDbContext`1[[YourCompany.EFCore.CustomConfiguration, YourCompany.EFCore, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]' `
+    -c 'YourCompany.OLTP.RecordsManagement.Persistence.Linq.EFCore.YourCompanyDbContext`1[[YourCompany.EFCore.CustomConfiguration, YourCompany.EFCore, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]' `
     --startup-project 'examples/efcore-migrations/src/YourCompany.ConsoleProgram/YourCompany.ConsoleProgram.csproj' `
     --project 'examples/efcore-migrations/src/YourCompany.EFCore.Sqlite.CustomConfigurationMigrations/YourCompany.EFCore.Sqlite.CustomConfigurationMigrations.csproj' `
     -- `
@@ -191,7 +191,7 @@ For **default** context configuration:
 
 ```powershell
 dotnet ef database update `
-    -c 'YourCompany.Configuration.EFCore.YourCompanyDbContext`1[[YourCompany.Configuration.EFCore.YourCompanyDbContextConfiguration, YourCompany.Configuration.EFCore, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]' `
+    -c 'YourCompany.OLTP.RecordsManagement.Persistence.Linq.EFCore.YourCompanyDbContext`1[[YourCompany.OLTP.RecordsManagement.Persistence.Linq.EFCore.YourCompanyDbContextConfiguration, YourCompany.OLTP.RecordsManagement.Persistence.Linq.EFCore, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]' `
     --startup-project 'examples/efcore-migrations/src/YourCompany.ConsoleProgram/YourCompany.ConsoleProgram.csproj' `
     --project 'examples/efcore-migrations/src/YourCompany.EFCore.Sqlite.YourCompanyDbContextConfigurationMigrations/YourCompany.EFCore.Sqlite.YourCompanyDbContextConfigurationMigrations.csproj' `
     -- `
@@ -204,7 +204,7 @@ For **custom** context configuration:
 
 ```powershell
 dotnet ef database update `
-    -c 'YourCompany.Configuration.EFCore.YourCompanyDbContext`1[[YourCompany.EFCore.CustomConfiguration, YourCompany.EFCore, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]' `
+    -c 'YourCompany.OLTP.RecordsManagement.Persistence.Linq.EFCore.YourCompanyDbContext`1[[YourCompany.EFCore.CustomConfiguration, YourCompany.EFCore, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]' `
     --startup-project 'examples/efcore-migrations/src/YourCompany.ConsoleProgram/YourCompany.ConsoleProgram.csproj' `
     --project 'examples/efcore-migrations/src/YourCompany.EFCore.Sqlite.CustomConfigurationMigrations/YourCompany.EFCore.Sqlite.CustomConfigurationMigrations.csproj' `
     -- `
@@ -225,4 +225,17 @@ sqlite3 'examples/efcore-migrations/src/YourCompany.ConsoleProgram/bin/Debug/net
 <!-- ## Commit: 2|💾: basic pluggable EFCore END -->
 
 <!-- ## Commit: 2|💾: EFCore hosting migration run -->
-<!-- ## Commit: 7|🧱: OLTP DI EFCore integrated -->
+
+## Commit: 7|🧱: OLTP DI EFCore integrated
+
+Here we are switching into more advanced `DbContext` use cases and so that we replace all occurrences of  
+`YourCompany.Configuration.EFCore` namespace in the previous scripts to  
+`YourCompany.OLTP.RecordsManagement.Persistence.Linq.EFCore` as well as to change base classes of  
+[CustomConfiguration](src/YourCompany.EFCore/CustomConfiguration.cs)
+and [EFCoreCustomConfigurationDesignTimeFactory](src/YourCompany.ConsoleProgram/EFCoreCustomConfigurationDesignTimeFactory.cs) correspondingly.
+
+> P.S. For quick running this example make sure you're under `oltp-di-efcore-handle-specifications-only-the-rest-is-covered` branch  
+or any other supporting entry point branch. Otherwise you'd adjust the prefix in [launch.json](.vscode\launch.json) while removing the git repo path to disable  
+git branch prefixing (whicn you have not matching the migrations' object name prefixes).
+
+<!-- ## Commit: 7|🧱: OLTP DI EFCore integrated END -->

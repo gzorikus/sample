@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using YourCompany.Configuration.EFCore;
+using YourCompany.OLTP.RecordsManagement.Persistence.Linq.EFCore;
 
 #nullable disable
 
@@ -37,9 +37,9 @@ namespace YourCompany.EFCore.Sqlite.CustomConfigurationMigrations
                         .HasColumnType("TEXT");
 
                     b.HasKey("Id")
-                        .HasName("examples_configuration_efcore_PK_Entity");
+                        .HasName("examples_oltp_di_efcore_handle_specifications_only_the_rest_is_covered_PK_Entity");
 
-                    b.ToTable("examples_configuration_efcore_Entity");
+                    b.ToTable("examples_oltp_di_efcore_handle_specifications_only_the_rest_is_covered_Entity");
                 });
 
             modelBuilder.Entity("YourCompany.EFCore.NeverPretendingToBeYourDomainModel.EFCoreConventionalEntity+SomeReusableEntityHereForBrevity", b =>
@@ -52,9 +52,9 @@ namespace YourCompany.EFCore.Sqlite.CustomConfigurationMigrations
                         .HasColumnType("TEXT");
 
                     b.HasKey("Id")
-                        .HasName("examples_configuration_efcore_PK_ReusableEntity");
+                        .HasName("examples_oltp_di_efcore_handle_specifications_only_the_rest_is_covered_PK_ReusableEntity");
 
-                    b.ToTable("examples_configuration_efcore_ReusableEntity");
+                    b.ToTable("examples_oltp_di_efcore_handle_specifications_only_the_rest_is_covered_ReusableEntity");
                 });
 
             modelBuilder.Entity("YourCompany.EFCore.NeverPretendingToBeYourDomainModel.EFCoreConventionalEntity", b =>
@@ -77,13 +77,13 @@ namespace YourCompany.EFCore.Sqlite.CustomConfigurationMigrations
                                 .HasColumnType("TEXT");
 
                             b1.HasKey("EntityId")
-                                .HasName("examples_configuration_efcore_PK_EntityMixin");
+                                .HasName("examples_oltp_di_efcore_handle_specifications_only_the_rest_is_covered_PK_EntityMixin");
 
-                            b1.ToTable("examples_configuration_efcore_EntityMixin");
+                            b1.ToTable("examples_oltp_di_efcore_handle_specifications_only_the_rest_is_covered_EntityMixin");
 
                             b1.WithOwner()
                                 .HasForeignKey("EntityId")
-                                .HasConstraintName("examples_configuration_efcore_FK_EntityMixin_Entity_EntityId");
+                                .HasConstraintName("examples_oltp_di_efcore_handle_specifications_only_the_rest_is_covered_FK_EntityMixin_Entity_EntityId");
                         });
 
                     b.OwnsMany("YourCompany.EFCore.NeverPretendingToBeYourDomainModel.EFCoreConventionalEntity+HavingSomeOwnedCollection", "TypicallyAlwaysIncludedCollectionIfYouAreGoingToBuildAggregatesOnTopOfIt", b1 =>
@@ -108,16 +108,16 @@ namespace YourCompany.EFCore.Sqlite.CustomConfigurationMigrations
                                 .HasColumnType("INTEGER");
 
                             b1.HasKey("Id")
-                                .HasName("examples_configuration_efcore_PK_EntityOwnedCollection");
+                                .HasName("examples_oltp_di_efcore_handle_specifications_only_the_rest_is_covered_PK_EntityOwnedCollection");
 
                             b1.HasIndex("EntityId")
-                                .HasDatabaseName("examples_configuration_efcore_IX_EntityOwnedCollection_EntityId");
+                                .HasDatabaseName("examples_oltp_di_efcore_handle_specifications_only_the_rest_is_covered_IX_EntityOwnedCollection_EntityId");
 
-                            b1.ToTable("examples_configuration_efcore_EntityOwnedCollection");
+                            b1.ToTable("examples_oltp_di_efcore_handle_specifications_only_the_rest_is_covered_EntityOwnedCollection");
 
                             b1.WithOwner()
                                 .HasForeignKey("EntityId")
-                                .HasConstraintName("examples_configuration_efcore_FK_EntityOwnedCollection_Entity_EntityId");
+                                .HasConstraintName("examples_oltp_di_efcore_handle_specifications_only_the_rest_is_covered_FK_EntityOwnedCollection_Entity_EntityId");
                         });
 
                     b.OwnsOne("YourCompany.EFCore.NeverPretendingToBeYourDomainModel.EFCoreConventionalEntity+HavingToManuallyLinkEveryTime", "SomeReusableStuffLink", b1 =>
@@ -129,23 +129,23 @@ namespace YourCompany.EFCore.Sqlite.CustomConfigurationMigrations
                                 .HasColumnType("INTEGER");
 
                             b1.HasKey("EntityId")
-                                .HasName("examples_configuration_efcore_PK_EntityLinkToReusableEntity");
+                                .HasName("examples_oltp_di_efcore_handle_specifications_only_the_rest_is_covered_PK_EntityLinkToReusableEntity");
 
                             b1.HasIndex("ReusableEntityId")
-                                .HasDatabaseName("examples_configuration_efcore_IX_EntityLinkToReusableEntity_ReusableEntityId");
+                                .HasDatabaseName("examples_oltp_di_efcore_handle_specifications_only_the_rest_is_covered_IX_EntityLinkToReusableEntity_ReusableEntityId");
 
-                            b1.ToTable("examples_configuration_efcore_EntityLinkToReusableEntity");
+                            b1.ToTable("examples_oltp_di_efcore_handle_specifications_only_the_rest_is_covered_EntityLinkToReusableEntity");
 
                             b1.WithOwner()
                                 .HasForeignKey("EntityId")
-                                .HasConstraintName("examples_configuration_efcore_FK_EntityLinkToReusableEntity_Entity_EntityId");
+                                .HasConstraintName("examples_oltp_di_efcore_handle_specifications_only_the_rest_is_covered_FK_EntityLinkToReusableEntity_Entity_EntityId");
 
                             b1.HasOne("YourCompany.EFCore.NeverPretendingToBeYourDomainModel.EFCoreConventionalEntity+SomeReusableEntityHereForBrevity", null)
                                 .WithMany()
                                 .HasForeignKey("ReusableEntityId")
                                 .OnDelete(DeleteBehavior.Cascade)
                                 .IsRequired()
-                                .HasConstraintName("examples_configuration_efcore_FK_EntityLinkToReusableEntity_ReusableEntity_ReusableEntityId");
+                                .HasConstraintName("examples_oltp_di_efcore_handle_specifications_only_the_rest_is_covered_FK_EntityLinkToReusableEntity_ReusableEntity_ReusableEntityId");
                         });
 
                     b.Navigation("NonModularManualWayToMixIn");

@@ -204,7 +204,7 @@ All the entry point branches' heads are highlighted in the graph as ⏹️.
 ---
 config:
   gitGraph:
-    mainBranchName: "7|🧱: OLTP DI EFCore switch to chassis"
+    mainBranchName: "7|🧱: OLTP DI EFCore integrated"
     parallelCommits: true
     rotateCommitLabel: false
     showCommitLabel: false
@@ -232,11 +232,11 @@ gitGraph
 %% branch "7|🧱: OLTP DI EFCore integrated" %% ODEI
 %% commit type:REVERSE %% ODEI>1
 %% commit type:REVERSE %% ODEI>2
-%% commit type:HIGHLIGHT tag:"7|🧱|public|oltp-di-efcore-handle-specifications-only-the-rest-is-covered|YourCompany.Configuration.EFCore|YourCompany.OLTP.RecordsManagement.DI.EFCore|YourCompany.OLTP.RecordsManagement.Persistence.Linq.EFCore" %% ODEI
+commit type:HIGHLIGHT tag:"7|🧱|public|oltp-di-efcore-handle-specifications-only-the-rest-is-covered|YourCompany.Configuration.EFCore|YourCompany.OLTP.RecordsManagement.DI.EFCore|YourCompany.OLTP.RecordsManagement.Persistence.Linq.EFCore" %% ODEI
 
-%% branch "7|🧱: OLTP DI EFCore switch to chassis" %% ODESTC
-commit type:HIGHLIGHT tag:"7|🧱|oltp-di-efcore-handle-specifications-only-the-rest-is-covered|YourCompany.Configuration.EFCore|YourCompany.OLTP.RecordsManagement.Persistence.Linq.EFCore" %% ODESTC
-%% commit type:NORMAL tag:"7|🧱|YourCompany.Configuration.EFCore|YourCompany.OLTP.RecordsManagement.Persistence.Linq.EFCore" %% ODESTC
+branch "7|🧱: OLTP DI EFCore switch to chassis" %% ODESTC
+%% commit type:HIGHLIGHT tag:"7|🧱|oltp-di-efcore-handle-specifications-only-the-rest-is-covered|YourCompany.Configuration.EFCore|YourCompany.OLTP.RecordsManagement.Persistence.Linq.EFCore" %% ODESTC
+commit type:NORMAL tag:"7|🧱|YourCompany.Configuration.EFCore|YourCompany.OLTP.RecordsManagement.Persistence.Linq.EFCore" %% ODESTC
 
 %% Startup Iteration 6
 
@@ -899,7 +899,7 @@ solution, the latest is a template.
 
 ### Branch: oltp-di-efcore-handle-specifications-only-the-rest-is-covered
 
-> Files: 197 | Lines: 16989  
+> Files: 203 | Lines: 17310  
 Pros: out-of-the-box full-fledged persistence utilizing the linq record data builders  
 Cons: significant entry point complexity increase because of covering EFCore missing capabilities
 
@@ -939,6 +939,7 @@ Cons: significant entry point complexity increase because of covering EFCore mis
 | [5\|⁠💾: OLTP EFCore readonly](#commit-5-oltp-efcore-readonly) | <kbd> [TODO](examples/at-least-one-example-solution-per-commit/README.md#commit-5-oltp-efcore-readonly) </kbd> | <kbd>YourCompany.OLTP.RecordsManagement.Persistence.Linq.EFCore (+2256 lines)</kbd> |
 | [6\|⁠💾: OLTP EFCore finalized](#commit-6-oltp-efcore-finalized) | <kbd> [TODO](examples/at-least-one-example-solution-per-commit/README.md#commit-6-oltp-efcore-finalized) </kbd> | <kbd>YourCompany.OLTP.RecordsManagement.Persistence.Linq.EFCore (+1108 lines)</kbd> |
 | [7\|⁠🧱: OLTP DI EFCore switch to chassis](#commit-7-oltp-di-efcore-switch-to-chassis) | <kbd> [TODO](examples/at-least-one-example-solution-per-commit/README.md#commit-7-oltp-di-efcore-switch-to-chassis) </kbd> | <kbd>YourCompany.Configuration.EFCore (+4 lines)</kbd><br><kbd>YourCompany.OLTP.RecordsManagement.Persistence.Linq.EFCore (+1 lines)</kbd> |
+| [7\|⁠🧱: OLTP DI EFCore integrated](#commit-7-oltp-di-efcore-integrated) | <kbd> [efcore‑migrations](examples/efcore-migrations/README.md#commit-7-oltp-di-efcore-integrated) </kbd> | <kbd>YourCompany.Configuration.EFCore (0 lines)</kbd><br><kbd>YourCompany.OLTP.RecordsManagement.DI.EFCore (+319 lines)</kbd><br><kbd>YourCompany.OLTP.RecordsManagement.Persistence.Linq.EFCore (+2 lines)</kbd> |
 
 <!-- ### Branch: oltp-di-efcore-handle-specifications-only-the-rest-is-covered END -->
 
@@ -2315,15 +2316,46 @@ earlier commit.
 
 <!-- ### Commit: 7|🧱: OLTP DI EFCore switch to chassis END -->
 
-<!-- ### Commit: 7|🧱: OLTP DI EFCore integrated
+### Commit: 7|🧱: OLTP DI EFCore integrated
 
 <table><tbody><tr><td>
 
-X files changed, Y insertions(+), Z deletions(-)<br>
-<sub><sub>src/YourCompany.Module/</sub></sub><br>
-<kbd> +++++++ NNN |⁠ [File.cs                                                                                                        ](src/YourCompany.Configuration/EnvironmentConventions.cs)</kbd><br>
+9 files changed, 323 insertions(+), 2 deletions(-)<br>
+<sub><sub>src/YourCompany.OLTP.RecordsManagement.DI.EFCore/</sub></sub><br>
+<kbd> +++++++ 136 |⁠ [YourCompanyServiceCollectionExtensions.cs                                                                      ](src/YourCompany.OLTP.RecordsManagement.DI.EFCore/YourCompanyServiceCollectionExtensions.cs)</kbd><br>
+<kbd>   +++++ 102 |⁠ [ScopedYourCompanyDbContextFactory.cs                                                                           ](src/YourCompany.OLTP.RecordsManagement.DI.EFCore/ScopedYourCompanyDbContextFactory.cs)</kbd><br>
+<kbd>     +++ 54  |⁠ [ScopedRecordsDataAccessProvider.cs                                                                             ](src/YourCompany.OLTP.RecordsManagement.DI.EFCore/ScopedRecordsDataAccessProvider.cs)</kbd><br>
+<kbd>       + 14  |⁠ [YourCompanyDbContextConfigurator.cs                                                                            ](src/YourCompany.OLTP.RecordsManagement.DI.EFCore/YourCompanyDbContextConfigurator.cs)</kbd><br>
+<kbd>       + 7   |⁠ [YourCompanyDbContextFactoryLoadingConfiguration.cs                                                             ](src/YourCompany.OLTP.RecordsManagement.DI.EFCore/YourCompanyDbContextFactoryLoadingConfiguration.cs)</kbd><br>
+<kbd>       + 6   |⁠ [YourCompanyDbContextConfiguration.cs                                                                           ](src/YourCompany.OLTP.RecordsManagement.DI.EFCore/YourCompanyDbContextConfiguration.cs)</kbd><br>
+<sub><sub>src/YourCompany.OLTP.RecordsManagement.Persistence.Linq.EFCore/</sub></sub><br>
+<kbd>       + 2   |⁠ [YourCompanyDbContextRecordsDataAccessAdapter.cs                                                                ](src/YourCompany.OLTP.RecordsManagement.Persistence.Linq.EFCore/YourCompanyDbContextRecordsDataAccessAdapter.cs)</kbd><br>
+<kbd>      +‑ 2   |⁠ [YourCompanyDbContextFactory.cs                                                                                 ](src/YourCompany.OLTP.RecordsManagement.Persistence.Linq.EFCore/YourCompanyDbContextFactory.cs)</kbd><br>
+<sub><sub>src/YourCompany.Configuration.EFCore/</sub></sub><br>
+<kbd>      +‑ 2   |⁠ [YourCompanyDbContextFactory.cs                                                                                 ](src/YourCompany.Configuration.EFCore/YourCompanyDbContextFactory.cs)</kbd><br>
 
-Commit body is multiline and compliant to markdown formatting 💥
+This entry point benefits from the plugin based EFCore initialization  
+letting to avoid manually building the record types map when you  
+configure your domain types and repositories as well as allowing  
+plugins to inject extra record data query builders both scoped and  
+singleton.
+
+As of the huge gap in lines with the previous entry point we can  
+justify it by missing EFCore capabilities that were implemented in the  
+merged libraries:
+
+- properly unified `RunTime` and `DesignTime` `DbContext` factories  
+working the same way both for queries and migrations for multiple  
+switchable database providers;
+- collation aware `SortingKey` unifying modeled columns DB side  
+comparison with .NET in-memory comparers and providing advanced  
+querying abilities;
+- advanced abilities around `SortingKey` topology, allowing required  
+change tracking strategies such as partial modifying by non-default  
+properties set in the state and exposing public cursors while  
+utilizing keyset pagination capabilities (`AfterId`);
+- ofc imlementing the segregated record data access interfaces which  
+are described in more details in the corresponding commits.
 
 </td></tr></tbody></table>
 

@@ -12,7 +12,7 @@ namespace YourCompany.EFCore.PostgreSQL.YourCompanyDbContextConfigurationMigrati
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "ex_configu_e_Entity",
+                name: "eodehsotric_Entity",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "integer", nullable: false)
@@ -24,11 +24,11 @@ namespace YourCompany.EFCore.PostgreSQL.YourCompanyDbContextConfigurationMigrati
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("ex_configu_e_PK_Entity", x => x.Id);
+                    table.PrimaryKey("eodehsotric_PK_Entity", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
-                name: "ex_configu_e_ReusableEntity",
+                name: "eodehsotric_ReusableEntity",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "integer", nullable: false)
@@ -37,11 +37,11 @@ namespace YourCompany.EFCore.PostgreSQL.YourCompanyDbContextConfigurationMigrati
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("ex_configu_e_PK_ReusableEntity", x => x.Id);
+                    table.PrimaryKey("eodehsotric_PK_ReusableEntity", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
-                name: "ex_configu_e_EntityMixin",
+                name: "eodehsotric_EntityMixin",
                 columns: table => new
                 {
                     EntityId = table.Column<int>(type: "integer", nullable: false),
@@ -52,17 +52,17 @@ namespace YourCompany.EFCore.PostgreSQL.YourCompanyDbContextConfigurationMigrati
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("ex_configu_e_PK_EntityMixin", x => x.EntityId);
+                    table.PrimaryKey("eodehsotric_PK_EntityMixin", x => x.EntityId);
                     table.ForeignKey(
-                        name: "ex_configu_e_FK_EntityMixin_Entity_EntityId",
+                        name: "eodehsotric_FK_EntityMixin_Entity_EntityId",
                         column: x => x.EntityId,
-                        principalTable: "ex_configu_e_Entity",
+                        principalTable: "eodehsotric_Entity",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
-                name: "ex_configu_e_EntityOwnedCollection",
+                name: "eodehsotric_EntityOwnedCollection",
                 columns: table => new
                 {
                     Id = table.Column<long>(type: "bigint", nullable: false)
@@ -75,17 +75,17 @@ namespace YourCompany.EFCore.PostgreSQL.YourCompanyDbContextConfigurationMigrati
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("ex_configu_e_PK_EntityOwnedCollection", x => x.Id);
+                    table.PrimaryKey("eodehsotric_PK_EntityOwnedCollection", x => x.Id);
                     table.ForeignKey(
-                        name: "ex_configu_e_FK_EntityOwnedCollection_Entity_EntityId",
+                        name: "eodehsotric_FK_EntityOwnedCollection_Entity_EntityId",
                         column: x => x.EntityId,
-                        principalTable: "ex_configu_e_Entity",
+                        principalTable: "eodehsotric_Entity",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
-                name: "ex_configu_e_EntityLinkToReusableEntity",
+                name: "eodehsotric_EntityLinkToReusableEntity",
                 columns: table => new
                 {
                     EntityId = table.Column<int>(type: "integer", nullable: false),
@@ -93,29 +93,29 @@ namespace YourCompany.EFCore.PostgreSQL.YourCompanyDbContextConfigurationMigrati
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("ex_configu_e_PK_EntityLinkToReusableEntity", x => x.EntityId);
+                    table.PrimaryKey("eodehsotric_PK_EntityLinkToReusableEntity", x => x.EntityId);
                     table.ForeignKey(
-                        name: "ex_configu_e_FK_EntityLinkToReusableEntity_Entity_EntityId",
+                        name: "eodehsotric_FK_EntityLinkToReusableEntity_Entity_EntityId",
                         column: x => x.EntityId,
-                        principalTable: "ex_configu_e_Entity",
+                        principalTable: "eodehsotric_Entity",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "ex_configu_e_FK_EntityLinkToReusableEntity_ReusableEntiCB4546B",
+                        name: "eodehsotric_FK_EntityLinkToReusableEntity_ReusableEntiCB4546B",
                         column: x => x.ReusableEntityId,
-                        principalTable: "ex_configu_e_ReusableEntity",
+                        principalTable: "eodehsotric_ReusableEntity",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
-                name: "ex_configu_e_IX_EntityLinkToReusableEntity_ReusableEntityId",
-                table: "ex_configu_e_EntityLinkToReusableEntity",
+                name: "eodehsotric_IX_EntityLinkToReusableEntity_ReusableEntityId",
+                table: "eodehsotric_EntityLinkToReusableEntity",
                 column: "ReusableEntityId");
 
             migrationBuilder.CreateIndex(
-                name: "ex_configu_e_IX_EntityOwnedCollection_EntityId",
-                table: "ex_configu_e_EntityOwnedCollection",
+                name: "eodehsotric_IX_EntityOwnedCollection_EntityId",
+                table: "eodehsotric_EntityOwnedCollection",
                 column: "EntityId");
         }
 
@@ -123,19 +123,19 @@ namespace YourCompany.EFCore.PostgreSQL.YourCompanyDbContextConfigurationMigrati
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "ex_configu_e_EntityLinkToReusableEntity");
+                name: "eodehsotric_EntityLinkToReusableEntity");
 
             migrationBuilder.DropTable(
-                name: "ex_configu_e_EntityMixin");
+                name: "eodehsotric_EntityMixin");
 
             migrationBuilder.DropTable(
-                name: "ex_configu_e_EntityOwnedCollection");
+                name: "eodehsotric_EntityOwnedCollection");
 
             migrationBuilder.DropTable(
-                name: "ex_configu_e_ReusableEntity");
+                name: "eodehsotric_ReusableEntity");
 
             migrationBuilder.DropTable(
-                name: "ex_configu_e_Entity");
+                name: "eodehsotric_Entity");
         }
     }
 }

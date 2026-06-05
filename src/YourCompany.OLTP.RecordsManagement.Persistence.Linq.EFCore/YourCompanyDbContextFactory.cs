@@ -121,7 +121,7 @@ namespace YourCompany.OLTP.RecordsManagement.Persistence.Linq.EFCore
             {
                 _queryBuilders = queryBuilders ?? throw new ArgumentNullException(nameof(queryBuilders));
                 LoadOnce();
-                if (LoadingContext.IsDesignTime) throw new ApplicationException("LoadingContext.IsDesignTime");
+                // 💩 (see ScopedYourCompanyDbContextFactory) due to DI integration and statical nature of plugins we have to avoid this assertion (LoadingContext == null): if (LoadingContext.IsDesignTime) throw new ApplicationException("LoadingContext.IsDesignTime");
             }
 
             IReadOnlyList<RecordDataQueryBuilder> IRecordDataQueryBuildersProvider.GetQueryBuilders(Type recordDataType)

@@ -1,5 +1,5 @@
 using YourCompany.EFCore;
-using YourCompany.Configuration.EFCore;
+using YourCompany.OLTP.RecordsManagement.Persistence.Linq.EFCore;
 
 namespace YourCompany.ConsoleProgram
 {

@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
-using YourCompany.Configuration.EFCore;
+using YourCompany.OLTP.RecordsManagement.Persistence.Linq.EFCore;
 
 #nullable disable
 
@@ -46,9 +46,9 @@ namespace YourCompany.EFCore.PostgreSQL.CustomConfigurationMigrations
                         .HasColumnType("text");
 
                     b.HasKey("Id")
-                        .HasName("ex_configu_e_PK_Entity");
+                        .HasName("eodehsotric_PK_Entity");
 
-                    b.ToTable("ex_configu_e_Entity");
+                    b.ToTable("eodehsotric_Entity");
                 });
 
             modelBuilder.Entity("YourCompany.EFCore.NeverPretendingToBeYourDomainModel.EFCoreConventionalEntity+SomeReusableEntityHereForBrevity", b =>
@@ -63,9 +63,9 @@ namespace YourCompany.EFCore.PostgreSQL.CustomConfigurationMigrations
                         .HasColumnType("text");
 
                     b.HasKey("Id")
-                        .HasName("ex_configu_e_PK_ReusableEntity");
+                        .HasName("eodehsotric_PK_ReusableEntity");
 
-                    b.ToTable("ex_configu_e_ReusableEntity");
+                    b.ToTable("eodehsotric_ReusableEntity");
                 });
 
             modelBuilder.Entity("YourCompany.EFCore.NeverPretendingToBeYourDomainModel.EFCoreConventionalEntity", b =>
@@ -88,13 +88,13 @@ namespace YourCompany.EFCore.PostgreSQL.CustomConfigurationMigrations
                                 .HasColumnType("text");
 
                             b1.HasKey("EntityId")
-                                .HasName("ex_configu_e_PK_EntityMixin");
+                                .HasName("eodehsotric_PK_EntityMixin");
 
-                            b1.ToTable("ex_configu_e_EntityMixin");
+                            b1.ToTable("eodehsotric_EntityMixin");
 
                             b1.WithOwner()
                                 .HasForeignKey("EntityId")
-                                .HasConstraintName("ex_configu_e_FK_EntityMixin_Entity_EntityId");
+                                .HasConstraintName("eodehsotric_FK_EntityMixin_Entity_EntityId");
                         });
 
                     b.OwnsMany("YourCompany.EFCore.NeverPretendingToBeYourDomainModel.EFCoreConventionalEntity+HavingSomeOwnedCollection", "TypicallyAlwaysIncludedCollectionIfYouAreGoingToBuildAggregatesOnTopOfIt", b1 =>
@@ -121,16 +121,16 @@ namespace YourCompany.EFCore.PostgreSQL.CustomConfigurationMigrations
                                 .HasColumnType("integer");
 
                             b1.HasKey("Id")
-                                .HasName("ex_configu_e_PK_EntityOwnedCollection");
+                                .HasName("eodehsotric_PK_EntityOwnedCollection");
 
                             b1.HasIndex("EntityId")
-                                .HasDatabaseName("ex_configu_e_IX_EntityOwnedCollection_EntityId");
+                                .HasDatabaseName("eodehsotric_IX_EntityOwnedCollection_EntityId");
 
-                            b1.ToTable("ex_configu_e_EntityOwnedCollection");
+                            b1.ToTable("eodehsotric_EntityOwnedCollection");
 
                             b1.WithOwner()
                                 .HasForeignKey("EntityId")
-                                .HasConstraintName("ex_configu_e_FK_EntityOwnedCollection_Entity_EntityId");
+                                .HasConstraintName("eodehsotric_FK_EntityOwnedCollection_Entity_EntityId");
                         });
 
                     b.OwnsOne("YourCompany.EFCore.NeverPretendingToBeYourDomainModel.EFCoreConventionalEntity+HavingToManuallyLinkEveryTime", "SomeReusableStuffLink", b1 =>
@@ -142,23 +142,23 @@ namespace YourCompany.EFCore.PostgreSQL.CustomConfigurationMigrations
                                 .HasColumnType("integer");
 
                             b1.HasKey("EntityId")
-                                .HasName("ex_configu_e_PK_EntityLinkToReusableEntity");
+                                .HasName("eodehsotric_PK_EntityLinkToReusableEntity");
 
                             b1.HasIndex("ReusableEntityId")
-                                .HasDatabaseName("ex_configu_e_IX_EntityLinkToReusableEntity_ReusableEntityId");
+                                .HasDatabaseName("eodehsotric_IX_EntityLinkToReusableEntity_ReusableEntityId");
 
-                            b1.ToTable("ex_configu_e_EntityLinkToReusableEntity");
+                            b1.ToTable("eodehsotric_EntityLinkToReusableEntity");
 
                             b1.WithOwner()
                                 .HasForeignKey("EntityId")
-                                .HasConstraintName("ex_configu_e_FK_EntityLinkToReusableEntity_Entity_EntityId");
+                                .HasConstraintName("eodehsotric_FK_EntityLinkToReusableEntity_Entity_EntityId");
 
                             b1.HasOne("YourCompany.EFCore.NeverPretendingToBeYourDomainModel.EFCoreConventionalEntity+SomeReusableEntityHereForBrevity", null)
                                 .WithMany()
                                 .HasForeignKey("ReusableEntityId")
                                 .OnDelete(DeleteBehavior.Cascade)
                                 .IsRequired()
-                                .HasConstraintName("ex_configu_e_FK_EntityLinkToReusableEntity_ReusableEntiCB4546B");
+                                .HasConstraintName("eodehsotric_FK_EntityLinkToReusableEntity_ReusableEntiCB4546B");
                         });
 
                     b.Navigation("NonModularManualWayToMixIn");
