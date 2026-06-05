@@ -204,7 +204,7 @@ All the entry point branches' heads are highlighted in the graph as ⏹️.
 ---
 config:
   gitGraph:
-    mainBranchName: "4|🧱: OLTP identities are unique keys"
+    mainBranchName: "4|🧱: OLTP LINQ may be useful"
     parallelCommits: true
     rotateCommitLabel: false
     showCommitLabel: false
@@ -387,13 +387,13 @@ gitGraph
 
 %% checkout "5|🧱: OLTP switch to chassis" %% OLMBU
 %% branch "4|🧱: OLTP LINQ may be useful" %% OLMBU
-%% commit type:HIGHLIGHT tag:"4|🧱|oltp-segregate-persistence-repository-is-for-use-cases|YourCompany.OLTP.RecordsManagement.Persistence.Linq" %% OLMBU
+commit type:HIGHLIGHT tag:"4|🧱|oltp-segregate-persistence-repository-is-for-use-cases|YourCompany.OLTP.RecordsManagement.Persistence.Linq" %% OLMBU
 %% merge "5|💾: OLTP EFCore readonly" type:HIGHLIGHT tag:"4|🧱|oltp-segregate-persistence-repository-is-for-use-cases|YourCompany.OLTP.RecordsManagement.Persistence.Linq" %% OLMBU
 
-%% branch "4|🧱: OLTP identities are unique keys" %% OIAUK
+branch "4|🧱: OLTP identities are unique keys" %% OIAUK
 %% commit type:REVERSE %% OIAUK>1
-commit type:HIGHLIGHT tag:"4|🧱|oltp-segregate-persistence-repository-is-for-use-cases|YourCompany.OLTP.RecordsManagement.Persistence" %% OIAUK
-%% commit type:NORMAL tag:"4|🧱|YourCompany.OLTP.RecordsManagement.Persistence" %% OIAUK
+%% commit type:HIGHLIGHT tag:"4|🧱|oltp-segregate-persistence-repository-is-for-use-cases|YourCompany.OLTP.RecordsManagement.Persistence" %% OIAUK
+commit type:NORMAL tag:"4|🧱|YourCompany.OLTP.RecordsManagement.Persistence" %% OIAUK
 
 %% checkout "5|🧱: OLTP record composition to chassis" %% OUCBRT
 %% branch "4|🏠: OLTP use cases by record type" %% OUCBRT
@@ -959,7 +959,7 @@ Cons: why it might be not enough for you
 
 ### Branch: oltp-segregate-persistence-repository-is-for-use-cases
 
-> Files: 54 | Lines: 5449  
+> Files: 56 | Lines: 5508  
 Pros: clarified identities and streamlined persistence implementation  
 Cons: may be not enough organized if you need to reuse some use cases
 
@@ -970,6 +970,7 @@ Cons: may be not enough organized if you need to reuse some use cases
 | [2\|⁠🧱: StructHelper](#commit-2-structhelper) | <kbd> [TODO](examples/at-least-one-example-solution-per-commit/README.md#commit-2-structhelper) </kbd> | <kbd>YourCompany.CompilerServices (+18 lines)</kbd> |
 | [3\|⁠🧱: OLTP transaction structure](#commit-3-oltp-transaction-structure) | <kbd> [TODO](examples/at-least-one-example-solution-per-commit/README.md#commit-3-oltp-transaction-structure) </kbd> | <kbd>YourCompany.OLTP.RecordsManagement (+1918 lines)</kbd> |
 | [4\|⁠🧱: OLTP identities are unique keys](#commit-4-oltp-identities-are-unique-keys) | <kbd> [TODO](examples/at-least-one-example-solution-per-commit/README.md#commit-4-oltp-identities-are-unique-keys) </kbd> | <kbd>YourCompany.OLTP.RecordsManagement.Persistence (+1642 lines)</kbd> |
+| [4\|⁠🧱: OLTP LINQ may be useful](#commit-4-oltp-linq-may-be-useful) | <kbd> [TODO](examples/at-least-one-example-solution-per-commit/README.md#commit-4-oltp-linq-may-be-useful) </kbd> | <kbd>YourCompany.OLTP.RecordsManagement.Persistence.Linq (+59 lines)</kbd> |
 
 <!-- ### Branch: oltp-segregate-persistence-repository-is-for-use-cases END -->
 
@@ -1638,15 +1639,19 @@ completely.
 
 <!-- ### Commit: 4|🧱: OLTP identities are unique keys END -->
 
-<!-- ### Commit: 4|🧱: OLTP LINQ may be useful
+### Commit: 4|🧱: OLTP LINQ may be useful
 
 <table><tbody><tr><td>
 
-X files changed, Y insertions(+), Z deletions(-)<br>
-<sub><sub>src/YourCompany.Module/</sub></sub><br>
-<kbd> +++++++ NNN |⁠ [File.cs                                                                                                        ](src/YourCompany.Configuration/EnvironmentConventions.cs)</kbd><br>
+2 files changed, 59 insertions(+)<br>
+<sub><sub>src/YourCompany.OLTP.RecordsManagement.Persistence.Linq/</sub></sub><br>
+<kbd> +++++++ 49  |⁠ [RecordDataQueryBuilder.cs                                                                                      ](src/YourCompany.OLTP.RecordsManagement.Persistence.Linq/RecordDataQueryBuilder.cs)</kbd><br>
+<kbd>      ++ 10  |⁠ [IRecordDataQueryBuildersProvider.cs                                                                            ](src/YourCompany.OLTP.RecordsManagement.Persistence.Linq/IRecordDataQueryBuildersProvider.cs)</kbd><br>
 
-Commit body is multiline and compliant to markdown formatting 💥
+It's a small extension to the streamlined data access interfaces  
+in the case one implements the transaction using linq-based  
+libs like EF or linq2db. So that the query building and modifying  
+specifications applying logic can be further decomposed.
 
 </td></tr></tbody></table>
 
