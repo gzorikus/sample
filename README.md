@@ -1297,29 +1297,25 @@ transaction. Such key identity is sometimes called a "cursor".
 
 <!-- ### Commit: 2|🧱: AwaitTasksList END -->
 
-<!-- ### Commit: 2|🧱: GetMemberHelper
+### Commit: 2|🧱: GetMemberHelper
 
 <table><tbody><tr><td>
 
-X files changed, Y insertions(+), Z deletions(-)<br>
-<sub><sub>src/YourCompany.Module/</sub></sub><br>
-<kbd> +++++++ NNN |⁠ [File.cs                                                                                                        ](src/YourCompany.Configuration/EnvironmentConventions.cs)</kbd><br>
-
-Commit body is multiline and compliant to markdown formatting 💥
+1 file changed, 57 insertions(+)<br>
+<sub><sub>src/YourCompany.Reflection/</sub></sub><br>
+<kbd> +++++++ 57  |⁠ [GetMemberHelper.cs                                                                                             ](src/YourCompany.Reflection/GetMemberHelper.cs)</kbd><br>
 
 </td></tr></tbody></table>
 
 <!-- ### Commit: 2|🧱: GetMemberHelper END -->
 
-<!-- ### Commit: 2|🧱: DIConstructorHelper
+### Commit: 2|🧱: DIConstructorHelper
 
 <table><tbody><tr><td>
 
-X files changed, Y insertions(+), Z deletions(-)<br>
-<sub><sub>src/YourCompany.Module/</sub></sub><br>
-<kbd> +++++++ NNN |⁠ [File.cs                                                                                                        ](src/YourCompany.Configuration/EnvironmentConventions.cs)</kbd><br>
-
-Commit body is multiline and compliant to markdown formatting 💥
+1 file changed, 31 insertions(+)<br>
+<sub><sub>src/YourCompany.Reflection.DI/</sub></sub><br>
+<kbd> +++++++ 31  |⁠ [DIConstructorHelper.cs                                                                                         ](src/YourCompany.Reflection.DI/DIConstructorHelper.cs)</kbd><br>
 
 </td></tr></tbody></table>
 
@@ -1423,15 +1419,16 @@ Commit body is multiline and compliant to markdown formatting 💥
 
 <!-- ### Commit: 2|💾: EFCore hosting migration run END -->
 
-<!-- ### Commit: 3|🏠: OLTP RecordTypesMap
+### Commit: 3|🏠: OLTP RecordTypesMap
 
 <table><tbody><tr><td>
 
-X files changed, Y insertions(+), Z deletions(-)<br>
-<sub><sub>src/YourCompany.Module/</sub></sub><br>
-<kbd> +++++++ NNN |⁠ [File.cs                                                                                                        ](src/YourCompany.Configuration/EnvironmentConventions.cs)</kbd><br>
-
-Commit body is multiline and compliant to markdown formatting 💥
+4 files changed, 263 insertions(+)<br>
+<sub><sub>src/YourCompany.OLTP.StateOwnership.Reflection/</sub></sub><br>
+<kbd> +++++++ 97  |⁠ [RecordConstructionHelper.cs                                                                                    ](src/YourCompany.OLTP.StateOwnership.Reflection/RecordConstructionHelper.cs)</kbd><br>
+<kbd>   +++++ 74  |⁠ [RecordTypeInfo.cs                                                                                              ](src/YourCompany.OLTP.StateOwnership.Reflection/RecordTypeInfo.cs)</kbd><br>
+<kbd>    ++++ 56  |⁠ [RecordConstructionException.cs                                                                                 ](src/YourCompany.OLTP.StateOwnership.Reflection/RecordConstructionException.cs)</kbd><br>
+<kbd>     +++ 36  |⁠ [RecordTypesMap.cs                                                                                              ](src/YourCompany.OLTP.StateOwnership.Reflection/RecordTypesMap.cs)</kbd><br>
 
 </td></tr></tbody></table>
 
@@ -1872,15 +1869,16 @@ delegated manner.
 
 <!-- ### Commit: 5|🧱: OLTP switch to chassis END -->
 
-<!-- ### Commit: 5|🧱: OLTP DI ScopedRecordsProvider
+### Commit: 5|🧱: OLTP DI ScopedRecordsProvider
 
 <table><tbody><tr><td>
 
-X files changed, Y insertions(+), Z deletions(-)<br>
-<sub><sub>src/YourCompany.Module/</sub></sub><br>
-<kbd> +++++++ NNN |⁠ [File.cs                                                                                                        ](src/YourCompany.Configuration/EnvironmentConventions.cs)</kbd><br>
-
-Commit body is multiline and compliant to markdown formatting 💥
+4 files changed, 120 insertions(+)<br>
+<sub><sub>src/YourCompany.OLTP.StateOwnership.Reflection.DI/</sub></sub><br>
+<kbd> +++++++ 80  |⁠ [ScopedRecordsProvider.cs                                                                                       ](src/YourCompany.OLTP.StateOwnership.Reflection.DI/ScopedRecordsProvider.cs)</kbd><br>
+<kbd>      ++ 19  |⁠ [SingletonStateAccess.cs                                                                                        ](src/YourCompany.OLTP.StateOwnership.Reflection.DI/SingletonStateAccess.cs)</kbd><br>
+<kbd>       + 12  |⁠ [ICurrentStateAccess.cs                                                                                         ](src/YourCompany.OLTP.StateOwnership.Reflection.DI/ICurrentStateAccess.cs)</kbd><br>
+<kbd>       + 9   |⁠ [ICurrentStateAccessProvider.cs                                                                                 ](src/YourCompany.OLTP.StateOwnership.Reflection.DI/ICurrentStateAccessProvider.cs)</kbd><br>
 
 </td></tr></tbody></table>
 
