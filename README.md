@@ -204,7 +204,7 @@ All the entry point branches' heads are highlighted in the graph as ⏹️.
 ---
 config:
   gitGraph:
-    mainBranchName: "1|🏠: the heart of OLTP is transaction"
+    mainBranchName: "2|🏠: OLTP transaction is limited size"
     parallelCommits: true
     rotateCommitLabel: false
     showCommitLabel: false
@@ -753,7 +753,7 @@ gitGraph
 %% checkout "3|🏠: generic OLTP use cases" %% OTILS
 %% checkout "3|🧱: OLTP transaction structure" %% OTILS
 %% branch "2|🏠: OLTP transaction is limited size" %% OTILS
-%% commit type:HIGHLIGHT tag:"2|🏠|oltp-ways-to-access-size-limited-record-batch|YourCompany.OLTP.RecordsManagement" %% OTILS
+commit type:HIGHLIGHT tag:"2|🏠|oltp-ways-to-access-size-limited-record-batch|YourCompany.OLTP.RecordsManagement" %% OTILS
 %% merge "3|🧱: OLTP transaction structure" type:HIGHLIGHT tag:"2|🏠|oltp-ways-to-access-size-limited-record-batch|YourCompany.OLTP.RecordsManagement" %% OTILS
 
 %% Startup Iteration 1
@@ -872,7 +872,7 @@ gitGraph
 %% checkout MERGED %% THOOIT
 %% checkout "2|🏠: OLTP transaction is limited size" %% THOOIT
 %% checkout "3|🏠: OLTP RecordTypesMap" %% THOOIT
-%% branch "1|🏠: the heart of OLTP is transaction" %% THOOIT
+branch "1|🏠: the heart of OLTP is transaction" %% THOOIT
 %% merge "2|🏠: OLTP transaction is limited size" %% THOOIT
 %% merge "1|🏠: OLTP events producing" %% THOOIT
 %% merge "1|🏠: OLTP transactional composition" %% THOOIT
@@ -993,15 +993,16 @@ Cons: why it might be not enough for you
 
 <!-- ### Branch: oltp-typical-transaction-structure-repository-is-up-to-you END -->
 
-<!-- ### Branch: oltp-ways-to-access-size-limited-record-batch
+### Branch: oltp-ways-to-access-size-limited-record-batch
 
-> Files: ### | Lines: #####  
-Pros: why do you choose this entry point  
-Cons: why it might be not enough for you
+> Files: 26 | Lines: 1871  
+Pros: enough to standardize use cases or "service 🙈" layer  
+Cons: repositories implemented per record type are too big
 
 | Log | Examples | Modules |
 |-|-|-|
-| [replace_with_each_included_commit_subject](#commit-with-lower-case-subject) | <kbd> [at‑least‑one‑example‑solution‑name](examples/at-least-one-example-solution-per-commit/README.md#commit-with-lower-case-subject) </kbd><br><kbd> [extra‑example‑solution‑name](examples/extra-example-solution-name/README.md#commit-with-lower-case-subject) </kbd> | <kbd>YourCompany.Framework.Assembly.Name1 (+diff lines)</kbd><br><kbd>YourCompany.Framework.Assembly.Name2 (-diff lines)</kbd><br><kbd>YourCompany.Framework.Assembly.NameN (0 lines)</kbd> |
+| [1\|⁠🏠: the heart of OLTP is transaction](#commit-1-the-heart-of-oltp-is-transaction) | <kbd> [TODO](examples/at-least-one-example-solution-per-commit/README.md#commit-1-the-heart-of-oltp-is-transaction) </kbd> | <kbd>YourCompany.OLTP.StateOwnership (+371 lines)</kbd> |
+| [2\|⁠🏠: OLTP transaction is limited size](#commit-2-oltp-transaction-is-limited-size) | <kbd> [TODO](examples/at-least-one-example-solution-per-commit/README.md#commit-2-oltp-transaction-is-limited-size) </kbd> | <kbd>YourCompany.OLTP.RecordsManagement (+1500 lines)</kbd> |
 
 <!-- ### Branch: oltp-ways-to-access-size-limited-record-batch END -->
 
@@ -1179,15 +1180,73 @@ Commit body is multiline and compliant to markdown formatting 💥
 
 <!-- ### Commit: 1|🧱: basic configurations covered END -->
 
-<!-- ### Commit: 2|🏠: OLTP transaction is limited size
+### Commit: 2|🏠: OLTP transaction is limited size
 
 <table><tbody><tr><td>
 
-X files changed, Y insertions(+), Z deletions(-)<br>
-<sub><sub>src/YourCompany.Module/</sub></sub><br>
-<kbd> +++++++ NNN |⁠ [File.cs                                                                                                        ](src/YourCompany.Configuration/EnvironmentConventions.cs)</kbd><br>
+20 files changed, 1500 insertions(+)<br>
+<sub><sub>src/YourCompany.OLTP.RecordsManagement/</sub></sub><br>
+<kbd> +++++++ 167 |⁠ [IRecordsBatch.cs                                                                                               ](src/YourCompany.OLTP.RecordsManagement/IRecordsBatch.cs)</kbd><br>
+<kbd>   +++++ 135 |⁠ [RecordsBatchTransactionCallback.cs                                                                             ](src/YourCompany.OLTP.RecordsManagement/RecordsBatchTransactionCallback.cs)</kbd><br>
+<kbd>   +++++ 125 |⁠ [RecordsBatchTransactionConfiguration.ByIds.cs                                                                  ](src/YourCompany.OLTP.RecordsManagement/RecordsBatchTransactionConfiguration.ByIds.cs)</kbd><br>
+<kbd>   +++++ 125 |⁠ [RecordsBatchTransactionConfiguration.NoSorting.cs                                                              ](src/YourCompany.OLTP.RecordsManagement/RecordsBatchTransactionConfiguration.NoSorting.cs)</kbd><br>
+<kbd>    ++++ 98  |⁠ [RecordsBatchTransactionConfiguration.NoSorting.Paginated.cs                                                    ](src/YourCompany.OLTP.RecordsManagement/RecordsBatchTransactionConfiguration.NoSorting.Paginated.cs)</kbd><br>
+<kbd>    ++++ 90  |⁠ [RecordsBatchTransactionSpecification.ReadOnlyIncompatible.cs                                                   ](src/YourCompany.OLTP.RecordsManagement/RecordsBatchTransactionSpecification.ReadOnlyIncompatible.cs)</kbd><br>
+<kbd>    ++++ 90  |⁠ [RecordsBatchTransactionExtensions.cs                                                                           ](src/YourCompany.OLTP.RecordsManagement/RecordsBatchTransactionExtensions.cs)</kbd><br>
+<kbd>    ++++ 85  |⁠ [RecordsBatchTransactionConfiguration.ById.cs                                                                   ](src/YourCompany.OLTP.RecordsManagement/RecordsBatchTransactionConfiguration.ById.cs)</kbd><br>
+<kbd>     +++ 83  |⁠ [RecordsBatchTransactionSpecification.ReadOnlyIncompatible.SpecifiedRecord.cs                                   ](src/YourCompany.OLTP.RecordsManagement/RecordsBatchTransactionSpecification.ReadOnlyIncompatible.SpecifiedRecord.cs)</kbd><br>
+<kbd>     +++ 81  |⁠ [RecordsBatchTransactionConfiguration.AfterId.cs                                                                ](src/YourCompany.OLTP.RecordsManagement/RecordsBatchTransactionConfiguration.AfterId.cs)</kbd><br>
+<kbd>     +++ 76  |⁠ [RecordsBatchTransactionConfiguration.cs                                                                        ](src/YourCompany.OLTP.RecordsManagement/RecordsBatchTransactionConfiguration.cs)</kbd><br>
+<kbd>     +++ 73  |⁠ [RecordsBatchTransactionSpecification.cs                                                                        ](src/YourCompany.OLTP.RecordsManagement/RecordsBatchTransactionSpecification.cs)</kbd><br>
+<kbd>     +++ 64  |⁠ [RecordsBatchTransactionConfiguration.AfterId.Paginated.cs                                                      ](src/YourCompany.OLTP.RecordsManagement/RecordsBatchTransactionConfiguration.AfterId.Paginated.cs)</kbd><br>
+<kbd>      ++ 51  |⁠ [RecordsBatchTransactionSpecification.SpecifiedRecordIncompatible.cs                                            ](src/YourCompany.OLTP.RecordsManagement/RecordsBatchTransactionSpecification.SpecifiedRecordIncompatible.cs)</kbd><br>
+<kbd>      ++ 50  |⁠ [RecordsBatchTransactionSpecification.Sorting.cs                                                                ](src/YourCompany.OLTP.RecordsManagement/RecordsBatchTransactionSpecification.Sorting.cs)</kbd><br>
+<kbd>      ++ 47  |⁠ [RecordsBatchTransactionSpecificationExtensions.cs                                                              ](src/YourCompany.OLTP.RecordsManagement/RecordsBatchTransactionSpecificationExtensions.cs)</kbd><br>
+<kbd>       + 23  |⁠ [RecordsBatchTransaction.cs                                                                                     ](src/YourCompany.OLTP.RecordsManagement/RecordsBatchTransaction.cs)</kbd><br>
+<kbd>       + 20  |⁠ [RecordsBatchTransactionSpecification.ReadOnly.cs                                                               ](src/YourCompany.OLTP.RecordsManagement/RecordsBatchTransactionSpecification.ReadOnly.cs)</kbd><br>
+<kbd>       + 10  |⁠ [IRepository.cs                                                                                                 ](src/YourCompany.OLTP.RecordsManagement/IRepository.cs)</kbd><br>
+<kbd>       + 7   |⁠ [IRecordsBatchSizeLimit.cs                                                                                      ](src/YourCompany.OLTP.RecordsManagement/IRecordsBatchSizeLimit.cs)</kbd><br>
 
-Commit body is multiline and compliant to markdown formatting 💥
+Long story short big transactions work bad. We need a way  
+to enforce the records number limit per any transaction run.
+
+But the size is not the only "specification" to be considered.  
+In contrast to the DDD specifications these are the options  
+rather than the matching strategy. There are particular rules that  
+must be followed to be able to resolve a particular combination  
+of these options. Look for details in these rules implemented by  
+`RecordsBatchTransactionSpecification` semi-closed hierarchy.
+
+Considering the compatibility rules and their nested long-name nature  
+its creation is streamlined into a fluent-API-like extensions set  
+in `RecordsBatchTransactionExtensions`.
+
+Among all it's worth to highlight use cases and keyset pagination.
+
+For use cases as we stated before it is typical to modify data.  
+That's why we design `UseCaseParameters` to switch any transaction  
+into modifying one. It is expected to declare a **dedicated class per  
+use case**. It may contain some previously queried data or represent a  
+domain event. But there is also a special case allowing to turn any  
+transaction into modifying without any data being changed and later we  
+will see why. The special case is triggered by  
+`TriggeredBeforeDataChanging` event args, and there are also a few  
+`ReadAndMatchExclusive` extension methods.
+
+For keyset pagination. It tightly relates to records ordering. To be  
+effective that ordering must be performed on the storage side.  
+That means we need to instruct the appropriate persistence adapter  
+to pick records after a particular unique key in a particular order.  
+And It turns out that previously introduced Identity is a perfect fit 🤔
+
+The model asks a particular factory to provide a key `Identity`  
+for values it specifies while encapsulating a desired ordering by the  
+factory method name or extra parameters. This way all the persistence  
+concerns remain isolated from the model. If your use case or a  
+"service 🙈" logic requires to iterate more records through than the  
+records batch size limit allows then it may use the  
+`TryGetLastPresentRecordIdentity` extension to continue in another  
+transaction. Such key identity is sometimes called a "cursor".
 
 </td></tr></tbody></table>
 
