@@ -2,6 +2,7 @@ using System;
 using System.Linq;
 using System.Linq.Expressions;
 using YourCompany.Configuration.EFCore.CollationAwareSorting;
+using YourCompany.Reflection;
 
 namespace YourCompany.Configuration.EFCore
 {
@@ -31,6 +32,8 @@ namespace YourCompany.Configuration.EFCore
             if (leftSide == null) throw new ArgumentNullException(nameof(leftSide));
             if (leftKeySelector == null) throw new ArgumentNullException(nameof(leftKeySelector));
             if (rightKeySelector == null) throw new ArgumentNullException(nameof(rightKeySelector));
+            if (typeof(TEntityOrEntitiesValueTuple).IsValueType && !ValueTupleHelper.CheckIsValueTuple(typeof(TEntityOrEntitiesValueTuple)))
+                throw new ApplicationException("typeof(TEntityOrEntitiesValueTuple).IsValueType && !ValueTupleHelper.CheckIsValueTuple(typeof(TEntityOrEntitiesValueTuple))");
             var rightSide = joinedSetFilter != null
                 ? FilterForMultiEntityQuery<TInner>(joinedSetFilter, joinedSetName)
                 : joinedSetName != null ? Set<TInner>(joinedSetName) : Set<TInner>();
@@ -48,6 +51,8 @@ namespace YourCompany.Configuration.EFCore
             if (outerSide == null) throw new ArgumentNullException(nameof(outerSide));
             if (outerKeySelector == null) throw new ArgumentNullException(nameof(outerKeySelector));
             if (innerKeySelector == null) throw new ArgumentNullException(nameof(innerKeySelector));
+            if (typeof(TEntityOrEntitiesValueTuple).IsValueType && !ValueTupleHelper.CheckIsValueTuple(typeof(TEntityOrEntitiesValueTuple)))
+                throw new ApplicationException("typeof(TEntityOrEntitiesValueTuple).IsValueType && !ValueTupleHelper.CheckIsValueTuple(typeof(TEntityOrEntitiesValueTuple))");
             var innerSide = joinedSetFilter != null
                 ? FilterForMultiEntityQuery<TInner>(joinedSetFilter, joinedSetName)
                 : joinedSetName != null ? Set<TInner>(joinedSetName) : Set<TInner>();
@@ -66,6 +71,8 @@ namespace YourCompany.Configuration.EFCore
             if (innerSide == null) throw new ArgumentNullException(nameof(innerSide));
             if (innerKeySelector == null) throw new ArgumentNullException(nameof(innerKeySelector));
             if (outerKeySelector == null) throw new ArgumentNullException(nameof(outerKeySelector));
+            if (typeof(TEntityOrEntitiesValueTuple).IsValueType && !ValueTupleHelper.CheckIsValueTuple(typeof(TEntityOrEntitiesValueTuple)))
+                throw new ApplicationException("typeof(TEntityOrEntitiesValueTuple).IsValueType && !ValueTupleHelper.CheckIsValueTuple(typeof(TEntityOrEntitiesValueTuple))");
             var outerSide = joinedSetFilter != null
                 ? FilterForMultiEntityQuery<TOuter>(joinedSetFilter, joinedSetName)
                 : joinedSetName != null ? Set<TOuter>(joinedSetName) : Set<TOuter>();
@@ -82,6 +89,8 @@ namespace YourCompany.Configuration.EFCore
         {
             if (leftSide == null) throw new ArgumentNullException(nameof(leftSide));
             if (condition == null) throw new ArgumentNullException(nameof(condition));
+            if (typeof(TEntityOrEntitiesValueTuple).IsValueType && !ValueTupleHelper.CheckIsValueTuple(typeof(TEntityOrEntitiesValueTuple)))
+                throw new ApplicationException("typeof(TEntityOrEntitiesValueTuple).IsValueType && !ValueTupleHelper.CheckIsValueTuple(typeof(TEntityOrEntitiesValueTuple))");
             var rightSide = joinedSetFilter != null
                 ? FilterForMultiEntityQuery<TRight>(joinedSetFilter, joinedSetName)
                 : joinedSetName != null ? Set<TRight>(joinedSetName) : Set<TRight>();

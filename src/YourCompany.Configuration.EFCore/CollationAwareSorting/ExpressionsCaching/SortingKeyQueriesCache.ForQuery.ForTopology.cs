@@ -20,6 +20,7 @@ namespace YourCompany.Configuration.EFCore.CollationAwareSorting.ExpressionsCach
                 private readonly TopologyCacheKey _cacheKey;
                 private readonly LambdaExpression _selectValues;
                 private readonly Delegate _selectKey;
+                private readonly Func<IQueryable<T>, IOrderedQueryable<T>> _multiEntitySort;
                 private readonly Func<IQueryable<T>, CancellationToken, Task<List<SortingKey>>> _getKeysFrom;
                 private readonly ConcurrentDictionary<Type, Delegate> _getKeysFromByExtraValueType;
                 private readonly Func<Type, Delegate> _createGetKeysFromByExtraValueTypeItemNonExclusiveStrategy;
@@ -30,16 +31,34 @@ namespace YourCompany.Configuration.EFCore.CollationAwareSorting.ExpressionsCach
 
                     var singleTopology = cacheKey.SingleTopology ?? throw new ApplicationException("singleTopology == null");
                     string singleEntityReplacingQueriedSetName = cacheKey.SingleEntityReplacingQueriedSetName;
+                    var multiEntityValueTuplePropertyOwnerIndecies = cacheKey.MultiEntityValueTuplePropertyOwnerIndecies;
 
-                    singleTopology.EnsureCompatibleWithSingleEntityQueries(
-                        typeof(T), singleEntityReplacingQueriedSet: singleEntityReplacingQueriedSetName != null);
-                    
-                    TopologyVisitor topologyVisitor = singleTopology.PrefixKeysCount == 0
-                        ? new TopologyVisitor.SingleEFProperty(singleTopology, singleEntityReplacingQueriedSetName)
-                        : new TopologyVisitor.MultiEFProperties.ForEntity(singleTopology, singleEntityReplacingQueriedSetName);
+                    TopologyVisitor topologyVisitor;
+
+                    if (EFPropertyExpressionsCache.FromParameter<T>.ValueTuple.PropertiesByValueIndex == null)
+                    {
+                        if (multiEntityValueTuplePropertyOwnerIndecies != null) throw new ApplicationException("multiEntityValueTuplePropertyOwnerIndecies");
+                        singleTopology.EnsureCompatibleWithSingleEntityQueries(
+                            typeof(T), singleEntityReplacingQueriedSet: singleEntityReplacingQueriedSetName != null);
+
+                        topologyVisitor = singleTopology.PrefixKeysCount == 0
+                            ? new TopologyVisitor.SingleEFProperty(singleTopology, singleEntityReplacingQueriedSetName)
+                            : new TopologyVisitor.MultiEFProperties.ForEntity(singleTopology, singleEntityReplacingQueriedSetName);
+                    }
+                    else
+                    {
+                        if (singleEntityReplacingQueriedSetName != null) throw new ApplicationException("singleEntityReplacingQueriedSetName");
+                        if (multiEntityValueTuplePropertyOwnerIndecies == null) throw new ApplicationException("multiEntityValueTuplePropertyOwnerIndecies == null");
+                        if (multiEntityValueTuplePropertyOwnerIndecies.Count == 0) throw new ApplicationException("multiEntityValueTuplePropertyOwnerIndecies.Count == 0");
+                        topologyVisitor = new TopologyVisitor.MultiEFProperties.ForEntitiesValueTuple(
+                            singleTopology, multiEntityValueTuplePropertyOwnerIndecies);
+                    }
 
                     _selectValues = topologyVisitor.CreateSelectValues();
                     _selectKey = topologyVisitor.CompileSelectKey();
+
+                    if (multiEntityValueTuplePropertyOwnerIndecies != null)
+                        _multiEntitySort = topologyVisitor.CompileMultiEntitySortStrategy();
 
                     _getKeysFrom = CompileGetKeysFrom();
                     _getKeysFromByExtraValueType = new ConcurrentDictionary<Type, Delegate>();
@@ -65,6 +84,14 @@ namespace YourCompany.Configuration.EFCore.CollationAwareSorting.ExpressionsCach
                         throw new ApplicationException("matchingDelegate == null");
 
                     return matchingDelegate(queryable, extraValueSelector, cancellationToken);
+                }
+
+                internal IOrderedQueryable<T> MultiEntitySort(IQueryable<T> queryable)
+                {
+                    bool shouldSort = _cacheKey.SingleTopology != null;
+                    bool canSort = _multiEntitySort != null;
+                    if (shouldSort != canSort) throw new ApplicationException("shouldSort != canSort");
+                    return _multiEntitySort?.Invoke(queryable) ?? throw new ApplicationException("_multiEntitySort == null");
                 }
 
                 private Func<IQueryable<T>, CancellationToken, Task<List<SortingKey>>> CompileGetKeysFrom()

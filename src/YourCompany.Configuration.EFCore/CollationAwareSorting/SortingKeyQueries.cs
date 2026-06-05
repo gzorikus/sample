@@ -58,7 +58,11 @@ namespace YourCompany.Configuration.EFCore.CollationAwareSorting
                 where TEntity : class;
         }
 
+#pragma warning disable CA2231 // Implement the equality operators and make their behavior identical to that of the Equals method
+#pragma warning disable CS0659 // overrides Object.Equals(object o) but does not override Object.GetHashCode()
         public readonly struct MultiEntityQuerySortingKeyPropertyOwnerIndex
+#pragma warning restore CA2231 // Implement the equality operators and make their behavior identical to that of the Equals method
+#pragma warning restore CS0659 // overrides Object.Equals(object o) but does not override Object.GetHashCode()
         {
             public SortingKeyTopology.ILastProperty PrefixFirstProperty { get; init; }
             public int EntitiesValueTupleParameterValueIndex { get; init; }
@@ -71,6 +75,13 @@ namespace YourCompany.Configuration.EFCore.CollationAwareSorting
                 ownerIndex = EntitiesValueTupleParameterValueIndex;
                 useForSorting = UseOwnerForSortingByThisProperty;
             }
+
+            internal bool EqualsForQueriesCacheKeyOnly(MultiEntityQuerySortingKeyPropertyOwnerIndex other)
+                => SortingKeyTopology.Comparer.Instance.Equals(PrefixFirstProperty, other.PrefixFirstProperty)
+                && EntitiesValueTupleParameterValueIndex == other.EntitiesValueTupleParameterValueIndex
+                && UseOwnerForSortingByThisProperty == other.UseOwnerForSortingByThisProperty;
+
+            public override bool Equals(object obj) => throw new NotSupportedException(nameof(Equals));
         }
     }
 }

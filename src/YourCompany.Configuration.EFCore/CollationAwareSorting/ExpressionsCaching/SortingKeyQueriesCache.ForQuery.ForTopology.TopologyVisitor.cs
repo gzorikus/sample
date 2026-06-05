@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using System.Linq.Expressions;
 using YourCompany.Configuration.EFCore.ExpressionsCaching;
 using YourCompany.Reflection;
@@ -39,6 +40,8 @@ namespace YourCompany.Configuration.EFCore.CollationAwareSorting.ExpressionsCach
                                 _createSortingKeyChain ?? throw new ApplicationException("_createSortingKeyChain == null"),
                                 EFPropertyExpressionsCache.FromParameter<T>.Instance)
                             .Compile();
+
+                    internal abstract Func<IQueryable<T>, IOrderedQueryable<T>> CompileMultiEntitySortStrategy();
 
                     void SortingKeyTopology.IPrefixFirstPropertiesVisitor.VisitProperty<TValue>(
                         SortingKeyTopology.ILastProperty topology)
@@ -131,6 +134,7 @@ namespace YourCompany.Configuration.EFCore.CollationAwareSorting.ExpressionsCach
                         if (key.PrefixKeysCount < _singleTopologyPropertiesCount - 1)
                         {
                             key.ReplaceQueriedSetName = null;
+                            key.EntitiesValueTuplePropertyOwnerIndecies = null;
                         }
                         else
                         {
@@ -156,6 +160,7 @@ namespace YourCompany.Configuration.EFCore.CollationAwareSorting.ExpressionsCach
                         if (key.PrefixKeysCount < _singleTopologyPropertiesCount - 1)
                         {
                             key.ReplaceQueriedSetName = null;
+                            key.EntitiesValueTuplePropertyOwnerIndecies = null;
                         }
                         else
                         {

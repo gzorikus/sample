@@ -1793,15 +1793,30 @@ joined results. All the joining options are provided in the context.
 
 <!-- ### Commit: 7|💾: EFCore SortingKey multi-entity END -->
 
-<!-- ### Commit: 7|💾: EFCore multi-entity sorting
+### Commit: 7|💾: EFCore multi-entity sorting
 
 <table><tbody><tr><td>
 
-X files changed, Y insertions(+), Z deletions(-)<br>
-<sub><sub>src/YourCompany.Module/</sub></sub><br>
-<kbd> +++++++ NNN |⁠ [File.cs                                                                                                        ](src/YourCompany.Configuration/EnvironmentConventions.cs)</kbd><br>
+12 files changed, 642 insertions(+), 7 deletions(-)<br>
+<sub><sub>src/YourCompany.Configuration.EFCore/CollationAwareSorting/</sub></sub><br>
+<kbd>    ++++ 145 |⁠ [SortingKeyQueries.MultiEntityExtensions.cs                                                                     ](src/YourCompany.Configuration.EFCore/CollationAwareSorting/SortingKeyQueries.MultiEntityExtensions.cs)</kbd><br>
+<kbd>     +++ 76  |⁠ [SortingKeyPredicatesBuilder.MultiEntityQuery.cs                                                                ](src/YourCompany.Configuration.EFCore/CollationAwareSorting/SortingKeyPredicatesBuilder.MultiEntityQuery.cs)</kbd><br>
+<kbd>       + 11  |⁠ [SortingKeyQueries.cs                                                                                           ](src/YourCompany.Configuration.EFCore/CollationAwareSorting/SortingKeyQueries.cs)</kbd><br>
+<kbd>      +‑ 11  |⁠ [SortingKeyPredicatesBuilder.cs                                                                                 ](src/YourCompany.Configuration.EFCore/CollationAwareSorting/SortingKeyPredicatesBuilder.cs)</kbd><br>
+<kbd>       + 6   |⁠ [SortingKeyPredicatesBuilder.SingleEntityQuery.cs                                                               ](src/YourCompany.Configuration.EFCore/CollationAwareSorting/SortingKeyPredicatesBuilder.SingleEntityQuery.cs)</kbd><br>
+<sub><sub>.../CollationAwareSorting/ExpressionsCaching/</sub></sub><br>
+<kbd> +++++++ 225 |⁠ [SortingKeyQueriesCache.ForQuery.ForTopology.TopologyVisitor.MultiEFProperties.ForEntitiesValueTuple.cs         ](src/YourCompany.Configuration.EFCore/CollationAwareSorting/ExpressionsCaching/SortingKeyQueriesCache.ForQuery.ForTopology.TopologyVisitor.MultiEFProperties.ForEntitiesValueTuple.cs)</kbd><br>
+<sub><sub>src/YourCompany.Configuration.EFCore/CollationAwareSorting/ExpressionsCaching/</sub></sub><br>
+<kbd>     +++ 104 |⁠ [SortingKeyQueriesCache.ForQuery.cs                                                                             ](src/YourCompany.Configuration.EFCore/CollationAwareSorting/ExpressionsCaching/SortingKeyQueriesCache.ForQuery.cs)</kbd><br>
+<kbd>      +‑ 39  |⁠ [SortingKeyQueriesCache.ForQuery.ForTopology.cs                                                                 ](src/YourCompany.Configuration.EFCore/CollationAwareSorting/ExpressionsCaching/SortingKeyQueriesCache.ForQuery.ForTopology.cs)</kbd><br>
+<kbd>       + 9   |⁠ [SortingKeyQueriesCache.ForQuery.ForTopology.TopologyVisitor.MultiEFProperties.ForEntity.cs                     ](src/YourCompany.Configuration.EFCore/CollationAwareSorting/ExpressionsCaching/SortingKeyQueriesCache.ForQuery.ForTopology.TopologyVisitor.MultiEFProperties.ForEntity.cs)</kbd><br>
+<kbd>       + 9   |⁠ [SortingKeyQueriesCache.ForQuery.ForTopology.TopologyVisitor.SingleEFProperty.cs                                ](src/YourCompany.Configuration.EFCore/CollationAwareSorting/ExpressionsCaching/SortingKeyQueriesCache.ForQuery.ForTopology.TopologyVisitor.SingleEFProperty.cs)</kbd><br>
+<kbd>       + 5   |⁠ [SortingKeyQueriesCache.ForQuery.ForTopology.TopologyVisitor.cs                                                 ](src/YourCompany.Configuration.EFCore/CollationAwareSorting/ExpressionsCaching/SortingKeyQueriesCache.ForQuery.ForTopology.TopologyVisitor.cs)</kbd><br>
+<sub><sub>src/YourCompany.Configuration.EFCore/</sub></sub><br>
+<kbd>       + 9   |⁠ [YourCompanyDbContext.MultiEntityQueries.cs                                                                     ](src/YourCompany.Configuration.EFCore/YourCompanyDbContext.MultiEntityQueries.cs)</kbd><br>
 
-Commit body is multiline and compliant to markdown formatting 💥
+Value tuple expressions are reused and fully supported to sort  
+over properties of entities within the tuples of any forms and sizes.
 
 </td></tr></tbody></table>
 

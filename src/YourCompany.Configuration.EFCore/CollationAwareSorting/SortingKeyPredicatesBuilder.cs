@@ -20,6 +20,9 @@ namespace YourCompany.Configuration.EFCore.CollationAwareSorting
             ResultingPredicateCanBeNull = false;
             int sortingKeysCount = query.VisitComposed(this);
             if (sortingKeysCount != 1) throw new ApplicationException("sortingKeysCount != 1");
+            if (MultiEntityValueTuplePropertyOwnerIndecies != null
+                && MultiEntityValueTuplePropertyOwnerIndecies.Count != VisitedPropertiesTotal)
+                throw new ApplicationException("MultiEntityValueTuplePropertyOwnerIndecies.Count != VisitedPropertiesTotal");
             return CurrentSortingKeyPropertyPrefixNextExpression ?? throw new ApplicationException("CurrentSortingKeyPropertyPrefixNextExpression == null");
         }
 
@@ -32,6 +35,9 @@ namespace YourCompany.Configuration.EFCore.CollationAwareSorting
             ResultingPredicateCanBeNull = allowPartialMatch;
             int sortingKeysCount = query.VisitComposed(this);
             if (!allowPartialMatch && sortingKeysCount < 1) throw new ApplicationException("!allowPartialMatch && sortingKeysCount < 1");
+            if (MultiEntityValueTuplePropertyOwnerIndecies != null
+                && MultiEntityValueTuplePropertyOwnerIndecies.Count != VisitedPropertiesTotal)
+                throw new ApplicationException("MultiEntityValueTuplePropertyOwnerIndecies.Count != VisitedPropertiesTotal");
             return allowPartialMatch
                 ? CurrentSortingKeyPredecessorEqualExpression
                 : CurrentSortingKeyPredecessorEqualExpression
@@ -53,6 +59,7 @@ namespace YourCompany.Configuration.EFCore.CollationAwareSorting
         protected override void ValidateCurrentSortingKeyBeforeVisit(SortingKey sortingKey)
         {
             base.ValidateCurrentSortingKeyBeforeVisit(sortingKey);
+            if (MultiEntityValueTuplePropertyOwnerIndecies != null) return;
             ValidateCurrentSortingKeyBeforeSingleEntityQueryVisit(sortingKey);
         }
 
@@ -126,7 +133,9 @@ namespace YourCompany.Configuration.EFCore.CollationAwareSorting
         {
             if (Parameter == null) throw new ApplicationException("Parameter == null");
             string propertyName = CurrentSortingKeyProperty?.PropertyName ?? throw new ApplicationException("CurrentSortingKeyProperty?.PropertyName == null");
-            return GetCurrentEFPropertySingleEntity<TProperty>(propertyName);
+            return MultiEntityValueTuplePropertyOwnerIndecies == null
+                ? GetCurrentEFPropertySingleEntity<TProperty>(propertyName)
+                : GetCurrentEFPropertyMultiEntity<TProperty>(propertyName);
         }
 
         protected virtual Expression GetCurrentSortingKeyPropertyValue()
