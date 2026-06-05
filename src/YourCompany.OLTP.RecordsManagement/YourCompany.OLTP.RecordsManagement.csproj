@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\YourCompany.OLTP.StateOwnership\YourCompany.OLTP.StateOwnership.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <InternalsVisibleTo Include="YourCompany.OLTP.RecordsManagement.DI" />
+    <InternalsVisibleTo Include="YourCompany.OLTP.RecordsManagement.Persistence" />
+    <InternalsVisibleTo Include="YourCompany.OLTP.RecordsManagement.UseCases.Reflection" />
+    <InternalsVisibleTo Include="YourCompany.OLTP.RecordsManagement.UseCases.Reflection.DI" />
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFrameworks>net6.0;net8.0</TargetFrameworks>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\YourCompany.Configuration.EFCore\YourCompany.Configuration.EFCore.csproj" />
+    <ProjectReference Include="..\YourCompany.OLTP.RecordsManagement.Persistence.Linq\YourCompany.OLTP.RecordsManagement.Persistence.Linq.csproj" />
+    <ProjectReference Include="..\YourCompany.OLTP.StateOwnership.Reflection.EFCore\YourCompany.OLTP.StateOwnership.Reflection.EFCore.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <InternalsVisibleTo Include="YourCompany.OLTP.RecordsManagement.DI.EFCore" />
+  </ItemGroup>
+
+</Project>

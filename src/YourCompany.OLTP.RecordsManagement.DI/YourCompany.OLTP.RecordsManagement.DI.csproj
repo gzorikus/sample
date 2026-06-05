@@ -1,0 +1,23 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFrameworks>net6.0;net8.0</TargetFrameworks>
+  </PropertyGroup>
+
+  <ItemGroup Condition="'$(TargetFramework)' == 'net6.0'">
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="6.0.0" />
+  </ItemGroup>
+
+  <ItemGroup Condition="'$(TargetFramework)' == 'net8.0'">
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="8.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\YourCompany.OLTP.RecordsManagement\YourCompany.OLTP.RecordsManagement.csproj" />
+    <ProjectReference Include="..\YourCompany.OLTP.RecordsManagement.Persistence\YourCompany.OLTP.RecordsManagement.Persistence.csproj" />
+    <ProjectReference Include="..\YourCompany.OLTP.RecordsManagement.UseCases\YourCompany.OLTP.RecordsManagement.UseCases.csproj" />
+    <ProjectReference Include="..\YourCompany.OLTP.RecordsManagement.UseCases.Reflection.DI\YourCompany.OLTP.RecordsManagement.UseCases.Reflection.DI.csproj" />
+    <ProjectReference Include="..\YourCompany.OLTP.StateOwnership.Reflection.DI\YourCompany.OLTP.StateOwnership.Reflection.DI.csproj" />
+  </ItemGroup>
+
+</Project>
