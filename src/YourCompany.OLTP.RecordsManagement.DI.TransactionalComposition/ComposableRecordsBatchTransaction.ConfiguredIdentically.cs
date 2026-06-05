@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
-using YourCompany.OLTP.RecordsManagement.Persistence;
 using YourCompany.OLTP.StateOwnership;
 
 namespace YourCompany.OLTP.RecordsManagement.DI.TransactionalComposition
@@ -15,7 +14,7 @@ namespace YourCompany.OLTP.RecordsManagement.DI.TransactionalComposition
             where TRecordData : class
         {
             private ConfiguredIdentically(
-                ScopedRecordsBatchTransactionFactory provider, RecordsDataAccess.IStarting recordsDataAccess)
+                DI.ScopedRecordsBatchTransactionFactory provider, ComposingRecordsDataAccessProxy recordsDataAccess)
                 : base(provider, recordsDataAccess) { }
 
             protected virtual RecordsBatchTransactionSpecification GetSupportedRecordDataSpecificationToAdd(

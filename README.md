@@ -204,7 +204,7 @@ All the entry point branches' heads are highlighted in the graph as ⏹️.
 ---
 config:
   gitGraph:
-    mainBranchName: "5|🧱: OLTP record composition to chassis"
+    mainBranchName: "5|🧱: OLTP DI mixed repository"
     parallelCommits: true
     rotateCommitLabel: false
     showCommitLabel: false
@@ -263,11 +263,11 @@ gitGraph
 %% commit type:REVERSE %% ODMR>3
 %% commit type:REVERSE %% ODMR>4
 %% commit type:REVERSE %% ODMR>5
-%% commit type:HIGHLIGHT tag:"5|🧱|oltp-di-combine-use-case-and-persistence-interfaces-with-record-types-composition|YourCompany.OLTP.RecordsManagement.DI.TransactionalComposition" %% ODMR
+commit type:HIGHLIGHT tag:"5|🧱|oltp-di-combine-use-case-and-persistence-interfaces-with-record-types-composition|YourCompany.OLTP.RecordsManagement.DI.TransactionalComposition" %% ODMR
 
-%% branch "5|🧱: OLTP record composition to chassis" %% ORCTC
-commit type:HIGHLIGHT tag:"5|🧱|oltp-di-combine-use-case-and-persistence-interfaces-with-record-types-composition|YourCompany.OLTP.RecordsManagement.DI.TransactionalComposition|YourCompany.OLTP.StateOwnership.TransactionalComposition" %% ORCTC
-%% commit type:NORMAL tag:"5|🧱|YourCompany.OLTP.RecordsManagement.DI.TransactionalComposition|YourCompany.OLTP.StateOwnership.TransactionalComposition" %% ORCTC
+branch "5|🧱: OLTP record composition to chassis" %% ORCTC
+%% commit type:HIGHLIGHT tag:"5|🧱|oltp-di-combine-use-case-and-persistence-interfaces-with-record-types-composition|YourCompany.OLTP.RecordsManagement.DI.TransactionalComposition|YourCompany.OLTP.StateOwnership.TransactionalComposition" %% ORCTC
+commit type:NORMAL tag:"5|🧱|YourCompany.OLTP.RecordsManagement.DI.TransactionalComposition|YourCompany.OLTP.StateOwnership.TransactionalComposition" %% ORCTC
 
 %% checkout "7|🧱: OLTP DI EFCore switch to chassis" %% ODIFR
 branch "5|🧱: OLTP DI inheritance free repo" %% ODIFR
@@ -911,7 +911,7 @@ Cons: why it might be not enough for you
 
 ### Branch: oltp-di-combine-use-case-and-persistence-interfaces-with-record-types-composition
 
-> Files: 112 | Lines: 9165  
+> Files: 119 | Lines: 9681  
 Pros: no boilerplate required for transactional composition, domain modularity achieved  
 Cons: still lacking major things like events producing, persistence
 
@@ -940,6 +940,7 @@ Cons: still lacking major things like events producing, persistence
 | [5\|⁠🧱: OLTP DI ScopedUseCasesProvider](#commit-5-oltp-di-scopedusecasesprovider) | <kbd> [TODO](examples/at-least-one-example-solution-per-commit/README.md#commit-5-oltp-di-scopedusecasesprovider) </kbd> | <kbd>YourCompany.OLTP.RecordsManagement.UseCases.Reflection.DI (+69 lines)</kbd> |
 | [5\|⁠🧱: OLTP DI inheritance free repo](#commit-5-oltp-di-inheritance-free-repo) | <kbd> [TODO](examples/at-least-one-example-solution-per-commit/README.md#commit-5-oltp-di-inheritance-free-repo) </kbd> | <kbd>YourCompany.OLTP.RecordsManagement.DI (+444 lines)</kbd> |
 | [5\|⁠🧱: OLTP record composition to chassis](#commit-5-oltp-record-composition-to-chassis) | <kbd> [TODO](examples/at-least-one-example-solution-per-commit/README.md#commit-5-oltp-record-composition-to-chassis) </kbd> | <kbd>YourCompany.OLTP.RecordsManagement.DI.TransactionalComposition (+777 lines)</kbd><br><kbd>YourCompany.OLTP.RecordsManagement.UseCases.TransactionalComposition (-770 lines)</kbd><br><kbd>YourCompany.OLTP.StateOwnership.TransactionalComposition (0 lines)</kbd> |
+| [5\|⁠🧱: OLTP DI mixed repository](#commit-5-oltp-di-mixed-repository) | <kbd> [TODO](examples/at-least-one-example-solution-per-commit/README.md#commit-5-oltp-di-mixed-repository) </kbd> | <kbd>YourCompany.OLTP.RecordsManagement.DI.TransactionalComposition (+516 lines)</kbd> |
 
 <!-- ### Branch: oltp-di-combine-use-case-and-persistence-interfaces-with-record-types-composition END -->
 
@@ -2131,15 +2132,47 @@ found in the earlier commit.
 
 <!-- ### Commit: 5|🧱: OLTP record composition to chassis END -->
 
-<!-- ### Commit: 5|🧱: OLTP DI mixed repository
+### Commit: 5|🧱: OLTP DI mixed repository
 
 <table><tbody><tr><td>
 
-X files changed, Y insertions(+), Z deletions(-)<br>
-<sub><sub>src/YourCompany.Module/</sub></sub><br>
-<kbd> +++++++ NNN |⁠ [File.cs                                                                                                        ](src/YourCompany.Configuration/EnvironmentConventions.cs)</kbd><br>
+14 files changed, 548 insertions(+), 32 deletions(-)<br>
+<sub><sub>src/YourCompany.OLTP.RecordsManagement.DI.TransactionalComposition/</sub></sub><br>
+<kbd> +++++++ 200 |⁠ [ComposingRecordsDataAccessProxy.cs                                                                             ](src/YourCompany.OLTP.RecordsManagement.DI.TransactionalComposition/ComposingRecordsDataAccessProxy.cs)</kbd><br>
+<kbd>     +++ 89  |⁠ [ScopedRepository.cs                                                                                            ](src/YourCompany.OLTP.RecordsManagement.DI.TransactionalComposition/ScopedRepository.cs)</kbd><br>
+<kbd>      ++ 64  |⁠ [ScopedRecordsBatchTransactionFactory.cs                                                                        ](src/YourCompany.OLTP.RecordsManagement.DI.TransactionalComposition/ScopedRecordsBatchTransactionFactory.cs)</kbd><br>
+<kbd>      +‑ 60  |⁠ [ComposableRecordsBatchTransaction.ComposingRecords.cs                                                          ](src/YourCompany.OLTP.RecordsManagement.DI.TransactionalComposition/ComposableRecordsBatchTransaction.ComposingRecords.cs)</kbd><br>
+<kbd>      ++ 54  |⁠ [YourCompanyServiceCollectionExtensions.cs                                                                      ](src/YourCompany.OLTP.RecordsManagement.DI.TransactionalComposition/YourCompanyServiceCollectionExtensions.cs)</kbd><br>
+<kbd>      +‑ 44  |⁠ [ComposableRecordsBatchTransaction.ConfiguredIdentically.RepositoryRecords.cs                                   ](src/YourCompany.OLTP.RecordsManagement.DI.TransactionalComposition/ComposableRecordsBatchTransaction.ConfiguredIdentically.RepositoryRecords.cs)</kbd><br>
+<kbd>      +‑ 24  |⁠ [ComposableRecordsBatchTransaction.IteratingInParallel.cs                                                       ](src/YourCompany.OLTP.RecordsManagement.DI.TransactionalComposition/ComposableRecordsBatchTransaction.IteratingInParallel.cs)</kbd><br>
+<kbd>       + 12  |⁠ [IComposableRecordsDataAccess.cs                                                                                ](src/YourCompany.OLTP.RecordsManagement.DI.TransactionalComposition/IComposableRecordsDataAccess.cs)</kbd><br>
+<kbd>       + 11  |⁠ [IComposableRecordsDataAccessProvider.cs                                                                        ](src/YourCompany.OLTP.RecordsManagement.DI.TransactionalComposition/IComposableRecordsDataAccessProvider.cs)</kbd><br>
+<kbd>       + 9   |⁠ [IScopedUseCaseHandledEntityRecordTypeProvider.cs                                                               ](src/YourCompany.OLTP.RecordsManagement.DI.TransactionalComposition/IScopedUseCaseHandledEntityRecordTypeProvider.cs)</kbd><br>
+<kbd>      +‑ 5   |⁠ [ComposableRecordsBatchTransaction.IteratedInParallel.cs                                                        ](src/YourCompany.OLTP.RecordsManagement.DI.TransactionalComposition/ComposableRecordsBatchTransaction.IteratedInParallel.cs)</kbd><br>
+<kbd>      +‑ 3   |⁠ [ComposableRecordsBatchTransaction.ConfiguredIdentically.NonRepositoryRecords.cs                                ](src/YourCompany.OLTP.RecordsManagement.DI.TransactionalComposition/ComposableRecordsBatchTransaction.ConfiguredIdentically.NonRepositoryRecords.cs)</kbd><br>
+<kbd>      +‑ 3   |⁠ [ComposableRecordsBatchTransaction.ConfiguredIdentically.cs                                                     ](src/YourCompany.OLTP.RecordsManagement.DI.TransactionalComposition/ComposableRecordsBatchTransaction.ConfiguredIdentically.cs)</kbd><br>
+<kbd>      +‑ 2   |⁠ [ComposableRecordsBatchTransaction.cs                                                                           ](src/YourCompany.OLTP.RecordsManagement.DI.TransactionalComposition/ComposableRecordsBatchTransaction.cs)</kbd><br>
 
-Commit body is multiline and compliant to markdown formatting 💥
+Meet this neat <1K lines extension for the previously introduced  
+inheritance free repository now adapting the domain types composition.
+
+Just call `EnableYourCompanyDomainTypesTransactionalComposition`  
+service collection extension and you're all set. As before you need to  
+put your types within a corresponding map. From now on the resolved  
+repository handles the relationships between the same-entity-related  
+aggreagates.
+
+Hence meet an extra convention to the previous regarded to  
+`IStateAccess` accepting in the record type ctor. Now when your  
+aggregate/record type accepts another one in the same single ctor - it  
+becomes a mixin 😲 So the one without any such dependencies is  
+"an entity" 😁, or to be more precise is an identity owner which must  
+exist in your storage whenever you treat a particular entity instance  
+registered in your system. The mixins in constrast may not have a  
+record yet.
+
+Worth to mention that your "entity types" still can have dependency on  
+any cross cutting mixins without losing its "status" 😉
 
 </td></tr></tbody></table>
 

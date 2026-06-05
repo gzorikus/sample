@@ -2,25 +2,24 @@ using System;
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
-using YourCompany.OLTP.RecordsManagement.Persistence;
-using YourCompany.OLTP.StateOwnership.TransactionalComposition.Reflection;
 using YourCompany.Threading;
 
 namespace YourCompany.OLTP.RecordsManagement.DI.TransactionalComposition
 {
     internal static partial class ComposableRecordsBatchTransaction
     {
-        internal abstract class IteratingInParallel<TRecord, TRecordData>
+        internal class IteratingInParallel<TRecord, TRecordData>
             : ConfiguredIdentically<TRecord, TRecordData>.RepositoryRecords,
             IIteratedInParallel
             where TRecord : class
             where TRecordData : class
         {
+            private ComposingRecordsDataAccessProxy _recordsDataAccessProxy;
             private AwaitTasksList _runOncePendingTasks;
 
             internal IteratingInParallel(
-                ScopedRecordsBatchTransactionFactory provider, RecordsDataAccess.IStarting recordsDataAccess)
-                : base(provider, recordsDataAccess) { }
+                DI.ScopedRecordsBatchTransactionFactory provider, ComposingRecordsDataAccessProxy recordsDataAccess)
+                : base(provider, recordsDataAccess) => _recordsDataAccessProxy = recordsDataAccess;
 
             IEnumerator<RunOnceStep> IIteratedInParallel.IterateRunOnceSteps(CancellationToken cancellationToken)
                 => throw new ApplicationException(nameof(IteratingInParallel<TRecord, TRecordData>));
@@ -71,6 +70,7 @@ namespace YourCompany.OLTP.RecordsManagement.DI.TransactionalComposition
             protected List<IEnumerator<RunOnceStep>> GetRunOnceStepsStartedTransactionEnumerators(
                 CancellationToken cancellationToken)
             {
+                if (_recordsDataAccessProxy == null) throw new ApplicationException("_recordsDataAccessProxy == null");
                 if (_runOncePendingTasks != null) throw new ApplicationException("_runOncePendingTasks != null");
                 CurrentRunState.EnsureIsStarted();
 
@@ -117,7 +117,8 @@ namespace YourCompany.OLTP.RecordsManagement.DI.TransactionalComposition
                     var composedTransaction = composedTransactions[i] ?? throw new ApplicationException("transaction == null");
 
                     bool includeNonRepository = CheckToIncludeNonRepositoryRecords(composedTransaction.RecordTypeInfo);
-                    bool continueAfterPersist = CheckToContinueIteratingAfterPersist(composedTransaction.RecordTypeInfo);
+                    bool continueAfterPersist = _recordsDataAccessProxy.CheckToContinueIteratingAfterPersist(
+                        composedTransaction.RecordTypeInfo);
 
                     if (composedTransaction == this && !continueAfterPersist) throw new ApplicationException("includeNonRepository && !continueAfterPersist");
                     if (includeNonRepository && !continueAfterPersist) throw new ApplicationException("includeNonRepository && !continueAfterPersist");
@@ -125,15 +126,15 @@ namespace YourCompany.OLTP.RecordsManagement.DI.TransactionalComposition
                         continue;
 
                     stepEnumerators[i] = null;
+                    _recordsDataAccessProxy.DecrementFinishingTransactions();
                 }
             }
-
-            protected abstract bool CheckToContinueIteratingAfterPersist(ComposableRecordTypeInfo recordTypeInfo);
 
             protected override async Task Return(CancellationToken cancellationToken, Exception runException = null)
             {
                 var runOncePendingTasks = _runOncePendingTasks;
                 _runOncePendingTasks = null;
+                _recordsDataAccessProxy = null;
 
                 try
                 {
@@ -145,7 +146,11 @@ namespace YourCompany.OLTP.RecordsManagement.DI.TransactionalComposition
                 }
             }
 
-            protected abstract IReadOnlyList<IIteratedInParallel> GetIteratedInParallelTransactions();
+            private IReadOnlyList<IIteratedInParallel> GetIteratedInParallelTransactions()
+            {
+                if (_recordsDataAccessProxy == null) throw new ApplicationException("_recordsDataAccessProxy == null");
+                return (IReadOnlyList<IIteratedInParallel>)_recordsDataAccessProxy.ComposedTransactions;
+            }
 
             private bool MoveNextAnyNonInterruptedEnumeratorAfterIteratingFinished(
                 IReadOnlyList<IEnumerator<RunOnceStep>> stepEnumerators)
@@ -185,6 +190,7 @@ namespace YourCompany.OLTP.RecordsManagement.DI.TransactionalComposition
             private RunOnceStep ThrowRunOncePendingTasksAware(Exception exception)
             {
                 if (_runOncePendingTasks == null) throw exception;
+                _recordsDataAccessProxy?.EnsureNoPendingTasks();
                 return new RunOnceStep(CurrentRunState, _runOncePendingTasks.ThrowAndClear(exception));
             }
         }

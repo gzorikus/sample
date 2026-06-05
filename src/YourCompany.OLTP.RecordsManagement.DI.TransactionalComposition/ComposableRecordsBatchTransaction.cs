@@ -9,7 +9,7 @@ namespace YourCompany.OLTP.RecordsManagement.DI.TransactionalComposition
     {
         internal interface IComposingRecords
         {
-            ComposableRecordTypeInfo RecordTypeInfo { get; }
+            ComposableRecordTypeInfo RecordTypeInfo { get; set; }
             bool HandleTriggering(EventArgs parametersToJoinTransactionWith, object atComposedRecord);
         }
 

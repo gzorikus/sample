@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
-using YourCompany.OLTP.RecordsManagement.Persistence;
+using System.Threading;
+using System.Threading.Tasks;
 using YourCompany.OLTP.StateOwnership.TransactionalComposition.Reflection;
 
 namespace YourCompany.OLTP.RecordsManagement.DI.TransactionalComposition
@@ -12,9 +13,12 @@ namespace YourCompany.OLTP.RecordsManagement.DI.TransactionalComposition
             internal abstract class RepositoryRecords : ConfiguredIdentically<TRecord, TRecordData>,
                 IConfiguredIdentically
             {
+                private ComposingRecordsDataAccessProxy _recordsDataAccessProxy;
+                private Type _replacedCurrentlyHandledEntityRecordType;
+
                 internal RepositoryRecords(
-                    ScopedRecordsBatchTransactionFactory provider, RecordsDataAccess.IStarting recordsDataAccess)
-                    : base(provider, recordsDataAccess) { }
+                    DI.ScopedRecordsBatchTransactionFactory provider, ComposingRecordsDataAccessProxy recordsDataAccess)
+                    : base(provider, recordsDataAccess) => _recordsDataAccessProxy = recordsDataAccess;
 
                 bool IConfiguredIdentically.Add(RecordsBatchTransactionSpecification specification)
                     => throw new ApplicationException(nameof(RepositoryRecords));
@@ -29,6 +33,7 @@ namespace YourCompany.OLTP.RecordsManagement.DI.TransactionalComposition
                 protected override bool Handle(RecordsBatchTransactionSpecification specification)
                 {
                     if (specification == null) throw new ArgumentNullException(nameof(specification));
+                    if (_recordsDataAccessProxy == null) throw new ApplicationException("_recordsDataAccessProxy == null");
                     CurrentRunState.EnsureIsConfiguration();
 
                     bool thisFound = false;
@@ -72,6 +77,7 @@ namespace YourCompany.OLTP.RecordsManagement.DI.TransactionalComposition
 
                 protected override void FinishConfiguration()
                 {
+                    if (_recordsDataAccessProxy == null) throw new ApplicationException("_recordsDataAccessProxy == null");
                     CurrentRunState.EnsureIsConfiguration();
 
                     bool thisFound = false;
@@ -96,6 +102,13 @@ namespace YourCompany.OLTP.RecordsManagement.DI.TransactionalComposition
                     }
 
                     if (!thisFound) throw new ApplicationException("!thisFound");
+
+                    _replacedCurrentlyHandledEntityRecordType = ScopedRecordsBatchTransactionFactory.ReplaceCurrentlyHandledEntityRecordType(
+                        _recordsDataAccessProxy.EntityRecordTypeInfo.Type);
+
+                    if (CheckToRead()) _recordsDataAccessProxy.PrepareToRead();
+                    if (!ReadOnly) _recordsDataAccessProxy.PrepareToPersist();
+                    if (!ReadOnly || ReadOnlyIncludeRecords) _recordsDataAccessProxy.PrepareToFinish();
                 }
 
                 protected override void TriggerUseCaseParameters()
@@ -106,10 +119,29 @@ namespace YourCompany.OLTP.RecordsManagement.DI.TransactionalComposition
                     base.TriggerUseCaseParameters();
                 }
 
-                protected sealed override IReadOnlyList<IComposingRecords> GetRecordsComposingTransactions()
-                    => GetIdenticallyConfiguredTransactions();
+                protected override async Task Return(CancellationToken cancellationToken, Exception runException = null)
+                {
+                    var recordsDataAccessProxy = _recordsDataAccessProxy ?? throw new ApplicationException("_recordsDataAccessProxy == null");
+                    _recordsDataAccessProxy = null;
 
-                protected abstract IReadOnlyList<IConfiguredIdentically> GetIdenticallyConfiguredTransactions();
+                    try
+                    {
+                        await base.Return(cancellationToken, runException);
+                    }
+                    finally
+                    {
+                        if (_replacedCurrentlyHandledEntityRecordType != null)
+                            ScopedRecordsBatchTransactionFactory.ReplaceCurrentlyHandledEntityRecordType(_replacedCurrentlyHandledEntityRecordType);
+
+                        recordsDataAccessProxy.EnsureNoPendingTasks();
+                    }
+                }
+
+                private IReadOnlyList<IConfiguredIdentically> GetIdenticallyConfiguredTransactions()
+                {
+                    if (_recordsDataAccessProxy == null) throw new ApplicationException("_recordsDataAccessProxy == null");
+                    return (IReadOnlyList<IConfiguredIdentically>)_recordsDataAccessProxy.ComposedTransactions;
+                }
             }
         }
     }

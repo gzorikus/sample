@@ -1,5 +1,4 @@
 using System;
-using YourCompany.OLTP.RecordsManagement.Persistence;
 
 namespace YourCompany.OLTP.RecordsManagement.DI.TransactionalComposition
 {
@@ -11,7 +10,7 @@ namespace YourCompany.OLTP.RecordsManagement.DI.TransactionalComposition
                 IConfiguredIdentically
             {
                 internal NonRepositoryRecords(
-                    ScopedRecordsBatchTransactionFactory provider, RecordsDataAccess.IStarting recordsDataAccess)
+                    DI.ScopedRecordsBatchTransactionFactory provider, ComposingRecordsDataAccessProxy recordsDataAccess)
                     : base(provider, recordsDataAccess) { }
 
                 bool IConfiguredIdentically.Add(RecordsBatchTransactionSpecification specification)

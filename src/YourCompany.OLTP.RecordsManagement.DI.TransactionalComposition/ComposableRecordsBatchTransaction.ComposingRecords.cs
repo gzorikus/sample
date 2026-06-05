@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
-using YourCompany.OLTP.RecordsManagement.Persistence;
+using System.Threading;
+using System.Threading.Tasks;
 using YourCompany.OLTP.StateOwnership;
 using YourCompany.OLTP.StateOwnership.TransactionalComposition;
 using YourCompany.OLTP.StateOwnership.TransactionalComposition.Reflection;
@@ -17,12 +18,27 @@ namespace YourCompany.OLTP.RecordsManagement.DI.TransactionalComposition
             where TRecord : class
             where TRecordData : class
         {
-            ComposableRecordTypeInfo IComposingRecords.RecordTypeInfo => RecordTypeInfo ?? throw new ApplicationException("RecordTypeInfo == null");
-            protected abstract ComposableRecordTypeInfo RecordTypeInfo { get; }
+            private ComposingRecordsDataAccessProxy _recordsDataAccessProxy;
+            private ComposableRecordTypeInfo _recordTypeInfo;
+
+            ComposableRecordTypeInfo IComposingRecords.RecordTypeInfo
+            { get => RecordTypeInfo; set => RecordTypeInfo = value; }
+
+            protected ComposableRecordTypeInfo RecordTypeInfo
+            {
+                get => _recordTypeInfo ?? throw new ApplicationException("_recordTypeInfo == null");
+                private set
+                {
+                    if (_recordTypeInfo != null) throw new ApplicationException("_recordTypeInfo != null");
+                    if (_recordTypeInfo.Type != typeof(TRecord)) throw new ApplicationException("_recordTypeInfo.Type != typeof(TRecord)");
+                    if (_recordTypeInfo.RecordDataType != typeof(TRecordData)) throw new ApplicationException("_recordTypeInfo.RecordDataType != typeof(TRecordData)");
+                    _recordTypeInfo = value ?? throw new ApplicationException("value == null");
+                }
+            }
 
             internal ComposingRecords(
-                ScopedRecordsBatchTransactionFactory provider, RecordsDataAccess.IStarting recordsDataAccess)
-                : base(provider, recordsDataAccess) { }
+                DI.ScopedRecordsBatchTransactionFactory provider, ComposingRecordsDataAccessProxy recordsDataAccess)
+                : base(provider, recordsDataAccess) => _recordsDataAccessProxy = recordsDataAccess;
 
             void RecordsBatchTransactionCallback.IExtraInterfacesProvider.CollectTransactionCallbackExtraInterfaces(
                 object sender, RecordsBatchTransactionCallback.IExtraInterfacesCollector extraInterfacesCollector)
@@ -117,6 +133,7 @@ namespace YourCompany.OLTP.RecordsManagement.DI.TransactionalComposition
             {
                 if (eventArgs == null) throw new ArgumentNullException(nameof(eventArgs));
                 if (!builtRecord.CheckRecordWasBuilt()) throw new ApplicationException("!builtRecord.CheckRecordWasBuilt()");
+                if (_recordsDataAccessProxy == null) throw new ApplicationException("_recordsDataAccessProxy == null");
                 if (ReadOnly) throw new ApplicationException("ReadOnly");
                 CurrentRunState.EnsureIsChangesAssertionStarted();
 
@@ -140,10 +157,35 @@ namespace YourCompany.OLTP.RecordsManagement.DI.TransactionalComposition
                 return true;
             }
 
-            protected abstract void UseCurrentRecordType();
-            protected abstract void UseCurrentRecordTypeAndIncludeForChanges();
-            protected abstract void ResetCurrentRecordType();
-            protected abstract IReadOnlyList<IComposingRecords> GetRecordsComposingTransactions();
+            protected override Task Return(CancellationToken cancellationToken, Exception runException = null)
+            {
+                _recordsDataAccessProxy = null;
+                return base.Return(cancellationToken, runException);
+            }
+
+            protected void UseCurrentRecordType()
+            {
+                if (_recordsDataAccessProxy == null) throw new ApplicationException("_recordsDataAccessProxy == null");
+                _recordsDataAccessProxy.SetCurrentRecordType(RecordTypeInfo);
+            }
+
+            protected void UseCurrentRecordTypeAndIncludeForChanges()
+            {
+                if (_recordsDataAccessProxy == null) throw new ApplicationException("_recordsDataAccessProxy == null");
+                _recordsDataAccessProxy.SetCurrentRecordTypeAndIncludeForChanges(RecordTypeInfo);
+            }
+
+            protected void ResetCurrentRecordType()
+            {
+                if (_recordsDataAccessProxy == null) throw new ApplicationException("_recordsDataAccessProxy == null");
+                _recordsDataAccessProxy.ResetCurrentRecordType();
+            }
+
+            private IReadOnlyList<IComposingRecords> GetRecordsComposingTransactions()
+            {
+                if (_recordsDataAccessProxy == null) throw new ApplicationException("_recordsDataAccessProxy == null");
+                return _recordsDataAccessProxy.ComposedTransactions;
+            }
         }
     }
 }
