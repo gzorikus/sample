@@ -1312,15 +1312,14 @@ Commit body is multiline and compliant to markdown formatting 💥
 
 <!-- ### Commit: 2|💾: EFChangeTrackerTrackGraphStrategy END -->
 
-<!-- ### Commit: 2|💾: EFCore hosting migration run
+### Commit: 2|💾: EFCore hosting migration run
 
 <table><tbody><tr><td>
 
-X files changed, Y insertions(+), Z deletions(-)<br>
-<sub><sub>src/YourCompany.Module/</sub></sub><br>
-<kbd> +++++++ NNN |⁠ [File.cs                                                                                                        ](src/YourCompany.Configuration/EnvironmentConventions.cs)</kbd><br>
-
-Commit body is multiline and compliant to markdown formatting 💥
+2 files changed, 40 insertions(+)<br>
+<sub><sub>src/YourCompany.Configuration.EFCore.Hosting/</sub></sub><br>
+<kbd> +++++++ 30  |⁠ [ScopedYourCompanyDbContextMigrationsRunner.cs                                                                  ](src/YourCompany.Configuration.EFCore.Hosting/ScopedYourCompanyDbContextMigrationsRunner.cs)</kbd><br>
+<kbd>     +++ 10  |⁠ [YourCompanyDbContextConfigurationInterfaces.cs                                                                 ](src/YourCompany.Configuration.EFCore.Hosting/YourCompanyDbContextConfigurationInterfaces.cs)</kbd><br>
 
 </td></tr></tbody></table>
 

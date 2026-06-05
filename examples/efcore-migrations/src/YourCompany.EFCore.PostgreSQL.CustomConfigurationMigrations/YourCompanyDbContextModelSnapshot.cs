@@ -43,9 +43,9 @@ namespace YourCompany.EFCore.PostgreSQL.CustomConfigurationMigrations
                         .HasColumnType("text");
 
                     b.HasKey("Id")
-                        .HasName("ex_configu_e_PK_Entity");
+                        .HasName("e_con_e_h_m_r_PK_Entity");
 
-                    b.ToTable("ex_configu_e_Entity");
+                    b.ToTable("e_con_e_h_m_r_Entity");
                 });
 
             modelBuilder.Entity("YourCompany.EFCore.NeverPretendingToBeYourDomainModel.EFCoreConventionalEntity+SomeReusableEntityHereForBrevity", b =>
@@ -60,9 +60,9 @@ namespace YourCompany.EFCore.PostgreSQL.CustomConfigurationMigrations
                         .HasColumnType("text");
 
                     b.HasKey("Id")
-                        .HasName("ex_configu_e_PK_ReusableEntity");
+                        .HasName("e_con_e_h_m_r_PK_ReusableEntity");
 
-                    b.ToTable("ex_configu_e_ReusableEntity");
+                    b.ToTable("e_con_e_h_m_r_ReusableEntity");
                 });
 
             modelBuilder.Entity("YourCompany.EFCore.NeverPretendingToBeYourDomainModel.EFCoreConventionalEntity", b =>
@@ -85,13 +85,13 @@ namespace YourCompany.EFCore.PostgreSQL.CustomConfigurationMigrations
                                 .HasColumnType("text");
 
                             b1.HasKey("EntityId")
-                                .HasName("ex_configu_e_PK_EntityMixin");
+                                .HasName("e_con_e_h_m_r_PK_EntityMixin");
 
-                            b1.ToTable("ex_configu_e_EntityMixin");
+                            b1.ToTable("e_con_e_h_m_r_EntityMixin");
 
                             b1.WithOwner()
                                 .HasForeignKey("EntityId")
-                                .HasConstraintName("ex_configu_e_FK_EntityMixin_Entity_EntityId");
+                                .HasConstraintName("e_con_e_h_m_r_FK_EntityMixin_Entity_EntityId");
                         });
 
                     b.OwnsMany("YourCompany.EFCore.NeverPretendingToBeYourDomainModel.EFCoreConventionalEntity+HavingSomeOwnedCollection", "TypicallyAlwaysIncludedCollectionIfYouAreGoingToBuildAggregatesOnTopOfIt", b1 =>
@@ -118,16 +118,16 @@ namespace YourCompany.EFCore.PostgreSQL.CustomConfigurationMigrations
                                 .HasColumnType("integer");
 
                             b1.HasKey("Id")
-                                .HasName("ex_configu_e_PK_EntityOwnedCollection");
+                                .HasName("e_con_e_h_m_r_PK_EntityOwnedCollection");
 
                             b1.HasIndex("EntityId")
-                                .HasDatabaseName("ex_configu_e_IX_EntityOwnedCollection_EntityId");
+                                .HasDatabaseName("e_con_e_h_m_r_IX_EntityOwnedCollection_EntityId");
 
-                            b1.ToTable("ex_configu_e_EntityOwnedCollection");
+                            b1.ToTable("e_con_e_h_m_r_EntityOwnedCollection");
 
                             b1.WithOwner()
                                 .HasForeignKey("EntityId")
-                                .HasConstraintName("ex_configu_e_FK_EntityOwnedCollection_Entity_EntityId");
+                                .HasConstraintName("e_con_e_h_m_r_FK_EntityOwnedCollection_Entity_EntityId");
                         });
 
                     b.OwnsOne("YourCompany.EFCore.NeverPretendingToBeYourDomainModel.EFCoreConventionalEntity+HavingToManuallyLinkEveryTime", "SomeReusableStuffLink", b1 =>
@@ -139,23 +139,23 @@ namespace YourCompany.EFCore.PostgreSQL.CustomConfigurationMigrations
                                 .HasColumnType("integer");
 
                             b1.HasKey("EntityId")
-                                .HasName("ex_configu_e_PK_EntityLinkToReusableEntity");
+                                .HasName("e_con_e_h_m_r_PK_EntityLinkToReusableEntity");
 
                             b1.HasIndex("ReusableEntityId")
-                                .HasDatabaseName("ex_configu_e_IX_EntityLinkToReusableEntity_ReusableEntityId");
+                                .HasDatabaseName("e_con_e_h_m_r_IX_EntityLinkToReusableEntity_ReusableEntityId");
 
-                            b1.ToTable("ex_configu_e_EntityLinkToReusableEntity");
+                            b1.ToTable("e_con_e_h_m_r_EntityLinkToReusableEntity");
 
                             b1.WithOwner()
                                 .HasForeignKey("EntityId")
-                                .HasConstraintName("ex_configu_e_FK_EntityLinkToReusableEntity_Entity_EntityId");
+                                .HasConstraintName("e_con_e_h_m_r_FK_EntityLinkToReusableEntity_Entity_EntityId");
 
                             b1.HasOne("YourCompany.EFCore.NeverPretendingToBeYourDomainModel.EFCoreConventionalEntity+SomeReusableEntityHereForBrevity", null)
                                 .WithMany()
                                 .HasForeignKey("ReusableEntityId")
                                 .OnDelete(DeleteBehavior.Cascade)
                                 .IsRequired()
-                                .HasConstraintName("ex_configu_e_FK_EntityLinkToReusableEntity_ReusableEntiCB4546B");
+                                .HasConstraintName("e_con_e_h_m_r_FK_EntityLinkToReusableEntity_ReusableEntiCB4546B");
                         });
 
                     b.Navigation("NonModularManualWayToMixIn");

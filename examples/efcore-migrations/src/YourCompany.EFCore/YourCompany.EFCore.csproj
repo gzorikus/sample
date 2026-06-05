@@ -5,7 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\..\src\YourCompany.Configuration.EFCore\YourCompany.Configuration.EFCore.csproj" />
+    <ProjectReference Include="..\..\..\..\src\YourCompany.Configuration.EFCore.Hosting\YourCompany.Configuration.EFCore.Hosting.csproj" />
   </ItemGroup>
 
 </Project>
