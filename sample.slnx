@@ -36,6 +36,6 @@
     <!-- <Project Path="src/YourCompany.OLTP.StateOwnership.TransactionalComposition.Reflection/YourCompany.OLTP.StateOwnership.TransactionalComposition.Reflection.csproj" /> -->
     <!-- <Project Path="src/YourCompany.Reflection/YourCompany.Reflection.csproj" /> -->
     <!-- <Project Path="src/YourCompany.Reflection.DI/YourCompany.Reflection.DI.csproj" /> -->
-    <!-- <Project Path="src/YourCompany.Threading/YourCompany.Threading.csproj" /> -->
+    <Project Path="src/YourCompany.Threading/YourCompany.Threading.csproj" />
   </Folder>
 </Solution>

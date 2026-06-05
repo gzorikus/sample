@@ -1133,15 +1133,13 @@ Commit body is multiline and compliant to markdown formatting 💥
 
 <!-- ### Commit: 2|🧱: StructHelper END -->
 
-<!-- ### Commit: 2|🧱: AwaitTasksList
+### Commit: 2|🧱: AwaitTasksList
 
 <table><tbody><tr><td>
 
-X files changed, Y insertions(+), Z deletions(-)<br>
-<sub><sub>src/YourCompany.Module/</sub></sub><br>
-<kbd> +++++++ NNN |⁠ [File.cs                                                                                                        ](src/YourCompany.Configuration/EnvironmentConventions.cs)</kbd><br>
-
-Commit body is multiline and compliant to markdown formatting 💥
+1 file changed, 49 insertions(+)<br>
+<sub><sub>src/YourCompany.Threading/</sub></sub><br>
+<kbd> +++++++ 49  |⁠ [AwaitTasksList.cs                                                                                              ](src/YourCompany.Threading/AwaitTasksList.cs)</kbd><br>
 
 </td></tr></tbody></table>
 
