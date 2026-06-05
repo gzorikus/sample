@@ -1762,15 +1762,25 @@ Commit body is multiline and compliant to markdown formatting 💥
 
 <!-- ### Commit: 7|🧱: OLTP DI EFCore integrated END -->
 
-<!-- ### Commit: 7|💾: EFCore SortingKey multi-entity
+### Commit: 7|💾: EFCore SortingKey multi-entity
 
 <table><tbody><tr><td>
 
-X files changed, Y insertions(+), Z deletions(-)<br>
-<sub><sub>src/YourCompany.Module/</sub></sub><br>
-<kbd> +++++++ NNN |⁠ [File.cs                                                                                                        ](src/YourCompany.Configuration/EnvironmentConventions.cs)</kbd><br>
+9 files changed, 226 insertions(+), 4 deletions(-)<br>
+<sub><sub>src/YourCompany.Configuration.EFCore/CollationAwareSorting/</sub></sub><br>
+<kbd>      +‑ 28  |⁠ [SortingKey.Querying.cs                                                                                         ](src/YourCompany.Configuration.EFCore/CollationAwareSorting/SortingKey.Querying.cs)</kbd><br>
+<kbd>      ++ 26  |⁠ [SortingKeyQueries.cs                                                                                           ](src/YourCompany.Configuration.EFCore/CollationAwareSorting/SortingKeyQueries.cs)</kbd><br>
+<kbd>      +‑ 23  |⁠ [OrElseEqualityKeys.Querying.cs                                                                                 ](src/YourCompany.Configuration.EFCore/CollationAwareSorting/OrElseEqualityKeys.Querying.cs)</kbd><br>
+<kbd>      ++ 22  |⁠ [SortingKeyBuilder.OrElse.ComparableValue.cs                                                                    ](src/YourCompany.Configuration.EFCore/CollationAwareSorting/SortingKeyBuilder.OrElse.ComparableValue.cs)</kbd><br>
+<kbd>      +‑ 18  |⁠ [SortingKey.Building.cs                                                                                         ](src/YourCompany.Configuration.EFCore/CollationAwareSorting/SortingKey.Building.cs)</kbd><br>
+<kbd>      ++ 18  |⁠ [SortingKeyBuilder.ComparableValue.cs                                                                           ](src/YourCompany.Configuration.EFCore/CollationAwareSorting/SortingKeyBuilder.ComparableValue.cs)</kbd><br>
+<kbd>       + 2   |⁠ [SortingKey.cs                                                                                                  ](src/YourCompany.Configuration.EFCore/CollationAwareSorting/SortingKey.cs)</kbd><br>
+<kbd>       + 2   |⁠ [OrElseEqualityKeys.cs                                                                                          ](src/YourCompany.Configuration.EFCore/CollationAwareSorting/OrElseEqualityKeys.cs)</kbd><br>
+<sub><sub>src/YourCompany.Configuration.EFCore/</sub></sub><br>
+<kbd> +++++++ 91  |⁠ [YourCompanyDbContext.MultiEntityQueries.cs                                                                     ](src/YourCompany.Configuration.EFCore/YourCompanyDbContext.MultiEntityQueries.cs)</kbd><br>
 
-Commit body is multiline and compliant to markdown formatting 💥
+An extension to our first-class citizen allowing to use it over  
+joined results. All the joining options are provided in the context.
 
 </td></tr></tbody></table>
 

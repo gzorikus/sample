@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace YourCompany.Configuration.EFCore.CollationAwareSorting
@@ -24,6 +25,8 @@ namespace YourCompany.Configuration.EFCore.CollationAwareSorting
 
         public interface ISingleTopologySingleEntityQuery : ISingleTopologyQuery, IMultiTopologySingleEntityQuery { }
         public interface IMultiTopologySingleEntityQuery : IMultiTopologyQuery, ISingleEntityQuery { }
+        public interface ISingleTopologyMultiEntityQuery : ISingleTopologyQuery, IMultiTopologyMultiEntityQuery { }
+        public interface IMultiTopologyMultiEntityQuery : IMultiTopologyQuery, IMultiEntityQuery { }
 
         public interface ISingleTopologyQuery : IMultiTopologyQuery
         {
@@ -45,6 +48,29 @@ namespace YourCompany.Configuration.EFCore.CollationAwareSorting
         public interface ISingleEntityQuery : SortingKeyTopology.IKeyModel
         {
             string ReplaceQueriedSetName { get; }
+        }
+
+        public interface IMultiEntityQuery : SortingKeyTopology.IKeyModel
+        {
+            IReadOnlyList<MultiEntityQuerySortingKeyPropertyOwnerIndex> EntitiesValueTuplePropertyOwnerIndecies { get; }
+
+            IQueryable<TEntity> FilterOwnedPropertiesOnlyForEquality<TEntity>(IQueryable<TEntity> queryable)
+                where TEntity : class;
+        }
+
+        public readonly struct MultiEntityQuerySortingKeyPropertyOwnerIndex
+        {
+            public SortingKeyTopology.ILastProperty PrefixFirstProperty { get; init; }
+            public int EntitiesValueTupleParameterValueIndex { get; init; }
+            public bool UseOwnerForSortingByThisProperty { get; init; }
+
+            public void Deconstruct(
+                out SortingKeyTopology.ILastProperty property, out int ownerIndex, out bool useForSorting)
+            {
+                property = PrefixFirstProperty;
+                ownerIndex = EntitiesValueTupleParameterValueIndex;
+                useForSorting = UseOwnerForSortingByThisProperty;
+            }
         }
     }
 }

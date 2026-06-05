@@ -28,6 +28,7 @@ namespace YourCompany.Configuration.EFCore.CollationAwareSorting
             {
                 if (prefixKey.PropertyName == null) throw new ApplicationException("prefixKey.PropertyName == null");
                 if (prefixKey.ReplaceQueriedSetName != null) throw new ApplicationException("prefixKey.ReplaceQueriedSetName != null");
+                if (prefixKey.EntitiesValueTuplePropertyOwnerIndecies != null) throw new ApplicationException("prefixKey.EntitiesValueTuplePropertyOwnerIndecies != null");
                 if (modelProvider != prefixKey.ModelProvider) throw new ApplicationException("modelProvider != prefixKey.ModelProvider");
                 PrefixKey = prefixKey;
                 PrefixKeysCount = prefixKey.PrefixKeysCount + 1;
@@ -42,6 +43,7 @@ namespace YourCompany.Configuration.EFCore.CollationAwareSorting
             if (PropertyName != null) throw new ApplicationException("PropertyName != null");
             if (MultiplePropertyOwners || UniquePropertyNames) throw new ApplicationException("MultiplePropertyOwners || UniquePropertyNames");
             if (ReplaceQueriedSetName != null) throw new ApplicationException("ReplaceQueriedSetName != null");
+            if (EntitiesValueTuplePropertyOwnerIndecies != null) throw new ApplicationException("EntitiesValueTuplePropertyOwnerIndecies != null");
 
             var prefixKey = PrefixKey;
             if (prefixKey != null)
