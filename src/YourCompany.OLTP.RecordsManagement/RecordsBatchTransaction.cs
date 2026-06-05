@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 
 namespace YourCompany.OLTP.RecordsManagement
 {
-    public static class RecordsBatchTransaction
+    public static partial class RecordsBatchTransaction
     {
         public interface ISpecified : IRecordsBatchSizeLimit
         {

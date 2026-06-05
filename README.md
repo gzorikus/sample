@@ -204,7 +204,7 @@ All the entry point branches' heads are highlighted in the graph as ⏹️.
 ---
 config:
   gitGraph:
-    mainBranchName: "2|🏠: OLTP transaction is limited size"
+    mainBranchName: "3|🧱: OLTP transaction structure"
     parallelCommits: true
     rotateCommitLabel: false
     showCommitLabel: false
@@ -464,7 +464,7 @@ gitGraph
 %% commit type:REVERSE %% OTS>5
 %% commit type:REVERSE %% OTS>6
 %% commit type:REVERSE %% OTS>7
-%% commit type:HIGHLIGHT tag:"3|🧱|oltp-typical-transaction-structure-repository-is-up-to-you|YourCompany.OLTP.RecordsManagement" %% OTS
+commit type:HIGHLIGHT tag:"3|🧱|oltp-typical-transaction-structure-repository-is-up-to-you|YourCompany.OLTP.RecordsManagement" %% OTS
 %% merge "4|🧱: OLTP identities are unique keys" type:HIGHLIGHT tag:"3|🧱|oltp-typical-transaction-structure-repository-is-up-to-you|YourCompany.OLTP.RecordsManagement" %% OTS
 
 %% checkout "4|🏠: OLTP use cases by record type" %% ORTCM
@@ -752,7 +752,7 @@ gitGraph
 
 %% checkout "3|🏠: generic OLTP use cases" %% OTILS
 %% checkout "3|🧱: OLTP transaction structure" %% OTILS
-%% branch "2|🏠: OLTP transaction is limited size" %% OTILS
+branch "2|🏠: OLTP transaction is limited size" %% OTILS
 commit type:HIGHLIGHT tag:"2|🏠|oltp-ways-to-access-size-limited-record-batch|YourCompany.OLTP.RecordsManagement" %% OTILS
 %% merge "3|🧱: OLTP transaction structure" type:HIGHLIGHT tag:"2|🏠|oltp-ways-to-access-size-limited-record-batch|YourCompany.OLTP.RecordsManagement" %% OTILS
 
@@ -981,15 +981,17 @@ Cons: why it might be not enough for you
 
 <!-- ### Branch: oltp-segregate-use-cases-repository-is-for-persistence END -->
 
-<!-- ### Branch: oltp-typical-transaction-structure-repository-is-up-to-you
+### Branch: oltp-typical-transaction-structure-repository-is-up-to-you
 
-> Files: ### | Lines: #####  
-Pros: why do you choose this entry point  
-Cons: why it might be not enough for you
+> Files: 42 | Lines: 3789  
+Pros: have all control structured in one place  
+Cons: mixes use case related logic with persistence
 
 | Log | Examples | Modules |
 |-|-|-|
-| [replace_with_each_included_commit_subject](#commit-with-lower-case-subject) | <kbd> [at‑least‑one‑example‑solution‑name](examples/at-least-one-example-solution-per-commit/README.md#commit-with-lower-case-subject) </kbd><br><kbd> [extra‑example‑solution‑name](examples/extra-example-solution-name/README.md#commit-with-lower-case-subject) </kbd> | <kbd>YourCompany.Framework.Assembly.Name1 (+diff lines)</kbd><br><kbd>YourCompany.Framework.Assembly.Name2 (-diff lines)</kbd><br><kbd>YourCompany.Framework.Assembly.NameN (0 lines)</kbd> |
+| [1\|⁠🏠: the heart of OLTP is transaction](#commit-1-the-heart-of-oltp-is-transaction) | <kbd> [TODO](examples/at-least-one-example-solution-per-commit/README.md#commit-1-the-heart-of-oltp-is-transaction) </kbd> | <kbd>YourCompany.OLTP.StateOwnership (+371 lines)</kbd> |
+| [2\|⁠🏠: OLTP transaction is limited size](#commit-2-oltp-transaction-is-limited-size) | <kbd> [TODO](examples/at-least-one-example-solution-per-commit/README.md#commit-2-oltp-transaction-is-limited-size) </kbd> | <kbd>YourCompany.OLTP.RecordsManagement (+1500 lines)</kbd> |
+| [3\|⁠🧱: OLTP transaction structure](#commit-3-oltp-transaction-structure) | <kbd> [TODO](examples/at-least-one-example-solution-per-commit/README.md#commit-3-oltp-transaction-structure) </kbd> | <kbd>YourCompany.OLTP.RecordsManagement (+1918 lines)</kbd> |
 
 <!-- ### Branch: oltp-typical-transaction-structure-repository-is-up-to-you END -->
 
@@ -1462,15 +1464,58 @@ Commit body is multiline and compliant to markdown formatting 💥
 
 <!-- ### Commit: 3|🏠: OLTP RecordTypesCompositionMap END -->
 
-<!-- ### Commit: 3|🧱: OLTP transaction structure
+### Commit: 3|🧱: OLTP transaction structure
 
 <table><tbody><tr><td>
 
-X files changed, Y insertions(+), Z deletions(-)<br>
-<sub><sub>src/YourCompany.Module/</sub></sub><br>
-<kbd> +++++++ NNN |⁠ [File.cs                                                                                                        ](src/YourCompany.Configuration/EnvironmentConventions.cs)</kbd><br>
+17 files changed, 1919 insertions(+), 1 deletion(-)<br>
+<sub><sub>src/YourCompany.OLTP.RecordsManagement/</sub></sub><br>
+<kbd> +++++++ 233 |⁠ [RecordsBatchTransaction.WithRecords.WithRecordsData.cs                                                         ](src/YourCompany.OLTP.RecordsManagement/RecordsBatchTransaction.WithRecords.WithRecordsData.cs)</kbd><br>
+<kbd>  ++++++ 212 |⁠ [RecordsBatchTransaction.Specified.SetOnceProperties.cs                                                         ](src/YourCompany.OLTP.RecordsManagement/RecordsBatchTransaction.Specified.SetOnceProperties.cs)</kbd><br>
+<kbd>   +++++ 174 |⁠ [RecordsBatchTransaction.WithIdentities.cs                                                                      ](src/YourCompany.OLTP.RecordsManagement/RecordsBatchTransaction.WithIdentities.cs)</kbd><br>
+<kbd>   +++++ 172 |⁠ [RecordsBatchTransaction.Specified.Handling.cs                                                                  ](src/YourCompany.OLTP.RecordsManagement/RecordsBatchTransaction.Specified.Handling.cs)</kbd><br>
+<kbd>   +++++ 160 |⁠ [RecordsBatchTransaction.SpecifiedRun.cs                                                                        ](src/YourCompany.OLTP.RecordsManagement/RecordsBatchTransaction.SpecifiedRun.cs)</kbd><br>
+<kbd>    ++++ 154 |⁠ [RecordsBatchTransaction.WithIdentities.ReplacingSpecified.cs                                                   ](src/YourCompany.OLTP.RecordsManagement/RecordsBatchTransaction.WithIdentities.ReplacingSpecified.cs)</kbd><br>
+<kbd>    ++++ 137 |⁠ [RecordsBatchTransaction.WithRecords.WithRecordsData.RecordState.cs                                             ](src/YourCompany.OLTP.RecordsManagement/RecordsBatchTransaction.WithRecords.WithRecordsData.RecordState.cs)</kbd><br>
+<kbd>    ++++ 132 |⁠ [RecordState.cs                                                                                                 ](src/YourCompany.OLTP.RecordsManagement/RecordState.cs)</kbd><br>
+<kbd>     +++ 107 |⁠ [RecordsBatchTransaction.WithRecords.WithRecordsData.TriggerTransactionCallback.cs                              ](src/YourCompany.OLTP.RecordsManagement/RecordsBatchTransaction.WithRecords.WithRecordsData.TriggerTransactionCallback.cs)</kbd><br>
+<kbd>     +++ 106 |⁠ [RecordsBatchTransaction.SpecifiedRun.State.cs                                                                  ](src/YourCompany.OLTP.RecordsManagement/RecordsBatchTransaction.SpecifiedRun.State.cs)</kbd><br>
+<kbd>     +++ 95  |⁠ [RecordsBatchTransaction.WithIdentities.Unique.cs                                                               ](src/YourCompany.OLTP.RecordsManagement/RecordsBatchTransaction.WithIdentities.Unique.cs)</kbd><br>
+<kbd>      ++ 59  |⁠ [RecordsBatchTransaction.Specified.cs                                                                           ](src/YourCompany.OLTP.RecordsManagement/RecordsBatchTransaction.Specified.cs)</kbd><br>
+<kbd>      ++ 58  |⁠ [RecordsBatchTransaction.SpecifiedRun.TypicalSequence.cs                                                        ](src/YourCompany.OLTP.RecordsManagement/RecordsBatchTransaction.SpecifiedRun.TypicalSequence.cs)</kbd><br>
+<kbd>      ++ 58  |⁠ [RecordsBatchTransaction.WithRecords.WithRecordsData.BuiltRecord.cs                                             ](src/YourCompany.OLTP.RecordsManagement/RecordsBatchTransaction.WithRecords.WithRecordsData.BuiltRecord.cs)</kbd><br>
+<kbd>      ++ 39  |⁠ [RecordsBatchTransaction.WithRecords.cs                                                                         ](src/YourCompany.OLTP.RecordsManagement/RecordsBatchTransaction.WithRecords.cs)</kbd><br>
+<kbd>       + 22  |⁠ [RecordsBatchTransaction.SpecifiedRun.RunOnceStep.cs                                                            ](src/YourCompany.OLTP.RecordsManagement/RecordsBatchTransaction.SpecifiedRun.RunOnceStep.cs)</kbd><br>
+<kbd>      +‑ 2   |⁠ [RecordsBatchTransaction.cs                                                                                     ](src/YourCompany.OLTP.RecordsManagement/RecordsBatchTransaction.cs)</kbd><br>
 
-Commit body is multiline and compliant to markdown formatting 💥
+Be ready to implement following sequence per each record type:
+
+1. `MaxRecordsInBatch`
+2. `HandleSpecifiedIdentities`
+3. `HandleSortingAfterId`
+4. `Authorize`
+5. `HandleReadOnlyRecordsIncludingBeforeRead`
+6. `HandleEachRecordSpecificationBeforeReadWithoutIds`
+7. `HandleEachRecordModifyingSpecificationBeforeRead`
+8. `ReadWithHandledEachRecordSpecifications`
+9. `GetReadRecordIdentity`
+10. `ValidateAssignedIdentityReplacementAfterReadByIds`
+11. `BuildRecord`
+12. `CreateRecordDataForSettingChangedProperties`
+13. `PrepareRecordsBatchChanges`
+14. `HandleSpecifiedRecordModifyingSpecificationBeforePersist`
+15. `PersistChanges`
+16. `GetLockedRecordDataWithoutChanges`
+17. `FinishRecordsDataAccess`
+18. `GetRecordDataAfterAccess`
+19. `HandleResultingRecordsBatch`
+
+Including a bunch of virtual methods, these give you ability to pause  
+between steps, make extra processing, etc. In short this entry point  
+is good for reimagining the framework in your own way. Later we're  
+going to significantly reduce the number of required methods to be  
+implemented by introducing DI and by segregating use case and  
+persistence related concerns.
 
 </td></tr></tbody></table>
 
