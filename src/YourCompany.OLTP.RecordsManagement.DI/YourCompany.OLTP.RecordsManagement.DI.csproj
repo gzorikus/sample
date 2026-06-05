@@ -20,4 +20,8 @@
     <ProjectReference Include="..\YourCompany.OLTP.StateOwnership.Reflection.DI\YourCompany.OLTP.StateOwnership.Reflection.DI.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <InternalsVisibleTo Include="YourCompany.OLTP.RecordsManagement.DI.TransactionalComposition" />
+  </ItemGroup>
+
 </Project>

@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 
 namespace YourCompany.Configuration.EFCore.CollationAwareSorting
 {
@@ -62,10 +63,15 @@ namespace YourCompany.Configuration.EFCore.CollationAwareSorting
         public SortingKey WithDescending(
             bool descending,
             SortingKey descendingForPrefix = null,
-            string overrideSingleEntityReplacingQueriedSetName = "never matching any set name → no need to override")
+            string overrideSingleEntityReplacingQueriedSetName = "never matching any set name → no need to override",
+            IReadOnlyList<SortingKeyQueries.MultiEntityQuerySortingKeyPropertyOwnerIndex>
+                overrideMultiEntityValueTuplePropertyOwnerIndecies = null)
         {
             if (PropertyName == null) throw new ApplicationException("PropertyName == null");
             bool overrideSingleEntity = overrideSingleEntityReplacingQueriedSetName != "never matching any set name → no need to override";
+            bool overrideMultiEntity = overrideMultiEntityValueTuplePropertyOwnerIndecies != null;
+            if (overrideSingleEntity && overrideMultiEntity) throw new ApplicationException("overrideSingleEntity && overrideMultiEntity");
+            if (overrideMultiEntityValueTuplePropertyOwnerIndecies?.Count == 0) throw new ApplicationException("overrideMultiEntityValueTuplePropertyOwnerIndecies?.Count == 0");
 
             SortingKey clonedPrefix = null;
 
@@ -80,16 +86,24 @@ namespace YourCompany.Configuration.EFCore.CollationAwareSorting
                 }
             }
 
-            if (clonedPrefix == null && descending == Descending && !overrideSingleEntity)
+            if (clonedPrefix == null && descending == Descending && !overrideSingleEntity && !overrideMultiEntity)
                 return this;
 
             var clone = Clone(descending, clonedPrefix);
             clone.EnsureNoUnexpectedQueryOptionsAfterCreation();
             clone.ReplaceQueriedSetName = ReplaceQueriedSetName;
+            clone.EntitiesValueTuplePropertyOwnerIndecies = EntitiesValueTuplePropertyOwnerIndecies;
 
             if (overrideSingleEntity)
             {
                 clone.ReplaceQueriedSetName = overrideSingleEntityReplacingQueriedSetName;
+                clone.EntitiesValueTuplePropertyOwnerIndecies = null;
+            }
+
+            if (overrideMultiEntity)
+            {
+                clone.ReplaceQueriedSetName = null;
+                clone.EntitiesValueTuplePropertyOwnerIndecies = overrideMultiEntityValueTuplePropertyOwnerIndecies;
             }
 
             return clone;

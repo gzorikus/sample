@@ -11,6 +11,7 @@
 
   <ItemGroup>
     <InternalsVisibleTo Include="YourCompany.OLTP.RecordsManagement.DI" />
+    <InternalsVisibleTo Include="YourCompany.OLTP.RecordsManagement.DI.TransactionalComposition" />
   </ItemGroup>
 
 </Project>

@@ -204,7 +204,7 @@ All the entry point branches' heads are highlighted in the graph as ⏹️.
 ---
 config:
   gitGraph:
-    mainBranchName: "7|🧱: OLTP DI EFCore integrated"
+    mainBranchName: "N|🧱: OLTP EFCore multi-entity chassis"
     parallelCommits: true
     rotateCommitLabel: false
     showCommitLabel: false
@@ -213,25 +213,25 @@ gitGraph
 
 %% commit type:HIGHLIGHT tag:"N|🧱|wip-full-solution" %% OEMEC
 %% branch "N|🧱: OLTP EFCore multi-entity chassis" %% OEMEC
-%% commit type:HIGHLIGHT tag:"N|🧱|wip-oltp-di-efcore-handle-specifications-only-the-rest-is-covered-with-record-types-composition|YourCompany.Configuration.EFCore" %% OEMEC
+commit type:HIGHLIGHT tag:"N|🧱|wip-oltp-di-efcore-handle-specifications-only-the-rest-is-covered-with-record-types-composition|YourCompany.Configuration.EFCore" %% OEMEC
 
 %% Startup Iteration 7
 
-%% branch "7|💾: EFCore multi EntityEntry visitors" %% EMEEV
-%% commit type:NORMAL tag:"7|💾|YourCompany.Configuration.EFCore" %% EMEEV
+branch "7|💾: EFCore multi EntityEntry visitors" %% EMEEV
+commit type:NORMAL tag:"7|💾|YourCompany.Configuration.EFCore" %% EMEEV
 
-%% checkout "N|🧱: OLTP EFCore multi-entity chassis" %% EMES
-%% branch "7|💾: EFCore multi-entity sorting" %% EMES
-%% commit type:NORMAL tag:"7|💾|YourCompany.Configuration.EFCore" %% EMES
+checkout "N|🧱: OLTP EFCore multi-entity chassis" %% EMES
+branch "7|💾: EFCore multi-entity sorting" %% EMES
+commit type:NORMAL tag:"7|💾|YourCompany.Configuration.EFCore" %% EMES
 
-%% checkout "7|💾: EFCore multi-entity sorting" %% ESME
-%% branch "7|💾: EFCore SortingKey multi-entity" %% ESME
-%% merge "7|💾: EFCore multi EntityEntry visitors" type:NORMAL tag:"7|💾|YourCompany.Configuration.EFCore" %% ESME
+checkout "7|💾: EFCore multi-entity sorting" %% ESME
+branch "7|💾: EFCore SortingKey multi-entity" %% ESME
+merge "7|💾: EFCore multi EntityEntry visitors" type:NORMAL tag:"7|💾|YourCompany.Configuration.EFCore" %% ESME
 
-%% checkout "N|🧱: OLTP EFCore multi-entity chassis" %% ODEI
-%% branch "7|🧱: OLTP DI EFCore integrated" %% ODEI
-%% commit type:REVERSE %% ODEI>1
-%% commit type:REVERSE %% ODEI>2
+checkout "N|🧱: OLTP EFCore multi-entity chassis" %% ODEI
+branch "7|🧱: OLTP DI EFCore integrated" %% ODEI
+commit type:REVERSE %% ODEI>1
+commit type:REVERSE %% ODEI>2
 commit type:HIGHLIGHT tag:"7|🧱|public|oltp-di-efcore-handle-specifications-only-the-rest-is-covered|YourCompany.Configuration.EFCore|YourCompany.OLTP.RecordsManagement.DI.EFCore|YourCompany.OLTP.RecordsManagement.Persistence.Linq.EFCore" %% ODEI
 
 branch "7|🧱: OLTP DI EFCore switch to chassis" %% ODESTC
@@ -248,32 +248,32 @@ commit type:NORMAL tag:"6|💾|YourCompany.OLTP.RecordsManagement.Persistence.Li
 
 checkout "6|💾: OLTP EFCore finalized" %% OER
 branch "5|💾: OLTP EFCore readonly" %% OER
-%% commit type:REVERSE %% OER>1
-%% commit type:REVERSE %% OER>2
-%% commit type:REVERSE %% OER>3
-%% commit type:REVERSE %% OER>4
-%% commit type:REVERSE %% OER>5
+commit type:REVERSE %% OER>1
+commit type:REVERSE %% OER>2
+commit type:REVERSE %% OER>3
+commit type:REVERSE %% OER>4
+commit type:REVERSE %% OER>5
 commit type:NORMAL tag:"5|💾|YourCompany.OLTP.RecordsManagement.Persistence.Linq.EFCore" %% OER
 
 %% checkout "7|🧱: OLTP DI EFCore integrated" %% ODMR
-%% checkout "N|🧱: OLTP EFCore multi-entity chassis" %% ODMR
-%% branch "5|🧱: OLTP DI mixed repository" %% ODMR
-%% commit type:REVERSE %% ODMR>1
-%% commit type:REVERSE %% ODMR>2
-%% commit type:REVERSE %% ODMR>3
-%% commit type:REVERSE %% ODMR>4
-%% commit type:REVERSE %% ODMR>5
-%% commit type:HIGHLIGHT tag:"5|🧱|oltp-di-combine-use-case-and-persistence-interfaces-with-record-types-composition|YourCompany.OLTP.RecordsManagement.DI.TransactionalComposition" %% ODMR
+checkout "N|🧱: OLTP EFCore multi-entity chassis" %% ODMR
+branch "5|🧱: OLTP DI mixed repository" %% ODMR
+commit type:REVERSE %% ODMR>1
+commit type:REVERSE %% ODMR>2
+commit type:REVERSE %% ODMR>3
+commit type:REVERSE %% ODMR>4
+commit type:REVERSE %% ODMR>5
+commit type:HIGHLIGHT tag:"5|🧱|oltp-di-combine-use-case-and-persistence-interfaces-with-record-types-composition|YourCompany.OLTP.RecordsManagement.DI.TransactionalComposition" %% ODMR
 
-%% branch "5|🧱: OLTP record composition to chassis" %% ORCTC
+branch "5|🧱: OLTP record composition to chassis" %% ORCTC
 %% commit type:HIGHLIGHT tag:"5|🧱|oltp-di-combine-use-case-and-persistence-interfaces-with-record-types-composition|YourCompany.OLTP.RecordsManagement.DI.TransactionalComposition|YourCompany.OLTP.StateOwnership.TransactionalComposition" %% ORCTC
-%% commit type:NORMAL tag:"5|🧱|YourCompany.OLTP.RecordsManagement.DI.TransactionalComposition|YourCompany.OLTP.StateOwnership.TransactionalComposition" %% ORCTC
+commit type:NORMAL tag:"5|🧱|YourCompany.OLTP.RecordsManagement.DI.TransactionalComposition|YourCompany.OLTP.StateOwnership.TransactionalComposition" %% ORCTC
 
 checkout "7|🧱: OLTP DI EFCore switch to chassis" %% ODIFR
 branch "5|🧱: OLTP DI inheritance free repo" %% ODIFR
-commit type:REVERSE %% ODIFR>1
-commit type:HIGHLIGHT tag:"5|🧱|oltp-di-combine-use-case-and-persistence-interfaces-without-inheritance|YourCompany.OLTP.RecordsManagement.DI" %% ODIFR
-%% merge "5|🧱: OLTP record composition to chassis" type:HIGHLIGHT tag:"5|🧱|oltp-di-combine-use-case-and-persistence-interfaces-without-inheritance|YourCompany.OLTP.RecordsManagement.DI" %% ODIFR
+%% commit type:REVERSE %% ODIFR>1
+%% commit type:HIGHLIGHT tag:"5|🧱|oltp-di-combine-use-case-and-persistence-interfaces-without-inheritance|YourCompany.OLTP.RecordsManagement.DI" %% ODIFR
+merge "5|🧱: OLTP record composition to chassis" type:HIGHLIGHT tag:"5|🧱|oltp-di-combine-use-case-and-persistence-interfaces-without-inheritance|YourCompany.OLTP.RecordsManagement.DI" %% ODIFR
 
 branch "5|🧱: OLTP DI ScopedUseCasesProvider" %% ODS
 commit type:NORMAL tag:"5|🧱|YourCompany.OLTP.RecordsManagement.UseCases.Reflection.DI" %% 5|🧱: OLTP DI ScopedUseCasesProvider
@@ -292,20 +292,20 @@ commit type:HIGHLIGHT tag:"5|🧱|oltp-di-combine-use-case-and-persistence-inter
 
 %% Startup Iteration 4
 
-%% checkout "7|💾: EFCore multi-entity sorting" %% CEPFVT
-%% branch "4|💾: cache EFProperty from ValueTuple" %% CEPFVT
-%% commit type:REVERSE %% CEPFVT>1
-%% commit type:REVERSE %% CEPFVT>2
-%% commit type:REVERSE %% CEPFVT>3
-%% commit type:REVERSE %% CEPFVT>4
-%% commit type:REVERSE %% CEPFVT>5
-%% commit type:REVERSE %% CEPFVT>6
-%% commit type:REVERSE %% CEPFVT>7
-%% commit type:REVERSE %% CEPFVT>8
-%% commit type:REVERSE %% CEPFVT>9
-%% commit type:REVERSE %% CEPFVT>10
-%% commit type:REVERSE %% CEPFVT>11
-%% commit type:NORMAL tag:"4|💾|YourCompany.Configuration.EFCore" %% CEPFVT
+checkout "7|💾: EFCore multi-entity sorting" %% CEPFVT
+branch "4|💾: cache EFProperty from ValueTuple" %% CEPFVT
+commit type:REVERSE %% CEPFVT>1
+commit type:REVERSE %% CEPFVT>2
+commit type:REVERSE %% CEPFVT>3
+commit type:REVERSE %% CEPFVT>4
+commit type:REVERSE %% CEPFVT>5
+commit type:REVERSE %% CEPFVT>6
+commit type:REVERSE %% CEPFVT>7
+commit type:REVERSE %% CEPFVT>8
+commit type:REVERSE %% CEPFVT>9
+commit type:REVERSE %% CEPFVT>10
+commit type:REVERSE %% CEPFVT>11
+commit type:NORMAL tag:"4|💾|YourCompany.Configuration.EFCore" %% CEPFVT
 
 checkout "6|💾: OLTP EFCore finalized" %% EETSKT
 branch "4|💾: EFEntityTypeSortingKeyTopology" %% EETSKT
@@ -314,14 +314,14 @@ commit type:REVERSE %% EETSKT>2
 commit type:REVERSE %% EETSKT>3
 commit type:REVERSE %% EETSKT>4
 commit type:REVERSE %% EETSKT>5
-%% commit type:REVERSE %% EETSKT>6
-%% commit type:REVERSE %% EETSKT>7
+commit type:REVERSE %% EETSKT>6
+commit type:REVERSE %% EETSKT>7
 commit type:NORMAL tag:"4|💾|YourCompany.Configuration.EFCore" %% EETSKT
 
-checkout "5|💾: OLTP EFCore readonly" %% Startup Iteration 4
-commit type:REVERSE %% OER 4>1
-commit type:REVERSE %% OER 4>2
-commit type:REVERSE %% OER 4>3
+%% checkout "5|💾: OLTP EFCore readonly" %% Startup Iteration 4
+%% commit type:REVERSE %% OER 4>1
+%% commit type:REVERSE %% OER 4>2
+%% commit type:REVERSE %% OER 4>3
 
 checkout "5|💾: OLTP EFCore readonly" %% OEIG
 branch "4|💾: OLTP EFCore ID generation" %% OEIG
@@ -331,59 +331,59 @@ commit type:NORMAL tag:"4|💾|YourCompany.OLTP.StateOwnership.Reflection.EFCore
 branch "4|💾: OLTP EFCore MetadataHelper" %% OEMH
 commit type:NORMAL tag:"4|💾|YourCompany.OLTP.StateOwnership.Reflection.EFCore" %% OEMH
 
-%% checkout "7|💾: EFCore multi EntityEntry visitors" %% Startup Iteration 4
-%% commit type:REVERSE %% EMEEV 4>1
-%% commit type:REVERSE %% EMEEV 4>2
-%% commit type:REVERSE %% EMEEV 4>3
-%% commit type:REVERSE %% EMEEV 4>4
-%% commit type:REVERSE %% EMEEV 4>5
-%% commit type:REVERSE %% EMEEV 4>6
-%% commit type:REVERSE %% EMEEV 4>7
-%% commit type:REVERSE %% EMEEV 4>8
-%% commit type:REVERSE %% EMEEV 4>9
-%% commit type:REVERSE %% EMEEV 4>10
-%% commit type:REVERSE %% EMEEV 4>11
-%% commit type:REVERSE %% EMEEV 4>12
-%% commit type:REVERSE %% EMEEV 4>13
+checkout "7|💾: EFCore multi EntityEntry visitors" %% Startup Iteration 4
+commit type:REVERSE %% EMEEV 4>1
+commit type:REVERSE %% EMEEV 4>2
+commit type:REVERSE %% EMEEV 4>3
+commit type:REVERSE %% EMEEV 4>4
+commit type:REVERSE %% EMEEV 4>5
+commit type:REVERSE %% EMEEV 4>6
+commit type:REVERSE %% EMEEV 4>7
+commit type:REVERSE %% EMEEV 4>8
+commit type:REVERSE %% EMEEV 4>9
+commit type:REVERSE %% EMEEV 4>10
+commit type:REVERSE %% EMEEV 4>11
+commit type:REVERSE %% EMEEV 4>12
+commit type:REVERSE %% EMEEV 4>13
 
 checkout "5|💾: OLTP EFCore readonly" %% ESKEE
 branch "4|💾: EFCore SortingKey ⇆ EntityEntry" %% ESKEE
-commit type:REVERSE %% ESKEE>1
-commit type:REVERSE %% ESKEE>2
-commit type:REVERSE %% ESKEE>3
-commit type:NORMAL tag:"4|💾|YourCompany.Configuration.EFCore" %% ESKEE
-%% merge "7|💾: EFCore multi EntityEntry visitors" type:NORMAL tag:"4|💾|YourCompany.Configuration.EFCore" %% ESKEE
+%% commit type:REVERSE %% ESKEE>1
+%% commit type:REVERSE %% ESKEE>2
+%% commit type:REVERSE %% ESKEE>3
+%% commit type:NORMAL tag:"4|💾|YourCompany.Configuration.EFCore" %% ESKEE
+merge "7|💾: EFCore multi EntityEntry visitors" type:NORMAL tag:"4|💾|YourCompany.Configuration.EFCore" %% ESKEE
 
 branch "4|💾: EFEntityEntryPropertiesCache" %% EEEPC
 commit type:NORMAL tag:"4|💾|YourCompany.Configuration.EFCore" %% EEEPC
 
-%% checkout "7|💾: EFCore multi-entity sorting" %% Startup Iteration 4
-%% commit type:REVERSE %% EMES 4>1
-%% commit type:REVERSE %% EMES 4>2
-%% commit type:REVERSE %% EMES 4>3
-%% commit type:REVERSE %% EMES 4>4
-%% commit type:REVERSE %% EMES 4>5
-%% commit type:REVERSE %% EMES 4>6
-%% commit type:REVERSE %% EMES 4>7
-%% commit type:REVERSE %% EMES 4>8
-%% commit type:REVERSE %% EMES 4>9
-%% commit type:REVERSE %% EMES 4>10
-%% commit type:REVERSE %% EMES 4>11
-%% commit type:REVERSE %% EMES 4>12
-%% commit type:REVERSE %% EMES 4>13
-%% commit type:REVERSE %% EMES 4>14
-%% commit type:REVERSE %% EMES 4>15
-%% commit type:REVERSE %% EMES 4>16
+checkout "7|💾: EFCore multi-entity sorting" %% Startup Iteration 4
+commit type:REVERSE %% EMES 4>1
+commit type:REVERSE %% EMES 4>2
+commit type:REVERSE %% EMES 4>3
+commit type:REVERSE %% EMES 4>4
+commit type:REVERSE %% EMES 4>5
+commit type:REVERSE %% EMES 4>6
+commit type:REVERSE %% EMES 4>7
+commit type:REVERSE %% EMES 4>8
+commit type:REVERSE %% EMES 4>9
+commit type:REVERSE %% EMES 4>10
+commit type:REVERSE %% EMES 4>11
+commit type:REVERSE %% EMES 4>12
+commit type:REVERSE %% EMES 4>13
+commit type:REVERSE %% EMES 4>14
+commit type:REVERSE %% EMES 4>15
+commit type:REVERSE %% EMES 4>16
 
 checkout "5|💾: OLTP EFCore readonly" %% ESKR
 branch "4|💾: EFCore SortingKey reading" %% ESKR
-commit type:REVERSE %% ESKR>1
-commit type:REVERSE %% ESKR>2
-commit type:REVERSE %% ESKR>3
-commit type:REVERSE %% ESKR>4
-commit type:REVERSE %% ESKR>5
-commit type:NORMAL tag:"4|💾|YourCompany.Configuration.EFCore" %% ESKR
-%% merge "7|💾: EFCore multi-entity sorting" type:NORMAL tag:"4|💾|YourCompany.Configuration.EFCore" %% ESKR
+%% commit type:REVERSE %% ESKR>1
+%% commit type:REVERSE %% ESKR>2
+%% commit type:REVERSE %% ESKR>3
+%% commit type:REVERSE %% ESKR>4
+%% commit type:REVERSE %% ESKR>5
+%% commit type:NORMAL tag:"4|💾|YourCompany.Configuration.EFCore" %% ESKR
+merge "7|💾: EFCore multi-entity sorting" type:NORMAL tag:"4|💾|YourCompany.Configuration.EFCore" %% ESKR
 
 checkout "5|🧱: OLTP switch to chassis" %% OLMBU
 branch "4|🧱: OLTP LINQ may be useful" %% OLMBU
@@ -395,20 +395,20 @@ branch "4|🧱: OLTP identities are unique keys" %% OIAUK
 %% commit type:HIGHLIGHT tag:"4|🧱|oltp-segregate-persistence-repository-is-for-use-cases|YourCompany.OLTP.RecordsManagement.Persistence" %% OIAUK
 commit type:NORMAL tag:"4|🧱|YourCompany.OLTP.RecordsManagement.Persistence" %% OIAUK
 
-%% checkout "5|🧱: OLTP record composition to chassis" %% OUCBRT
-%% branch "4|🏠: OLTP use cases by record type" %% OUCBRT
-%% commit type:REVERSE %% OUCBRT>1
-%% commit type:REVERSE %% OUCBRT>2
-%% commit type:REVERSE %% OUCBRT>3
-%% commit type:REVERSE %% OUCBRT>4
+checkout "5|🧱: OLTP record composition to chassis" %% OUCBRT
+branch "4|🏠: OLTP use cases by record type" %% OUCBRT
+commit type:REVERSE %% OUCBRT>1
+commit type:REVERSE %% OUCBRT>2
+commit type:REVERSE %% OUCBRT>3
+commit type:REVERSE %% OUCBRT>4
 %% commit type:REVERSE %% OUCBRT>5
-%% commit type:HIGHLIGHT tag:"4|🏠|oltp-segregate-use-cases-with-transactional-composition|YourCompany.OLTP.RecordsManagement.UseCases.TransactionalComposition" %% OUCBRT
+commit type:HIGHLIGHT tag:"4|🏠|oltp-segregate-use-cases-with-transactional-composition|YourCompany.OLTP.RecordsManagement.UseCases.TransactionalComposition" %% OUCBRT
 
 %% checkout "4|🏠: OLTP use cases by record type" %% EOUC
 checkout "5|🧱: OLTP switch to chassis" %% EOUC
 branch "4|🏠: enumerate OLTP use cases" %% EOUC
-commit type:HIGHLIGHT tag:"4|🏠|oltp-segregate-use-cases-repository-is-for-persistence|YourCompany.OLTP.RecordsManagement.UseCases" %% EOUC
-%% merge "4|🏠: OLTP use cases by record type" type:HIGHLIGHT tag:"4|🏠|oltp-segregate-use-cases-repository-is-for-persistence|YourCompany.OLTP.RecordsManagement.UseCases" %% EOUC
+%% commit type:HIGHLIGHT tag:"4|🏠|oltp-segregate-use-cases-repository-is-for-persistence|YourCompany.OLTP.RecordsManagement.UseCases" %% EOUC
+merge "4|🏠: OLTP use cases by record type" type:HIGHLIGHT tag:"4|🏠|oltp-segregate-use-cases-repository-is-for-persistence|YourCompany.OLTP.RecordsManagement.UseCases" %% EOUC
 
 %% Startup Iteration 3
 
@@ -418,40 +418,40 @@ commit type:REVERSE %% EETSKT 3>2
 commit type:REVERSE %% EETSKT 3>3
 commit type:REVERSE %% EETSKT 3>4
 commit type:REVERSE %% EETSKT 3>5
-%% commit type:REVERSE %% EETSKT 3>6
+commit type:REVERSE %% EETSKT 3>6
 
-%% checkout "4|💾: EFCore SortingKey ⇆ EntityEntry" %% Startup Iteration 3
-%% commit type:REVERSE %% ESKEE 3>1
+checkout "4|💾: EFCore SortingKey ⇆ EntityEntry" %% Startup Iteration 3
+commit type:REVERSE %% ESKEE 3>1
 
-checkout "4|💾: EFCore SortingKey ⇆ EntityEntry" %% EFCSK
-%% checkout "7|💾: EFCore SortingKey multi-entity" %% EFCSK
+%% checkout "4|💾: EFCore SortingKey ⇆ EntityEntry" %% EFCSK
+checkout "7|💾: EFCore SortingKey multi-entity" %% EFCSK
 branch "3|💾: EFCore first-class SortingKey" %% EFCSK
-%% merge "4|💾: EFCore SortingKey ⇆ EntityEntry" %% EFCSK
+merge "4|💾: EFCore SortingKey ⇆ EntityEntry" %% EFCSK
 merge "4|💾: EFCore SortingKey reading" %% EFCSK
 %% merge "4|💾: EFCore SortingKey ⇆ EntityEntry" %% EFCSK
 merge "4|💾: EFEntityTypeSortingKeyTopology" %% EFCSK
 commit type:REVERSE %% EFCSK>1
-%% commit type:REVERSE %% EFCSK>2
-%% commit type:REVERSE %% EFCSK>3
-%% commit type:REVERSE %% EFCSK>4
+commit type:REVERSE %% EFCSK>2
+commit type:REVERSE %% EFCSK>3
+commit type:REVERSE %% EFCSK>4
 commit type:NORMAL tag:"3|💾|YourCompany.Configuration.EFCore|YourCompany.Configuration.EFCore.PostgreSQL|YourCompany.Configuration.EFCore.Sqlite" %% EFCSK
 
-%% checkout "4|💾: cache EFProperty from ValueTuple" %% Startup Iteration 3
-%% commit type:REVERSE %% CEPFVT 3>1
-%% commit type:REVERSE %% CEPFVT 3>2
-%% commit type:REVERSE %% CEPFVT 3>3
-%% commit type:REVERSE %% CEPFVT 3>4
-%% commit type:REVERSE %% CEPFVT 3>5
-%% commit type:REVERSE %% CEPFVT 3>6
-%% commit type:REVERSE %% CEPFVT 3>7
+checkout "4|💾: cache EFProperty from ValueTuple" %% Startup Iteration 3
+commit type:REVERSE %% CEPFVT 3>1
+commit type:REVERSE %% CEPFVT 3>2
+commit type:REVERSE %% CEPFVT 3>3
+commit type:REVERSE %% CEPFVT 3>4
+commit type:REVERSE %% CEPFVT 3>5
+commit type:REVERSE %% CEPFVT 3>6
+commit type:REVERSE %% CEPFVT 3>7
 
-%% checkout "3|💾: EFCore first-class SortingKey" %% EPEC
+checkout "3|💾: EFCore first-class SortingKey" %% EPEC
 branch "3|💾: EFPropertyExpressionsCache" %% EPEC
-commit type:NORMAL tag:"3|💾|YourCompany.Configuration.EFCore" %% EPEC
-%% merge "4|💾: cache EFProperty from ValueTuple" type:NORMAL tag:"3|💾|YourCompany.Configuration.EFCore" %% EPEC
+%% commit type:NORMAL tag:"3|💾|YourCompany.Configuration.EFCore" %% EPEC
+merge "4|💾: cache EFProperty from ValueTuple" type:NORMAL tag:"3|💾|YourCompany.Configuration.EFCore" %% EPEC
 
-%% checkout "4|🧱: OLTP identities are unique keys" %% Startup Iteration 3
-%% commit type:REVERSE %% OIAUK 3>1
+checkout "4|🧱: OLTP identities are unique keys" %% Startup Iteration 3
+commit type:REVERSE %% OIAUK 3>1
 
 checkout "4|🏠: enumerate OLTP use cases" %% OTS
 %% checkout "4|🧱: OLTP identities are unique keys" %% OTS
@@ -467,19 +467,19 @@ commit type:REVERSE %% OTS>6
 commit type:HIGHLIGHT tag:"3|🧱|oltp-typical-transaction-structure-repository-is-up-to-you|YourCompany.OLTP.RecordsManagement" %% OTS
 %% merge "4|🧱: OLTP identities are unique keys" type:HIGHLIGHT tag:"3|🧱|oltp-typical-transaction-structure-repository-is-up-to-you|YourCompany.OLTP.RecordsManagement" %% OTS
 
-%% checkout "4|🏠: OLTP use cases by record type" %% ORTCM
-%% branch "3|🏠: OLTP RecordTypesCompositionMap" %% ORTCM
-%% commit type:REVERSE %% ORTCM>1
-%% commit type:REVERSE %% ORTCM>2
-%% commit type:REVERSE %% ORTCM>3
-%% commit type:REVERSE %% ORTCM>4
-%% commit type:REVERSE %% ORTCM>5
-%% commit type:REVERSE %% ORTCM>6
-%% commit type:REVERSE %% ORTCM>7
-%% commit type:REVERSE %% ORTCM>8
-%% commit type:REVERSE %% ORTCM>9
+checkout "4|🏠: OLTP use cases by record type" %% ORTCM
+branch "3|🏠: OLTP RecordTypesCompositionMap" %% ORTCM
+commit type:REVERSE %% ORTCM>1
+commit type:REVERSE %% ORTCM>2
+commit type:REVERSE %% ORTCM>3
+commit type:REVERSE %% ORTCM>4
+commit type:REVERSE %% ORTCM>5
+commit type:REVERSE %% ORTCM>6
+commit type:REVERSE %% ORTCM>7
+commit type:REVERSE %% ORTCM>8
+commit type:REVERSE %% ORTCM>9
 %% commit type:REVERSE %% ORTCM>10
-%% commit type:NORMAL tag:"3|🏠|YourCompany.OLTP.StateOwnership.TransactionalComposition.Reflection" %% ORTCM
+commit type:NORMAL tag:"3|🏠|YourCompany.OLTP.StateOwnership.TransactionalComposition.Reflection" %% ORTCM
 
 checkout "5|🧱: OLTP DI ScopedUseCasesProvider" %% OUCTM
 commit type:REVERSE %% OUCTM<1
@@ -493,10 +493,10 @@ commit type:REVERSE %% OUCTM<8
 commit type:REVERSE %% OUCTM<9
 commit type:REVERSE %% OUCTM<10
 commit type:REVERSE %% OUCTM<11
-%% commit type:REVERSE %% OUCTM<12
-%% commit type:REVERSE %% OUCTM<13
-%% commit type:REVERSE %% OUCTM<14
-%% commit type:REVERSE %% OUCTM<15
+commit type:REVERSE %% OUCTM<12
+commit type:REVERSE %% OUCTM<13
+commit type:REVERSE %% OUCTM<14
+commit type:REVERSE %% OUCTM<15
 branch "3|🏠: OLTP UseCaseTypesMap" %% OUCTM
 %% commit type:REVERSE %% OUCTM>1
 %% commit type:REVERSE %% OUCTM>2
@@ -524,15 +524,15 @@ commit type:REVERSE %% OEMH 3>7
 commit type:REVERSE %% OEMH 3>8
 commit type:REVERSE %% OEMH 3>9
 commit type:REVERSE %% OEMH 3>10
-%% commit type:REVERSE %% OEMH 3>11
-%% commit type:REVERSE %% OEMH 3>12
-%% commit type:REVERSE %% OEMH 3>13
-%% commit type:REVERSE %% OEMH 3>14
+commit type:REVERSE %% OEMH 3>11
+commit type:REVERSE %% OEMH 3>12
+commit type:REVERSE %% OEMH 3>13
+commit type:REVERSE %% OEMH 3>14
 
 %% checkout "3|🏠: OLTP RecordTypesCompositionMap" %% ORTM
 checkout "5|🧱: OLTP DI ScopedRecordsProvider" %% ORTM
 branch "3|🏠: OLTP RecordTypesMap" %% ORTM
-%% merge "3|🏠: OLTP RecordTypesCompositionMap" %% ORTM
+merge "3|🏠: OLTP RecordTypesCompositionMap" %% ORTM
 %% commit type:REVERSE %% ORTM>1
 %% commit type:REVERSE %% ORTM>2
 %% commit type:REVERSE %% ORTM>3
@@ -601,12 +601,12 @@ commit type:REVERSE %% ECTTGS<16
 commit type:REVERSE %% ECTTGS<17
 commit type:REVERSE %% ECTTGS<18
 commit type:REVERSE %% ECTTGS<19
-%% commit type:REVERSE %% ECTTGS<20
-%% commit type:REVERSE %% ECTTGS<21
-%% commit type:REVERSE %% ECTTGS<22
-%% commit type:REVERSE %% ECTTGS<23
-%% commit type:REVERSE %% ECTTGS<24
-%% commit type:REVERSE %% ECTTGS<25
+commit type:REVERSE %% ECTTGS<20
+commit type:REVERSE %% ECTTGS<21
+commit type:REVERSE %% ECTTGS<22
+commit type:REVERSE %% ECTTGS<23
+commit type:REVERSE %% ECTTGS<24
+commit type:REVERSE %% ECTTGS<25
 branch "2|💾: EFChangeTrackerTrackGraphStrategy" %% ECTTGS
 commit type:NORMAL tag:"2|💾|YourCompany.Configuration.EFCore" %% ECTTGS
 
@@ -627,29 +627,29 @@ merge "2|💾: EFCore pessimistic locking" %% BPE
 merge "2|💾: EFChangeTrackerTrackGraphStrategy" type:NORMAL tag:"2|💾|YourCompany.Configuration.EFCore|YourCompany.Configuration.EFCore.PostgreSQL|YourCompany.Configuration.EFCore.Sqlite" %% BPE
 %% merge "2|💾: EFCore hosting migration run" type:NORMAL tag:"2|💾|YourCompany.Configuration.EFCore|YourCompany.Configuration.EFCore.PostgreSQL|YourCompany.Configuration.EFCore.Sqlite" %% BPE
 
-%% checkout "3|🏠: OLTP RecordTypesCompositionMap" %% TCM
-%% branch "2|🧱: TypesCompositionMap" %% TCM
-%% commit type:REVERSE %% TCM>1
-%% commit type:REVERSE %% TCM>2
-%% commit type:REVERSE %% TCM>3
-%% commit type:REVERSE %% TCM>4
-%% commit type:REVERSE %% TCM>5
-%% commit type:REVERSE %% TCM>6
-%% commit type:REVERSE %% TCM>7
+checkout "3|🏠: OLTP RecordTypesCompositionMap" %% TCM
+branch "2|🧱: TypesCompositionMap" %% TCM
+commit type:REVERSE %% TCM>1
+commit type:REVERSE %% TCM>2
+commit type:REVERSE %% TCM>3
+commit type:REVERSE %% TCM>4
+commit type:REVERSE %% TCM>5
+commit type:REVERSE %% TCM>6
+commit type:REVERSE %% TCM>7
 %% commit type:REVERSE %% TCM>8
-%% commit type:NORMAL tag:"2|🧱|YourCompany.Reflection" %% TCM
+commit type:NORMAL tag:"2|🧱|YourCompany.Reflection" %% TCM
 
 checkout "3|🏠: OLTP UseCaseTypesMap" %% TAH
 %% commit type:REVERSE %% TAH<1
 %% commit type:REVERSE %% TAH<2
 branch "2|🧱: TypeAbstractionsHelper" %% TAH
-commit type:REVERSE %% TAH>1
-commit type:REVERSE %% TAH>2
-commit type:REVERSE %% TAH>3
-commit type:REVERSE %% TAH>4
-commit type:REVERSE %% TAH>5
-commit type:NORMAL tag:"2|🧱|YourCompany.Reflection" %% TAH
-%% merge "2|🧱: TypesCompositionMap" type:NORMAL tag:"2|🧱|YourCompany.Reflection" %% TAH
+%% commit type:REVERSE %% TAH>1
+%% commit type:REVERSE %% TAH>2
+%% commit type:REVERSE %% TAH>3
+%% commit type:REVERSE %% TAH>4
+%% commit type:REVERSE %% TAH>5
+%% commit type:NORMAL tag:"2|🧱|YourCompany.Reflection" %% TAH
+merge "2|🧱: TypesCompositionMap" type:NORMAL tag:"2|🧱|YourCompany.Reflection" %% TAH
 
 checkout "4|💾: EFCore SortingKey reading" %% VTH
 %% commit type:REVERSE %% VTH<1
@@ -657,7 +657,7 @@ checkout "4|💾: EFCore SortingKey reading" %% VTH
 %% commit type:REVERSE %% VTH<3
 %% commit type:REVERSE %% VTH<4
 branch "2|🧱: ValueTupleHelper" %% VTH
-%% merge "4|💾: cache EFProperty from ValueTuple" %% VTH
+merge "4|💾: cache EFProperty from ValueTuple" %% VTH
 commit type:REVERSE %% VTH>1
 commit type:REVERSE %% VTH>2
 commit type:REVERSE %% VTH>3
@@ -688,10 +688,10 @@ commit type:REVERSE %% DCH>14
 commit type:REVERSE %% DCH>15
 commit type:REVERSE %% DCH>16
 commit type:REVERSE %% DCH>17
-%% commit type:REVERSE %% DCH>18
-%% commit type:REVERSE %% DCH>19
-%% commit type:REVERSE %% DCH>20
-%% commit type:REVERSE %% DCH>21
+commit type:REVERSE %% DCH>18
+commit type:REVERSE %% DCH>19
+commit type:REVERSE %% DCH>20
+commit type:REVERSE %% DCH>21
 %% commit type:REVERSE %% DCH>22
 commit type:NORMAL tag:"2|🧱|YourCompany.Reflection.DI" %% DCH
 
@@ -730,9 +730,9 @@ commit type:REVERSE %% SH>11
 commit type:REVERSE %% SH>12
 commit type:REVERSE %% SH>13
 commit type:REVERSE %% SH>14
-%% commit type:REVERSE %% SH>15
-%% commit type:REVERSE %% SH>16
-%% commit type:REVERSE %% SH>17
+commit type:REVERSE %% SH>15
+commit type:REVERSE %% SH>16
+commit type:REVERSE %% SH>17
 %% commit type:REVERSE %% SH>18
 commit type:NORMAL tag:"2|🧱|YourCompany.CompilerServices" %% SH
 
@@ -745,9 +745,9 @@ commit type:REVERSE %% OTS 2>5
 commit type:REVERSE %% OTS 2>6
 commit type:REVERSE %% OTS 2>7
 commit type:REVERSE %% OTS 2>8
-%% commit type:REVERSE %% OTS 2>9
-%% commit type:REVERSE %% OTS 2>10
-%% commit type:REVERSE %% OTS 2>11
+commit type:REVERSE %% OTS 2>9
+commit type:REVERSE %% OTS 2>10
+commit type:REVERSE %% OTS 2>11
 %% commit type:REVERSE %% OTS 2>12
 
 checkout "3|🏠: generic OLTP use cases" %% OTILS
@@ -767,7 +767,7 @@ commit type:REVERSE %% BCC>1
 %% commit type:REVERSE %% BCC>4
 commit type:HIGHLIGHT tag:"1|🧱|configuration-entry-assembly-rotating-secrets-scaling-plugins|YourCompany.Configuration" %% BCC
 
-%% checkout "3|🏠: OLTP RecordTypesCompositionMap" %% OTC
+checkout "3|🏠: OLTP RecordTypesCompositionMap" %% OTC
 %% commit type:REVERSE %% OTC<1
 %% commit type:REVERSE %% OTC<2
 %% commit type:REVERSE %% OTC<3
@@ -788,22 +788,22 @@ commit type:HIGHLIGHT tag:"1|🧱|configuration-entry-assembly-rotating-secrets-
 %% commit type:REVERSE %% OTC<18
 %% commit type:REVERSE %% OTC<19
 %% commit type:REVERSE %% OTC<20
-%% branch "1|🏠: OLTP transactional composition" %% OTC
-%% commit type:REVERSE %% OTC>1
-%% commit type:REVERSE %% OTC>2
-%% commit type:REVERSE %% OTC>3
-%% commit type:REVERSE %% OTC>4
-%% commit type:REVERSE %% OTC>5
-%% commit type:REVERSE %% OTC>6
-%% commit type:REVERSE %% OTC>7
-%% commit type:REVERSE %% OTC>8
-%% commit type:REVERSE %% OTC>9
-%% commit type:REVERSE %% OTC>10
-%% commit type:REVERSE %% OTC>11
-%% commit type:REVERSE %% OTC>12
+branch "1|🏠: OLTP transactional composition" %% OTC
+commit type:REVERSE %% OTC>1
+commit type:REVERSE %% OTC>2
+commit type:REVERSE %% OTC>3
+commit type:REVERSE %% OTC>4
+commit type:REVERSE %% OTC>5
+commit type:REVERSE %% OTC>6
+commit type:REVERSE %% OTC>7
+commit type:REVERSE %% OTC>8
+commit type:REVERSE %% OTC>9
+commit type:REVERSE %% OTC>10
+commit type:REVERSE %% OTC>11
+commit type:REVERSE %% OTC>12
 %% commit type:REVERSE %% OTC>13
 %% commit type:REVERSE %% OTC>14
-%% commit type:NORMAL tag:"1|🏠|YourCompany.OLTP.StateOwnership.TransactionalComposition" %% OTC
+commit type:NORMAL tag:"1|🏠|YourCompany.OLTP.StateOwnership.TransactionalComposition" %% OTC
 
 %% checkout "N|🧱: wip switch to chassis" %% OEP
 %% commit type:REVERSE %% OEP<1
@@ -866,7 +866,7 @@ commit type:HIGHLIGHT tag:"1|🧱|configuration-entry-assembly-rotating-secrets-
 
 checkout "2|🏠: OLTP transaction is limited size" %% Startup Iteration 1
 commit type:REVERSE %% OTILS 1>1
-%% commit type:REVERSE %% OTILS 1>2
+commit type:REVERSE %% OTILS 1>2
 %% commit type:REVERSE %% OTILS 1>3
 
 %% checkout MERGED %% THOOIT
@@ -875,7 +875,7 @@ checkout "3|🏠: OLTP RecordTypesMap" %% THOOIT
 branch "1|🏠: the heart of OLTP is transaction" %% THOOIT
 %% merge "2|🏠: OLTP transaction is limited size" %% THOOIT
 %% merge "1|🏠: OLTP events producing" %% THOOIT
-%% merge "1|🏠: OLTP transactional composition" %% THOOIT
+merge "1|🏠: OLTP transactional composition" %% THOOIT
 %% merge "N|🧱: wip switch to chassis" %% THOOIT
 %% commit type:HIGHLIGHT tag:"1|🏠|oltp-basic-object-model-the-rest-is-up-to-you|YourCompany.OLTP.StateOwnership" %% THOOIT
 merge "2|🏠: OLTP transaction is limited size" type:HIGHLIGHT tag:"1|🏠|oltp-basic-object-model-the-rest-is-up-to-you|YourCompany.OLTP.StateOwnership" %% THOOIT
@@ -943,15 +943,38 @@ Cons: significant entry point complexity increase because of covering EFCore mis
 
 <!-- ### Branch: oltp-di-efcore-handle-specifications-only-the-rest-is-covered END -->
 
-<!-- ### Branch: oltp-di-combine-use-case-and-persistence-interfaces-with-record-types-composition
+### Branch: oltp-di-combine-use-case-and-persistence-interfaces-with-record-types-composition
 
-> Files: ### | Lines: #####  
-Pros: why do you choose this entry point  
-Cons: why it might be not enough for you
+> Files: 119 | Lines: 9681  
+Pros: no boilerplate required for transactional composition, domain modularity achieved  
+Cons: still lacking major things like events producing, persistence
 
 | Log | Examples | Modules |
 |-|-|-|
-| [replace_with_each_included_commit_subject](#commit-with-lower-case-subject) | <kbd> [at‑least‑one‑example‑solution‑name](examples/at-least-one-example-solution-per-commit/README.md#commit-with-lower-case-subject) </kbd><br><kbd> [extra‑example‑solution‑name](examples/extra-example-solution-name/README.md#commit-with-lower-case-subject) </kbd> | <kbd>YourCompany.Framework.Assembly.Name1 (+diff lines)</kbd><br><kbd>YourCompany.Framework.Assembly.Name2 (-diff lines)</kbd><br><kbd>YourCompany.Framework.Assembly.NameN (0 lines)</kbd> |
+| [1\|⁠🏠: the heart of OLTP is transaction](#commit-1-the-heart-of-oltp-is-transaction) | <kbd> [TODO](examples/at-least-one-example-solution-per-commit/README.md#commit-1-the-heart-of-oltp-is-transaction) </kbd> | <kbd>YourCompany.OLTP.StateOwnership (+371 lines)</kbd> |
+| [1\|⁠🏠: OLTP transactional composition](#commit-1-oltp-transactional-composition) | <kbd> [TODO](examples/at-least-one-example-solution-per-commit/README.md#commit-1-oltp-transactional-composition) </kbd> | <kbd>YourCompany.OLTP.StateOwnership.TransactionalComposition (+20 lines)</kbd> |
+| [2\|⁠🏠: OLTP transaction is limited size](#commit-2-oltp-transaction-is-limited-size) | <kbd> [TODO](examples/at-least-one-example-solution-per-commit/README.md#commit-2-oltp-transaction-is-limited-size) </kbd> | <kbd>YourCompany.OLTP.RecordsManagement (+1500 lines)</kbd> |
+| [2\|⁠🧱: StructHelper](#commit-2-structhelper) | <kbd> [TODO](examples/at-least-one-example-solution-per-commit/README.md#commit-2-structhelper) </kbd> | <kbd>YourCompany.CompilerServices (+18 lines)</kbd> |
+| [2\|⁠🧱: AwaitTasksList](#commit-2-awaittaskslist) | <kbd> [TODO](examples/at-least-one-example-solution-per-commit/README.md#commit-2-awaittaskslist) </kbd> | <kbd>YourCompany.Threading (+49 lines)</kbd> |
+| [2\|⁠🧱: GetMemberHelper](#commit-2-getmemberhelper) | <kbd> [TODO](examples/at-least-one-example-solution-per-commit/README.md#commit-2-getmemberhelper) </kbd> | <kbd>YourCompany.Reflection (+57 lines)</kbd> |
+| [2\|⁠🧱: DIConstructorHelper](#commit-2-diconstructorhelper) | <kbd> [TODO](examples/at-least-one-example-solution-per-commit/README.md#commit-2-diconstructorhelper) </kbd> | <kbd>YourCompany.Reflection.DI (+31 lines)</kbd> |
+| [2\|⁠🧱: TypeAbstractionsHelper](#commit-2-typeabstractionshelper) | <kbd> [TODO](examples/at-least-one-example-solution-per-commit/README.md#commit-2-typeabstractionshelper) </kbd> | <kbd>YourCompany.Reflection (+26 lines)</kbd> |
+| [2\|⁠🧱: TypesCompositionMap](#commit-2-typescompositionmap) | <kbd> [TODO](examples/at-least-one-example-solution-per-commit/README.md#commit-2-typescompositionmap) </kbd> | <kbd>YourCompany.Reflection (+1050 lines)</kbd> |
+| [3\|⁠🏠: OLTP RecordTypesMap](#commit-3-oltp-recordtypesmap) | <kbd> [TODO](examples/at-least-one-example-solution-per-commit/README.md#commit-3-oltp-recordtypesmap) </kbd> | <kbd>YourCompany.OLTP.StateOwnership.Reflection (+263 lines)</kbd> |
+| [3\|⁠🏠: generic OLTP use cases](#commit-3-generic-oltp-use-cases) | <kbd> [TODO](examples/at-least-one-example-solution-per-commit/README.md#commit-3-generic-oltp-use-cases) </kbd> | <kbd>YourCompany.OLTP.RecordsManagement.UseCases (+212 lines)</kbd> |
+| [3\|⁠🏠: OLTP UseCaseTypesMap](#commit-3-oltp-usecasetypesmap) | <kbd> [TODO](examples/at-least-one-example-solution-per-commit/README.md#commit-3-oltp-usecasetypesmap) </kbd> | <kbd>YourCompany.OLTP.RecordsManagement.UseCases.Reflection (+176 lines)</kbd> |
+| [3\|⁠🏠: OLTP RecordTypesCompositionMap](#commit-3-oltp-recordtypescompositionmap) | <kbd> [TODO](examples/at-least-one-example-solution-per-commit/README.md#commit-3-oltp-recordtypescompositionmap) </kbd> | <kbd>YourCompany.OLTP.StateOwnership.TransactionalComposition.Reflection (+260 lines)</kbd> |
+| [3\|⁠🧱: OLTP transaction structure](#commit-3-oltp-transaction-structure) | <kbd> [TODO](examples/at-least-one-example-solution-per-commit/README.md#commit-3-oltp-transaction-structure) </kbd> | <kbd>YourCompany.OLTP.RecordsManagement (+1918 lines)</kbd> |
+| [4\|⁠🏠: enumerate OLTP use cases](#commit-4-enumerate-oltp-use-cases) | <kbd> [TODO](examples/at-least-one-example-solution-per-commit/README.md#commit-4-enumerate-oltp-use-cases) </kbd> | <kbd>YourCompany.OLTP.RecordsManagement.UseCases (+117 lines)</kbd> |
+| [4\|⁠🏠: OLTP use cases by record type](#commit-4-oltp-use-cases-by-record-type) | <kbd> [TODO](examples/at-least-one-example-solution-per-commit/README.md#commit-4-oltp-use-cases-by-record-type) </kbd> | <kbd>YourCompany.OLTP.RecordsManagement.UseCases.TransactionalComposition (+770 lines)</kbd> |
+| [4\|⁠🧱: OLTP identities are unique keys](#commit-4-oltp-identities-are-unique-keys) | <kbd> [TODO](examples/at-least-one-example-solution-per-commit/README.md#commit-4-oltp-identities-are-unique-keys) </kbd> | <kbd>YourCompany.OLTP.RecordsManagement.Persistence (+1642 lines)</kbd> |
+| [4\|⁠🧱: OLTP LINQ may be useful](#commit-4-oltp-linq-may-be-useful) | <kbd> [TODO](examples/at-least-one-example-solution-per-commit/README.md#commit-4-oltp-linq-may-be-useful) </kbd> | <kbd>YourCompany.OLTP.RecordsManagement.Persistence.Linq (+59 lines)</kbd> |
+| [5\|⁠🧱: OLTP switch to chassis](#commit-5-oltp-switch-to-chassis) | <kbd> [TODO](examples/at-least-one-example-solution-per-commit/README.md#commit-5-oltp-switch-to-chassis) </kbd> | <kbd>YourCompany.OLTP.RecordsManagement (+1 lines)</kbd><br><kbd>YourCompany.OLTP.RecordsManagement.DI (+122 lines)</kbd><br><kbd>YourCompany.OLTP.RecordsManagement.Persistence (-26 lines)</kbd><br><kbd>YourCompany.OLTP.RecordsManagement.UseCases (-117 lines)</kbd><br><kbd>YourCompany.OLTP.StateOwnership (+6 lines)</kbd> |
+| [5\|⁠🧱: OLTP DI ScopedRecordsProvider](#commit-5-oltp-di-scopedrecordsprovider) | <kbd> [TODO](examples/at-least-one-example-solution-per-commit/README.md#commit-5-oltp-di-scopedrecordsprovider) </kbd> | <kbd>YourCompany.OLTP.StateOwnership.Reflection.DI (+120 lines)</kbd> |
+| [5\|⁠🧱: OLTP DI ScopedUseCasesProvider](#commit-5-oltp-di-scopedusecasesprovider) | <kbd> [TODO](examples/at-least-one-example-solution-per-commit/README.md#commit-5-oltp-di-scopedusecasesprovider) </kbd> | <kbd>YourCompany.OLTP.RecordsManagement.UseCases.Reflection.DI (+69 lines)</kbd> |
+| [5\|⁠🧱: OLTP DI inheritance free repo](#commit-5-oltp-di-inheritance-free-repo) | <kbd> [TODO](examples/at-least-one-example-solution-per-commit/README.md#commit-5-oltp-di-inheritance-free-repo) </kbd> | <kbd>YourCompany.OLTP.RecordsManagement.DI (+444 lines)</kbd> |
+| [5\|⁠🧱: OLTP record composition to chassis](#commit-5-oltp-record-composition-to-chassis) | <kbd> [TODO](examples/at-least-one-example-solution-per-commit/README.md#commit-5-oltp-record-composition-to-chassis) </kbd> | <kbd>YourCompany.OLTP.RecordsManagement.DI.TransactionalComposition (+777 lines)</kbd><br><kbd>YourCompany.OLTP.RecordsManagement.UseCases.TransactionalComposition (-770 lines)</kbd><br><kbd>YourCompany.OLTP.StateOwnership.TransactionalComposition (0 lines)</kbd> |
+| [5\|⁠🧱: OLTP DI mixed repository](#commit-5-oltp-di-mixed-repository) | <kbd> [TODO](examples/at-least-one-example-solution-per-commit/README.md#commit-5-oltp-di-mixed-repository) </kbd> | <kbd>YourCompany.OLTP.RecordsManagement.DI.TransactionalComposition (+516 lines)</kbd> |
 
 <!-- ### Branch: oltp-di-combine-use-case-and-persistence-interfaces-with-record-types-composition END -->
 
@@ -984,15 +1007,26 @@ Cons: still lacking major things like events producing, transactional compositio
 
 <!-- ### Branch: oltp-di-combine-use-case-and-persistence-interfaces-without-inheritance END -->
 
-<!-- ### Branch: oltp-segregate-use-cases-with-transactional-composition
+### Branch: oltp-segregate-use-cases-with-transactional-composition
 
-> Files: ### | Lines: #####  
-Pros: why do you choose this entry point  
-Cons: why it might be not enough for you
+> Files: 82 | Lines: 6556  
+Pros: clean model with aggregates decomposed by subject/feature effectively grouping use case logic and data  
+Cons: a lot of complex boilerplate is produced for manual composition, the map is not as useful as it could be
 
 | Log | Examples | Modules |
 |-|-|-|
-| [replace_with_each_included_commit_subject](#commit-with-lower-case-subject) | <kbd> [at‑least‑one‑example‑solution‑name](examples/at-least-one-example-solution-per-commit/README.md#commit-with-lower-case-subject) </kbd><br><kbd> [extra‑example‑solution‑name](examples/extra-example-solution-name/README.md#commit-with-lower-case-subject) </kbd> | <kbd>YourCompany.Framework.Assembly.Name1 (+diff lines)</kbd><br><kbd>YourCompany.Framework.Assembly.Name2 (-diff lines)</kbd><br><kbd>YourCompany.Framework.Assembly.NameN (0 lines)</kbd> |
+| [1\|⁠🏠: the heart of OLTP is transaction](#commit-1-the-heart-of-oltp-is-transaction) | <kbd> [TODO](examples/at-least-one-example-solution-per-commit/README.md#commit-1-the-heart-of-oltp-is-transaction) </kbd> | <kbd>YourCompany.OLTP.StateOwnership (+371 lines)</kbd> |
+| [1\|⁠🏠: OLTP transactional composition](#commit-1-oltp-transactional-composition) | <kbd> [TODO](examples/at-least-one-example-solution-per-commit/README.md#commit-1-oltp-transactional-composition) </kbd> | <kbd>YourCompany.OLTP.StateOwnership.TransactionalComposition (+20 lines)</kbd> |
+| [2\|⁠🏠: OLTP transaction is limited size](#commit-2-oltp-transaction-is-limited-size) | <kbd> [TODO](examples/at-least-one-example-solution-per-commit/README.md#commit-2-oltp-transaction-is-limited-size) </kbd> | <kbd>YourCompany.OLTP.RecordsManagement (+1500 lines)</kbd> |
+| [2\|⁠🧱: AwaitTasksList](#commit-2-awaittaskslist) | <kbd> [TODO](examples/at-least-one-example-solution-per-commit/README.md#commit-2-awaittaskslist) </kbd> | <kbd>YourCompany.Threading (+49 lines)</kbd> |
+| [2\|⁠🧱: TypeAbstractionsHelper](#commit-2-typeabstractionshelper) | <kbd> [TODO](examples/at-least-one-example-solution-per-commit/README.md#commit-2-typeabstractionshelper) </kbd> | <kbd>YourCompany.Reflection (+26 lines)</kbd> |
+| [2\|⁠🧱: TypesCompositionMap](#commit-2-typescompositionmap) | <kbd> [TODO](examples/at-least-one-example-solution-per-commit/README.md#commit-2-typescompositionmap) </kbd> | <kbd>YourCompany.Reflection (+1050 lines)</kbd> |
+| [3\|⁠🏠: OLTP RecordTypesMap](#commit-3-oltp-recordtypesmap) | <kbd> [TODO](examples/at-least-one-example-solution-per-commit/README.md#commit-3-oltp-recordtypesmap) </kbd> | <kbd>YourCompany.OLTP.StateOwnership.Reflection (+263 lines)</kbd> |
+| [3\|⁠🏠: generic OLTP use cases](#commit-3-generic-oltp-use-cases) | <kbd> [TODO](examples/at-least-one-example-solution-per-commit/README.md#commit-3-generic-oltp-use-cases) </kbd> | <kbd>YourCompany.OLTP.RecordsManagement.UseCases (+212 lines)</kbd> |
+| [3\|⁠🏠: OLTP RecordTypesCompositionMap](#commit-3-oltp-recordtypescompositionmap) | <kbd> [TODO](examples/at-least-one-example-solution-per-commit/README.md#commit-3-oltp-recordtypescompositionmap) </kbd> | <kbd>YourCompany.OLTP.StateOwnership.TransactionalComposition.Reflection (+260 lines)</kbd> |
+| [3\|⁠🧱: OLTP transaction structure](#commit-3-oltp-transaction-structure) | <kbd> [TODO](examples/at-least-one-example-solution-per-commit/README.md#commit-3-oltp-transaction-structure) </kbd> | <kbd>YourCompany.OLTP.RecordsManagement (+1918 lines)</kbd> |
+| [4\|⁠🏠: enumerate OLTP use cases](#commit-4-enumerate-oltp-use-cases) | <kbd> [TODO](examples/at-least-one-example-solution-per-commit/README.md#commit-4-enumerate-oltp-use-cases) </kbd> | <kbd>YourCompany.OLTP.RecordsManagement.UseCases (+117 lines)</kbd> |
+| [4\|⁠🏠: OLTP use cases by record type](#commit-4-oltp-use-cases-by-record-type) | <kbd> [TODO](examples/at-least-one-example-solution-per-commit/README.md#commit-4-oltp-use-cases-by-record-type) </kbd> | <kbd>YourCompany.OLTP.RecordsManagement.UseCases.TransactionalComposition (+770 lines)</kbd> |
 
 <!-- ### Branch: oltp-segregate-use-cases-with-transactional-composition END -->
 
@@ -1223,15 +1257,55 @@ identity structure is not a domain concern.
 
 <!-- ### Commit: 1|🏠: OLTP events producing END -->
 
-<!-- ### Commit: 1|🏠: OLTP transactional composition
+### Commit: 1|🏠: OLTP transactional composition
 
 <table><tbody><tr><td>
 
-X files changed, Y insertions(+), Z deletions(-)<br>
-<sub><sub>src/YourCompany.Module/</sub></sub><br>
-<kbd> +++++++ NNN |⁠ [File.cs                                                                                                        ](src/YourCompany.Configuration/EnvironmentConventions.cs)</kbd><br>
+1 file changed, 20 insertions(+)<br>
+<sub><sub>src/YourCompany.OLTP.StateOwnership.TransactionalComposition/</sub></sub><br>
+<kbd> +++++++ 20  |⁠ [TransactionalCompositionTransactionCallback.cs                                                                 ](src/YourCompany.OLTP.StateOwnership.TransactionalComposition/TransactionalCompositionTransactionCallback.cs)</kbd><br>
 
-Commit body is multiline and compliant to markdown formatting 💥
+When it comes to building your aggregates for modelling the domain  
+over a long period of time you often encounters them to be cluttered  
+with logic and data serving still the same purpose the model exists  
+but in different points of time and in different data volumes required.
+
+The nowadays approach that comes in mind right away is "microservices"  
+where you just need to split any concerns into separate apps. Sounds  
+like a silver bullet? 😁 Hold on...
+
+Before deciding to sell your soul to the devil, ask yourself:  
+
+- whether the service I extract is going to bring the value solely, and;
+- whether it's worth to lose the ACID guarantees for the sake of hype.
+
+Long story short (again), even if you go down that road, your best  
+bet is to prepare the code first before integrating it with the  
+extracted service, i.e. to let the integration be served still... with  
+a separated local module...
+
+Now let's take it serious as a rule of thumb: "whenever we find a  
+**subdomain** we first put it into a **separate assembly**". Do you  
+see much difference in where the assembly is located, in the local  
+code base or external? You might not yet, so no need to rush.
+
+Give it a chance to stay and retain the ACID guarantees while  
+utilizing the full-fledged modularity of your framework. For that we  
+just need to introduce the way aggregates could communicate each other  
+within the transaction 😲
+
+Since we've already delegated the state access away from our model  
+we have a way to identify which classes belong to the subset of those  
+aggregates. I.e. the ones getting `IStateAccess` in the constructor.  
+> Please note this once again in contrast to the ORM's approach where  
+you pass dozens of ctor parameters to obtaining the required state 🙈
+
+So our ctor is not so busy now, right? Why not to "ask it" to simply  
+accept other aggregates as dependencies, huh? Do you feel how it  
+smells like the sweet origins of OOP? 😁 Do you see how the language's  
+natural semantics are going to be put at the core of making clusters   
+of such aggregates "describing a single entity yet" 🤔 Hopefuly from  
+now on we're on the same page 🤞
 
 </td></tr></tbody></table>
 
@@ -1425,15 +1499,66 @@ transaction. Such key identity is sometimes called a "cursor".
 
 <!-- ### Commit: 2|🧱: TypeAbstractionsHelper END -->
 
-<!-- ### Commit: 2|🧱: TypesCompositionMap
+### Commit: 2|🧱: TypesCompositionMap
 
 <table><tbody><tr><td>
 
-X files changed, Y insertions(+), Z deletions(-)<br>
-<sub><sub>src/YourCompany.Module/</sub></sub><br>
-<kbd> +++++++ NNN |⁠ [File.cs                                                                                                        ](src/YourCompany.Configuration/EnvironmentConventions.cs)</kbd><br>
+16 files changed, 1050 insertions(+)<br>
+<sub><sub>src/YourCompany.Reflection/Composition/</sub></sub><br>
+<kbd> +++++++ 141 |⁠ [ComposableTypeInfo.ConstructionLimitations.cs                                                                  ](src/YourCompany.Reflection/Composition/ComposableTypeInfo.ConstructionLimitations.cs)</kbd><br>
+<kbd>  ++++++ 139 |⁠ [ComposableTypeInfo.Dependencies.cs                                                                             ](src/YourCompany.Reflection/Composition/ComposableTypeInfo.Dependencies.cs)</kbd><br>
+<kbd>  ++++++ 133 |⁠ [ComposableTypeInfo.cs                                                                                          ](src/YourCompany.Reflection/Composition/ComposableTypeInfo.cs)</kbd><br>
+<kbd>   +++++ 113 |⁠ [CompositionException.Composite.cs                                                                              ](src/YourCompany.Reflection/Composition/CompositionException.Composite.cs)</kbd><br>
+<kbd>   +++++ 104 |⁠ [ComposableTypeInfo.Dependencies.Mixins.Determined.cs                                                           ](src/YourCompany.Reflection/Composition/ComposableTypeInfo.Dependencies.Mixins.Determined.cs)</kbd><br>
+<kbd>    ++++ 82  |⁠ [ComposableTypeInfo.Dependencies.Mixins.CrossCutting.cs                                                         ](src/YourCompany.Reflection/Composition/ComposableTypeInfo.Dependencies.Mixins.CrossCutting.cs)</kbd><br>
+<kbd>    ++++ 72  |⁠ [TypesCompositionMap.cs                                                                                         ](src/YourCompany.Reflection/Composition/TypesCompositionMap.cs)</kbd><br>
+<kbd>      ++ 41  |⁠ [ComposableTypeInfo.Dependencies.ImplementedAbstractions.cs                                                     ](src/YourCompany.Reflection/Composition/ComposableTypeInfo.Dependencies.ImplementedAbstractions.cs)</kbd><br>
+<kbd>      ++ 39  |⁠ [CompositionException.DependenciesLoopDetected.cs                                                               ](src/YourCompany.Reflection/Composition/CompositionException.DependenciesLoopDetected.cs)</kbd><br>
+<kbd>      ++ 36  |⁠ [ComposableTypeInfo.Dependencies.Mixins.cs                                                                      ](src/YourCompany.Reflection/Composition/ComposableTypeInfo.Dependencies.Mixins.cs)</kbd><br>
+<kbd>      ++ 31  |⁠ [CompositionException.AbstractDependencyWithMultipleImplementationsPerApplicableRootMustBeEnumerable.cs         ](src/YourCompany.Reflection/Composition/CompositionException.AbstractDependencyWithMultipleImplementationsPerApplicableRootMustBeEnumerable.cs)</kbd><br>
+<kbd>      ++ 30  |⁠ [CompositionException.CrossCuttingMixinMustOnlyDependOnOtherCrossCutting.cs                                     ](src/YourCompany.Reflection/Composition/CompositionException.CrossCuttingMixinMustOnlyDependOnOtherCrossCutting.cs)</kbd><br>
+<kbd>      ++ 29  |⁠ [CompositionException.ProvidedComposableBaseTypesMustBeAbstract.cs                                              ](src/YourCompany.Reflection/Composition/CompositionException.ProvidedComposableBaseTypesMustBeAbstract.cs)</kbd><br>
+<kbd>      ++ 24  |⁠ [CompositionException.cs                                                                                        ](src/YourCompany.Reflection/Composition/CompositionException.cs)</kbd><br>
+<kbd>      ++ 24  |⁠ [ComposableTypesProvider.cs                                                                                     ](src/YourCompany.Reflection/Composition/ComposableTypesProvider.cs)</kbd><br>
+<kbd>       + 12  |⁠ [CompositionException.MixinMustHaveApplicableRoots.cs                                                           ](src/YourCompany.Reflection/Composition/CompositionException.MixinMustHaveApplicableRoots.cs)</kbd><br>
 
-Commit body is multiline and compliant to markdown formatting 💥
+While not as widespreadly known paradigm as others,  
+**Subject-Oriented-Programming** still managed to leave a positive  
+mark on the industry history, and its echoes are found not only in its  
+overshadowed AOP paradigm but also in several programming languages  
+in the limited form of "mixins" or "traits".
+
+Long story short (though higly recommend introducing yourself to this)  
+and as absurds as it sounds... True modularity sometimes is impossible  
+for one and very simple reason - you can't simply cut of your class  
+into smaller pieces without having to glue them back together elsewhere.
+
+When you come into this problem you have few options, patterns like  
+"bridge", or loosing strong typing benefits by wrapping such pieces  
+into kind of "memento" (dictionary, or alike, e.g. underlying form of  
+mixing in JS) and some other language and runtime abilities like  
+stateful extensions in C# utilizing "weak references", etc...
+
+As practice shows SOP is way more complex than OOP in a way presented,  
+i.e. as a paradigm, and the aforementioned ways of "mixing" too.  
+But what's interesting, and what we actually often miss is how  
+natural it sounds when you try building some descriptive model with it  
+rather trying to far-fetch it into an arbitrary procedural processing.
+
+Later we'll see this paradigm evolving into the practice while being  
+adopted into your framework for more focused goals. For now let's just  
+keep in mind that it's all about composition. And now we're organizing  
+the map serving as a basement for your framework to collect and  
+determine relationships between the pieces.
+
+Implementation hint: at `ComposableTypesProvider` you can see that  
+objects' construction is abstracted away meaning that the exact way  
+of instantiation will be taken over by another module in the framework.
+
+Also worth mentioning the cross cutting mixins that the provider is  
+responsible to denote for. These are the closest to AOP aspects,  
+but are not requiring to declare the "extensions point" explicitly to  
+be applicable for composition.
 
 </td></tr></tbody></table>
 
@@ -1569,15 +1694,17 @@ improve this later).
 
 <!-- ### Commit: 3|🏠: OLTP UseCaseTypesMap END -->
 
-<!-- ### Commit: 3|🏠: OLTP RecordTypesCompositionMap
+### Commit: 3|🏠: OLTP RecordTypesCompositionMap
 
 <table><tbody><tr><td>
 
-X files changed, Y insertions(+), Z deletions(-)<br>
-<sub><sub>src/YourCompany.Module/</sub></sub><br>
-<kbd> +++++++ NNN |⁠ [File.cs                                                                                                        ](src/YourCompany.Configuration/EnvironmentConventions.cs)</kbd><br>
-
-Commit body is multiline and compliant to markdown formatting 💥
+5 files changed, 260 insertions(+)<br>
+<sub><sub>src/YourCompany.OLTP.StateOwnership.TransactionalComposition.Reflection/</sub></sub><br>
+<kbd> +++++++ 81  |⁠ [ComposableRecordTypesProvider.cs                                                                               ](src/YourCompany.OLTP.StateOwnership.TransactionalComposition.Reflection/ComposableRecordTypesProvider.cs)</kbd><br>
+<kbd>   +++++ 62  |⁠ [ComposableRecordTypeInfo.cs                                                                                    ](src/YourCompany.OLTP.StateOwnership.TransactionalComposition.Reflection/ComposableRecordTypeInfo.cs)</kbd><br>
+<kbd>    ++++ 49  |⁠ [RecordTypesCompositionMap.cs                                                                                   ](src/YourCompany.OLTP.StateOwnership.TransactionalComposition.Reflection/RecordTypesCompositionMap.cs)</kbd><br>
+<kbd>     +++ 35  |⁠ [RecordCompositionException.cs                                                                                  ](src/YourCompany.OLTP.StateOwnership.TransactionalComposition.Reflection/RecordCompositionException.cs)</kbd><br>
+<kbd>     +++ 33  |⁠ [RecordCompositionToConstructionWrapperException.cs                                                             ](src/YourCompany.OLTP.StateOwnership.TransactionalComposition.Reflection/RecordCompositionToConstructionWrapperException.cs)</kbd><br>
 
 </td></tr></tbody></table>
 
@@ -1759,15 +1886,40 @@ completely.
 
 <!-- ### Commit: 4|🏠: enumerate OLTP use cases END -->
 
-<!-- ### Commit: 4|🏠: OLTP use cases by record type
+### Commit: 4|🏠: OLTP use cases by record type
 
 <table><tbody><tr><td>
 
-X files changed, Y insertions(+), Z deletions(-)<br>
-<sub><sub>src/YourCompany.Module/</sub></sub><br>
-<kbd> +++++++ NNN |⁠ [File.cs                                                                                                        ](src/YourCompany.Configuration/EnvironmentConventions.cs)</kbd><br>
+8 files changed, 770 insertions(+)<br>
+<sub><sub><del>src/YourCompany.OLTP.RecordsManagement.UseCases.TransactionalComposition/</del></sub></sub><br>
+<kbd> +++++++ 187 |⁠ ComposableRecordsBatchTransaction.IteratingInParallel.cs                                                       </kbd><br>
+<kbd>  ++++++ 166 |⁠ ComposableRecordsBatchTransaction.ConfiguredIdentically.cs                                                     </kbd><br>
+<kbd>   +++++ 144 |⁠ ComposableRecordsBatchTransaction.ComposingRecords.cs                                                          </kbd><br>
+<kbd>    ++++ 111 |⁠ ComposableRecordsBatchTransaction.ConfiguredIdentically.RepositoryRecords.cs                                   </kbd><br>
+<kbd>      ++ 54  |⁠ AlwaysTrueSpecifications.cs                                                                                    </kbd><br>
+<kbd>      ++ 43  |⁠ ComposableRecordsBatchTransaction.IteratedInParallel.cs                                                        </kbd><br>
+<kbd>      ++ 36  |⁠ ComposableRecordsBatchTransaction.ConfiguredIdentically.NonRepositoryRecords.cs                                </kbd><br>
+<kbd>       + 29  |⁠ ComposableRecordsBatchTransaction.cs                                                                           </kbd><br>
 
-Commit body is multiline and compliant to markdown formatting 💥
+Here we utilize the ctor semantics and the previously introduced  
+SOP-idea based composition to introduce the way aggregates can trigger  
+each other's participation in a transaction. The way is to simply  
+reuse the transaction callback capabilities, so for the aggregate  
+being triggered to be no difference from handling regular use cases.  
+The latter are identified by one of particlar `EventArgs` inheritors.
+
+> The difference though and a recommendation is to separate regular  
+use case args from the triggering callback args. For the sake of  
+encapsulation it is best to keep regular ones "internal" while those  
+for triggering "public".
+
+Later we'll see how easy it is to add this new capability to the  
+generic repository and how much the value brought increases wih DI.  
+At current state you'll likely find it hard to implement those  
+semantics manually by inheriting record batch transaction per each  
+record type (here are both Entities and Mixins are meant). But  
+hopefully the suggested hierarchy will help, e.g. for adapting another  
+DI lib.
 
 </td></tr></tbody></table>
 
@@ -1958,15 +2110,14 @@ optimally implement some missing operations in EF.
 
 <!-- ### Commit: 4|💾: EFEntityTypeSortingKeyTopology END -->
 
-<!-- ### Commit: 4|💾: cache EFProperty from ValueTuple
+### Commit: 4|💾: cache EFProperty from ValueTuple
 
 <table><tbody><tr><td>
 
-X files changed, Y insertions(+), Z deletions(-)<br>
-<sub><sub>src/YourCompany.Module/</sub></sub><br>
-<kbd> +++++++ NNN |⁠ [File.cs                                                                                                        ](src/YourCompany.Configuration/EnvironmentConventions.cs)</kbd><br>
-
-Commit body is multiline and compliant to markdown formatting 💥
+2 files changed, 78 insertions(+), 1 deletion(-)<br>
+<sub><sub>src/YourCompany.Configuration.EFCore/ExpressionsCaching/</sub></sub><br>
+<kbd> +++++++ 74  |⁠ [EFPropertyExpressionsCache.FromParameter.ValueTuple.cs                                                         ](src/YourCompany.Configuration.EFCore/ExpressionsCaching/EFPropertyExpressionsCache.FromParameter.ValueTuple.cs)</kbd><br>
+<kbd>      +‑ 5   |⁠ [EFPropertyExpressionsCache.FromParameter.cs                                                                    ](src/YourCompany.Configuration.EFCore/ExpressionsCaching/EFPropertyExpressionsCache.FromParameter.cs)</kbd><br>
 
 </td></tr></tbody></table>
 
@@ -2105,29 +2256,81 @@ are registered as scoped and will be used by a resolved IRepository.
 
 <!-- ### Commit: 5|🧱: OLTP DI inheritance free repo END -->
 
-<!-- ### Commit: 5|🧱: OLTP record composition to chassis
+### Commit: 5|🧱: OLTP record composition to chassis
 
 <table><tbody><tr><td>
 
-X files changed, Y insertions(+), Z deletions(-)<br>
-<sub><sub>src/YourCompany.Module/</sub></sub><br>
-<kbd> +++++++ NNN |⁠ [File.cs                                                                                                        ](src/YourCompany.Configuration/EnvironmentConventions.cs)</kbd><br>
+17 files changed, 778 insertions(+), 771 deletions(-)<br>
+<sub><sub>src/YourCompany.OLTP.RecordsManagement.DI.TransactionalComposition/</sub></sub><br>
+<kbd> +++++++ 192 |⁠ [ComposableRecordsBatchTransaction.IteratingInParallel.cs                                                       ](src/YourCompany.OLTP.RecordsManagement.DI.TransactionalComposition/ComposableRecordsBatchTransaction.IteratingInParallel.cs)</kbd><br>
+<kbd>   +++++ 152 |⁠ [ComposableRecordsBatchTransaction.ConfiguredIdentically.cs                                                     ](src/YourCompany.OLTP.RecordsManagement.DI.TransactionalComposition/ComposableRecordsBatchTransaction.ConfiguredIdentically.cs)</kbd><br>
+<kbd>   +++++ 149 |⁠ [ComposableRecordsBatchTransaction.ComposingRecords.cs                                                          ](src/YourCompany.OLTP.RecordsManagement.DI.TransactionalComposition/ComposableRecordsBatchTransaction.ComposingRecords.cs)</kbd><br>
+<kbd>    ++++ 116 |⁠ [ComposableRecordsBatchTransaction.ConfiguredIdentically.RepositoryRecords.cs                                   ](src/YourCompany.OLTP.RecordsManagement.DI.TransactionalComposition/ComposableRecordsBatchTransaction.ConfiguredIdentically.RepositoryRecords.cs)</kbd><br>
+<kbd>      ++ 50  |⁠ [AlwaysTrueSpecifications.cs                                                                                    ](src/YourCompany.OLTP.RecordsManagement.DI.TransactionalComposition/AlwaysTrueSpecifications.cs)</kbd><br>
+<kbd>      ++ 48  |⁠ [ComposableRecordsBatchTransaction.IteratedInParallel.cs                                                        ](src/YourCompany.OLTP.RecordsManagement.DI.TransactionalComposition/ComposableRecordsBatchTransaction.IteratedInParallel.cs)</kbd><br>
+<kbd>      ++ 41  |⁠ [ComposableRecordsBatchTransaction.ConfiguredIdentically.NonRepositoryRecords.cs                                ](src/YourCompany.OLTP.RecordsManagement.DI.TransactionalComposition/ComposableRecordsBatchTransaction.ConfiguredIdentically.NonRepositoryRecords.cs)</kbd><br>
+<kbd>       + 29  |⁠ [ComposableRecordsBatchTransaction.cs                                                                           ](src/YourCompany.OLTP.RecordsManagement.DI.TransactionalComposition/ComposableRecordsBatchTransaction.cs)</kbd><br>
+<sub><sub><del>src/YourCompany.OLTP.RecordsManagement.UseCases.TransactionalComposition/</del></sub></sub><br>
+<kbd>  ‑‑‑‑‑‑ 187 |⁠ ComposableRecordsBatchTransaction.IteratingInParallel.cs                                                       </kbd><br>
+<kbd>  ‑‑‑‑‑‑ 166 |⁠ ComposableRecordsBatchTransaction.ConfiguredIdentically.cs                                                     </kbd><br>
+<kbd>   ‑‑‑‑‑ 144 |⁠ ComposableRecordsBatchTransaction.ComposingRecords.cs                                                          </kbd><br>
+<kbd>    ‑‑‑‑ 111 |⁠ ComposableRecordsBatchTransaction.ConfiguredIdentically.RepositoryRecords.cs                                   </kbd><br>
+<kbd>      ‑‑ 54  |⁠ AlwaysTrueSpecifications.cs                                                                                    </kbd><br>
+<kbd>      ‑‑ 43  |⁠ ComposableRecordsBatchTransaction.IteratedInParallel.cs                                                        </kbd><br>
+<kbd>      ‑‑ 36  |⁠ ComposableRecordsBatchTransaction.ConfiguredIdentically.NonRepositoryRecords.cs                                </kbd><br>
+<kbd>       ‑ 29  |⁠ ComposableRecordsBatchTransaction.cs                                                                           </kbd><br>
+<sub><sub>src/YourCompany.OLTP.StateOwnership.TransactionalComposition/</sub></sub><br>
+<kbd>      +‑ 2   |⁠ [TransactionalCompositionTransactionCallback.cs                                                                 ](src/YourCompany.OLTP.StateOwnership.TransactionalComposition/TransactionalCompositionTransactionCallback.cs)</kbd><br>
 
-Commit body is multiline and compliant to markdown formatting 💥
+We continue to internalize public classes and methods previously  
+open for overriding per project and per record. The rationale may be  
+found in the earlier commit.
 
 </td></tr></tbody></table>
 
 <!-- ### Commit: 5|🧱: OLTP record composition to chassis END -->
 
-<!-- ### Commit: 5|🧱: OLTP DI mixed repository
+### Commit: 5|🧱: OLTP DI mixed repository
 
 <table><tbody><tr><td>
 
-X files changed, Y insertions(+), Z deletions(-)<br>
-<sub><sub>src/YourCompany.Module/</sub></sub><br>
-<kbd> +++++++ NNN |⁠ [File.cs                                                                                                        ](src/YourCompany.Configuration/EnvironmentConventions.cs)</kbd><br>
+14 files changed, 548 insertions(+), 32 deletions(-)<br>
+<sub><sub>src/YourCompany.OLTP.RecordsManagement.DI.TransactionalComposition/</sub></sub><br>
+<kbd> +++++++ 200 |⁠ [ComposingRecordsDataAccessProxy.cs                                                                             ](src/YourCompany.OLTP.RecordsManagement.DI.TransactionalComposition/ComposingRecordsDataAccessProxy.cs)</kbd><br>
+<kbd>     +++ 89  |⁠ [ScopedRepository.cs                                                                                            ](src/YourCompany.OLTP.RecordsManagement.DI.TransactionalComposition/ScopedRepository.cs)</kbd><br>
+<kbd>      ++ 64  |⁠ [ScopedRecordsBatchTransactionFactory.cs                                                                        ](src/YourCompany.OLTP.RecordsManagement.DI.TransactionalComposition/ScopedRecordsBatchTransactionFactory.cs)</kbd><br>
+<kbd>      +‑ 60  |⁠ [ComposableRecordsBatchTransaction.ComposingRecords.cs                                                          ](src/YourCompany.OLTP.RecordsManagement.DI.TransactionalComposition/ComposableRecordsBatchTransaction.ComposingRecords.cs)</kbd><br>
+<kbd>      ++ 54  |⁠ [YourCompanyServiceCollectionExtensions.cs                                                                      ](src/YourCompany.OLTP.RecordsManagement.DI.TransactionalComposition/YourCompanyServiceCollectionExtensions.cs)</kbd><br>
+<kbd>      +‑ 44  |⁠ [ComposableRecordsBatchTransaction.ConfiguredIdentically.RepositoryRecords.cs                                   ](src/YourCompany.OLTP.RecordsManagement.DI.TransactionalComposition/ComposableRecordsBatchTransaction.ConfiguredIdentically.RepositoryRecords.cs)</kbd><br>
+<kbd>      +‑ 24  |⁠ [ComposableRecordsBatchTransaction.IteratingInParallel.cs                                                       ](src/YourCompany.OLTP.RecordsManagement.DI.TransactionalComposition/ComposableRecordsBatchTransaction.IteratingInParallel.cs)</kbd><br>
+<kbd>       + 12  |⁠ [IComposableRecordsDataAccess.cs                                                                                ](src/YourCompany.OLTP.RecordsManagement.DI.TransactionalComposition/IComposableRecordsDataAccess.cs)</kbd><br>
+<kbd>       + 11  |⁠ [IComposableRecordsDataAccessProvider.cs                                                                        ](src/YourCompany.OLTP.RecordsManagement.DI.TransactionalComposition/IComposableRecordsDataAccessProvider.cs)</kbd><br>
+<kbd>       + 9   |⁠ [IScopedUseCaseHandledEntityRecordTypeProvider.cs                                                               ](src/YourCompany.OLTP.RecordsManagement.DI.TransactionalComposition/IScopedUseCaseHandledEntityRecordTypeProvider.cs)</kbd><br>
+<kbd>      +‑ 5   |⁠ [ComposableRecordsBatchTransaction.IteratedInParallel.cs                                                        ](src/YourCompany.OLTP.RecordsManagement.DI.TransactionalComposition/ComposableRecordsBatchTransaction.IteratedInParallel.cs)</kbd><br>
+<kbd>      +‑ 3   |⁠ [ComposableRecordsBatchTransaction.ConfiguredIdentically.NonRepositoryRecords.cs                                ](src/YourCompany.OLTP.RecordsManagement.DI.TransactionalComposition/ComposableRecordsBatchTransaction.ConfiguredIdentically.NonRepositoryRecords.cs)</kbd><br>
+<kbd>      +‑ 3   |⁠ [ComposableRecordsBatchTransaction.ConfiguredIdentically.cs                                                     ](src/YourCompany.OLTP.RecordsManagement.DI.TransactionalComposition/ComposableRecordsBatchTransaction.ConfiguredIdentically.cs)</kbd><br>
+<kbd>      +‑ 2   |⁠ [ComposableRecordsBatchTransaction.cs                                                                           ](src/YourCompany.OLTP.RecordsManagement.DI.TransactionalComposition/ComposableRecordsBatchTransaction.cs)</kbd><br>
 
-Commit body is multiline and compliant to markdown formatting 💥
+Meet this neat <1K lines extension for the previously introduced  
+inheritance free repository now adapting the domain types composition.
+
+Just call `EnableYourCompanyDomainTypesTransactionalComposition`  
+service collection extension and you're all set. As before you need to  
+put your types within a corresponding map. From now on the resolved  
+repository handles the relationships between the same-entity-related  
+aggreagates.
+
+Hence meet an extra convention to the previous regarded to  
+`IStateAccess` accepting in the record type ctor. Now when your  
+aggregate/record type accepts another one in the same single ctor - it  
+becomes a mixin 😲 So the one without any such dependencies is  
+"an entity" 😁, or to be more precise is an identity owner which must  
+exist in your storage whenever you treat a particular entity instance  
+registered in your system. The mixins in constrast may not have a  
+record yet.
+
+Worth to mention that your "entity types" still can have dependency on  
+any cross cutting mixins without losing its "status" 😉
 
 </td></tr></tbody></table>
 
@@ -2359,57 +2562,98 @@ are described in more details in the corresponding commits.
 
 <!-- ### Commit: 7|🧱: OLTP DI EFCore integrated END -->
 
-<!-- ### Commit: 7|💾: EFCore SortingKey multi-entity
+### Commit: 7|💾: EFCore SortingKey multi-entity
 
 <table><tbody><tr><td>
 
-X files changed, Y insertions(+), Z deletions(-)<br>
-<sub><sub>src/YourCompany.Module/</sub></sub><br>
-<kbd> +++++++ NNN |⁠ [File.cs                                                                                                        ](src/YourCompany.Configuration/EnvironmentConventions.cs)</kbd><br>
+9 files changed, 226 insertions(+), 4 deletions(-)<br>
+<sub><sub>src/YourCompany.Configuration.EFCore/CollationAwareSorting/</sub></sub><br>
+<kbd>      +‑ 28  |⁠ [SortingKey.Querying.cs                                                                                         ](src/YourCompany.Configuration.EFCore/CollationAwareSorting/SortingKey.Querying.cs)</kbd><br>
+<kbd>      ++ 26  |⁠ [SortingKeyQueries.cs                                                                                           ](src/YourCompany.Configuration.EFCore/CollationAwareSorting/SortingKeyQueries.cs)</kbd><br>
+<kbd>      +‑ 23  |⁠ [OrElseEqualityKeys.Querying.cs                                                                                 ](src/YourCompany.Configuration.EFCore/CollationAwareSorting/OrElseEqualityKeys.Querying.cs)</kbd><br>
+<kbd>      ++ 22  |⁠ [SortingKeyBuilder.OrElse.ComparableValue.cs                                                                    ](src/YourCompany.Configuration.EFCore/CollationAwareSorting/SortingKeyBuilder.OrElse.ComparableValue.cs)</kbd><br>
+<kbd>      +‑ 18  |⁠ [SortingKey.Building.cs                                                                                         ](src/YourCompany.Configuration.EFCore/CollationAwareSorting/SortingKey.Building.cs)</kbd><br>
+<kbd>      ++ 18  |⁠ [SortingKeyBuilder.ComparableValue.cs                                                                           ](src/YourCompany.Configuration.EFCore/CollationAwareSorting/SortingKeyBuilder.ComparableValue.cs)</kbd><br>
+<kbd>       + 2   |⁠ [SortingKey.cs                                                                                                  ](src/YourCompany.Configuration.EFCore/CollationAwareSorting/SortingKey.cs)</kbd><br>
+<kbd>       + 2   |⁠ [OrElseEqualityKeys.cs                                                                                          ](src/YourCompany.Configuration.EFCore/CollationAwareSorting/OrElseEqualityKeys.cs)</kbd><br>
+<sub><sub>src/YourCompany.Configuration.EFCore/</sub></sub><br>
+<kbd> +++++++ 91  |⁠ [YourCompanyDbContext.MultiEntityQueries.cs                                                                     ](src/YourCompany.Configuration.EFCore/YourCompanyDbContext.MultiEntityQueries.cs)</kbd><br>
 
-Commit body is multiline and compliant to markdown formatting 💥
+An extension to our first-class citizen allowing to use it over  
+joined results. All the joining options are provided in the context.
 
 </td></tr></tbody></table>
 
 <!-- ### Commit: 7|💾: EFCore SortingKey multi-entity END -->
 
-<!-- ### Commit: 7|💾: EFCore multi-entity sorting
+### Commit: 7|💾: EFCore multi-entity sorting
 
 <table><tbody><tr><td>
 
-X files changed, Y insertions(+), Z deletions(-)<br>
-<sub><sub>src/YourCompany.Module/</sub></sub><br>
-<kbd> +++++++ NNN |⁠ [File.cs                                                                                                        ](src/YourCompany.Configuration/EnvironmentConventions.cs)</kbd><br>
+12 files changed, 642 insertions(+), 7 deletions(-)<br>
+<sub><sub>src/YourCompany.Configuration.EFCore/CollationAwareSorting/</sub></sub><br>
+<kbd>    ++++ 145 |⁠ [SortingKeyQueries.MultiEntityExtensions.cs                                                                     ](src/YourCompany.Configuration.EFCore/CollationAwareSorting/SortingKeyQueries.MultiEntityExtensions.cs)</kbd><br>
+<kbd>     +++ 76  |⁠ [SortingKeyPredicatesBuilder.MultiEntityQuery.cs                                                                ](src/YourCompany.Configuration.EFCore/CollationAwareSorting/SortingKeyPredicatesBuilder.MultiEntityQuery.cs)</kbd><br>
+<kbd>       + 11  |⁠ [SortingKeyQueries.cs                                                                                           ](src/YourCompany.Configuration.EFCore/CollationAwareSorting/SortingKeyQueries.cs)</kbd><br>
+<kbd>      +‑ 11  |⁠ [SortingKeyPredicatesBuilder.cs                                                                                 ](src/YourCompany.Configuration.EFCore/CollationAwareSorting/SortingKeyPredicatesBuilder.cs)</kbd><br>
+<kbd>       + 6   |⁠ [SortingKeyPredicatesBuilder.SingleEntityQuery.cs                                                               ](src/YourCompany.Configuration.EFCore/CollationAwareSorting/SortingKeyPredicatesBuilder.SingleEntityQuery.cs)</kbd><br>
+<sub><sub>.../CollationAwareSorting/ExpressionsCaching/</sub></sub><br>
+<kbd> +++++++ 225 |⁠ [SortingKeyQueriesCache.ForQuery.ForTopology.TopologyVisitor.MultiEFProperties.ForEntitiesValueTuple.cs         ](src/YourCompany.Configuration.EFCore/CollationAwareSorting/ExpressionsCaching/SortingKeyQueriesCache.ForQuery.ForTopology.TopologyVisitor.MultiEFProperties.ForEntitiesValueTuple.cs)</kbd><br>
+<sub><sub>src/YourCompany.Configuration.EFCore/CollationAwareSorting/ExpressionsCaching/</sub></sub><br>
+<kbd>     +++ 104 |⁠ [SortingKeyQueriesCache.ForQuery.cs                                                                             ](src/YourCompany.Configuration.EFCore/CollationAwareSorting/ExpressionsCaching/SortingKeyQueriesCache.ForQuery.cs)</kbd><br>
+<kbd>      +‑ 39  |⁠ [SortingKeyQueriesCache.ForQuery.ForTopology.cs                                                                 ](src/YourCompany.Configuration.EFCore/CollationAwareSorting/ExpressionsCaching/SortingKeyQueriesCache.ForQuery.ForTopology.cs)</kbd><br>
+<kbd>       + 9   |⁠ [SortingKeyQueriesCache.ForQuery.ForTopology.TopologyVisitor.MultiEFProperties.ForEntity.cs                     ](src/YourCompany.Configuration.EFCore/CollationAwareSorting/ExpressionsCaching/SortingKeyQueriesCache.ForQuery.ForTopology.TopologyVisitor.MultiEFProperties.ForEntity.cs)</kbd><br>
+<kbd>       + 9   |⁠ [SortingKeyQueriesCache.ForQuery.ForTopology.TopologyVisitor.SingleEFProperty.cs                                ](src/YourCompany.Configuration.EFCore/CollationAwareSorting/ExpressionsCaching/SortingKeyQueriesCache.ForQuery.ForTopology.TopologyVisitor.SingleEFProperty.cs)</kbd><br>
+<kbd>       + 5   |⁠ [SortingKeyQueriesCache.ForQuery.ForTopology.TopologyVisitor.cs                                                 ](src/YourCompany.Configuration.EFCore/CollationAwareSorting/ExpressionsCaching/SortingKeyQueriesCache.ForQuery.ForTopology.TopologyVisitor.cs)</kbd><br>
+<sub><sub>src/YourCompany.Configuration.EFCore/</sub></sub><br>
+<kbd>       + 9   |⁠ [YourCompanyDbContext.MultiEntityQueries.cs                                                                     ](src/YourCompany.Configuration.EFCore/YourCompanyDbContext.MultiEntityQueries.cs)</kbd><br>
 
-Commit body is multiline and compliant to markdown formatting 💥
+Value tuple expressions are reused and fully supported to sort  
+over properties of entities within the tuples of any forms and sizes.
 
 </td></tr></tbody></table>
 
 <!-- ### Commit: 7|💾: EFCore multi-entity sorting END -->
 
-<!-- ### Commit: 7|💾: EFCore multi EntityEntry visitors
+### Commit: 7|💾: EFCore multi EntityEntry visitors
 
 <table><tbody><tr><td>
 
-X files changed, Y insertions(+), Z deletions(-)<br>
-<sub><sub>src/YourCompany.Module/</sub></sub><br>
-<kbd> +++++++ NNN |⁠ [File.cs                                                                                                        ](src/YourCompany.Configuration/EnvironmentConventions.cs)</kbd><br>
-
-Commit body is multiline and compliant to markdown formatting 💥
+7 files changed, 190 insertions(+), 5 deletions(-)<br>
+<sub><sub>src/YourCompany.Configuration.EFCore/CollationAwareSorting/ChangeTracking/</sub></sub><br>
+<kbd> ++++++‑ 66  |⁠ [EntityEntrySortingKeyCreatingVisitor.NonGeneric.cs                                                             ](src/YourCompany.Configuration.EFCore/CollationAwareSorting/ChangeTracking/EntityEntrySortingKeyCreatingVisitor.NonGeneric.cs)</kbd><br>
+<kbd>  +++++‑ 58  |⁠ [EntityEntryPropertiesSettingVisitor.NonGeneric.cs                                                              ](src/YourCompany.Configuration.EFCore/CollationAwareSorting/ChangeTracking/EntityEntryPropertiesSettingVisitor.NonGeneric.cs)</kbd><br>
+<kbd>      ++ 21  |⁠ [EntityEntryPropertiesSettingVisitor.cs                                                                         ](src/YourCompany.Configuration.EFCore/CollationAwareSorting/ChangeTracking/EntityEntryPropertiesSettingVisitor.cs)</kbd><br>
+<kbd>      ++ 17  |⁠ [EntityEntryPropertiesSettingVisitor.Generic.cs                                                                 ](src/YourCompany.Configuration.EFCore/CollationAwareSorting/ChangeTracking/EntityEntryPropertiesSettingVisitor.Generic.cs)</kbd><br>
+<kbd>       + 2   |⁠ [EntityEntrySortingKeyCreatingVisitor.cs                                                                        ](src/YourCompany.Configuration.EFCore/CollationAwareSorting/ChangeTracking/EntityEntrySortingKeyCreatingVisitor.cs)</kbd><br>
+<kbd>       + 2   |⁠ [EntityEntrySortingKeyCreatingVisitor.Generic.cs                                                                ](src/YourCompany.Configuration.EFCore/CollationAwareSorting/ChangeTracking/EntityEntrySortingKeyCreatingVisitor.Generic.cs)</kbd><br>
+<sub><sub>src/YourCompany.Configuration.EFCore/CollationAwareSorting/</sub></sub><br>
+<kbd>     +++ 29  |⁠ [SortingKeyTopologyExtensions.ChangeTracking.cs                                                                 ](src/YourCompany.Configuration.EFCore/CollationAwareSorting/SortingKeyTopologyExtensions.ChangeTracking.cs)</kbd><br>
 
 </td></tr></tbody></table>
 
 <!-- ### Commit: 7|💾: EFCore multi EntityEntry visitors END -->
 
-<!-- ### Commit: N|🧱: OLTP EFCore multi-entity chassis
+### Commit: N|🧱: OLTP EFCore multi-entity chassis
 
 <table><tbody><tr><td>
 
-X files changed, Y insertions(+), Z deletions(-)<br>
-<sub><sub>src/YourCompany.Module/</sub></sub><br>
-<kbd> +++++++ NNN |⁠ [File.cs                                                                                                        ](src/YourCompany.Configuration/EnvironmentConventions.cs)</kbd><br>
+7 files changed, 22 insertions(+), 22 deletions(-)<br>
+<sub><sub>src/YourCompany.Configuration.EFCore/CollationAwareSorting/ChangeTracking/</sub></sub><br>
+<kbd>   ++‑‑‑ 10  |⁠ [EntityEntryPropertiesSettingVisitor.NonGeneric.cs                                                              ](src/YourCompany.Configuration.EFCore/CollationAwareSorting/ChangeTracking/EntityEntryPropertiesSettingVisitor.NonGeneric.cs)</kbd><br>
+<kbd>    ++‑‑ 8   |⁠ [EntityEntrySortingKeyCreatingVisitor.NonGeneric.cs                                                             ](src/YourCompany.Configuration.EFCore/CollationAwareSorting/ChangeTracking/EntityEntrySortingKeyCreatingVisitor.NonGeneric.cs)</kbd><br>
+<kbd>      +‑ 4   |⁠ [EntityEntryPropertiesSettingVisitor.Generic.cs                                                                 ](src/YourCompany.Configuration.EFCore/CollationAwareSorting/ChangeTracking/EntityEntryPropertiesSettingVisitor.Generic.cs)</kbd><br>
+<sub><sub>src/YourCompany.Configuration.EFCore/ExpressionsCaching/</sub></sub><br>
+<kbd> +++‑‑‑‑ 14  |⁠ [EFPropertyExpressionsCache.FromParameter.ValueTuple.cs                                                         ](src/YourCompany.Configuration.EFCore/ExpressionsCaching/EFPropertyExpressionsCache.FromParameter.ValueTuple.cs)</kbd><br>
+<sub><sub>src/YourCompany.Configuration.EFCore/CollationAwareSorting/</sub></sub><br>
+<kbd>      +‑ 4   |⁠ [OrElseEqualityKeys.Querying.cs                                                                                 ](src/YourCompany.Configuration.EFCore/CollationAwareSorting/OrElseEqualityKeys.Querying.cs)</kbd><br>
+<kbd>      +‑ 2   |⁠ [SortingKeyTopologyExtensions.ChangeTracking.cs                                                                 ](src/YourCompany.Configuration.EFCore/CollationAwareSorting/SortingKeyTopologyExtensions.ChangeTracking.cs)</kbd><br>
+<kbd>      +‑ 2   |⁠ [SortingKey.Querying.cs                                                                                         ](src/YourCompany.Configuration.EFCore/CollationAwareSorting/SortingKey.Querying.cs)</kbd><br>
 
-Commit body is multiline and compliant to markdown formatting 💥
+We continue to internalize public classes and methods previously  
+open for overriding per project and for using extra capabilites  
+implemented over original EFCore. The rationale may be found in the  
+earlier commit.
 
 </td></tr></tbody></table>
 

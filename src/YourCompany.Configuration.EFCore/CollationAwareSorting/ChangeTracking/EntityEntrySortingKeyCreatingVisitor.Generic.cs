@@ -25,6 +25,8 @@ namespace YourCompany.Configuration.EFCore.CollationAwareSorting.ChangeTracking
                 sortingKey.EnsureCompatibleWithSingleEntityQueries(
                     propertiesOwner.Metadata, singleEntityReplacingQueriedSet: replaceQueriedSetName != null);
                 sortingKey.ReplaceQueriedSetName = replaceQueriedSetName;
+                if (sortingKey.EntitiesValueTuplePropertyOwnerIndecies != null)
+                    throw new ApplicationException("sortingKey.EntitiesValueTuplePropertyOwnerIndecies != null");
 
                 return sortingKey;
             }
