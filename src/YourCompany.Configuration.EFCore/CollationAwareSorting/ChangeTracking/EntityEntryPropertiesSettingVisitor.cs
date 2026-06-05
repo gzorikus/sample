@@ -5,9 +5,21 @@ namespace YourCompany.Configuration.EFCore.CollationAwareSorting.ChangeTracking
 {
     public abstract partial class EntityEntryPropertiesSettingVisitor : SortingKeyPropertiesVisitor
     {
+        private bool _setOnlyMatchingToSingleOwner;
+        private SortingKeyTopology.PropertiesOwner? _singleMatchingPropertiesOwner;
+
         protected void UseForAllPropertiesSetting()
         {
             ModelProvider = null;
+            _setOnlyMatchingToSingleOwner = false;
+            _singleMatchingPropertiesOwner = null;
+        }
+
+        protected void UseForSingleOwnerMatchingPropertiesOnly()
+        {
+            ModelProvider = null;
+            _setOnlyMatchingToSingleOwner = true;
+            _singleMatchingPropertiesOwner = null;
         }
 
         protected override void VisitCurrentProperty<TProperty>(SortingKey property, TProperty value)
@@ -27,6 +39,15 @@ namespace YourCompany.Configuration.EFCore.CollationAwareSorting.ChangeTracking
             if (propertyOwner == default) throw new ArgumentNullException(nameof(propertyOwner));
             if (propertyName == null) throw new ArgumentNullException(nameof(propertyName));
             if (propertiesOwner == null) throw new ArgumentNullException(nameof(propertiesOwner));
+
+            if (_setOnlyMatchingToSingleOwner)
+            {
+                if (!propertyOwner.Match(propertiesOwner.Metadata)) return true;
+
+                _singleMatchingPropertiesOwner ??= propertyOwner;
+                if (!propertyOwner.MatchSingleTopology(_singleMatchingPropertiesOwner.Value))
+                    throw new ApplicationException("!propertyOwner.MatchSingleTopology(_singleMatchingPropertiesOwner.Value)");
+            }
 
             var propertyEntry = propertiesOwner.Property(propertyName) ?? throw new ApplicationException("propertiesOwner.Property(propertyName) == null");
             if (!propertyEntry.IsModified) return false;

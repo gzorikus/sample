@@ -1807,15 +1807,20 @@ Commit body is multiline and compliant to markdown formatting 💥
 
 <!-- ### Commit: 7|💾: EFCore multi-entity sorting END -->
 
-<!-- ### Commit: 7|💾: EFCore multi EntityEntry visitors
+### Commit: 7|💾: EFCore multi EntityEntry visitors
 
 <table><tbody><tr><td>
 
-X files changed, Y insertions(+), Z deletions(-)<br>
-<sub><sub>src/YourCompany.Module/</sub></sub><br>
-<kbd> +++++++ NNN |⁠ [File.cs                                                                                                        ](src/YourCompany.Configuration/EnvironmentConventions.cs)</kbd><br>
-
-Commit body is multiline and compliant to markdown formatting 💥
+7 files changed, 190 insertions(+), 5 deletions(-)<br>
+<sub><sub>src/YourCompany.Configuration.EFCore/CollationAwareSorting/ChangeTracking/</sub></sub><br>
+<kbd> ++++++‑ 66  |⁠ [EntityEntrySortingKeyCreatingVisitor.NonGeneric.cs                                                             ](src/YourCompany.Configuration.EFCore/CollationAwareSorting/ChangeTracking/EntityEntrySortingKeyCreatingVisitor.NonGeneric.cs)</kbd><br>
+<kbd>  +++++‑ 58  |⁠ [EntityEntryPropertiesSettingVisitor.NonGeneric.cs                                                              ](src/YourCompany.Configuration.EFCore/CollationAwareSorting/ChangeTracking/EntityEntryPropertiesSettingVisitor.NonGeneric.cs)</kbd><br>
+<kbd>      ++ 21  |⁠ [EntityEntryPropertiesSettingVisitor.cs                                                                         ](src/YourCompany.Configuration.EFCore/CollationAwareSorting/ChangeTracking/EntityEntryPropertiesSettingVisitor.cs)</kbd><br>
+<kbd>      ++ 17  |⁠ [EntityEntryPropertiesSettingVisitor.Generic.cs                                                                 ](src/YourCompany.Configuration.EFCore/CollationAwareSorting/ChangeTracking/EntityEntryPropertiesSettingVisitor.Generic.cs)</kbd><br>
+<kbd>       + 2   |⁠ [EntityEntrySortingKeyCreatingVisitor.cs                                                                        ](src/YourCompany.Configuration.EFCore/CollationAwareSorting/ChangeTracking/EntityEntrySortingKeyCreatingVisitor.cs)</kbd><br>
+<kbd>       + 2   |⁠ [EntityEntrySortingKeyCreatingVisitor.Generic.cs                                                                ](src/YourCompany.Configuration.EFCore/CollationAwareSorting/ChangeTracking/EntityEntrySortingKeyCreatingVisitor.Generic.cs)</kbd><br>
+<sub><sub>src/YourCompany.Configuration.EFCore/CollationAwareSorting/</sub></sub><br>
+<kbd>     +++ 29  |⁠ [SortingKeyTopologyExtensions.ChangeTracking.cs                                                                 ](src/YourCompany.Configuration.EFCore/CollationAwareSorting/SortingKeyTopologyExtensions.ChangeTracking.cs)</kbd><br>
 
 </td></tr></tbody></table>
 
