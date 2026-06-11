@@ -1,0 +1,37 @@
+name: Instant Close Manual PRs
+
+on:
+  pull_request_target:
+    types: [opened, reopened]
+    branches:
+      - 'public'
+
+jobs:
+  close-manual:
+    runs-on: ubuntu-latest
+    # Используем pull_request_target для доступа к secrets
+    if: github.actor != 'github-actions[bot]' && startsWith(github.head_ref, 'PR/')
+    steps:
+      - name: Close unauthorized PR
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const prNumber = context.payload.pull_request.number;
+            
+            // Добавляем комментарий
+            await github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: prNumber,
+              body: '🚫 **Manual PR detected and closed.**\n\nOnly automated PRs from GitHub Actions are allowed. Please push your changes and the PR will be created automatically.'
+            });
+            
+            // Закрываем PR
+            await github.rest.pulls.update({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              pull_number: prNumber,
+              state: 'closed'
+            });
+            
+            console.log(`Closed manual PR #${prNumber}`);
