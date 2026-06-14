@@ -100,7 +100,8 @@ In other words **the structure is consistent and immutable**.
 [Trunk Based Development](https://trunkbaseddevelopment.com/).  
 Precisely the trunk is formed up with the fixups only while the roots  
 are updated at the end of iteration making your git history to be  
-self-documented and clean.
+self-documented and clean. **Find more** in ChatGPT generated article:  
+[Two‑level rebase architectural narrative and evolution of the OLTP model](ai/ChatGPT/Two-level%20rebase%20architectural%20narrative%20and%20evolution%20of%20the%20OLTP%20model/Versioning%20Understanding%20-%20A%20Git-Based%20Knowledge%20Model%20for%20OLTP%20Architecture.md).
 
 <details><summary><strong>⚠️ WIP warning ⚠️</strong></summary>
 
@@ -178,6 +179,9 @@ In addition to current version's entry point branches there are
 similarly named **version-numbered tags**. You can find it useful for  
 documenting purposes, using them for stable links in your documenation  
 letting to navigate to and browse your entry point online.
+
+> Though only the current version's "public-N" tag can be moved, once  
+another approved fixups' PR is rebased or squashed into the "public".
 
 This way the boilerplate becomes **safe for using in any form**, from  
 simple submoduling to advanced hosting in your enterprise repo.
@@ -896,6 +900,11 @@ Looking forward to a productive conversation with you 👀
 Now let's dive in into the entry point branches available. It's sorted  
 by complexity decrease top to bottom. The first block is the current  
 solution, the latest is a template.
+
+> Note when you checkout the particular entry point it won't contain  
+any fixups yet made after publishing. You'll only see the latter in a  
+next entry points graph version. See also the detailed notes in  
+[Branching rules](#branching-rules) and [Versioning](#versioning).
 
 ### Branch: oltp-di-efcore-handle-specifications-only-the-rest-is-covered
 
