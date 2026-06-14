@@ -9,6 +9,22 @@
     <Project Path="examples/efcore-migrations/src/YourCompany.EFCore.Sqlite.CustomConfigurationMigrations/YourCompany.EFCore.Sqlite.CustomConfigurationMigrations.csproj" />
     <Project Path="examples/efcore-migrations/src/YourCompany.EFCore.Sqlite.YourCompanyDbContextConfigurationMigrations/YourCompany.EFCore.Sqlite.YourCompanyDbContextConfigurationMigrations.csproj" />
   </Folder>
+  <Folder Name="/Solution Items/">
+    <File Path="./.editorconfig" />
+    <File Path="./.gitattributes" />
+    <File Path="./.gitconfig" />
+    <File Path="./.gitignore" />
+    <File Path="./bonus-last-git-rebase-todo" />
+    <File Path="./Directory.Build.props" />
+    <File Path="./LICENSE" />
+    <File Path="./README.md" />
+  </Folder>
+  <Folder Name="/Solution Items/ai/" />
+  <Folder Name="/Solution Items/ai/ChatGPT/" />
+  <Folder Name="/Solution Items/ai/ChatGPT/Two-level rebase architectural narrative and evolution of the OLTP model/">
+    <File Path="ai/ChatGPT/Two-level rebase architectural narrative and evolution of the OLTP model/Context.md" />
+    <File Path="ai/ChatGPT/Two-level rebase architectural narrative and evolution of the OLTP model/Versioning Understanding - A Git-Based Knowledge Model for OLTP Architecture.md" />
+  </Folder>
   <Folder Name="/src/">
     <Project Path="src/YourCompany.CompilerServices/YourCompany.CompilerServices.csproj" />
     <Project Path="src/YourCompany.Configuration/YourCompany.Configuration.csproj" />
