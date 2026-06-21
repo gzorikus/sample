@@ -1019,13 +1019,13 @@ Cons: why it might be not enough for you
 
 ### Branch: oltp-basic-object-model-the-rest-is-up-to-you
 
-> Files: 6 | Lines: 371  
+> Files: 6 | Lines: 453  
 Pros: isolate your model from anything unrelated to your domain  
 Cons: too much boilerplate code being copied for each use case
 
 | Log | Examples | Modules |
 |-|-|-|
-| [1\|⁠🏠: the heart of OLTP is transaction](#commit-1-the-heart-of-oltp-is-transaction) | <kbd> [TODO](examples/at-least-one-example-solution-per-commit/README.md#commit-1-the-heart-of-oltp-is-transaction) </kbd> | <kbd>YourCompany.OLTP.StateOwnership (+371 lines)</kbd> |
+| [1\|⁠🏠: the heart of OLTP is transaction](#commit-1-the-heart-of-oltp-is-transaction) | <kbd> [deepseek-aggregate-state-transition](examples/deepseek-aggregate-state-transition/README.md#commit-1-the-heart-of-oltp-is-transaction) </kbd> | <kbd>YourCompany.OLTP.StateOwnership (+453 lines)</kbd> |
 
 <!-- ### Branch: oltp-basic-object-model-the-rest-is-up-to-you END -->
 

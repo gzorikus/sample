@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\..\src\YourCompany.OLTP.StateOwnership\YourCompany.OLTP.StateOwnership.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <InternalsVisibleTo Include="YourCompany.ConsoleProgram" />
+    <InternalsVisibleTo Include="YourCompany.Dapper" />
+  </ItemGroup>
+
+</Project>

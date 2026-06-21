@@ -1,0 +1,88 @@
+Create a final wiki page (in English) for the branch `PR/the-aggregate-as-a-state-transition-function` of the repository `gzorikus/sample`.
+
+First, study the documentation in the all commit bodies returned (down to the "init", not only in the branch itself, but also preceeding):
+- https://api.github.com/repos/gzorikus/sample/commits?sha=PR/the-aggregate-as-a-state-transition-function&per_page=100
+
+Source files:
+- https://raw.githubusercontent.com/gzorikus/sample/PR/the-aggregate-as-a-state-transition-function/src/YourCompany.OLTP.StateOwnership/IStateAccess.cs
+- https://raw.githubusercontent.com/gzorikus/sample/PR/the-aggregate-as-a-state-transition-function/src/YourCompany.OLTP.StateOwnership/IState.cs
+- https://raw.githubusercontent.com/gzorikus/sample/PR/the-aggregate-as-a-state-transition-function/src/YourCompany.OLTP.StateOwnership/IStateModifying.cs
+- https://raw.githubusercontent.com/gzorikus/sample/PR/the-aggregate-as-a-state-transition-function/src/YourCompany.OLTP.StateOwnership/Identity.cs
+- https://raw.githubusercontent.com/gzorikus/sample/PR/the-aggregate-as-a-state-transition-function/src/YourCompany.OLTP.StateOwnership/TransactionCallback.cs
+- https://raw.githubusercontent.com/gzorikus/sample/PR/the-aggregate-as-a-state-transition-function/src/YourCompany.OLTP.StateOwnership/ISpecification.cs
+- https://raw.githubusercontent.com/gzorikus/sample/PR/the-aggregate-as-a-state-transition-function/examples/deepseek-aggregate-state-transition/src/YourCompany/Account.cs
+- https://raw.githubusercontent.com/gzorikus/sample/PR/the-aggregate-as-a-state-transition-function/examples/deepseek-aggregate-state-transition/src/YourCompany/AccountException.cs
+- https://raw.githubusercontent.com/gzorikus/sample/PR/the-aggregate-as-a-state-transition-function/examples/deepseek-aggregate-state-transition/src/YourCompany/Persistence/IAccountRecordData.cs
+- https://raw.githubusercontent.com/gzorikus/sample/PR/the-aggregate-as-a-state-transition-function/examples/deepseek-aggregate-state-transition/src/YourCompany/Persistence/AccountSpecifications.cs
+- https://raw.githubusercontent.com/gzorikus/sample/PR/the-aggregate-as-a-state-transition-function/examples/deepseek-aggregate-state-transition/src/YourCompany.Dapper/DapperAccountId.cs
+- https://raw.githubusercontent.com/gzorikus/sample/PR/the-aggregate-as-a-state-transition-function/examples/deepseek-aggregate-state-transition/src/YourCompany.Dapper/DapperAccountRecordData.cs
+- https://raw.githubusercontent.com/gzorikus/sample/PR/the-aggregate-as-a-state-transition-function/examples/deepseek-aggregate-state-transition/src/YourCompany.Dapper/DapperAccountState.cs
+- https://raw.githubusercontent.com/gzorikus/sample/PR/the-aggregate-as-a-state-transition-function/examples/deepseek-aggregate-state-transition/src/YourCompany.Dapper/DapperAccountsBatchTransaction.cs
+- https://raw.githubusercontent.com/gzorikus/sample/PR/the-aggregate-as-a-state-transition-function/examples/deepseek-aggregate-state-transition/src/YourCompany.Dapper/NpgsqlAccountSqlHelper.cs
+- https://raw.githubusercontent.com/gzorikus/sample/PR/the-aggregate-as-a-state-transition-function/examples/deepseek-aggregate-state-transition/src/YourCompany.Dapper/NpgsqlDynamicJsonAccountChanges.cs
+- https://raw.githubusercontent.com/gzorikus/sample/PR/the-aggregate-as-a-state-transition-function/examples/deepseek-aggregate-state-transition/src/YourCompany.ConsoleProgram/Program.cs
+- https://raw.githubusercontent.com/gzorikus/sample/PR/the-aggregate-as-a-state-transition-function/examples/deepseek-aggregate-state-transition/src/YourCompany.ConsoleProgram/UseCases/TransferFunds.cs
+- https://raw.githubusercontent.com/gzorikus/sample/PR/the-aggregate-as-a-state-transition-function/examples/deepseek-aggregate-state-transition/src/YourCompany.ConsoleProgram/UseCases/GiveBagelsToPoorAccounts.cs
+
+README of the example:
+- https://raw.githubusercontent.com/gzorikus/sample/refs/heads/PR/the-aggregate-as-a-state-transition-function/examples/deepseek-aggregate-state-transition/README.md
+
+References the article:
+- https://github.com/gzorikus/sample/raw/refs/heads/PR/the-aggregate-as-a-state-transition-function/ai/DeepSeek/State%20Ownership%20Pattern%20in%20OLTP%20PostgreSQL%20-%20Building%20an%20Aggregate%20as%20a%20Closure%20Over%20State%20with%20No%20Read%E2%80%91Before%E2%80%91Write/The%20Aggregate%20as%20a%20State%20Transition%20Function.md
+
+Full repository README:
+- https://github.com/gzorikus/sample/raw/refs/heads/PR/the-aggregate-as-a-state-transition-function/README.md
+
+After studying all the files, generate a wiki page strictly following these requirements:
+
+1. Documentation language – English.
+2. Structure:
+   - Title: `# The Aggregate as a State Transition Function`
+   - Table of contents with cross‑references to all sections.
+   - Each section must contain a back‑link to the table of contents: `[↑ Back to TOC](#table-of-contents)`.
+   - Coherent description; all mentioned concepts and code elements must have cross‑references.
+
+3. Links to files (blob):
+   - All links to source files in the final document must point exclusively to the branch `PR/the-aggregate-as-a-state-transition-function`.
+   - It is forbidden to use the branch `oltp-basic-object-model-the-rest-is-up-to-you` in any blob links.
+   - Links to entire files (classes, interfaces) must point to the corresponding wiki section, not to the blob. Inside that section, there must be exactly one link to the blob of that file (format `https://github.com/gzorikus/sample/blob/PR/the-aggregate-as-a-state-transition-function/path/to/file.cs`).
+   - Links to methods, properties, fields must point to the wiki section where that member is described. No direct blob links for methods/properties.
+   - Inside a section, there must be no links to its own members (mentioning them in plain text is sufficient).
+
+4. Anchors:
+   - Headings must retain full names with angle brackets (e.g., `### IStateAccess<TRecordData>`).
+   - In the table of contents and all internal links, use anchors without angle brackets and without hyphens between the name and the type parameter. Example: for the heading `IStateAccess<TRecordData>`, the anchor is `#istateaccesstrecorddata`.
+   - Do not use HTML `<a name="...">` tags.
+
+5. Cross‑references:
+   - Every mention of a class, interface, method, property, or concept must be a clickable link to the corresponding wiki section. !!!!MUST MUST MUST!!!!!
+   - All concepts must be covered by cross‑references.
+
+6. Section content:
+   - Describe all files, grouping them by logical sections (as in the table of contents).
+   - For each file, create a subsection with the file name (e.g., `### Account.cs`), providing a description of its purpose, key members, and interactions with other components.
+
+7. Additional sections:
+   - Commit History – all loaded commits references in form of links headed by the commit header down to "init" commit (not only in the branch ones, but also all the preceeding as a reference list).
+   - References – links to the branch, base branch (only mention), article, README.
+
+Generate a detailed call‑tree visualization for the execution flow of the Main method. Use ASCII box‑drawing characters (│, ├, └, ─) to show nesting and the sequence of calls. The tree must be placed inside a code block (triple backticks) for readability.
+
+Inside the code block:
+- Use only plain‑text names of classes, methods, fields, and steps – do NOT use Markdown link syntax [text](url), because links inside code blocks are not rendered.
+- Keep the tree concise but complete, covering all intermediate calls from the entry point down to the final database operation and transaction commit.
+- Include relevant callback invocations, specification handling, and concurrency checks where they occur.
+- Show exactly how `Account` interacts with `IStateAccess`, `IState`, and `IStateModifying`, and how specifications (`ISpecification`) influence SQL generation.
+- Explain the order in which `TransactionCallback` fires and when the expected balance is validated.
+- Highlight the key extension points and contracts between layers (domain, persistence, infrastructure).
+
+After the code block, provide a short prose summary of the key moments (e.g., when the callback is registered, when locking happens, when the SQL is generated). In this prose, include hyperlinks to relevant sections or files.
+
+
+Present this so that a developer, after reading the description, can quickly reconstruct the whole picture and understand how it works and how to add new scenarios.
+
+Important: all links MUST be working. In the final answer, use normal URLs (not raw) for file links. Verify that the final document contains no blob links to `oltp-basic-object-model-the-rest-is-up-to-you`.
+
+Generate the final wiki file in a single message, without explanations, only the document itself.
+
+In the flow descriptions and elsewhere, when code from another section or a related concept are mentioned, all those elements MUST become links to their sections.

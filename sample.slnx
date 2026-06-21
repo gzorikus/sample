@@ -1,11 +1,11 @@
 <Solution>
   <Folder Name="/examples/" />
-  <!-- <Folder Name="/examples/deepseek-aggregate-state-transition/" /> -->
-  <!-- <Folder Name="/examples/deepseek-aggregate-state-transition/src/"> -->
-    <!-- <Project Path="examples/deepseek-aggregate-state-transition/src/YourCompany/YourCompany.csproj" /> -->
-    <!-- <Project Path="examples/deepseek-aggregate-state-transition/src/YourCompany.ConsoleProgram/YourCompany.ConsoleProgram.csproj" /> -->
-    <!-- <Project Path="examples/deepseek-aggregate-state-transition/src/YourCompany.Dapper/YourCompany.Dapper.csproj" /> -->
-  <!-- </Folder> -->
+  <Folder Name="/examples/deepseek-aggregate-state-transition/" />
+  <Folder Name="/examples/deepseek-aggregate-state-transition/src/">
+    <Project Path="examples/deepseek-aggregate-state-transition/src/YourCompany/YourCompany.csproj" />
+    <Project Path="examples/deepseek-aggregate-state-transition/src/YourCompany.ConsoleProgram/YourCompany.ConsoleProgram.csproj" />
+    <Project Path="examples/deepseek-aggregate-state-transition/src/YourCompany.Dapper/YourCompany.Dapper.csproj" />
+  </Folder>
   <Folder Name="/examples/efcore-migrations/" />
   <Folder Name="/examples/efcore-migrations/src/">
     <!-- <Project Path="examples/efcore-migrations/src/YourCompany.ConsoleProgram/YourCompany.ConsoleProgram.csproj" /> -->
