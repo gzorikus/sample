@@ -5,6 +5,17 @@
     "version": "0.2.0",
     "configurations": [
         // {
+        //     "name": "deepseek-aggregate-state-transition",
+        //     "type": "coreclr",
+        //     "request": "launch",
+        //     "preLaunchTask": "build",
+        //     "program": "${workspaceFolder}/examples/deepseek-aggregate-state-transition/src/YourCompany.ConsoleProgram/bin/Debug/net8.0/YourCompany.ConsoleProgram.dll",
+        //     "args": [],
+        //     "cwd": "${workspaceFolder}/examples/deepseek-aggregate-state-transition/src/YourCompany.ConsoleProgram",
+        //     "console": "internalConsole",
+        //     "stopAtEntry": false,
+        // },
+        // {
         //     "name": "efcore-migrations",
         //     "type": "coreclr",
         //     "request": "launch",
