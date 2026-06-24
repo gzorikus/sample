@@ -5,8 +5,8 @@
 You are looking at a funds transfer between two accounts where:
 
 - No `SELECT` happens before `UPDATE`.
-- The domain aggregate has **no** references to Dapper, PostgreSQL,  
-  or any persistence framework.
+- The domain aggregate has **no** references to Dapper, PostgreSQL, or  
+  any persistence framework.
 - `Identity` is an abstract two‑phase class.
 - Specifications inherit `EventArgs` and **themselves** trigger the  
   aggregate’s callbacks.
@@ -15,9 +15,8 @@ This is **not** a “yet another CRUD example”. It shows how to push
 ORM/infrastructure details **outside the model**, turning an OLTP  
 transaction into a pure closure over state.
 
-> **Core thesis**  
-> Modern ORMs (EF Core, NHibernate) teach us to see the model as a  
-> data structure  
+> **Core thesis** – Modern ORMs (EF Core, NHibernate) teach us to see  
+> the model as a data structure  
 > (`class Account { public decimal Balance { get; set; } }`). The  
 > framework “materialises” it from the DB, tracks changes, persists.  
 > This causes two fundamental problems:
@@ -66,7 +65,7 @@ db.SaveChanges();
 ### Approach in our example (declare intent → one round‑trip lock+modify → verify → commit)
 
 ```csharp
-await using var transaction = new DapperAccountsBatchTransaction(_connectionString);
+await using var transaction = _transactionFactory();
 var fromAccount = transaction.ById(new DapperAccountId(_fromPublicId));
 var toAccount = transaction.ById(new DapperAccountId(_toPublicId));
 fromAccount.Withdraw(_amount, _fromExpectedBalance);
@@ -82,8 +81,9 @@ await transaction.Run();
   (e.g., `Balance = 0`) – the aggregate receives this default as the  
   “old” state and validates uniformly.
 - The aggregate does not know whether the record is new or existing.
-- The batch transaction itself (`DapperAccountsBatchTransaction`) implements  
-  `IStateAccess` and provides the state objects to the aggregates.
+- The batch transaction itself (`DapperAccountsBatchTransaction`)  
+  implements `IStateAccess` and provides the state objects to the  
+  aggregates.
 
 ## 2. Full Breakdown of the Example Code (Layer by Layer)
 
@@ -146,8 +146,8 @@ The specification simultaneously:
 - tells the infrastructure which operation to perform (`NoChange`,  
   `Increment`, `Set`);
 - is passed to the aggregate’s callback as an `EventArgs`, allowing  
-  the aggregate to verify invariants *before* row locking (intent)  
-  and *after* locking (guaranteed fresh data).
+  the aggregate to verify invariants *before* row locking (intent) and  
+  *after* locking (guaranteed fresh data).
 
 ### 2.4. Aggregate – business rules only, no infrastructure
 
@@ -185,17 +185,17 @@ public sealed class Account {
 ```
 
 During a modifying transaction the aggregate **never reads**  
-`Balance` from `DataAfterAccess`. It only operates on the expected  
-old balance supplied from the UI/API (when the optimistic concurrency  
-is needed indeed, otherwise they could just specify an increment).
+`Balance` from `DataAfterAccess`. It only operates on the expected old  
+balance supplied from the UI/API (when the optimistic concurrency is  
+needed indeed, otherwise they could just specify an increment).
 
 For **new aggregates** (where the `Identity` has no `Value` yet), the  
 infrastructure provides a **default state** (all properties at their  
 initial values, e.g., `Balance = 0`) as the `LockedRecordData`. The  
 aggregate does **not** know whether the record is new or existing; it  
-applies the same validation logic uniformly. The persistence layer  
-is also responsible to resolve the existing when only public ids  
-are supplied.
+applies the same validation logic uniformly. The persistence layer is  
+also responsible to resolve the existing when only public ids are  
+supplied.
 
 ## 3. State Machine Protocol: `IState`, `IStateModifying`, and Callback Phases
 
@@ -291,10 +291,10 @@ when the transaction is modifying.
 values via `GetSettingPropertiesBeforeDataChanging()` or invokes  
 `ChangeDataToMatch` with a modifying specification. The callback  
 `TransactionCallback.ForStateAssertion.TriggeredBeforeDataChanging`  
-fires here, allowing the aggregate to assert the trivial changes  
-first (values from `SettingDataProperties`) and then the  
-specifications (implementing `EventArgs`, or manually iterating  
-over `_state.ForModifying().MatchingAfterDataChanging` without).
+fires here, allowing the aggregate to assert the trivial changes first  
+(values from `SettingDataProperties`) and then the specifications  
+(implementing `EventArgs`, or manually iterating over  
+`_state.ForModifying().MatchingAfterDataChanging` without).
 - **Phase `RecordDataLocked`**: The row has been locked  
 (`ORDER BY id ... FOR UPDATE`). The old snapshot is available via  
 `GetLockedRecordData()`. The callback  
@@ -302,9 +302,9 @@ over `_state.ForModifying().MatchingAfterDataChanging` without).
 fires, letting the aggregate validate the old state against the  
 expected value.
 - **Phase `DataAfterAccess`**: The infrastructure has applied all  
-changes to the in‑memory record data instance (or, for read‑only,  
-has simply loaded the data). The final state with all changes applied  
-is available via `_state.GetFinishedAccessData()`. The callback  
+changes to the in‑memory record data instance (or, for read‑only, has  
+simply loaded the data). The final state with all changes applied is  
+available via `_state.GetFinishedAccessData()`. The callback  
 `TransactionCallback.ForStateAssertion.TriggeredAfterDataAccess` fires  
 here. This phase is essential for enforcing **final invariants** based  
 on the *new* state – e.g., ensuring that `Balance` is never `null`  
@@ -317,14 +317,19 @@ This strict sequencing eliminates races and ensures that the
 aggregate’s invariants are checked both against the **old** state  
 (after locking) and the **new** state (before commit).
 
-The provided documentation block is inaccurate because the actual `BuildFullCte` implementation **does not** use:
+The provided documentation block is inaccurate because the actual  
+`BuildFullCte` implementation **does not** use:
 
 - A direct `@ids` array (`WHERE id = ANY(@ids)`).
 - A `change_mode TEXT` column.
 - Direct insertion into `account` using a `public_id` as `id`.
 - A simple `UNION ALL` of two update/insert CTEs.
 
-Instead, it builds a **single composable CTE** that accepts either a static JSONB array (from `BuildJsonbChangesArraySourceSql`) or a dynamic filtered query (from `BuildJsonbQuerySourceSql`), resolves public IDs via a separate junction table, and returns a unified projection.
+Instead, it builds a **single composable CTE** that accepts either a  
+static JSONB array (from `BuildJsonbChangesArraySourceSql`) or a  
+dynamic filtered query (from `BuildJsonbQuerySourceSql`), resolves  
+public IDs via a separate junction table, and returns a unified  
+projection.
 
 ## 4. Persistence Layer – Composable CTE with `FOR UPDATE` and `RETURNING`
 
@@ -429,7 +434,8 @@ LEFT JOIN inserted_records ins ON ins.inserted_record_id = ipi.account_id;
   - **If `resolving_from_id` IS NOT NULL** → the public ID is  
     **completely ignored** for routing; the row is treated as an  
     **existing** record and goes straight to the lock/update branch  
-    (the `LEFT JOIN` only runs to retrieve the public ID for the final projection).
+    (the `LEFT JOIN` only runs to retrieve the public ID for the final  
+    projection).
   - **If `resolving_from_id` IS NULL** → the CTE treats the public ID  
     as a **lookup key**:
     - If `LEFT JOIN account_public_id` finds a match →  
@@ -441,8 +447,8 @@ LEFT JOIN inserted_records ins ON ins.inserted_record_id = ipi.account_id;
   - This mechanism enables a single JSONB payload to express  
     *"update by numeric ID"*, *"update by public ID"*, or  
     *"insert new"* without requiring explicit `INSERT`/`UPDATE` flags.
-- **`lock_records_to_update_wo_deadlocks`** – locks only the rows  
-  that already exist in the `account` table.  
+- **`lock_records_to_update_wo_deadlocks`** – locks only the rows that  
+  already exist in the `account` table.  
   **`ORDER BY locked.id` is strictly required** to prevent deadlocks  
   when multiple transactions lock rows in different orders. The  
   `old_balance` is captured here **before** any modifications.
@@ -450,8 +456,8 @@ LEFT JOIN inserted_records ins ON ins.inserted_record_id = ipi.account_id;
   expression handles both **set‑to‑value** (`balance_set`) and  
   **increment‑by‑value** (`balance_increment`) modes natively,  
   eliminating the need for a separate `change_mode` flag. Returns the  
-  updated row’s ID, the old balance (for concurrency validation),  
-  and its public ID.
+  updated row’s ID, the old balance (for concurrency validation), and  
+  its public ID.
 - **`inserted_public_ids`** – for new records (where  
   `resolving_from_id IS NULL`), inserts the public `UUID` into the  
   junction table first, generating a new numeric `account_id`.
@@ -487,10 +493,11 @@ expected by the CTE’s `records_with_changes` expansion:
 | `ResolvingFromOrInsertingPublicId` | `resolving_from_or_inserting_public_id` | Public UUID – acts as a **key for lookup or insertion** (see routing logic in Stage 1) |
 
 **Change mode is implicit**, not a separate field:
+
 - If `BalanceSet` is non‑null → **Set** mode.
 - Else if `BalanceIncrement` is non‑null → **Increment** mode.
-- Else → **NoChange** (used for read‑only validation or filtering;  
-  the balance remains unchanged).
+- Else → **NoChange** (used for read‑only validation or filtering; the  
+  balance remains unchanged).
 
 The struct uses Npgsql’s `EnableDynamicJson` with a source‑generated  
 serializer context  
@@ -535,7 +542,7 @@ internal sealed class GiveBagelsToPoorAccounts {
             transaction.ConfigureBatch(batchSize: 50, useForUpdateSkipLocked: true);
             transaction.MatchBeforeDataChanging(AccountSpecifications.LessThan(PowertyThreshold));
             transaction.ChangeDataToMatch(AccountSpecifications.GreaterOrEqualAfterIncrement(BagelsToGive));
-            await transaction.Run();
+            await transaction.Run(ct);
             totalUpdated += transaction.Accounts.Count;
             if (transaction.Accounts.Count < transaction.BatchSize) break;
         }
@@ -556,14 +563,14 @@ This pattern is ideal for background job processors that need to
 process a large number of records without blocking each other.
 
 > **Tip on batch‑level specifications**: You can add cross‑batch  
-specifications to the transaction **before** calling `ById` for any  
-aggregate. For example,  
-`transaction.MatchBeforeDataChanging(AccountSpecifications.LessThan(100))`  
-will apply to **all** records retrieved via subsequent `ById` calls  
-(including new ones). These batch‑level specifications are seamlessly  
-combined with per‑aggregate specifications added later (*omitted in  
-the example*). This is useful for enforcing global constraints without  
-cluttering the domain logic.
+  specifications to the transaction **before** calling `ById` for any  
+  aggregate. For example,  
+  `transaction.MatchBeforeDataChanging(AccountSpecifications.LessThan(100))`  
+  will apply to **all** records retrieved via subsequent `ById` calls  
+  (including new ones). These batch‑level specifications are  
+  seamlessly combined with per‑aggregate specifications added later  
+  (*omitted in the example*). This is useful for enforcing global  
+  constraints without cluttering the domain logic.
 
 ## 8. The Crucial Separation: Entity IDs vs. Entity Records
 
@@ -588,7 +595,6 @@ CREATE TABLE account (
 **non‑sequential public identifier** (UUID) to the  
 **internal sequential private identifier** (BIGINT). This separation  
 allows:
-
   - **No storage of the public ID in the main record table** – reduces  
     block bloat and keeps the primary key narrow.
   - **Uniform identity handling** – the same pattern works for all  
@@ -603,12 +609,12 @@ allows:
     different aggregates can share the same underlying identity  
     (acting as different “subjects” or data slices of the same  
     entity). The separation ensures that each slice only stores its  
-    specific record data, while identity management remains  
-    unified and consistent.
+    specific record data, while identity management remains unified  
+    and consistent.
 
-The `DapperAccountId` class encapsulates both identifiers and  
-provides a two‑phase assignment (public ID known, private ID assigned  
-later). This design ensures that the aggregate never needs to know the  
+The `DapperAccountId` class encapsulates both identifiers and provides  
+a two‑phase assignment (public ID known, private ID assigned later).  
+This design ensures that the aggregate never needs to know the  
 internal private ID; it only works with the public ID. The  
 infrastructure handles the mapping transparently.
 
@@ -618,9 +624,14 @@ infrastructure handles the mapping transparently.
 
 You write **manually**:
 
-- `DapperAccountsBatchTransaction` – implements `IStateAccess`;
+- `DapperAccountsBatchTransaction` – abstract base class implementing  
+  `IStateAccess`;
 - `DapperAccountState` – implements `IState` and `IStateModifying`,  
   bridging the domain aggregate with the Dapper adapter;
+- `IDapperAccountSqlBuilder` – interface for SQL generation;
+- `NpgsqlAccountsBatchTransaction` – PostgreSQL-specific  
+  transaction implementation;
+- `NpgsqlAccountSqlBuilder` – singleton SQL builder implementation;
 - `NpgsqlAccountSqlHelper` – translates specifications into SQL  
   fragments and composes the final CTE;
 - and supporting files (`DapperAccountId`, `DapperAccountRecordData`,  
@@ -628,6 +639,12 @@ You write **manually**:
 
 That amounts to **~800 lines** of infrastructure code for a single  
 `Account` aggregate, while the domain itself is only **~300 lines**.
+
+**Key improvement from the refactoring:** The core transaction logic  
+is now **database‑agnostic**. The PostgreSQL‑specific implementation  
+lives in a separate assembly (`YourCompany.Dapper.PostgreSQL`). This  
+reduces coupling and makes it easier to switch database backends or  
+test the transaction logic in isolation.
 
 ### When moving to the next entry point (`oltp-ways-to-access-size-limited-record-batch`)
 
@@ -667,20 +684,19 @@ the `UPDATE` – the classic two‑roundtrip pattern. The goal of these
 modules is **lowest‑resistance adoption**, not eliminating the extra  
 read.
 
-> **Trade‑off explained**  
-The Dapper CTE approach eliminates the **second round‑trip** by  
-combining locking and modification in a single statement (the CTE with  
-`FOR UPDATE` and `RETURNING`). The EF Core entry point prioritises  
-developer convenience and tooling over peak performance, making it  
-suitable for rapid development. The key benefit is that your  
-**domain logic remains decoupled** from the persistence strategy – you  
-can start with EF Core and later switch to the Dapper CTE without  
-touching business logic.
+> **Trade‑off explained** – The Dapper CTE approach eliminates the  
+  **second round‑trip** by combining locking and modification in a  
+  single statement (the CTE with `FOR UPDATE` and `RETURNING`). The EF  
+  Core entry point prioritises developer convenience and tooling over  
+  peak performance, making it suitable for rapid development. The key  
+  benefit is that your **domain logic remains decoupled** from the  
+  persistence strategy – you can start with EF Core and later switch  
+  to the Dapper CTE without touching business logic.
 
 If performance demands a single roundtrip (as in the Dapper example),  
-you should either stay with the Dapper‑based approach or extend the  
-EF Core adapter with `ExecuteUpdate` (which is **not** currently part  
-of the repository).
+you should either stay with the Dapper‑based approach or extend the EF  
+Core adapter with `ExecuteUpdate` (which is **not** currently part of  
+the repository).
 
 > **How would a hypothetical generic Dapper helper look?**  
 > It could mirror the EF Core module but generate raw SQL from  
@@ -696,43 +712,42 @@ of the repository).
 > project‑specific glue, leaving only the record type and its mapping  
 configuration.
 
-> **Important note on reading (`ReadOnly`)**  
-The current example does **not** implement `IStateAccess.ReadOnly`. In  
-a real system you would add it by issuing a plain `SELECT`. Its  
-absence is intentional – this entry point focuses on  
-**modifying transactions**. If you need read‑only queries, either  
-extend this adapter or switch to an entry point that includes them.
+> **Important note on reading (`ReadOnly`)** – The current example  
+  does **not** implement `IStateAccess.ReadOnly`. In a real system you  
+  would add it by issuing a plain `SELECT`. Its absence is intentional  
+  – this entry point focuses on **modifying transactions**. If you  
+  need read‑only queries, either extend this adapter or switch to an  
+  entry point that includes them.
 
 ## 10. The Freedom to Change Infrastructure Without Touching Business Logic
 
-The most valuable outcome of this discipline is the **guarantee that  
-you can later optimise or completely replace the persistence stack  
-without changing a single line of business logic**.
+The most valuable outcome of this discipline is the  
+**guarantee that you can later optimise or completely replace the persistence stack without changing a single line of business logic**.
 
 You may start with the Dapper example shown here (one roundtrip, full  
 control). Later you might discover that you need:
 
 - **Even lower latency** – switch to raw ADO.NET with stored  
   procedures, still using the same `IStateAccess` contract.
-- **A different LINQ provider** – swap Dapper for `linq2db` (which  
-  can also generate `RETURNING` queries) while keeping the aggregate  
+- **A different LINQ provider** – swap Dapper for `linq2db` (which can  
+  also generate `RETURNING` queries) while keeping the aggregate  
   unchanged.
 - **A completely different storage engine** – move from PostgreSQL to  
   a distributed SQL database, or even to an in‑memory store for  
   testing – as long as you implement the same `IStateAccess` interface.
 
 All these changes are **localised to the infrastructure assembly**.  
-The `Account` aggregate, the `BalanceChangeSpecification` (and the  
-use case ideally) stay **exactly the same**. No `#if` directives, no  
+The `Account` aggregate, the `BalanceChangeSpecification` (and the use  
+case ideally) stay **exactly the same**. No `#if` directives, no  
 conditional compilation, no refactoring of business rules.
 
 Conversely, you may start with the EF Core entry point (with change  
 tracking and two roundtrips) because it gives you the fastest  
 time‑to‑market. When your performance requirements become stricter,  
-you can **smoothly migrate** to the Dapper‑based one‑roundtrip  
-adapter – again without touching the domain model. The repository  
-provides the entry points exactly for this reason: **you choose** the  
-trade‑off fitting your current needs, and **you are never locked in**.
+you can **smoothly migrate** to the Dapper‑based one‑roundtrip adapter  
+– again without touching the domain model. The repository provides the  
+entry points exactly for this reason: **you choose** the trade‑off  
+fitting your current needs, and **you are never locked in**.
 
 > **Choosing an entry point is a business decision, not a religion.**  
 > Each branch in the repository represents a valid, production‑ready  
@@ -748,16 +763,17 @@ The CTE pattern demonstrates perfect **database‑level atomicity** – it
 updates two accounts (debit and credit) in a single round‑trip, with  
 `FOR UPDATE` and a global `ORDER BY id` to eliminate deadlocks entirely.
 
-So, **why isn't this how real‑world banking transfers are always implemented?**
+So,  
+**why isn't this how real‑world banking transfers are always implemented?**
 
-The limitation is **not** technical (locking/performance). It is 
+The limitation is **not** technical (locking/performance). It is  
 **architectural and regulatory**:
 
-- **External integrations** – a transfer often involves fraud detection 
-  systems, anti‑money laundering (AML) filters, tax withholding  
-  services, or external clearing networks (SWIFT, SEPA, FedNow). These  
-  systems have latencies measured in seconds or minutes and cannot be  
-  held inside a database transaction.
+- **External integrations** – a transfer often involves fraud  
+  detection systems, anti‑money laundering (AML) filters, tax  
+  withholding services, or external clearing networks (SWIFT, SEPA,  
+  FedNow). These systems have latencies measured in seconds or minutes  
+  and cannot be held inside a database transaction.
 - **State‑machine requirements** – a business transfer is a  
   **long‑running process** with multiple stages:  
   *Initiated → Authorised → Validated → Booked → Settled*. Each stage  
@@ -786,28 +802,45 @@ The limitation is **not** technical (locking/performance). It is
   preconditions are met do you invoke the atomic CTE to finalise the  
   balance change.
 
-> **Key takeaway**  
-The CTE example provides the **perfect final step** for internal  
-ledger mutations. The complexity of production banking lies not in  
-the `UPDATE` statement, but in orchestrating the external validations  
-that precede it. The pattern gives you a safe, fast, deadlock‑free  
-persistence hammer – you still need to design the surrounding workflow  
-to manage the nails that require external approvals.
+> **Key takeaway** – The CTE example provides the  
+  **perfect final step** for internal ledger mutations. The complexity  
+  of production banking lies not in the `UPDATE` statement, but in  
+  orchestrating the external validations that precede it. The pattern  
+  gives you a safe, fast, deadlock‑free persistence hammer – you still  
+  need to design the surrounding workflow to manage the nails that  
+  require external approvals.
 
-You are right to question this block. While its **core metaphor**—the aggregate as a closure `(expectedOldState, command) -> specifications`—is accurate, the block is **incomplete** and **misleading** in two crucial ways:
+You are right to question this block. While its **core metaphor** —  
+the aggregate as a closure  
+`(expectedOldState, command) -> specifications` — is accurate, the  
+block is **incomplete** and **misleading** in two crucial ways:
 
-1.  **It omits the critical validation phase**: The aggregate doesn't just blindly "speak the desired new state" and trust the persistence layer to sort it out. It actively participates in a **two-phase handshake** with the infrastructure. After the CTE returns the **locked actual state**, the aggregate's `TriggeredAfterRecordDataLocking` callback **validates** that the locked balance matches the `_expectedOldBalance`. This is the "No Read‑Before‑Write" safety net—if the lock reveals a different balance, the aggregate throws, and the entire transaction rolls back.
-2.  **It oversimplifies the "new state" declaration**: The aggregate doesn't just provide a final balance; it provides *directives* (`SettingDataProperties`) and *constraints* (`ChangeDataToMatch`). The CTE translates these into `balance_set`, `balance_increment`, or a `CASE` that defaults to `NoChange`. This is more than a simple setter—it's a declarative **state transition specification** that the infrastructure executes atomically.
+1.  **It omits the critical validation phase**: The aggregate doesn't  
+just blindly "speak the desired new state" and trust the persistence  
+layer to sort it out. It actively participates in a  
+**two-phase handshake** with the infrastructure. After the CTE returns  
+the **locked actual state**, the aggregate's  
+`TriggeredAfterRecordDataLocking` callback **validates** that the  
+locked balance matches the `_expectedOldBalance`. This is the  
+"No Read‑Before‑Write" safety net—if the lock reveals a different  
+balance, the aggregate throws, and the entire transaction rolls back.
+2.  **It oversimplifies the "new state" declaration**: The aggregate  
+doesn't just provide a final balance; it provides *directives*  
+(`SettingDataProperties`) and *constraints* (`ChangeDataToMatch`). The  
+CTE translates these into `balance_set`, `balance_increment`, or a  
+`CASE` that defaults to `NoChange`. This is more than a simple  
+setter—it's a declarative **state transition specification** that the  
+infrastructure executes atomically.
 
 ---
 
 ## 12. The Central Role of the Aggregate (Use Case Is Not the Star)
 
 > Do not be misled by the presence of the `TransferFunds` class.  
-**The center of the architecture is the `Account` aggregate.**  
-The use case merely wires two aggregate instances together, and  
-invokes `batchTransaction.Run()`. All business logic (sufficient  
-funds, non‑negative balance, etc.) resides **inside the aggregate**.
+  **The center of the architecture is the `Account` aggregate.** The  
+  use case merely wires two aggregate instances together, and invokes  
+  `batchTransaction.Run()`. All business logic (sufficient funds,  
+  non‑negative balance, etc.) resides **inside the aggregate**.
 
 The aggregate is built to  
 **completely abstract away persistence mechanics**. It never holds a  
@@ -839,13 +872,52 @@ while delegating **pessimistic concurrency control** and
 a thin **orchestrator** that composes aggregate instances; it contains  
 no `if` statements about business rules.
 
-## 13. How to Use This Article When Navigating the Repository
+---
+
+## 13. Infrastructure Overview
+
+The infrastructure layer is split into two assemblies:
+
+- **`YourCompany.Dapper`** – contains the abstract transaction base  
+  (`DapperAccountsBatchTransaction`), the state implementation  
+  (`DapperAccountState`), the identity (`DapperAccountId`), and the  
+  SQL builder interface (`IDapperAccountSqlBuilder`). This assembly  
+  has **no** database‑specific code.
+- **`YourCompany.Dapper.PostgreSQL`** – provides the concrete  
+  implementations: `NpgsqlAccountsBatchTransaction` (manages  
+  connections and transactions), `NpgsqlAccountSqlBuilder`  
+  (generates SQL from specifications), and the helper classes  
+  (`NpgsqlAccountSqlHelper`, `NpgsqlDynamicJsonAccountChanges`).  
+  All PostgreSQL‑specific logic lives here.
+
+The transaction flow is orchestrated by the abstract base class:
+
+1. **`Run`** calls `BeginTransaction` (implemented in the PostgreSQL  
+   assembly) to open a connection and start a transaction.
+2. **`AddParameters`** (part of `SqlMapper.IDynamicParameters`)  
+   delegates SQL construction to `SqlBuilder.Build`, which in turn  
+   uses the helper to produce a CTE with `FOR UPDATE` and  
+   `RETURNING`.
+3. After the query executes, the base class processes the results,  
+   sets `LockedRecordData`, triggers validation callbacks, and calls  
+   `Commit` (or `Rollback` on failure) – again delegated to the  
+   PostgreSQL assembly.
+
+This design keeps the core transaction logic database‑agnostic, making  
+it easy to switch to another SQL dialect by implementing a new builder  
+and a new transaction class. For full details, refer to the source  
+files in the `YourCompany.Dapper` and `YourCompany.Dapper.PostgreSQL`  
+projects.
+
+---
+
+## 14. How to Use This Article When Navigating the Repository
 
 - **Start here** to understand the philosophy behind the  
   `YourCompany.OLTP.StateOwnership` module.
 - **Then explore** `oltp-ways-to-access-size-limited-record-batch`  
-  branch to see how batching and pagination are added without  
-  breaking the core model.
+  branch to see how batching and pagination are added without breaking  
+  the core model.
 - **If you need EF Core integration**, switch to  
   `oltp-di-efcore-handle-specifications-only-the-rest-is-covered`  
   for a generic identity handling solution and other benefits.
@@ -854,7 +926,7 @@ no `if` statements about business rules.
   completeness, and performance. Choose the one that fits your team’s  
   ownership level and performance requirements.
 
-## Takeaways
+## 15. Takeaways
 
 - **Model as a function**, not as a data structure.
 - **No read‑before‑write** – use a single CTE with `FOR UPDATE` and  
@@ -864,18 +936,22 @@ no `if` statements about business rules.
   aggregate callbacks (by inheriting `EventArgs`).
 - **Two‑phase `Identity`** eliminates infrastructure assumptions  
   (negative ids, `Guid.Empty`).
-- **Separate identity from record data** to avoid bloating blocks  
-  and unify identity handling across multiple aggregate slices.
+- **Separate identity from record data** to avoid bloating blocks and  
+  unify identity handling across multiple aggregate slices.
 - **State machine protocol** enforces correct sequencing:  
-  changes intent → locking → validation of old state → validation  
-  of final applied state (uniformly for both modifying and read‑only  
+  changes intent → locking → validation of old state → validation of  
+  final applied state (uniformly for both modifying and read‑only  
   transactions).
-- **Higher entry points** drastically reduce boilerplate, but you must
+- **The infrastructure layer is split into two assemblies:**  
+  `YourCompany.Dapper` (database‑agnostic transaction logic) and  
+  `YourCompany.Dapper.PostgreSQL` (PostgreSQL‑specific implementation).
+- **Higher entry points** drastically reduce boilerplate, but you must  
   understand their performance characteristics.
-- **You can change the entire persistence stack without touching business
-  logic** – the aggregate is completely isolated over `IStateAccess`.
-- **Real‑world bank transfers** require eventual consistency; this example
-  focuses on the atomic part only.
+- **You can change the entire persistence stack**  
+  **without touching business logic** – the aggregate is completely  
+  isolated over `IStateAccess`.
+- **Real‑world bank transfers** require eventual consistency; this  
+  example focuses on the atomic part only.
 
 # To be continued
 
@@ -885,5 +961,5 @@ You can continue chatting in your LLM of choice quickly by copying
 will load all the files and be completely ready to continue building  
 with you (see an example first [Response.md](./Response.md)).
 
-Happy modelling, and may your aggregates stay clean of infrastructure
+Happy modelling, and may your aggregates stay clean of infrastructure  
 concerns.

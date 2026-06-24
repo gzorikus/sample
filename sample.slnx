@@ -5,7 +5,7 @@
     <Project Path="examples/deepseek-aggregate-state-transition/src/YourCompany/YourCompany.csproj" />
     <Project Path="examples/deepseek-aggregate-state-transition/src/YourCompany.ConsoleProgram/YourCompany.ConsoleProgram.csproj" />
     <Project Path="examples/deepseek-aggregate-state-transition/src/YourCompany.Dapper/YourCompany.Dapper.csproj" />
-    <!-- <Project Path="examples/deepseek-aggregate-state-transition/src/YourCompany.Dapper.PostgreSQL/YourCompany.Dapper.PostgreSQL.csproj" /> -->
+    <Project Path="examples/deepseek-aggregate-state-transition/src/YourCompany.Dapper.PostgreSQL/YourCompany.Dapper.PostgreSQL.csproj" />
   </Folder>
   <Folder Name="/examples/efcore-migrations/" />
   <Folder Name="/examples/efcore-migrations/src/">

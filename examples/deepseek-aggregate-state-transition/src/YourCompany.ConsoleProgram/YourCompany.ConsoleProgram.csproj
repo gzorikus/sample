@@ -8,6 +8,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\YourCompany.Dapper\YourCompany.Dapper.csproj" />
+    <ProjectReference Include="..\YourCompany.Dapper.PostgreSQL\YourCompany.Dapper.PostgreSQL.csproj" />
   </ItemGroup>
 
 </Project>

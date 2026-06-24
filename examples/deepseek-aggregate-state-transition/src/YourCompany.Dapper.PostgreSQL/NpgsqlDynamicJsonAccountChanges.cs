@@ -1,7 +1,7 @@
 using System;
 using System.Text.Json.Serialization;
 
-namespace YourCompany.Dapper
+namespace YourCompany.Dapper.PostgreSQL
 {
     internal partial struct NpgsqlDynamicJsonAccountChanges
     {

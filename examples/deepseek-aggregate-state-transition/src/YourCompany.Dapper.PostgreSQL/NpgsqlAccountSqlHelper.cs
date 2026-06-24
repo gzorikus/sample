@@ -5,7 +5,7 @@ using NpgsqlTypes;
 using YourCompany.OLTP.StateOwnership;
 using YourCompany.Persistence;
 
-namespace YourCompany.Dapper
+namespace YourCompany.Dapper.PostgreSQL
 {
     internal static class NpgsqlAccountSqlHelper
     {

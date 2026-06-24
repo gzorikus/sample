@@ -101,7 +101,7 @@ This context captures the architectural decisions, constraints, and patterns est
 
 - The `DapperAccountsBatchTransaction` class implements `SqlMapper.IDynamicParameters`.
 - In the `AddParameters` method, the entire SQL command is built and all parameters are added to the `NpgsqlCommand`.
-- The `Run` method simply calls `QueryAsync` with a placeholder SQL (`"see AddParameters 👇"`) and passes `this` as the parameter object. Dapper then invokes `AddParameters` to populate the command.
+- The `Run` method calls `QueryAsync` with a placeholder SQL (`"see AddParameters 👇"`) and passes `this` as the parameter object. **To support cancellation, the call must use `CommandDefinition` with the `cancellationToken` parameter.** Dapper then invokes `AddParameters` to populate the command.
 
 #### CTE Structure (PostgreSQL)
 
@@ -131,7 +131,6 @@ This context captures the architectural decisions, constraints, and patterns est
 
 ### Code Style and Formatting
 
-- **Markdown soft line breaks**: Use two spaces at the end of a paragraph middle line to force a newline in rendered Markdown (for comments and READMEs). Limit the line length of the source markdown to 73 characters (including the spaces), except tables and code blocks.
 - **Line length**: Aim for 120 characters, but it’s acceptable if the exception type fits entirely on one line; the message may be longer.
 - **Argument wrapping**: When wrapping method arguments: place each argument on a new line, indented by 4 spaces from the method name; put the closing parenthesis on the same line as the last argument.
 - **`=>` operator**: For simple expression‑bodied members, place `=>` on a new line if the expression is long (e.g., `internal DapperAccountState(DapperAccountId identity, EventHandler callback) => ...`).
@@ -151,6 +150,30 @@ This context captures the architectural decisions, constraints, and patterns est
 - **Use block-scoped namespaces (namespace Name { ... })**: instead of file-scoped namespaces (namespace Name;).
 - **Preservation of Marker Literals**: string literals containing emojis (👇, 👉, ⚠️, ✅, etc.) or other unique markers are an integral part of the code. They serve debugging, visual highlighting, or as placeholders in SQL queries. Such literals must not be changed, removed, or replaced during refactoring, as their loss would break its purpose (e.g., calling `connection.QueryAsync(commandText: "see AddParameters 👇"...)`).
 - **Refactoring and Context Preservation**: when modifying existing code (especially during refactoring), all existing constructs, idioms, naming styles, and operator sequences (e.g., using, await using, checks, literals) must be kept unchanged unless they are the direct subject of the change. This applies to both semantics and syntactic formatting (e.g., presence of emojis, order of checks). Deviations are permitted only when explicitly stated in the requirements.
+
+#### Markdown soft line wrapping rules (by the markdown two trailing spaces)
+
+**The rules are demonstrated by the definition itself:**
+
+- Target line length cap: 72 characters.
+- Wrapping: only wrap when the target line length exceeds 72 characters.
+- Break points: natural phrase breaks, but never break a line that  
+  already fits.
+- Exempt trailing spaces before a blank line, a heading, a list item  
+  (any marker: -, *, +, or number), a table row, or a code fence.
+- Exempt headings, tables, and code blocks completely from wrapping.
+- **Length counting**: count every character in the raw Markdown source  
+  line, including letters, numbers, punctuation, spaces, backticks,  
+  asterisks, underscores, and any other formatting symbols. The target  
+  length of 72 characters applies to this full line. Do not exclude  
+  any characters for counting purposes.
+- **No arbitrary breaks**: do not break lines that already fit within  
+  72 characters. Wrap only when necessary, using the minimum number  
+  of lines required.
+
+Here is an example of a paragraph. This may consit of multiple  
+sentences (as you can see the previous word didn't fit entirely, so  
+it was soft breaked).
 
 ### Project Structure
 

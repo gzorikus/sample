@@ -2,39 +2,36 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using Dapper;
-using Npgsql;
 using YourCompany.OLTP.StateOwnership;
 using YourCompany.Persistence;
 
 namespace YourCompany.Dapper
 {
-    internal sealed class DapperAccountsBatchTransaction
+    internal abstract class DapperAccountsBatchTransaction
         : IAsyncDisposable, IStateAccess<IAccountRecordData>, SqlMapper.IDynamicParameters
     {
         internal const int MaxBatchSize = 50;
 
-        private readonly NpgsqlDataSource _dataSource;
         private readonly List<Account> _accounts;
-
         private List<ISpecification<IAccountRecordData>> _batchConditions;
         private List<ISpecification<IAccountRecordData>> _batchActions;
         private DapperAccountId _pendingAccountId;
         private List<DapperAccountState> _registeredStates;
-        private NpgsqlConnection _connection;
-        private NpgsqlTransaction _transaction;
         private bool _disposed;
 
         internal int BatchSize { get; private set; } = MaxBatchSize;
         internal bool UseForUpdateSkipLocked { get; private set; }
         internal IReadOnlyList<Account> Accounts => _accounts;
 
-        internal DapperAccountsBatchTransaction(NpgsqlDataSource dataSource)
+        protected DapperAccountsBatchTransaction()
         {
-            _dataSource = dataSource ?? throw new ArgumentNullException(nameof(dataSource));
             _accounts = new List<Account>();
         }
+
+        protected abstract IDapperAccountSqlBuilder SqlBuilder { get; }
 
         internal void ConfigureBatch(int batchSize, bool useForUpdateSkipLocked = false)
         {
@@ -71,18 +68,24 @@ namespace YourCompany.Dapper
             return TrackAccount(id);
         }
 
-        internal async Task Run()
+        internal async Task Run(CancellationToken cancellationToken = default)
         {
             if (_disposed) throw new ObjectDisposedException(nameof(DapperAccountsBatchTransaction));
 
             await using var _ = this;
 
-            await Connect();
-
+            IDbTransaction transaction = null;
             try
             {
-                var rows = await _connection.QueryAsync<DapperAccountRecordData>(
-                    sql: "see AddParameters 👇👉", param: this, _transaction);
+                transaction = await BeginTransaction(cancellationToken);
+                var connection = transaction.Connection ?? throw new ApplicationException("transaction.Connection == null");
+
+                var command = new CommandDefinition(
+                    commandText: "see AddParameters 👇",
+                    parameters: this,
+                    transaction: transaction,
+                    cancellationToken: cancellationToken);
+                var rows = await connection.QueryAsync<DapperAccountRecordData>(command);
 
                 if (_registeredStates != null)
                 {
@@ -158,40 +161,44 @@ namespace YourCompany.Dapper
                     for (int i = 0; i < _registeredStates.Count; i++) _registeredStates[i].OnAfterDataAccess();
                 }
 
-                await _transaction.CommitAsync();
+                await Commit(transaction, cancellationToken);
+                transaction = null;
             }
-            catch
+            finally
             {
-                if (_transaction != null) await _transaction.RollbackAsync();
-                throw;
+                if (transaction != null)
+                    await Rollback(transaction, cancellationToken);
             }
         }
+
+        protected abstract Task<IDbTransaction> BeginTransaction(CancellationToken cancellationToken);
+        protected abstract Task Commit(IDbTransaction transaction, CancellationToken cancellationToken);
+        protected abstract Task Rollback(IDbTransaction transaction, CancellationToken cancellationToken);
 
         void SqlMapper.IDynamicParameters.AddParameters(IDbCommand command, SqlMapper.Identity identity)
         {
             if (_disposed) throw new ObjectDisposedException(nameof(DapperAccountsBatchTransaction));
-            if (_connection == null || _transaction == null) throw new ApplicationException("_connection == null || _transaction == null");
-            if (command is not NpgsqlCommand npgsqlCommand) throw new ApplicationException("command is not NpgsqlCommand npgsqlCommand");
 
-            string jsonbSourceSql;
+            command.CommandText = string.Empty;
 
             if (_registeredStates != null)
             {
-                jsonbSourceSql = NpgsqlAccountSqlHelper.BuildJsonbChangesArraySourceSql(_registeredStates, npgsqlCommand.Parameters);
+                SqlBuilder.Build(command, _registeredStates);
             }
             else
             {
                 IReadOnlyList<ISpecification<IAccountRecordData>> before = _batchConditions;
                 IReadOnlyList<ISpecification<IAccountRecordData>> after = _batchActions;
-                jsonbSourceSql = NpgsqlAccountSqlHelper.BuildJsonbQuerySourceSql(
-                    batchActions: after ?? Array.Empty<ISpecification<IAccountRecordData>>(),
-                    batchConditions: before ?? Array.Empty<ISpecification<IAccountRecordData>>(),
-                    UseForUpdateSkipLocked,
+                SqlBuilder.Build(
+                    command,
+                    before ?? Array.Empty<ISpecification<IAccountRecordData>>(),
+                    after ?? Array.Empty<ISpecification<IAccountRecordData>>(),
                     BatchSize,
-                    npgsqlCommand.Parameters);
+                    UseForUpdateSkipLocked);
             }
 
-            npgsqlCommand.CommandText = NpgsqlAccountSqlHelper.BuildFullCte(jsonbSourceSql);
+            if (string.IsNullOrEmpty(command.CommandText))
+                throw new ApplicationException("string.IsNullOrEmpty(command.CommandText)");
         }
 
         IState<IAccountRecordData> IStateAccess<IAccountRecordData>.ReadOnly => null;
@@ -215,14 +222,14 @@ namespace YourCompany.Dapper
 
         public async ValueTask DisposeAsync()
         {
-            if (!_disposed)
-            {
-                await Disconnect();
-                _registeredStates = null;
-                _batchConditions = null;
-                _batchActions = null;
-                _disposed = true;
-            }
+            await DisposeAsync(true);
+            GC.SuppressFinalize(this);
+        }
+
+        protected virtual ValueTask DisposeAsync(bool disposing)
+        {
+            if (!_disposed) _disposed = true;
+            return ValueTask.CompletedTask;
         }
 
         private Account TrackAccount(DapperAccountId id)
@@ -250,29 +257,6 @@ namespace YourCompany.Dapper
             newState.TriggerBatchSpecificationsCallbacks();
 
             return account;
-        }
-
-        private async Task Connect()
-        {
-            if (_disposed) throw new ObjectDisposedException(nameof(DapperAccountsBatchTransaction));
-            if (_connection != null) throw new ApplicationException("_connection != null");
-            if (_transaction != null) throw new ApplicationException("_transaction != null");
-            _connection = await _dataSource.OpenConnectionAsync();
-            _transaction = await _connection.BeginTransactionAsync();
-        }
-
-        private async Task Disconnect()
-        {
-            if (_transaction != null)
-            {
-                await _transaction.DisposeAsync();
-                _transaction = null;
-            }
-            if (_connection != null)
-            {
-                await _connection.DisposeAsync();
-                _connection = null;
-            }
         }
     }
 }

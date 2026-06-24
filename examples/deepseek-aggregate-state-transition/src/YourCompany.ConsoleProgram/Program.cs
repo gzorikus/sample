@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using Npgsql;
 using YourCompany.ConsoleProgram.UseCases;
 using YourCompany.Dapper;
+using YourCompany.Dapper.PostgreSQL;
 
 namespace YourCompany.ConsoleProgram
 {
@@ -20,7 +21,7 @@ namespace YourCompany.ConsoleProgram
             dataSourceBuilder.EnableDynamicJson();
             await using var dataSource = dataSourceBuilder.Build();
 
-            var transactionFactory = () => new DapperAccountsBatchTransaction(dataSource);
+            var transactionFactory = () => new NpgsqlAccountsBatchTransaction(dataSource);
 
             var sender = Guid.NewGuid();
             var beneficiary = Guid.NewGuid();
