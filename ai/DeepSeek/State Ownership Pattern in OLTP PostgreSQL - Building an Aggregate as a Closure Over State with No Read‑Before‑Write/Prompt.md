@@ -1,4 +1,4 @@
-Grasp fundamentals from all commit descriptions and chronology of the branch oltp-basic-object-model-the-rest-is-up-to-you: 
+Grasp the branch oltp-basic-object-model-the-rest-is-up-to-you and the examples chronology from commits description:
 - https://api.github.com/repos/gzorikus/sample/commits?sha=PR/the-aggregate-as-a-state-transition-function&per_page=100
 
 Consume YourCompany.OLTP.StateOwnership library implementation:
@@ -21,10 +21,15 @@ Consume Example Implementation (Domain):
 Consume Example Implementation (Dapper Adapter):
 - https://raw.githubusercontent.com/gzorikus/sample/PR/the-aggregate-as-a-state-transition-function/examples/deepseek-aggregate-state-transition/src/YourCompany.Dapper/DapperAccountId.cs
 - https://raw.githubusercontent.com/gzorikus/sample/PR/the-aggregate-as-a-state-transition-function/examples/deepseek-aggregate-state-transition/src/YourCompany.Dapper/DapperAccountRecordData.cs
-- https://raw.githubusercontent.com/gzorikus/sample/PR/the-aggregate-as-a-state-transition-function/examples/deepseek-aggregate-state-transition/src/YourCompany.Dapper/DapperAccountState.cs
 - https://raw.githubusercontent.com/gzorikus/sample/PR/the-aggregate-as-a-state-transition-function/examples/deepseek-aggregate-state-transition/src/YourCompany.Dapper/DapperAccountsBatchTransaction.cs
-- https://raw.githubusercontent.com/gzorikus/sample/PR/the-aggregate-as-a-state-transition-function/examples/deepseek-aggregate-state-transition/src/YourCompany.Dapper/NpgsqlAccountSqlHelper.cs
-- https://raw.githubusercontent.com/gzorikus/sample/PR/the-aggregate-as-a-state-transition-function/examples/deepseek-aggregate-state-transition/src/YourCompany.Dapper/NpgsqlDynamicJsonAccountChanges.cs
+- https://raw.githubusercontent.com/gzorikus/sample/PR/the-aggregate-as-a-state-transition-function/examples/deepseek-aggregate-state-transition/src/YourCompany.Dapper/DapperAccountState.cs
+- https://raw.githubusercontent.com/gzorikus/sample/PR/the-aggregate-as-a-state-transition-function/examples/deepseek-aggregate-state-transition/src/YourCompany.Dapper/IDapperAccountSqlBuilder.cs
+
+Consume Example Implementation (Dapper PostgreSQL Adapter):
+- https://raw.githubusercontent.com/gzorikus/sample/PR/the-aggregate-as-a-state-transition-function/examples/deepseek-aggregate-state-transition/src/YourCompany.Dapper.PostgreSQL/NpgsqlAccountsBatchTransaction.cs
+- https://raw.githubusercontent.com/gzorikus/sample/PR/the-aggregate-as-a-state-transition-function/examples/deepseek-aggregate-state-transition/src/YourCompany.Dapper.PostgreSQL/NpgsqlAccountSqlBuilder.cs
+- https://raw.githubusercontent.com/gzorikus/sample/PR/the-aggregate-as-a-state-transition-function/examples/deepseek-aggregate-state-transition/src/YourCompany.Dapper.PostgreSQL/NpgsqlAccountSqlHelper.cs
+- https://raw.githubusercontent.com/gzorikus/sample/PR/the-aggregate-as-a-state-transition-function/examples/deepseek-aggregate-state-transition/src/YourCompany.Dapper.PostgreSQL/NpgsqlDynamicJsonAccountChanges.cs
 
 Consume Example Implementation (Console Program):
 - https://raw.githubusercontent.com/gzorikus/sample/PR/the-aggregate-as-a-state-transition-function/examples/deepseek-aggregate-state-transition/src/YourCompany.ConsoleProgram/Program.cs

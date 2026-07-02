@@ -750,12 +750,12 @@ entry points exactly for this reason: **you choose** the trade‑off
 fitting your current needs, and **you are never locked in**.
 
 > **Choosing an entry point is a business decision, not a religion.**  
-> Each branch in the repository represents a valid, production‑ready  
-> way to implement OLTP systems. They differ in complexity,  
-> performance characteristics, and the amount of hand‑written  
-> infrastructure code. The repository does **not** claim that one is  
-> "better" than another. It merely helps you make an informed choice  
-> and **avoid common mistakes**.
+  Each branch in the repository represents a valid, production‑ready  
+  way to implement OLTP systems. They differ in complexity,  
+  performance characteristics, and the amount of hand‑written  
+  infrastructure code. The repository does **not** claim that one is  
+  "better" than another. It merely helps you make an informed choice  
+  and **avoid common mistakes**.
 
 ## 11. A Necessary Caveat: Database Atomicity vs. Business Transaction Lifecycle
 
@@ -953,13 +953,20 @@ projects.
 - **Real‑world bank transfers** require eventual consistency; this  
   example focuses on the atomic part only.
 
-# To be continued
+## Next Steps
 
 You can continue chatting in your LLM of choice quickly by copying  
-[Context.md](./Context.md). Or even more powerful, copy the  
-[Prompt.md](./Prompt.md) (but make sure you update the links) - it  
-will load all the files and be completely ready to continue building  
-with you (see an example first [Response.md](./Response.md)).
+[`Context.md`](./Context.md) – it gives the essential background.
+
+Or, for a more powerful reload, copy [`Prompt.md`](./Prompt.md) (just  
+update the GitHub raw links inside if you're on a different branch) –  
+it will load all the relevant files into a fresh context (see an  
+example first in [`Response.md`](./Response.md)).
+
+Alternatively, if you prefer a **structured, top‑down reference** over  
+the long‑form narrative, find the complete interface specifications,  
+module breakdown, and implementation rationale in  
+[**`WIKI.md`**](./WIKI.md).
 
 Happy modelling, and may your aggregates stay clean of infrastructure  
 concerns.

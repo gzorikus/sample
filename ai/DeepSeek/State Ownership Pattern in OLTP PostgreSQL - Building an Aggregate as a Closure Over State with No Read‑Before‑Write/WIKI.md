@@ -1222,12 +1222,12 @@ history:
   – Explains the rationale, trade‑offs, and comparison with  
   traditional approaches.
 
-- **Full repository README:**  
-  [`README.md`](https://github.com/gzorikus/sample/blob/PR/the-aggregate-as-a-state-transition-function/README.md)  
-  – Overview of the repository goals, metrics, and project structure.
-
 - **Example README:**  
   [`examples/deepseek-aggregate-state-transition/README.md`](https://github.com/gzorikus/sample/blob/PR/the-aggregate-as-a-state-transition-function/examples/deepseek-aggregate-state-transition/README.md)  
   – Step‑by‑step guide to running the example.
+
+- **Full repository README:**  
+  [`README.md`](https://github.com/gzorikus/sample/blob/PR/the-aggregate-as-a-state-transition-function/README.md)  
+  – Overview of the repository goals, metrics, and project structure.
 
 [↑ Back to TOC](#table-of-contents)
