@@ -67,7 +67,7 @@ $lastReplacedSubject = "";
         } | Sort-Object DiffLines -Desc | ForEach-Object {
             $_.Directory;
             $_.Files |
-                Sort-Object -Property @{Expression="DiffLines"; Descending=$true;}, DiffGraph, RelativePath |
+                Sort-Object -Property @{Expression="DiffLines"; Descending=$true;}, DiffGraph, FileName |
                 Select-Object -ExpandProperty Row;
         };
 
