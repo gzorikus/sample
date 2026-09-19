@@ -41,7 +41,7 @@ $rows = git log --no-merges --no-renames `
                     };
                 }
                 $commitLogsSectionLinkText = $currentSubject.Replace(' ', [char]0xA0).Replace('|', "|$([char]0x2060)");
-                $commitLogsSectionHashTag = "#commit-$(($currentSubject -replace '\W', '-' -replace '(-)\1+', '$1').ToLower())";
+                $commitLogsSectionHashTag = "#commit-$(($currentSubject.ToLower() -replace '[^\w\- ]', '' -replace ' ', '-'))";
                 [PSCustomObject]@{
                     SubjectIndex = $currentSubjectIndex;
                     SubjectCommitLogsSectionLink = "[$commitLogsSectionLinkText]($commitLogsSectionHashTag)";
@@ -92,6 +92,10 @@ $entryPointBranchBlock = @(
     '|-|-|-|') + $rows + @(
     '',
     "<!-- ### Branch: $branchName END -->");
+
+# 'public' is not an entry point: it has no branch block to regenerate, so a
+# break bound to it is left alone instead of failing the whole script.
+if ($branchName -eq 'public') { return; }
 
 $content = [System.IO.File]::ReadAllText('README.md', [System.Text.Encoding]::UTF8);
 $branchBlockMatches = [regex]::Matches($content, $('(?m)' +
