@@ -1,5 +1,13 @@
 ﻿# [Console]::OutputEncoding = [System.Text.Encoding]::UTF8 # if you have problems with emojis
 
+$rebaseTodoPath = '.git/rebase-merge/git-rebase-todo';
+if (-not (Test-Path $rebaseTodoPath)) { return; }
+
+$branchName = [System.IO.File]::ReadAllLines($rebaseTodoPath) |
+    ForEach-Object { if ($_ -match '^update-ref refs/heads/(?<name>.+)$') { $matches['name'] } } |
+    Select-Object -First 1;
+if (-not $branchName) { return; }
+
 $currentSubject = '';
 $currentSubjectExampleLinks = @();
 $currentSubjectIndex = 0;
@@ -73,10 +81,49 @@ $metrics = Get-ChildItem -Exclude examples |
 
 if ($metrics.Sum -ne $diffTotal) { throw "`$metrics.Sum -ne `$diffTotal"; }
 
-$lines = @('',
+$entryPointBranchBlock = @(
+    "### Branch: $branchName",
+    '',
+    "> Files: $($metrics.Count) | Lines: $($metrics.Sum)  ",
+    'Pros: why do you choose this entry point  ',
+    'Cons: why it might be not enough for you',
+    '',
     '| Log | Examples | Modules |',
-    '|-|-|-|') +
-    $rows + @(
-        "`nDon't forget to replace the totals above the table:",
-        "> Files: $($metrics.Count) | Lines: $($metrics.Sum)  ");
-($lines -join "`n") | Set-Clipboard;
+    '|-|-|-|') + $rows + @(
+    '',
+    "<!-- ### Branch: $branchName END -->");
+
+$content = [System.IO.File]::ReadAllText('README.md', [System.Text.Encoding]::UTF8);
+$branchBlockMatches = [regex]::Matches($content, $('(?m)' +
+    '(?<placeholderLine>^<!-- ### Branch: (?<name>.+?) (?<!END )-->\n)|' +
+    '(?<replacingBranch>^(?:<!-- )?### Branch: (?<name>.+?)\n(?:.|\n)+?<!-- ### Branch: \k<name> END -->)'
+));
+
+$replaced = '';
+foreach ($match in $branchBlockMatches) {
+    if ($match.Groups['name'].Value -ne $branchName) { continue; }
+    $placeholderLine = $match.Groups['placeholderLine'];
+    $replacingBranch = $match.Groups['replacingBranch'];
+    if ($placeholderLine.Success) {
+        $replaced = $content.Remove($match.Index, $match.Length).Insert($match.Index, "`n$($entryPointBranchBlock -join "`n")`n");
+    } else {
+        if (-not $replacingBranch.Success) { throw "-not `$placeholderLine -and -not `$replacingBranch: $match"; }
+        # The pros and cons are authored by hand, so an existing block keeps them
+        # while the derived parts after them are regenerated.
+        $existingBlock = $replacingBranch.Value;
+        $authoredHead = $existingBlock.Substring(0, $existingBlock.IndexOf('| Log | Examples | Modules |'));
+        $authoredHead = $authoredHead -replace '(?m)^> Files: .*$', "> Files: $($metrics.Count) | Lines: $($metrics.Sum)  ";
+        $existingBlock = $authoredHead +
+            ((@('| Log | Examples | Modules |', '|-|-|-|') + $rows) -join "`n") +
+            "`n`n<!-- ### Branch: $branchName END -->";
+        $replaced = $content.Remove($match.Index, $match.Length).Insert($match.Index, $existingBlock);
+    }
+
+    if ($replaced) {
+        $content = $replaced;
+    }
+}
+
+if (-not $replaced) { throw "no '$branchName' entry point branch block found in README.md"; }
+
+[System.IO.File]::WriteAllText('README.md', $content);

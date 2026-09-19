@@ -1123,9 +1123,14 @@ Cons: why it might be not enough for you
 
 <!-- ### Branch: template-entry-point-branch-name END -->
 
-> To avoid manual work filling that table, run the
-[script](scripts/CommitsTableMdToClipboard.ps1) while staying  
-on break when rebasing is in progress and then paste the table.
+> The table above is written by the
+[script](scripts/CommitsTableToReadmeMd.ps1) while staying on a break during  
+the rebase: it reads the branch bound by the break from the rebase todo and  
+regenerates the whole block from the markers around it. Pros and cons are  
+left as authored, they are not derivable from the commits.
+
+> Both this and the commit logs script run from a single
+[alias](.gitconfig) invoked before each break, in that order.
 
 ## Commit logs
 

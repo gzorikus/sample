@@ -4,4 +4,4 @@
 	cleanup = verbatim # to prevent commit body lines trimming for the sake of markdown complience
 
 [alias]
-    interactiverebasebeforebreak = !powershell -ExecutionPolicy Bypass -File ./scripts/CommitLogsToReadmeMd.ps1
+    interactiverebasebeforebreak = !powershell -ExecutionPolicy Bypass -File ./scripts/CommitLogsToReadmeMd.ps1 && git add README.md && powershell -ExecutionPolicy Bypass -File ./scripts/CommitsTableToReadmeMd.ps1

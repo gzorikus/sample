@@ -33,6 +33,10 @@
 # Note for supporters: keep this last line with exact 5 empty lines before the first iteration header to let the
 # script replace the todo list instead of manually cleaning the last one. Then use your diff tool of choice
 # to update or reset the headers and make minor required adjustments.
+#
+# At each break the 'scripts/CommitsTableToReadmeMd.ps1' one regenerates the README entry point
+# block named by the update-ref line that break precedes, right after the 'scripts/CommitLogsToReadmeMd.ps1'
+# one has appended the commit logs: a single alias runs both. Append any further notes above this line.
 
 
 
