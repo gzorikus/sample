@@ -1259,8 +1259,8 @@ Commit body is multiline and compliant to markdown formatting 💥
 10 files changed, 637 insertions(+)<br>
 <sub><sub>src/YourCompany.Configuration/</sub></sub><br>
 <kbd> +++++++ 182 |⁠ [EnvironmentConventions.cs                                                                                      ](src/YourCompany.Configuration/EnvironmentConventions.cs)</kbd><br>
-<kbd>   +++++ 122 |⁠ [YourCompanyPluginsLoader.cs                                                                                    ](src/YourCompany.Configuration/YourCompanyPluginsLoader.cs)</kbd><br>
 <kbd>   +++++ 122 |⁠ [ConfigurationExtensions.cs                                                                                     ](src/YourCompany.Configuration/ConfigurationExtensions.cs)</kbd><br>
+<kbd>   +++++ 122 |⁠ [YourCompanyPluginsLoader.cs                                                                                    ](src/YourCompany.Configuration/YourCompanyPluginsLoader.cs)</kbd><br>
 <kbd>     +++ 75  |⁠ [YourCompanyAssemblyLoadContext.cs                                                                              ](src/YourCompany.Configuration/YourCompanyAssemblyLoadContext.cs)</kbd><br>
 <kbd>      ++ 31  |⁠ [AssemblyExtensions.cs                                                                                          ](src/YourCompany.Configuration/AssemblyExtensions.cs)</kbd><br>
 <kbd>       + 29  |⁠ [GitHelper.cs                                                                                                   ](src/YourCompany.Configuration/GitHelper.cs)</kbd><br>
