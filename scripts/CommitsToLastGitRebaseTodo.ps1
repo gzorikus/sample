@@ -2,6 +2,9 @@
 
 $commitsByUniqueCommitterDate = [System.Collections.Generic.Dictionary[int, object]]::new();
 $labelsReferenced = @{};
+$initIteration = -1;
+$wipIteration = 777;
+$wipAuthor = 7;
 
 $commitsByRebaseTimeUniqueSubject = @{};
 $commitsByRebaseTimeUniqueHash = @{};
@@ -11,21 +14,20 @@ git log --date-order --reverse --format='%D|%ct|%h|%p|%s' --decorate-refs="refs/
     $branch, $commiterDateUnixTime, $abbreviatedHash, $abbreviatedParentHashes, $subject = $_ -split '\|', 5;
     $cmdToAdd = ''; $useForLabel = ''; $commitsWithoutIteration = $null; $parentHash = '';
 
-    if ($subject -eq 'init') {
-        $commitsByRebaseTimeUniqueHash.Add($abbreviatedHash, @{ Label = "$abbreviatedHash # always reset onto init for safety`n"; })
-        return;
-    }
-
     $iteration = if ($subject -match '^(?<iteration>\S*?)\|(?<author>.*?):') {
-        if ($matches['iteration'] -eq 'N') { 777 } else { [int]$matches['iteration'] }
+        if ($matches['iteration'] -eq 'N') { $wipIteration } else { [int]$matches['iteration'] }
     } else { $null };
     $author = if ($iteration -is [int]) { ($matches['author'] -split ' ')[0] } else { $null };
 
     $parentHashes = $abbreviatedParentHashes -split ' ';
-    $commitsWithoutIteration = $parentHashes |
-        ForEach-Object { @($commitsByRebaseTimeUniqueHash[$_].CommitsWithoutIteration).Where({ $_ -ne $null }) };
 
-    if ($parentHashes.Count -gt 1) {
+    if ($subject -eq 'init') {
+        if ($parentHashes[0]) { throw "`$subject -eq 'init' -and `$parentHashes[0]: $subject" }
+        if ($commitsByRebaseTimeUniqueSubject.Count) { throw "`$subject -eq 'init' -and `$commitsByRebaseTimeUniqueSubject.Count: $subject" }
+        $cmdToAdd = "reset $abbreviatedHash # always reset onto init for safety";
+        $iteration = $initIteration;
+        $useForLabel = $subject;
+    } elseif ($parentHashes.Count -gt 1) {
         $parentHash = $parentHashes[0];
         $cmdToAdd = "merge -C $abbreviatedHash";
         $parent = $commitsByRebaseTimeUniqueHash[$parentHash];
@@ -60,7 +62,7 @@ git log --date-order --reverse --format='%D|%ct|%h|%p|%s' --decorate-refs="refs/
                 $parentCommit = $commitsByRebaseTimeUniqueHash[$fixupHashToTakeParentRevFrom];
                 if (-not $parentCommit) { throw "-not `$parentCommit: $subject"; }
                 if ($parentCommit.Cmd) {
-                    $parentCommit.Branch += $branch;
+                    $parentCommit.UpdateBranchRefHead += $branch;
                     $fixupHashToTakeParentRevFrom = $null;
                 }
             } while ($fixupHashToTakeParentRevFrom);
@@ -68,8 +70,10 @@ git log --date-order --reverse --format='%D|%ct|%h|%p|%s' --decorate-refs="refs/
     } else {
         if ($iteration -isnot [int] -or -not $author) { throw "`$iteration -isnot [int] -or -not `$author: $subject"; }
         $cmdToAdd = "pick $abbreviatedHash";
-        $parentHash = $abbreviatedParentHashes;
+        $parentHash = $parentHashes[0];
         $useForLabel = $subject.Replace($author, $orderedAuthorsLowerCase[$orderedAuthors.IndexOf($author)]);
+        $commitsWithoutIteration = $parentHashes |
+            ForEach-Object { @($commitsByRebaseTimeUniqueHash[$_].CommitsWithoutIteration).Where({ $_ -ne $null }) };
     }
 
     if ($iteration -is [int] -and $commitsWithoutIteration) {
@@ -78,13 +82,13 @@ git log --date-order --reverse --format='%D|%ct|%h|%p|%s' --decorate-refs="refs/
             if ($_ -is [string]) { return; }
             if ($_.Iteration -is [int]) { throw "`$_.Iteration -is [int]: $subject"; }
             $_.Iteration = $iteration;
-            $_.Author = $orderedAuthors.IndexOf($author);
+            $_.Author = if ($iteration -eq $wipIteration) { $wipAuthor } else { $orderedAuthors.IndexOf($author) };
         }
         $commitsWithoutIteration = $null;
     }
 
     if ($cmdToAdd) {
-        while (-not $commitsByRebaseTimeUniqueHash[$parentHash].Cmd) {
+        while ($parentHash -and -not $commitsByRebaseTimeUniqueHash[$parentHash].Cmd) {
             $nextParentHash = $commitsByRebaseTimeUniqueHash[$parentHash].ParentHash;
             if ($nextParentHash) { $parentHash = $nextParentHash; } else { break; }
         }
@@ -92,9 +96,9 @@ git log --date-order --reverse --format='%D|%ct|%h|%p|%s' --decorate-refs="refs/
         $commit = [PSCustomObject]@{
             ParentHash = $parentHash;
             AbbreviatedHash = $abbreviatedHash;
-            Branch = $branch;
+            UpdateBranchRefHead = $branch;
             Iteration = $iteration;
-            Author = $orderedAuthors.IndexOf($author);
+            Author = if ($iteration -eq $wipIteration) { $wipAuthor } else { $orderedAuthors.IndexOf($author) };
             CommitterDate = [int]$commiterDateUnixTime;
             Cmd = "# $subject`n$cmdToAdd";
             Label = ($useForLabel -replace '\W', '-').ToLower();
@@ -119,13 +123,15 @@ git log --date-order --reverse --format='%D|%ct|%h|%p|%s' --decorate-refs="refs/
 
         $commit.CommitsWithoutIteration = $commitsWithoutIteration |
             ForEach-Object { if ($_ -is [string]) { $commitsByRebaseTimeUniqueHash[$_] } else { $_ } };
+    } else {
+        if ($commitsWithoutIteration) { throw "-not `$cmdToAdd -and `$commitsWithoutIteration: $subject" }
     }
 };
 
 $expectedParentHash = '';
-$commitsByUniqueCommitterDate.Values | Sort-Object -Property Iteration, Author, CommitterDate | ForEach-Object {
-    if ($_.Branch -ne 'public' -and $_.Iteration -isnot [int]) { throw "`$_.Branch -ne 'public' -and `$_.Iteration -isnot [int]: $subject"; }
-
+$commitsByUniqueCommitterDate.Values |
+    Sort-Object -Property @{Expression={ if ($_.Iteration -is [int]) { 0 } else { 1 } }}, Iteration, Author, CommitterDate |
+    ForEach-Object {
     if ($_.ParentHash -ne $expectedParentHash) {
         $resetOntoLabel = $commitsByRebaseTimeUniqueHash[$_.ParentHash].Label;
         $_.Cmd = "reset $resetOntoLabel`n$($_.Cmd)";
@@ -136,16 +142,20 @@ $commitsByUniqueCommitterDate.Values | Sort-Object -Property Iteration, Author, 
 };
 
 $content = [System.IO.File]::ReadAllText('bonus-last-git-rebase-todo', [System.Text.Encoding]::UTF8);
-$content = $content -replace '(?ms)(^#[^\n]+\n)(?:\n{5}#).*$', '$1';
+$content = $content -replace '(?ms)(^#[^\n]+)(?:\n{6}#).*$', '$1';
 
-$lastIteration = -1;
-$commitsByUniqueCommitterDate.Values | Sort-Object -Property Iteration, Author, CommitterDate | ForEach-Object {
-    if ($_.Branch -eq 'public') {
+$lastIteration = $initIteration;
+$commitsByUniqueCommitterDate.Values |
+    Sort-Object -Property @{Expression={ if ($_.Iteration -is [int]) { 0 } else { 1 } }}, Iteration, Author, CommitterDate |
+    ForEach-Object {
+    if ($_.UpdateBranchRefHead -eq 'public') {
         $content += "`n`n`n`n`n# Public`n";
     } else {
-        if ($lastIteration -ne $_.Iteration) {
+        if ($_.Iteration -eq $initIteration) {
+            $content += "`n`n`n`n`n";
+        } elseif ($_.Iteration -is [int] -and $lastIteration -ne $_.Iteration) {
             $lastIteration = $_.Iteration;
-            $iteration = if ($_.Iteration -eq 777) { 'N' } else { $_.Iteration };
+            $iteration = if ($_.Iteration -eq $wipIteration) { 'N' } else { $_.Iteration };
             $content += "`n`n`n`n`n# Startup Iteration $iteration. Don't forget to update or revert the iteration's goal.`n";
         }
     }
@@ -156,7 +166,7 @@ $commitsByUniqueCommitterDate.Values | Sort-Object -Property Iteration, Author, 
         "exec git config --get alias.interactiverebasebeforebreak && git interactiverebasebeforebreak || true`n" +
         "break`n" +
         "# don't forget to amend now with updated stats in README.md`n";
-    if ($_.Branch) { $_.Cmd = "$($_.Cmd)update-ref refs/heads/$($_.Branch)`n"; }
+    if ($_.UpdateBranchRefHead) { $_.Cmd = "$($_.Cmd)update-ref refs/heads/$($_.UpdateBranchRefHead)`n"; }
     if ($notSkipped -and $labelsReferenced[$_.Label]) { $_.Cmd = "$($_.Cmd)`nlabel $($_.Label)`n"; }
     $content += $_.Cmd;
 }
