@@ -39,7 +39,7 @@
 
 
 # init
-reset f4b778c # always reset onto init for safety
+reset f4b778c # always reset onto the root tip first
 fixup f15c285 # The template shipped with the copyright line left as
 exec git commit --amend --no-edit --date=now
 exec git config --get alias.interactiverebasebeforebreak && git interactiverebasebeforebreak || true
@@ -59,7 +59,7 @@ fixup 77f39a4
 fixup 9b366e2 # The sort key was written as `RelativePath`, which is not a property of
 fixup c0662aa # Filling the entry point table is the last step that forced the owner to copy
 fixup fde01c0 # A subject with a symbol sitting between two spaces was slugged into a link
-fixup 002d606 # Unified "init" handling while in rebase and as a side effect allowed  
+fixup 2a767c9 # Unified "init" handling while in rebase and as a side effect allowed  
 exec git commit --amend --no-edit --date=now
 exec git config --get alias.interactiverebasebeforebreak && git interactiverebasebeforebreak || true
 break

@@ -21,12 +21,14 @@ git log --date-order --reverse --format='%D|%ct|%h|%p|%s' --decorate-refs="refs/
 
     $parentHashes = $abbreviatedParentHashes -split ' ';
 
-    if ($subject -eq 'init') {
-        if ($parentHashes[0]) { throw "`$subject -eq 'init' -and `$parentHashes[0]: $subject" }
-        if ($commitsByRebaseTimeUniqueSubject.Count) { throw "`$subject -eq 'init' -and `$commitsByRebaseTimeUniqueSubject.Count: $subject" }
-        $cmdToAdd = "reset $abbreviatedHash # always reset onto init for safety";
-        $iteration = $initIteration;
-        $useForLabel = $subject;
+    if (-not $parentHashes[0]) {
+        $cmdToAdd = "reset $abbreviatedHash # always reset onto the root tip first";
+        if ($iteration -is [int]) {
+            $useForLabel = $subject.Replace($author, $orderedAuthorsLowerCase[$orderedAuthors.IndexOf($author)]);
+        } else {
+            $iteration = $initIteration;
+            $useForLabel = $subject;
+        }
     } elseif ($parentHashes.Count -gt 1) {
         $parentHash = $parentHashes[0];
         $cmdToAdd = "merge -C $abbreviatedHash";
