@@ -164,7 +164,7 @@ $commitsByUniqueCommitterDate.Values |
 
     $notSkipped = $_.Cmd -match '^(?!\n# Skipped: )';
     $_.Cmd = "`n$($_.Cmd)`n" +
-        "exec git commit --amend --no-edit --date=now`n" +
+        "exec git commit --amend --no-edit --date=now --allow-empty`n" +
         "exec git config --get alias.interactiverebasebeforebreak && git interactiverebasebeforebreak || true`n" +
         "break`n" +
         "# don't forget to amend now with updated stats in README.md`n";

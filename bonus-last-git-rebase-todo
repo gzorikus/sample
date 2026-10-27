@@ -41,7 +41,7 @@
 # init
 reset f4b778c # always reset onto the root tip first
 fixup f15c285 # The template shipped with the copyright line left as
-exec git commit --amend --no-edit --date=now
+exec git commit --amend --no-edit --date=now --allow-empty
 exec git config --get alias.interactiverebasebeforebreak && git interactiverebasebeforebreak || true
 break
 # don't forget to amend now with updated stats in README.md
@@ -60,7 +60,7 @@ fixup 9b366e2 # The sort key was written as `RelativePath`, which is not a prope
 fixup c0662aa # Filling the entry point table is the last step that forced the owner to copy
 fixup fde01c0 # A subject with a symbol sitting between two spaces was slugged into a link
 fixup 2a767c9 # Unified "init" handling while in rebase and as a side effect allowed  
-exec git commit --amend --no-edit --date=now
+exec git commit --amend --no-edit --date=now --allow-empty
 exec git config --get alias.interactiverebasebeforebreak && git interactiverebasebeforebreak || true
 break
 # don't forget to amend now with updated stats in README.md
@@ -75,7 +75,7 @@ label 0-facademan--welcome-aboard
 
 # 1|🏠: the heart of OLTP is transaction
 pick 62511d9
-exec git commit --amend --no-edit --date=now
+exec git commit --amend --no-edit --date=now --allow-empty
 exec git config --get alias.interactiverebasebeforebreak && git interactiverebasebeforebreak || true
 break
 # don't forget to amend now with updated stats in README.md
@@ -85,7 +85,7 @@ label 1-domainman--the-heart-of-oltp-is-transaction
 
 # 1|🏠: OLTP events producing
 pick f23ec6f
-exec git commit --amend --no-edit --date=now
+exec git commit --amend --no-edit --date=now --allow-empty
 exec git config --get alias.interactiverebasebeforebreak && git interactiverebasebeforebreak || true
 break
 # don't forget to amend now with updated stats in README.md
@@ -95,7 +95,7 @@ label 1-domainman--oltp-events-producing
 reset 1-domainman--the-heart-of-oltp-is-transaction
 # 1|🏠: OLTP transactional composition
 pick 181eb92
-exec git commit --amend --no-edit --date=now
+exec git commit --amend --no-edit --date=now --allow-empty
 exec git config --get alias.interactiverebasebeforebreak && git interactiverebasebeforebreak || true
 break
 # don't forget to amend now with updated stats in README.md
@@ -106,7 +106,7 @@ reset 0-facademan--welcome-aboard
 # 1|🧱: basic configurations covered
 pick 63696a0
 fixup bc6766d # The file list in this commit's section was left in the order it was
-exec git commit --amend --no-edit --date=now
+exec git commit --amend --no-edit --date=now --allow-empty
 exec git config --get alias.interactiverebasebeforebreak && git interactiverebasebeforebreak || true
 break
 # don't forget to amend now with updated stats in README.md
@@ -124,7 +124,7 @@ reset 1-domainman--the-heart-of-oltp-is-transaction
 # 2|🏠: OLTP transaction is limited size
 pick 72a0da0
 fixup e5c4d85 # The file list in this commit's section was left in the order it was
-exec git commit --amend --no-edit --date=now
+exec git commit --amend --no-edit --date=now --allow-empty
 exec git config --get alias.interactiverebasebeforebreak && git interactiverebasebeforebreak || true
 break
 # don't forget to amend now with updated stats in README.md
@@ -135,7 +135,7 @@ label 2-domainman--oltp-transaction-is-limited-size
 reset 0-facademan--welcome-aboard
 # 2|🧱: StructHelper
 pick 1bd7648
-exec git commit --amend --no-edit --date=now
+exec git commit --amend --no-edit --date=now --allow-empty
 exec git config --get alias.interactiverebasebeforebreak && git interactiverebasebeforebreak || true
 break
 # don't forget to amend now with updated stats in README.md
@@ -145,7 +145,7 @@ label 2-facademan--structhelper
 reset 0-facademan--welcome-aboard
 # 2|🧱: AwaitTasksList
 pick 46dd518
-exec git commit --amend --no-edit --date=now
+exec git commit --amend --no-edit --date=now --allow-empty
 exec git config --get alias.interactiverebasebeforebreak && git interactiverebasebeforebreak || true
 break
 # don't forget to amend now with updated stats in README.md
@@ -155,7 +155,7 @@ label 2-facademan--awaittaskslist
 reset 0-facademan--welcome-aboard
 # 2|🧱: reflection helpers
 pick fb58cc6
-exec git commit --amend --no-edit --date=now
+exec git commit --amend --no-edit --date=now --allow-empty
 exec git config --get alias.interactiverebasebeforebreak && git interactiverebasebeforebreak || true
 break
 # don't forget to amend now with updated stats in README.md
@@ -164,7 +164,7 @@ label 2-facademan--reflection-helpers
 
 # 2|🧱: GetMemberHelper
 pick 8fa8d72
-exec git commit --amend --no-edit --date=now
+exec git commit --amend --no-edit --date=now --allow-empty
 exec git config --get alias.interactiverebasebeforebreak && git interactiverebasebeforebreak || true
 break
 # don't forget to amend now with updated stats in README.md
@@ -173,7 +173,7 @@ label 2-facademan--getmemberhelper
 
 # 2|🧱: DIConstructorHelper
 pick e9e911e
-exec git commit --amend --no-edit --date=now
+exec git commit --amend --no-edit --date=now --allow-empty
 exec git config --get alias.interactiverebasebeforebreak && git interactiverebasebeforebreak || true
 break
 # don't forget to amend now with updated stats in README.md
@@ -183,7 +183,7 @@ label 2-facademan--diconstructorhelper
 reset 2-facademan--reflection-helpers
 # 2|🧱: ValueTupleHelper
 pick f77ea0d
-exec git commit --amend --no-edit --date=now
+exec git commit --amend --no-edit --date=now --allow-empty
 exec git config --get alias.interactiverebasebeforebreak && git interactiverebasebeforebreak || true
 break
 # don't forget to amend now with updated stats in README.md
@@ -193,7 +193,7 @@ label 2-facademan--valuetuplehelper
 reset 2-facademan--reflection-helpers
 # 2|🧱: TypeAbstractionsHelper
 pick 0e38a55
-exec git commit --amend --no-edit --date=now
+exec git commit --amend --no-edit --date=now --allow-empty
 exec git config --get alias.interactiverebasebeforebreak && git interactiverebasebeforebreak || true
 break
 # don't forget to amend now with updated stats in README.md
@@ -202,7 +202,7 @@ label 2-facademan--typeabstractionshelper
 
 # 2|🧱: TypesCompositionMap
 pick 2312bf3
-exec git commit --amend --no-edit --date=now
+exec git commit --amend --no-edit --date=now --allow-empty
 exec git config --get alias.interactiverebasebeforebreak && git interactiverebasebeforebreak || true
 break
 # don't forget to amend now with updated stats in README.md
@@ -212,7 +212,7 @@ label 2-facademan--typescompositionmap
 reset 1-facademan--basic-configurations-covered
 # 2|💾: basic pluggable EFCore
 pick ea00ca8
-exec git commit --amend --no-edit --date=now
+exec git commit --amend --no-edit --date=now --allow-empty
 exec git config --get alias.interactiverebasebeforebreak && git interactiverebasebeforebreak || true
 break
 # don't forget to amend now with updated stats in README.md
@@ -221,7 +221,7 @@ label 2-persistman--basic-pluggable-efcore
 
 # 2|💾: EFCore pessimistic locking
 pick 0e376b8
-exec git commit --amend --no-edit --date=now
+exec git commit --amend --no-edit --date=now --allow-empty
 exec git config --get alias.interactiverebasebeforebreak && git interactiverebasebeforebreak || true
 break
 # don't forget to amend now with updated stats in README.md
@@ -231,7 +231,7 @@ label 2-persistman--efcore-pessimistic-locking
 reset 2-persistman--basic-pluggable-efcore
 # 2|💾: EFChangeTrackerTrackGraphStrategy
 pick 963a6f6
-exec git commit --amend --no-edit --date=now
+exec git commit --amend --no-edit --date=now --allow-empty
 exec git config --get alias.interactiverebasebeforebreak && git interactiverebasebeforebreak || true
 break
 # don't forget to amend now with updated stats in README.md
@@ -241,7 +241,7 @@ label 2-persistman--efchangetrackertrackgraphstrategy
 reset 2-persistman--efcore-pessimistic-locking
 # 2|💾: EFCore modifying basics
 merge -C 4bf3ca4 2-persistman--efchangetrackertrackgraphstrategy
-exec git commit --amend --no-edit --date=now
+exec git commit --amend --no-edit --date=now --allow-empty
 exec git config --get alias.interactiverebasebeforebreak && git interactiverebasebeforebreak || true
 break
 # don't forget to amend now with updated stats in README.md
@@ -251,7 +251,7 @@ label 2-----efcore-modifying-basics
 reset 2-persistman--basic-pluggable-efcore
 # 2|💾: EFCore hosting migration run
 pick 079c80e
-exec git commit --amend --no-edit --date=now
+exec git commit --amend --no-edit --date=now --allow-empty
 exec git config --get alias.interactiverebasebeforebreak && git interactiverebasebeforebreak || true
 break
 # don't forget to amend now with updated stats in README.md
@@ -267,7 +267,7 @@ label 2-persistman--efcore-hosting-migration-run
 reset 1-domainman--the-heart-of-oltp-is-transaction
 # 3|🏠: OLTP RecordTypesMap
 pick 6fde742
-exec git commit --amend --no-edit --date=now
+exec git commit --amend --no-edit --date=now --allow-empty
 exec git config --get alias.interactiverebasebeforebreak && git interactiverebasebeforebreak || true
 break
 # don't forget to amend now with updated stats in README.md
@@ -277,14 +277,14 @@ label 3-domainman--oltp-recordtypesmap
 reset 2-domainman--oltp-transaction-is-limited-size
 # Merge branch 'threading-awaittasklist' into oltp-recordsmanagement-usecases
 merge -C aea936d 2-facademan--awaittaskslist
-exec git commit --amend --no-edit --date=now
+exec git commit --amend --no-edit --date=now --allow-empty
 exec git config --get alias.interactiverebasebeforebreak && git interactiverebasebeforebreak || true
 break
 # don't forget to amend now with updated stats in README.md
 
 # 3|🏠: generic OLTP use cases
 pick d47457e
-exec git commit --amend --no-edit --date=now
+exec git commit --amend --no-edit --date=now --allow-empty
 exec git config --get alias.interactiverebasebeforebreak && git interactiverebasebeforebreak || true
 break
 # don't forget to amend now with updated stats in README.md
@@ -293,14 +293,14 @@ label 3-domainman--generic-oltp-use-cases
 
 # Merge branch 'reflection-typeabstractionshelper' into oltp-recordsmanagement-usecases-reflection-usecasetypesmap
 merge -C 0a4d6f4 2-facademan--typeabstractionshelper
-exec git commit --amend --no-edit --date=now
+exec git commit --amend --no-edit --date=now --allow-empty
 exec git config --get alias.interactiverebasebeforebreak && git interactiverebasebeforebreak || true
 break
 # don't forget to amend now with updated stats in README.md
 
 # 3|🏠: OLTP UseCaseTypesMap
 pick a11eae2
-exec git commit --amend --no-edit --date=now
+exec git commit --amend --no-edit --date=now --allow-empty
 exec git config --get alias.interactiverebasebeforebreak && git interactiverebasebeforebreak || true
 break
 # don't forget to amend now with updated stats in README.md
@@ -310,14 +310,14 @@ label 3-domainman--oltp-usecasetypesmap
 reset 1-domainman--oltp-transactional-composition
 # Merge branches 'reflection-typescompositionmap' 'oltp-stateownership-reflection-recordtypesmap' into oltp-stateownership-transactionalcomposition-reflection-recordtypescompositionmap
 merge -C 23ba9f0 2-facademan--typescompositionmap 3-domainman--oltp-recordtypesmap
-exec git commit --amend --no-edit --date=now
+exec git commit --amend --no-edit --date=now --allow-empty
 exec git config --get alias.interactiverebasebeforebreak && git interactiverebasebeforebreak || true
 break
 # don't forget to amend now with updated stats in README.md
 
 # 3|🏠: OLTP RecordTypesCompositionMap
 pick b0208dc
-exec git commit --amend --no-edit --date=now
+exec git commit --amend --no-edit --date=now --allow-empty
 exec git config --get alias.interactiverebasebeforebreak && git interactiverebasebeforebreak || true
 break
 # don't forget to amend now with updated stats in README.md
@@ -327,7 +327,7 @@ label 3-domainman--oltp-recordtypescompositionmap
 reset 2-domainman--oltp-transaction-is-limited-size
 # 3|🧱: OLTP transaction structure
 pick 703c1a4
-exec git commit --amend --no-edit --date=now
+exec git commit --amend --no-edit --date=now --allow-empty
 exec git config --get alias.interactiverebasebeforebreak && git interactiverebasebeforebreak || true
 break
 # don't forget to amend now with updated stats in README.md
@@ -338,14 +338,14 @@ label 3-facademan--oltp-transaction-structure
 reset 2-persistman--basic-pluggable-efcore
 # Merge branch 'reflection-getmemberhelper' into configuration-efcore-efpropertyexpressionscache
 merge -C b5d5cd8 2-facademan--getmemberhelper
-exec git commit --amend --no-edit --date=now
+exec git commit --amend --no-edit --date=now --allow-empty
 exec git config --get alias.interactiverebasebeforebreak && git interactiverebasebeforebreak || true
 break
 # don't forget to amend now with updated stats in README.md
 
 # 3|💾: EFPropertyExpressionsCache
 pick 39fd84f
-exec git commit --amend --no-edit --date=now
+exec git commit --amend --no-edit --date=now --allow-empty
 exec git config --get alias.interactiverebasebeforebreak && git interactiverebasebeforebreak || true
 break
 # don't forget to amend now with updated stats in README.md
@@ -355,7 +355,7 @@ label 3-persistman--efpropertyexpressionscache
 # 3|💾: EFCore first-class SortingKey
 pick 0e92b81
 fixup d8e7ae9 # The file list in this commit's section was left in the order it was
-exec git commit --amend --no-edit --date=now
+exec git commit --amend --no-edit --date=now --allow-empty
 exec git config --get alias.interactiverebasebeforebreak && git interactiverebasebeforebreak || true
 break
 # don't forget to amend now with updated stats in README.md
@@ -371,14 +371,14 @@ label 3-persistman--efcore-first-class-sortingkey
 reset 3-facademan--oltp-transaction-structure
 # Merge branch 'oltp-recordsmanagement-usecases' into oltp-segregate-use-cases-repository-is-for-persistence
 merge -C 2364fb2 3-domainman--generic-oltp-use-cases
-exec git commit --amend --no-edit --date=now
+exec git commit --amend --no-edit --date=now --allow-empty
 exec git config --get alias.interactiverebasebeforebreak && git interactiverebasebeforebreak || true
 break
 # don't forget to amend now with updated stats in README.md
 
 # 4|🏠: enumerate OLTP use cases
 pick 5088715
-exec git commit --amend --no-edit --date=now
+exec git commit --amend --no-edit --date=now --allow-empty
 exec git config --get alias.interactiverebasebeforebreak && git interactiverebasebeforebreak || true
 break
 # don't forget to amend now with updated stats in README.md
@@ -388,14 +388,14 @@ label 4-domainman--enumerate-oltp-use-cases
 
 # Merge branch 'oltp-stateownership-transactionalcomposition-reflection-recordtypescompositionmap' into oltp-segregate-use-cases-with-transactional-composition
 merge -C 79d65b3 3-domainman--oltp-recordtypescompositionmap
-exec git commit --amend --no-edit --date=now
+exec git commit --amend --no-edit --date=now --allow-empty
 exec git config --get alias.interactiverebasebeforebreak && git interactiverebasebeforebreak || true
 break
 # don't forget to amend now with updated stats in README.md
 
 # 4|🏠: OLTP use cases by record type
 pick e789e2f
-exec git commit --amend --no-edit --date=now
+exec git commit --amend --no-edit --date=now --allow-empty
 exec git config --get alias.interactiverebasebeforebreak && git interactiverebasebeforebreak || true
 break
 # don't forget to amend now with updated stats in README.md
@@ -406,21 +406,21 @@ label 4-domainman--oltp-use-cases-by-record-type
 reset 3-facademan--oltp-transaction-structure
 # Merge branch 'compilerservices-structhelper' into oltp-segregate-persistence-repository-is-for-use-cases
 merge -C 99edc6a 2-facademan--structhelper
-exec git commit --amend --no-edit --date=now
+exec git commit --amend --no-edit --date=now --allow-empty
 exec git config --get alias.interactiverebasebeforebreak && git interactiverebasebeforebreak || true
 break
 # don't forget to amend now with updated stats in README.md
 
 # 4|🧱: OLTP identities are unique keys
 pick 3881462
-exec git commit --amend --no-edit --date=now
+exec git commit --amend --no-edit --date=now --allow-empty
 exec git config --get alias.interactiverebasebeforebreak && git interactiverebasebeforebreak || true
 break
 # don't forget to amend now with updated stats in README.md
 
 # 4|🧱: OLTP LINQ may be useful
 pick 26ae8c5
-exec git commit --amend --no-edit --date=now
+exec git commit --amend --no-edit --date=now --allow-empty
 exec git config --get alias.interactiverebasebeforebreak && git interactiverebasebeforebreak || true
 break
 # don't forget to amend now with updated stats in README.md
@@ -431,14 +431,14 @@ label 4-facademan--oltp-linq-may-be-useful
 reset 3-persistman--efcore-first-class-sortingkey
 # Merge branch 'reflection-valuetuplehelper' into configuration-efcore-sortingkey-reading
 merge -C a2f8171 2-facademan--valuetuplehelper
-exec git commit --amend --no-edit --date=now
+exec git commit --amend --no-edit --date=now --allow-empty
 exec git config --get alias.interactiverebasebeforebreak && git interactiverebasebeforebreak || true
 break
 # don't forget to amend now with updated stats in README.md
 
 # 4|💾: EFCore SortingKey reading
 pick 08bb39e
-exec git commit --amend --no-edit --date=now
+exec git commit --amend --no-edit --date=now --allow-empty
 exec git config --get alias.interactiverebasebeforebreak && git interactiverebasebeforebreak || true
 break
 # don't forget to amend now with updated stats in README.md
@@ -448,14 +448,14 @@ label 4-persistman--efcore-sortingkey-reading
 reset 2-persistman--basic-pluggable-efcore
 # Merge branch 'reflection-getmemberhelper' into configuration-efcore-efentityentrypropertiescache
 merge -C 2edbb36 2-facademan--getmemberhelper
-exec git commit --amend --no-edit --date=now
+exec git commit --amend --no-edit --date=now --allow-empty
 exec git config --get alias.interactiverebasebeforebreak && git interactiverebasebeforebreak || true
 break
 # don't forget to amend now with updated stats in README.md
 
 # 4|💾: EFEntityEntryPropertiesCache
 pick 8b5502f
-exec git commit --amend --no-edit --date=now
+exec git commit --amend --no-edit --date=now --allow-empty
 exec git config --get alias.interactiverebasebeforebreak && git interactiverebasebeforebreak || true
 break
 # don't forget to amend now with updated stats in README.md
@@ -465,14 +465,14 @@ label 4-persistman--efentityentrypropertiescache
 reset 3-persistman--efcore-first-class-sortingkey
 # Merge branch 'configuration-efcore-efentityentrypropertiescache' into configuration-efcore-sortingkey-entityentry
 merge -C 4823044 4-persistman--efentityentrypropertiescache
-exec git commit --amend --no-edit --date=now
+exec git commit --amend --no-edit --date=now --allow-empty
 exec git config --get alias.interactiverebasebeforebreak && git interactiverebasebeforebreak || true
 break
 # don't forget to amend now with updated stats in README.md
 
 # 4|💾: EFCore SortingKey ⇆ EntityEntry
 pick 5c5d373
-exec git commit --amend --no-edit --date=now
+exec git commit --amend --no-edit --date=now --allow-empty
 exec git config --get alias.interactiverebasebeforebreak && git interactiverebasebeforebreak || true
 break
 # don't forget to amend now with updated stats in README.md
@@ -482,35 +482,35 @@ label 4-persistman--efcore-sortingkey---entityentry
 reset 3-domainman--oltp-recordtypesmap
 # 4|💾: OLTP EFCore MetadataHelper
 pick 36ba50b
-exec git commit --amend --no-edit --date=now
+exec git commit --amend --no-edit --date=now --allow-empty
 exec git config --get alias.interactiverebasebeforebreak && git interactiverebasebeforebreak || true
 break
 # don't forget to amend now with updated stats in README.md
 
 # 4|💾: OLTP EFCore ID generation
 pick dd57492
-exec git commit --amend --no-edit --date=now
+exec git commit --amend --no-edit --date=now --allow-empty
 exec git config --get alias.interactiverebasebeforebreak && git interactiverebasebeforebreak || true
 break
 # don't forget to amend now with updated stats in README.md
 
 # Merge branch 'configuration-efcore-sortingkey-reading' into oltp-efcore-id-generation-and-sortingkey-integrations
 merge -C dc384f6 4-persistman--efcore-sortingkey-reading
-exec git commit --amend --no-edit --date=now
+exec git commit --amend --no-edit --date=now --allow-empty
 exec git config --get alias.interactiverebasebeforebreak && git interactiverebasebeforebreak || true
 break
 # don't forget to amend now with updated stats in README.md
 
 # Merge branch 'configuration-efcore-sortingkey-entityentry' into oltp-efcore-id-generation-and-sortingkey-integrations
 merge -C 5f49d34 4-persistman--efcore-sortingkey---entityentry
-exec git commit --amend --no-edit --date=now
+exec git commit --amend --no-edit --date=now --allow-empty
 exec git config --get alias.interactiverebasebeforebreak && git interactiverebasebeforebreak || true
 break
 # don't forget to amend now with updated stats in README.md
 
 # 4|💾: OLTP EFCore integration TBC
 pick dcc1cf3
-exec git commit --amend --no-edit --date=now
+exec git commit --amend --no-edit --date=now --allow-empty
 exec git config --get alias.interactiverebasebeforebreak && git interactiverebasebeforebreak || true
 break
 # don't forget to amend now with updated stats in README.md
@@ -520,14 +520,14 @@ label 4-persistman--oltp-efcore-integration-tbc
 reset 3-persistman--efcore-first-class-sortingkey
 # 4|💾: EFEntityTypeSortingKeyTopology
 pick a658ddd
-exec git commit --amend --no-edit --date=now
+exec git commit --amend --no-edit --date=now --allow-empty
 exec git config --get alias.interactiverebasebeforebreak && git interactiverebasebeforebreak || true
 break
 # don't forget to amend now with updated stats in README.md
 
 # 4|💾: EFCore modifying integrations
 merge -C 72a16ba 2-----efcore-modifying-basics
-exec git commit --amend --no-edit --date=now
+exec git commit --amend --no-edit --date=now --allow-empty
 exec git config --get alias.interactiverebasebeforebreak && git interactiverebasebeforebreak || true
 break
 # don't forget to amend now with updated stats in README.md
@@ -537,14 +537,14 @@ label 4-----efcore-modifying-integrations
 reset 3-persistman--efpropertyexpressionscache
 # Merge branch 'reflection-valuetuplehelper' into configuration-efcore-efpropertyexpressionscache-multi-entity
 merge -C 788f6d6 2-facademan--valuetuplehelper
-exec git commit --amend --no-edit --date=now
+exec git commit --amend --no-edit --date=now --allow-empty
 exec git config --get alias.interactiverebasebeforebreak && git interactiverebasebeforebreak || true
 break
 # don't forget to amend now with updated stats in README.md
 
 # 4|💾: cache EFProperty from ValueTuple
 pick 00539e3
-exec git commit --amend --no-edit --date=now
+exec git commit --amend --no-edit --date=now --allow-empty
 exec git config --get alias.interactiverebasebeforebreak && git interactiverebasebeforebreak || true
 break
 # don't forget to amend now with updated stats in README.md
@@ -562,7 +562,7 @@ label 4-persistman--cache-efproperty-from-valuetuple
 reset 4-facademan--oltp-linq-may-be-useful
 # Merge branch 'oltp-segregate-use-cases-repository-is-for-persistence' into oltp-di-combine-use-case-and-persistence-interfaces-switch-to-chassis
 merge -C 3b69372 4-domainman--enumerate-oltp-use-cases
-exec git commit --amend --no-edit --date=now
+exec git commit --amend --no-edit --date=now --allow-empty
 exec git config --get alias.interactiverebasebeforebreak && git interactiverebasebeforebreak || true
 break
 # don't forget to amend now with updated stats in README.md
@@ -570,7 +570,7 @@ break
 # 5|🧱: OLTP switch to chassis
 pick ea48d7f
 fixup b1d0524 # The file list in this commit's section was left in the order it was
-exec git commit --amend --no-edit --date=now
+exec git commit --amend --no-edit --date=now --allow-empty
 exec git config --get alias.interactiverebasebeforebreak && git interactiverebasebeforebreak || true
 break
 # don't forget to amend now with updated stats in README.md
@@ -581,14 +581,14 @@ label 5-facademan--oltp-switch-to-chassis
 reset 3-domainman--oltp-recordtypesmap
 # Merge branch 'reflection-di-diconstructorhelper' into oltp-stateownership-reflection-di-scopedrecordsprovider
 merge -C 1514588 2-facademan--diconstructorhelper
-exec git commit --amend --no-edit --date=now
+exec git commit --amend --no-edit --date=now --allow-empty
 exec git config --get alias.interactiverebasebeforebreak && git interactiverebasebeforebreak || true
 break
 # don't forget to amend now with updated stats in README.md
 
 # 5|🧱: OLTP DI ScopedRecordsProvider
 pick a5ea289
-exec git commit --amend --no-edit --date=now
+exec git commit --amend --no-edit --date=now --allow-empty
 exec git config --get alias.interactiverebasebeforebreak && git interactiverebasebeforebreak || true
 break
 # don't forget to amend now with updated stats in README.md
@@ -598,7 +598,7 @@ label 5-facademan--oltp-di-scopedrecordsprovider
 reset 3-domainman--oltp-usecasetypesmap
 # 5|🧱: OLTP DI ScopedUseCasesProvider
 pick 3b8c636
-exec git commit --amend --no-edit --date=now
+exec git commit --amend --no-edit --date=now --allow-empty
 exec git config --get alias.interactiverebasebeforebreak && git interactiverebasebeforebreak || true
 break
 # don't forget to amend now with updated stats in README.md
@@ -608,21 +608,21 @@ label 5-facademan--oltp-di-scopedusecasesprovider
 reset 5-facademan--oltp-switch-to-chassis
 # Merge branch 'oltp-stateownership-reflection-di-scopedrecordsprovider' into oltp-di-combine-use-case-and-persistence-interfaces-without-inheritance
 merge -C d9f7f36 5-facademan--oltp-di-scopedrecordsprovider
-exec git commit --amend --no-edit --date=now
+exec git commit --amend --no-edit --date=now --allow-empty
 exec git config --get alias.interactiverebasebeforebreak && git interactiverebasebeforebreak || true
 break
 # don't forget to amend now with updated stats in README.md
 
 # Merge branch 'oltp-recordsmanagement-usecases-reflection-di-scopedusecasesprovider' into oltp-di-combine-use-case-and-persistence-interfaces-without-inheritance
 merge -C 6cf149c 5-facademan--oltp-di-scopedusecasesprovider
-exec git commit --amend --no-edit --date=now
+exec git commit --amend --no-edit --date=now --allow-empty
 exec git config --get alias.interactiverebasebeforebreak && git interactiverebasebeforebreak || true
 break
 # don't forget to amend now with updated stats in README.md
 
 # 5|🧱: OLTP DI inheritance free repo
 pick 0ad0aee
-exec git commit --amend --no-edit --date=now
+exec git commit --amend --no-edit --date=now --allow-empty
 exec git config --get alias.interactiverebasebeforebreak && git interactiverebasebeforebreak || true
 break
 # don't forget to amend now with updated stats in README.md
@@ -632,21 +632,21 @@ label 5-facademan--oltp-di-inheritance-free-repo
 
 # Merge branch 'oltp-segregate-use-cases-with-transactional-composition' into oltp-di-combine-use-case-and-persistence-interfaces-with-record-types-composition
 merge -C e64b22a 4-domainman--oltp-use-cases-by-record-type
-exec git commit --amend --no-edit --date=now
+exec git commit --amend --no-edit --date=now --allow-empty
 exec git config --get alias.interactiverebasebeforebreak && git interactiverebasebeforebreak || true
 break
 # don't forget to amend now with updated stats in README.md
 
 # 5|🧱: OLTP record composition to chassis
 pick 38411e0
-exec git commit --amend --no-edit --date=now
+exec git commit --amend --no-edit --date=now --allow-empty
 exec git config --get alias.interactiverebasebeforebreak && git interactiverebasebeforebreak || true
 break
 # don't forget to amend now with updated stats in README.md
 
 # 5|🧱: OLTP DI mixed repository
 pick bd8d8e7
-exec git commit --amend --no-edit --date=now
+exec git commit --amend --no-edit --date=now --allow-empty
 exec git config --get alias.interactiverebasebeforebreak && git interactiverebasebeforebreak || true
 break
 # don't forget to amend now with updated stats in README.md
@@ -657,7 +657,7 @@ label 5-facademan--oltp-di-mixed-repository
 reset 4-facademan--oltp-linq-may-be-useful
 # Merge 'oltp-efcore-id-generation-and-sortingkey-integrations' into oltp-recordsmanagement-persistence-linq-efcore-readonly
 merge -C 2800c7c 4-persistman--oltp-efcore-integration-tbc
-exec git commit --amend --no-edit --date=now
+exec git commit --amend --no-edit --date=now --allow-empty
 exec git config --get alias.interactiverebasebeforebreak && git interactiverebasebeforebreak || true
 break
 # don't forget to amend now with updated stats in README.md
@@ -665,14 +665,14 @@ break
 # 5|💾: OLTP EFCore readonly
 pick 1d0e36e
 fixup 9e494b2 # The file list in this commit's section was left in the order it was
-exec git commit --amend --no-edit --date=now
+exec git commit --amend --no-edit --date=now --allow-empty
 exec git config --get alias.interactiverebasebeforebreak && git interactiverebasebeforebreak || true
 break
 # don't forget to amend now with updated stats in README.md
 
 # 5|💾: OLTP EFCore modifying TBC
 merge -C f82fd72 4-----efcore-modifying-integrations
-exec git commit --amend --no-edit --date=now
+exec git commit --amend --no-edit --date=now --allow-empty
 exec git config --get alias.interactiverebasebeforebreak && git interactiverebasebeforebreak || true
 break
 # don't forget to amend now with updated stats in README.md
@@ -686,7 +686,7 @@ break
 # 6|💾: OLTP EFCore finalized
 pick 14c26ca
 fixup a83492a # The file list in this commit's section was left in the order it was
-exec git commit --amend --no-edit --date=now
+exec git commit --amend --no-edit --date=now --allow-empty
 exec git config --get alias.interactiverebasebeforebreak && git interactiverebasebeforebreak || true
 break
 # don't forget to amend now with updated stats in README.md
@@ -702,7 +702,7 @@ label 6-persistman--oltp-efcore-finalized
 reset 5-facademan--oltp-di-inheritance-free-repo
 # Merge branch 'oltp-recordsmanagement-persistence-linq-efcore-finalized' into oltp-di-efcore-handle-specifications-only-the-rest-is-covered
 merge -C 5fdfd79 6-persistman--oltp-efcore-finalized
-exec git commit --amend --no-edit --date=now
+exec git commit --amend --no-edit --date=now --allow-empty
 exec git config --get alias.interactiverebasebeforebreak && git interactiverebasebeforebreak || true
 break
 # don't forget to amend now with updated stats in README.md
@@ -710,14 +710,14 @@ break
 # 7|🧱: OLTP DI EFCore switch to chassis
 pick ea49af9
 fixup f088ce5 # The file list in this commit's section was left in the order it was
-exec git commit --amend --no-edit --date=now
+exec git commit --amend --no-edit --date=now --allow-empty
 exec git config --get alias.interactiverebasebeforebreak && git interactiverebasebeforebreak || true
 break
 # don't forget to amend now with updated stats in README.md
 
 # 7|🧱: OLTP DI EFCore integrated
 pick 5296b2d
-exec git commit --amend --no-edit --date=now
+exec git commit --amend --no-edit --date=now --allow-empty
 exec git config --get alias.interactiverebasebeforebreak && git interactiverebasebeforebreak || true
 break
 # don't forget to amend now with updated stats in README.md
@@ -728,7 +728,7 @@ label 7-facademan--oltp-di-efcore-integrated
 reset 3-persistman--efcore-first-class-sortingkey
 # 7|💾: EFCore SortingKey multi-entity
 pick f4ce050
-exec git commit --amend --no-edit --date=now
+exec git commit --amend --no-edit --date=now --allow-empty
 exec git config --get alias.interactiverebasebeforebreak && git interactiverebasebeforebreak || true
 break
 # don't forget to amend now with updated stats in README.md
@@ -737,14 +737,14 @@ label 7-persistman--efcore-sortingkey-multi-entity
 
 # Merge branches 'configuration-efcore-sortingkey-reading' 'configuration-efcore-efpropertyexpressionscache-multi-entity' into configuration-efcore-sortingkey-multi-entity-sorting
 merge -C 1be5953 4-persistman--efcore-sortingkey-reading 4-persistman--cache-efproperty-from-valuetuple
-exec git commit --amend --no-edit --date=now
+exec git commit --amend --no-edit --date=now --allow-empty
 exec git config --get alias.interactiverebasebeforebreak && git interactiverebasebeforebreak || true
 break
 # don't forget to amend now with updated stats in README.md
 
 # 7|💾: EFCore multi-entity sorting
 pick 8253762
-exec git commit --amend --no-edit --date=now
+exec git commit --amend --no-edit --date=now --allow-empty
 exec git config --get alias.interactiverebasebeforebreak && git interactiverebasebeforebreak || true
 break
 # don't forget to amend now with updated stats in README.md
@@ -754,14 +754,14 @@ label 7-persistman--efcore-multi-entity-sorting
 reset 7-persistman--efcore-sortingkey-multi-entity
 # Merge branch 'configuration-efcore-sortingkey-entityentry' into configuration-efcore-sortingkey-multi-entityentry-visitors
 merge -C 91d4af2 4-persistman--efcore-sortingkey---entityentry
-exec git commit --amend --no-edit --date=now
+exec git commit --amend --no-edit --date=now --allow-empty
 exec git config --get alias.interactiverebasebeforebreak && git interactiverebasebeforebreak || true
 break
 # don't forget to amend now with updated stats in README.md
 
 # 7|💾: EFCore multi EntityEntry visitors
 pick 9f9b919
-exec git commit --amend --no-edit --date=now
+exec git commit --amend --no-edit --date=now --allow-empty
 exec git config --get alias.interactiverebasebeforebreak && git interactiverebasebeforebreak || true
 break
 # don't forget to amend now with updated stats in README.md
@@ -771,7 +771,7 @@ label 7-persistman--efcore-multi-entityentry-visitors
 reset 7-persistman--efcore-multi-entity-sorting
 # 7|💾: OLTP EFCore multi-entity TBC
 merge -C 3efab63 7-persistman--efcore-multi-entityentry-visitors
-exec git commit --amend --no-edit --date=now
+exec git commit --amend --no-edit --date=now --allow-empty
 exec git config --get alias.interactiverebasebeforebreak && git interactiverebasebeforebreak || true
 break
 # don't forget to amend now with updated stats in README.md
@@ -787,7 +787,7 @@ label 7-----oltp-efcore-multi-entity-tbc
 reset 0-facademan--welcome-aboard
 # Merge branch 'oltp-di-efcore-handle-specifications-only-the-rest-is-covered' into public
 merge -C 3bb035b 7-facademan--oltp-di-efcore-integrated
-exec git commit --amend --no-edit --date=now
+exec git commit --amend --no-edit --date=now --allow-empty
 exec git config --get alias.interactiverebasebeforebreak && git interactiverebasebeforebreak || true
 break
 # don't forget to amend now with updated stats in README.md
@@ -803,14 +803,14 @@ label merge-branch--oltp-di-efcore-handle-specifications-only-the-rest-is-covere
 
 # Merge branch 'oltp-stateownership-eventsproducing' into wip-full-solution
 merge -C f247d31 1-domainman--oltp-events-producing
-exec git commit --amend --no-edit --date=now
+exec git commit --amend --no-edit --date=now --allow-empty
 exec git config --get alias.interactiverebasebeforebreak && git interactiverebasebeforebreak || true
 break
 # don't forget to amend now with updated stats in README.md
 
 # Merge branch 'configuration-efcore-hosting-migration-run' into wip-full-solution
 merge -C d3d94e2 2-persistman--efcore-hosting-migration-run
-exec git commit --amend --no-edit --date=now
+exec git commit --amend --no-edit --date=now --allow-empty
 exec git config --get alias.interactiverebasebeforebreak && git interactiverebasebeforebreak || true
 break
 # don't forget to amend now with updated stats in README.md
@@ -820,21 +820,21 @@ label merge-branch--configuration-efcore-hosting-migration-run--into-wip-full-so
 reset 7-facademan--oltp-di-efcore-integrated
 # Merge branch 'oltp-di-combine-use-case-and-persistence-interfaces-with-record-types-composition' into wip-oltp-di-efcore-handle-specifications-only-the-rest-is-covered-with-record-types-composition
 merge -C 48824ae 5-facademan--oltp-di-mixed-repository
-exec git commit --amend --no-edit --date=now
+exec git commit --amend --no-edit --date=now --allow-empty
 exec git config --get alias.interactiverebasebeforebreak && git interactiverebasebeforebreak || true
 break
 # don't forget to amend now with updated stats in README.md
 
 # Merge branch 'configuration-efcore-sortingkey-multi-entity-sorting-and-visitors' into wip-oltp-di-efcore-handle-specifications-only-the-rest-is-covered-with-record-types-composition
 merge -C 9acc8b5 7-----oltp-efcore-multi-entity-tbc
-exec git commit --amend --no-edit --date=now
+exec git commit --amend --no-edit --date=now --allow-empty
 exec git config --get alias.interactiverebasebeforebreak && git interactiverebasebeforebreak || true
 break
 # don't forget to amend now with updated stats in README.md
 
 # N|🧱: OLTP EFCore multi-entity chassis
 pick 3668be1
-exec git commit --amend --no-edit --date=now
+exec git commit --amend --no-edit --date=now --allow-empty
 exec git config --get alias.interactiverebasebeforebreak && git interactiverebasebeforebreak || true
 break
 # don't forget to amend now with updated stats in README.md
@@ -845,14 +845,14 @@ label n-facademan--oltp-efcore-multi-entity-chassis
 reset merge-branch--configuration-efcore-hosting-migration-run--into-wip-full-solution
 # Merge branch 'wip-oltp-di-efcore-handle-specifications-only-the-rest-is-covered-with-record-types-composition' into wip-full-solution
 merge -C 5a21c1c n-facademan--oltp-efcore-multi-entity-chassis
-exec git commit --amend --no-edit --date=now
+exec git commit --amend --no-edit --date=now --allow-empty
 exec git config --get alias.interactiverebasebeforebreak && git interactiverebasebeforebreak || true
 break
 # don't forget to amend now with updated stats in README.md
 
 # N|🧱: wip switch to chassis
 pick 97f3702
-exec git commit --amend --no-edit --date=now
+exec git commit --amend --no-edit --date=now --allow-empty
 exec git config --get alias.interactiverebasebeforebreak && git interactiverebasebeforebreak || true
 break
 # don't forget to amend now with updated stats in README.md
@@ -861,7 +861,7 @@ break
 
 # Merge branch 'public' into wip-full-solution
 merge -C bebac2c merge-branch--oltp-di-efcore-handle-specifications-only-the-rest-is-covered--into-public
-exec git commit --amend --no-edit --date=now
+exec git commit --amend --no-edit --date=now --allow-empty
 exec git config --get alias.interactiverebasebeforebreak && git interactiverebasebeforebreak || true
 break
 # don't forget to amend now with updated stats in README.md
