@@ -80,6 +80,7 @@ in those 3 years originally.*
 The main branch is "public" with commits of two types in its "trunk":
 
 * [commit --fixup](https://git-scm.com/docs/git-commit#:~:text=Create%20a%20new%20commit%20which%20%22fixes%20up%22)  
+(or [`--fixup=amend`](https://git-scm.com/docs/git-commit#:~:text=fixup%3Damend))  
 these are used whenever any change is intended for the latest version.  
 The fixups are always on top of the whole "entry point" branch graph  
 where more complex entry points include less complex ending up into  

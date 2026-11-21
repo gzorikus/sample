@@ -168,7 +168,7 @@ $commitsByUniqueCommitterDate.Values |
         "exec git config --get alias.interactiverebasebeforebreak && git interactiverebasebeforebreak || true`n" +
         "break`n" +
         "# don't forget to amend now with updated stats in README.md`n";
-    if ($_.UpdateBranchRefHead) { $_.Cmd = "$($_.Cmd)update-ref refs/heads/$($_.UpdateBranchRefHead)`n"; }
+    if ($_.UpdateBranchRefHead) { $_.Cmd = "$($_.Cmd)exec git symbolic-ref -q HEAD >/dev/null || git update-ref refs/heads/$($_.UpdateBranchRefHead)`n"; }
     if ($notSkipped -and $labelsReferenced[$_.Label]) { $_.Cmd = "$($_.Cmd)`nlabel $($_.Label)`n"; }
     $content += $_.Cmd;
 }
